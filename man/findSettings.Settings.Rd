@@ -1,0 +1,49 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not modify this file since it was automatically generated from:
+% 
+%  
+% 
+% on Thu Jul 21 11:59:41 2005.
+% 
+% Generator was the Rdoc class, which is part of the R.oo package written
+% by Henrik Bengtsson, 2001-2004.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \name{findSettings.Settings}
+\alias{findSettings.Settings}
+\alias{Settings.findSettings}
+\alias{findSettings.Settings}
+\alias{findSettings,Settings-method}
+
+
+ \title{Searches for the settings file in one or several directories}
+
+ \description{
+   Searches for the settings file in one or several directories.
+ }
+
+ \synopsis{findSettings.Settings(static, basename, paths=c(".", "~"), ...)}
+\usage{Settings$findSettings(basename, paths=c(".", "~"), ...)}
+
+ \arguments{
+  \item{basename}{A \code{\link[base]{character}} string of the basename of the settings file.}
+  \item{paths}{A \code{\link[base]{vector}} of \code{\link[base]{character}} string specifying the directories to
+    be searched.}
+  \item{...}{Not used.}
+ }
+
+ \value{
+   Returns the absolute pathname (\code{\link[base]{character}} string) of the first settings
+   file found, otherwise \code{\link[base]{NULL}}.
+ }
+
+ \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+
+ \seealso{
+   For more information see \code{\link{Settings}}.
+ }
+
+
+\keyword{internal}
+\keyword{methods}
+\keyword{programming}

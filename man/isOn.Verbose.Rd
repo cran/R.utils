@@ -1,0 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not modify this file since it was automatically generated from:
+% 
+%  
+% 
+% on Thu Jul 21 12:00:05 2005.
+% 
+% Generator was the Rdoc class, which is part of the R.oo package written
+% by Henrik Bengtsson, 2001-2004.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\name{isOn.Verbose}
+\alias{isOn.Verbose}
+\alias{Verbose.isOn}
+\alias{isOn.Verbose}
+\alias{isOn,Verbose-method}
+
+
+\title{Checks if the output is on}
+
+\description{
+  Checks if the output is on.
+}
+
+\usage{\method{isOn}{Verbose}(this, ...)}
+
+\arguments{
+ \item{...}{Not used.}
+}
+
+\value{
+  Returns \code{\link[base:logical]{TRUE}} if output is on, otherwise \code{\link[base:logical]{FALSE}}.
+}
+
+\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+
+\seealso{
+  \code{\link[R.utils:on.Verbose]{*on}()} and \code{\link[R.utils:off.Verbose]{*off}()}.
+  For more information see \code{\link{Verbose}}.
+}
+
+
+\keyword{internal}
+\keyword{methods}
+\keyword{programming}

@@ -1,0 +1,131 @@
+#########################################################################/**
+# @RdocDefault insert
+#
+# @title "Insert values to a vector at certain positions"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{x}{The @vector of data values.}
+#   \item{ats}{The indices of \code{x} where the values should be inserted.}
+#   \item{values}{A @list or a @vector of the values to be inserted.}
+#   \item{...}{Not used.}
+# }
+#
+# @examples "insert.Rex"
+#
+# @author
+#
+# @keyword "manip"
+#*/#########################################################################t
+setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # For debug only!
+  printFromTo <- function(from, to, x) {
+    fromto <- matrix(c(from, to), ncol=2);
+    colnames(fromto) <- c("from", "to");
+    idx <- apply(fromto, MARGIN=1, FUN=function(i) seqToHumanReadable(i[1]:i[2]));
+    xidx <- apply(fromto, MARGIN=1, FUN=function(i) paste(x[i[1]:i[2]], collapse=","));
+    print(data.frame(from=from, to=to, idx=idx, x.=xidx))
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  if (!is.vector(x))
+    throw("Argument 'x' is not a vector: ", class(x));
+
+  len <- length(x);
+  if (any(ats < 1 | ats > len+1))
+    throw("Argument 'ats' contains indices out of range: ", paste(ats, collapse=", "));
+
+  if (any(duplicated(ats)))
+    throw("Argument 'ats' contains duplicated indices: ", paste(ats, collapse=", "));
+
+  if (!is.vector(values))
+    throw("Argument 'values' is not a vector: ", class(values));
+
+  if (!is.list(values))
+    values <- list(values);
+
+  if (length(ats) != length(values)) 
+    throw("Argument 'ats' and argument 'values' has different lengths: ", 
+                                       length(ats), " != ", length(values));
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Setup
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Sort the 'ats' indicies
+  o <- order(ats);
+  ats <- ats[o];
+  values <- values[o];
+
+  nvalues <- unlist(lapply(values, FUN=length));
+
+  # Allocate the result vector
+  x2 <- vector(mode=mode(x), length=length(x) + sum(nvalues));
+  storage.mode(x2) <- storage.mode(x);
+
+  # 'ats' positions in the result vector
+  n <- length(ats);
+  ats2 <- ats + c(0, cumsum(nvalues[-n]));
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Assign inserted values
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  for (kk in 1:length(ats2)) {
+    idx2 <- ats2[kk] + 0:(nvalues[kk]-1);
+    x2[idx2] <- values[[kk]];
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Assign original values
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  froms <- c(1, ats);
+  tos <- c(ats-1, length(x));
+  froms2 <- c(1, ats2+nvalues);
+
+  if (ats[1] == 1) {
+    froms <- froms[-1];
+    tos <- tos[-1];
+    froms2 <- froms2[-1];
+  }
+
+  if (ats[n] > length(x)) {
+    froms <- froms[-length(froms)];
+    tos <- tos[-length(tos)];
+    froms2 <- froms2[-length(froms2)];
+  }
+
+  ns <- tos-froms+1;
+  tos2 <- froms2 + ns - 1;
+
+  for (kk in 1:length(froms2)) {
+    from <- froms[kk];
+    to <- tos[kk];
+    from2 <- froms2[kk];
+    to2 <- tos2[kk];
+    idx <- from:to;
+    idx2 <- from2:to2;
+    x2[idx2] <- x[idx];
+  }
+
+  x2;
+})
+
+
+############################################################################
+# HISTORY:
+# 2005-06-12
+# o Updated a lot! Wrote a rather large example.
+# 2005-02-20
+# o Now using setMethodS3() and added '...' to please R CMD check.
+# 2001-11-24
+# o Created.
+############################################################################

@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Do not modify this file since it was automatically generated from:
+% 
+%  
+% 
+% on Thu Jul 21 11:59:50 2005.
+% 
+% Generator was the Rdoc class, which is part of the R.oo package written
+% by Henrik Bengtsson, 2001-2004.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+ \name{getHostname.System}
+\alias{getHostname.System}
+\alias{System.getHostname}
+\alias{getHostname.System}
+\alias{getHostname,System-method}
+
+
+ \title{Retrieves the computer name of the current host}
+
+ \description{
+  Retrieves the computer name of the current host.
+ }
+
+ \synopsis{getHostname.System(static, ...)}
+\usage{System$getHostname(...)}
+
+ \value{
+  Returns a \code{\link[base]{character}} string.
+ }
+
+ \details{
+  First this function checks the system environment variables \code{HOST},
+  \code{HOSTNAME}, and \code{COMPUTERNAME}.
+  Finally, it tries to query the system command \code{uname -n}.
+ }
+
+ \seealso{
+   \code{\link[R.utils:getUsername.System]{*getUsername}()}.
+ }
+\keyword{internal}
+\keyword{methods}

@@ -1,0 +1,70 @@
+
+Package: R.utils
+================
+
+Version: 0.5.5 [2005-07-21]
+o BUG FIX: Example illustrating Windows Shortcut methods tried to
+  access 'HISTORY.lnk' and not 'HISTORY.LNK', which would fail on Unix.
+o BUG FIX: getCharacters() would not coerce Object:s correctly.
+o Now sourceDirectory() does 'chdir=FALSE' instead of 'chdir=FALSE'.
+o Now mkdirs() has an internal check for infinit-recursive calls.
+
+Version: 0.5.4 [2005-07-19]
+o BUG FIX: If there are no files to source in a directory, and verbose
+  is active, basefile() on NULL was called generating an error.
+o BUG FIX: sourceTo(..., chdir=TRUE) would generate an error. This
+  would for instance make sourceDirectory() useless.
+
+Version: 0.5.3 [2005-07-18]
+o Added resetWarnings() and splitByPattern().
+o Added summary() to class Verbose and a corresponding VComments tag.
+o Arguments$getCharacters() returned attribute 'names' too. Removed. 
+o sourceDirectory() is no longer catching warnings in tryCatch(),
+  because otherwise it will interrupt the call as if the warnings 
+  were errors.
+
+Version: 0.5.2 [2005-06-27]
+o Added getRelativePath().
+o Added LComments which is a VComments class with different defaults.
+o Made SmartComments classes and methods non-static.
+o Escaping double quotes in VComments messages.
+
+Version: 0.5.1 [2005-06-23]
+o Package passes R CMD check for R v2.1.0.
+o Added trial version of SmartComments and subclass VComments where
+  the latter are R comments with a special format generating verbose
+  output if source is first pre-processed by compile() method. 
+  If not preprocessed, they are just regular comments, adding no
+  overhead in processing speed.  I can imagine to add, say, AComments
+  that Asserts conditions at given test points in code; when code
+  works, just source code without pre-processing them!
+o Now it is possible to set the default verbose level used by
+  all Verbose methods if not explicitly given.
+o Now all Verbose messages are GString:ed. This makes VComments slim.
+
+Version: 0.5.0 [2005-06-19]
+o Package passes R CMD check for R v2.1.0.
+o Now commandArgs() recognizes environment variables.
+o Added attachLocally().
+o When package is loaded, .Last() is modified so that 'onSessionExit' 
+  hooks are called when R finishes.
+o Added onSessionExit(), finalizeSession() and addFinalizerToLast().
+o Added callHooks().
+o Added the NullVerbose() class.
+o Moved (de-)capitalize() and seqToHumanReadable() from R.basic to here.
+o Added new GString class.
+o Added the Assert class.
+o Moved the System class from R.lang to this package. System was also
+  cleaned out from several never used methods and fields.
+o Added filePath() together with file methods isFile(), isDirectory(),
+  isAbsolutePath(), mkdirs(), lastModified(), and toUrl().
+o Moved sourceTo() from R.io to this package.
+o Moved doCall() from R.basic to this package.
+o Created the Options class.
+o Added several methods to the Verbose class. Also added support for
+  indentation by enter() and exit() of Verbose.
+o Moved the Java and Verbose class from R.matlab to this package. 
+  This requires that this package is on CRAN before R.matlab is updated.
+o Moved the ProgressBar and FileProgressBar from the R.ui package,
+  which then becomes more or less empty.
+o Created. 
