@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:58 2005.
+% on Mon Apr 03 17:26:18 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{finalizeSession}
@@ -33,7 +33,7 @@
   Returns (invisibly) the hooks successfully called.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   \code{\link{onSessionExit}}().

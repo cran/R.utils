@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:29 2005.
+% on Mon Apr 03 17:26:42 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{setOption.Options}
@@ -35,7 +35,7 @@
 
  \value{Returns (invisibly) the old option value.}
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.

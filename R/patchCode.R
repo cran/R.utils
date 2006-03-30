@@ -46,7 +46,7 @@
 #   file tree containing patches.
 #
 #   To set an options, see @see "base::options". To set a system 
-#   environment, see @see "base::Sys.putenv". 
+#   environment, see \code{\link[base:putenv]{Sys.putenv}}(). 
 #   The character \code{;} is interpreted as a separator. Due to 
 #   incompatibility with Windows pathnames, \code{:} is \emph{not} a
 #   valid separator.
@@ -67,7 +67,7 @@
 # \seealso{
 #  @see "base::source".
 #  @see "base::library".
-#  @see "R.basic::relibrary".
+#  @see "relibrary".
 # }
 #
 # @keyword "utilities" 

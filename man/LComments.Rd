@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:19 2005.
+% on Mon Apr 03 17:26:33 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{LComments}
@@ -50,8 +50,24 @@ extends \link[R.utils]{VComments}\cr
   \item{...}{Not used.}
 }
 
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
+\emph{No methods defined}.
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+
+\bold{Methods inherited from VComments}:\cr
+convertComment, reset, validate
+
+\bold{Methods inherited from SmartComments}:\cr
+compile, convertComment, parse, reset, validate
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
+}
+
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 

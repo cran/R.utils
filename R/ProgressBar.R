@@ -21,7 +21,7 @@
 #  @allmethods
 # }
 # 
-# @examples "ProgressBar.Rex"
+# @examples "../incl/ProgressBar.Rex"
 #
 # @author
 #*/###########################################################################

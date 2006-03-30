@@ -46,21 +46,24 @@ setMethodS3("listDirectory", "default", function(pathname, pattern=NULL, recursi
     pathname <- "."; # As in Java.
 
   pathname <- getAbsolutePath(pathname);
-  
+#  relPathname <- getRelativePath(pathname);
+  relPathname <- pathname;
+
   # Get the directories (and files) in the current directory
-  dirs <- list.files(pathname, all.files=allNames, full.names=FALSE);
+  dirs <- list.files(relPathname, all.files=allNames, full.names=FALSE);
   dirs <- setdiff(dirs, c(".", ".."));
   if (length(dirs) == 0)
     return(NULL);
 
-  if (fullNames)
+  if (fullNames) {
     dirs <- file.path(pathname, dirs);
+  }
 
   # Get the files in the current directory
   if (is.null(pattern)) {
     files <- dirs;
   } else {
-    files <- list.files(pathname, pattern=pattern, all.files=allNames, 
+    files <- list.files(relPathname, pattern=pattern, all.files=allNames, 
                                                full.names=fullNames, ...);
   }
 
@@ -69,9 +72,11 @@ setMethodS3("listDirectory", "default", function(pathname, pattern=NULL, recursi
       if (fullNames) {
         path <- dir;
       } else {
-        path <- filePath(pathname, dir);
+        path <- filePath(relPathname, dir);
       }
       if (isDirectory(path)) {
+        if (identical(path, pathname))
+          throw("Internal error: Detected infinite recursive call in listDirectory(): ", pathname);
         subfiles <- listDirectory(path, pattern=pattern, recursive=TRUE,
                              allNames=allNames, fullNames=fullNames, ...);
         if (!fullNames)
@@ -86,6 +91,10 @@ setMethodS3("listDirectory", "default", function(pathname, pattern=NULL, recursi
 
 ###########################################################################
 # HISTORY: 
+# 2005-10-28
+# o Added inifite recursive call detection to listDirectory().
+# 2005-08-02
+# o TODO: Now all listings are done using relative pathnames.
 # 2005-05-29
 # o Renamed from listDir() to listDirectory().
 # o Created by copying code in the File class of the R.io package.

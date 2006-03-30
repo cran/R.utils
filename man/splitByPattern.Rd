@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:48 2005.
+% on Mon Apr 03 17:26:56 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{splitByPattern}
@@ -34,7 +34,15 @@
    if element is a pattern part and \code{"FALSE"} otherwise.
  }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \examples{
+
+rspCode <- "<body>Hello <\%=\"world\"\%></body>"
+rspParts <- splitByPattern(rspCode, pattern="<\%.*\%>")
+cat(rspCode, "\n")
+print(rspParts)
+}
+
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    Compare to \code{\link[base]{strsplit}}().

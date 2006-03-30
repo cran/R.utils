@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:44 2005.
+% on Mon Apr 03 17:26:55 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{SmartComments}
@@ -25,7 +25,7 @@
 \code{~~+--}\emph{\code{SmartComments}}\cr
 
 \bold{Directly known subclasses:}\cr
-LComments, VComments\cr
+\link[R.utils]{LComments}, \link[R.utils]{VComments}\cr
 
 public abstract static class \bold{SmartComments}\cr
 extends \link[R.oo]{Object}\cr
@@ -40,6 +40,23 @@ extends \link[R.oo]{Object}\cr
 \arguments{
   \item{letter}{A single \code{\link[base]{character}}.}
   \item{...}{Not used.}
+}
+
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
+\tabular{rll}{
+ \tab \code{\link[R.utils:compile.SmartComments]{compile}} \tab Preprocess a vector of code lines.\cr
+ \tab \code{\link[R.utils:convertComment.SmartComments]{convertComment}} \tab Converts a single smart comment to R code.\cr
+ \tab \code{\link[R.utils:parse.SmartComments]{parse}} \tab Parses one single smart comment.\cr
+ \tab \code{\link[R.utils:reset.SmartComments]{reset}} \tab Resets a SmartComments compiler.\cr
+ \tab \code{\link[R.utils:validate.SmartComments]{validate}} \tab Validates the compiled lines.\cr
+}
+
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
 }
 
 \details{
@@ -65,9 +82,7 @@ extends \link[R.oo]{Object}\cr
  }
 }
 
-\author{
-  Henrik Bengtsson, \url{http://www.braju.com/R/}
-}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   \code{\link{VComments}}.

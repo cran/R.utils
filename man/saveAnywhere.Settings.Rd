@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:41 2005.
+% on Mon Apr 03 17:26:52 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{saveAnywhere.Settings}
@@ -32,13 +32,15 @@
       this was not the case, argument \code{path} is used.}
    \item{path}{The default path, if no settings files are specified.
       This defaults to the current user's home directory.}
-   \item{...}{Arguments passed to \code{\link[write.Options]{write}()}
-      in superclass Options.}
+   \item{...}{Arguments passed to
+      \code{\link[R.utils:save.Object]{save}()} in superclass Object.}
  }
 
- \value{Returns nothing.}
+ \value{
+   Returns (invisibly) the pathname to the save settings file.
+ }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link[R.utils:loadAnywhere.Settings]{*loadAnywhere}()}.

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:45 2005.
+% on Mon Apr 03 17:26:11 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{Arguments}
@@ -38,8 +38,10 @@ extends \link[R.oo]{Object}\cr
 \tabular{rll}{
  \tab \code{getCharacter} \tab  -\cr
  \tab \code{\link[R.utils:getCharacters.Arguments]{getCharacters}} \tab Coerces to a character vector and validates.\cr
+ \tab \code{getDirectory} \tab  -\cr
  \tab \code{getDouble} \tab  -\cr
  \tab \code{\link[R.utils:getDoubles.Arguments]{getDoubles}} \tab Coerces to a double vector and validates.\cr
+ \tab \code{\link[R.utils:getEnvironment.Arguments]{getEnvironment}} \tab Gets an existing environment.\cr
  \tab \code{getIndex} \tab  -\cr
  \tab \code{\link[R.utils:getIndices.Arguments]{getIndices}} \tab Coerces to a integer vector and validates.\cr
  \tab \code{getInteger} \tab  -\cr
@@ -48,8 +50,12 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.utils:getLogicals.Arguments]{getLogicals}} \tab Coerces to a logical vector and validates.\cr
  \tab \code{getNumeric} \tab  -\cr
  \tab \code{\link[R.utils:getNumerics.Arguments]{getNumerics}} \tab Coerces to a numeric vector and validates.\cr
+ \tab \code{getReadablePath} \tab  -\cr
  \tab \code{\link[R.utils:getReadablePathname.Arguments]{getReadablePathname}} \tab Gets a readable pathname.\cr
+ \tab \code{\link[R.utils:getReadablePathnames.Arguments]{getReadablePathnames}} \tab Gets a readable pathname.\cr
+ \tab \code{\link[R.utils:getRegularExpression.Arguments]{getRegularExpression}} \tab Gets a valid regular expression pattern.\cr
  \tab \code{\link[R.utils:getVerbose.Arguments]{getVerbose}} \tab Coerces to Verbose object.\cr
+ \tab \code{getWritablePath} \tab  -\cr
  \tab \code{\link[R.utils:getWritablePathname.Arguments]{getWritablePathname}} \tab Gets a writable pathname.\cr
 }
 
@@ -60,7 +66,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, ex
 
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 \keyword{classes}

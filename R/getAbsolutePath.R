@@ -13,6 +13,8 @@
 #  \item{pathname}{A @character string of the pathname to be converted into
 #    an absolute pathname.}
 #  \item{workDirectory}{A @character string of the current working directory.}
+#  \item{expandTilde}{If @TRUE, tilde (\code{~}) is expanded to the 
+#    corresponding directory, otherwise not.}
 #  \item{...}{Not used.}
 # }
 #
@@ -23,13 +25,13 @@
 # @author
 #
 # \seealso{
-#   @seemethod "isAbsolutePath".
+#   @see "isAbsolutePath".
 # }
 #
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd(), ...) {
+setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd(), expandTilde=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -76,11 +78,17 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
     pathname <- filePath(pathname, removeUps=TRUE);
   }
 
+  if (expandTilde)
+    pathname <- file.path(dirname(pathname), basename(pathname));
+
   pathname;
 })  
 
 ###########################################################################
 # HISTORY: 
+# 2005-12-05
+# o Added argument 'expandTilde'.  This is needed to get a valid output
+#   path for a graphics device!
 # 2005-06-16
 # o Now getAbsolutePath() removes ".." too.
 # 2005-05-29

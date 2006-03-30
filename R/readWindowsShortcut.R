@@ -19,7 +19,12 @@
 #   Returns a @list structure.
 # }
 # 
-# @examples "readWindowsShortcut.Rex"
+# @examples "../incl/readWindowsShortcut.Rex"
+#
+# \details{
+#  The MIME type for a Windows Shortcut file is 
+#  \code{application/x-ms-shortcut}.
+# }
 #
 # @author
 #
@@ -27,8 +32,18 @@
 #   \code{\link{filePath}}
 # }
 # 
+# \references{
+#   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
+# }
+#
 # @keyword IO
 #*/###########################################################################
+# MORE REFERENCES:
+# FILExt, \url{http://filext.com/detaillist.php?extdetail=LNK}, 2005.
+# An Unofficial Guide to the URL File Format, \url{http://www.cyanwerks.com/file-format-url.html} (contains info about Hotkeys)
+# Parsing Windows Shortcuts (lnk) files in java, \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/9afeaa58e2a405b3%239afeaa58e2a405b3?sa=X&oi=groupsr&start=0&num=3} (got Java code)
+# Windows shell links, \url{http://wiki.tcl.tk/1844} (contain Tcl code)
+#
 setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -139,6 +154,10 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # The first 4 bytes of the file form a long integer that is always set 
   # to 4Ch this it the ASCII value for the uppercase letter L. This is used
   # to identify a valid shell link file.
+  #
+  # Identifying Characters (in hex):
+  # [  magic  ] [                    GUID                     ]
+  # 4C 00 00 00 01 14 02 00 00 00 00 00 C0 00 00 00 00 00 00 46
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   header <- list(
     magic            = readDWord(con),
@@ -154,6 +173,11 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     hotKey           = readDWord(con),
     unknown          = readDWord(con, n=2)
   );
+
+  if (verbose) {
+    cat("File header read:");
+    print(header);
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Assert and parse header
@@ -267,7 +291,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
       offsetBasePathname      = readDWord(con),
       offsetNetworkVolumeInfo = readDWord(con),
       offsetRemainingPathname = readDWord(con),
-      .offset                 = 7*4
+      .offset                 = 7*4                # Current read position
     )
 
     # Set current offset
@@ -282,6 +306,17 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     flags <- c(flags, rep(FALSE, length.out=2-length(flags)));
     names(flags) <- c("availableOnLocalVolume", "availableOnNetworkShare");
     fileLocationInfo$flags <- flags;
+
+    if (fileLocationInfo$flags["availableOnLocalVolume"] != TRUE) {
+      "Random garbage when bit 0 is clear in volume flags" [1]
+#      fileLocationInfo$offsetLocalVolumeInfo <- NA;
+#      fileLocationInfo$offsetBasePathname <- NA;
+    }
+
+    if (fileLocationInfo$flags["availableOnNetworkShare"] != TRUE) {
+      "Random garbage when bit 1 is clear in volume flags" [1]
+#      fileLocationInfo$offsetNetworkVolumeInfo <- NA;
+    }
 
     if (fileLocationInfo$firstOffset != fileLocationInfo$.offset) {
       warning("File format warning: First offset in File Location Info is not 0x1C (28): ", fileLocationInfo$firstOffset);
@@ -357,18 +392,25 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         cat("File location info / Local Volume Table:\n");
         print(fileLocationInfo$localVolumeTable);
       }
+
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      # The base pathname on local system
+      #
+      # "To find the filename of the file on the local volume, combine the 
+      #  base path string and the final path string." [1]
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      # Skip to base pathname
+      skip <- fileLocationInfo$offsetBasePathname-fileLocationInfo$.offset;
+      readBin(con, what="integer", size=1, n=skip);
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
+      fileLocationInfo$basePathname <- readString(con);
+      fileLocationInfo$.offset <- fileLocationInfo$.offset + 
+                                    nchar(fileLocationInfo$basePathname) + 1;
+  
+      if (verbose)
+        cat("basePathname='", fileLocationInfo$basePathname, "'\n", sep="");
     }
-    
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # The base pathname on local system
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    # Skip to base pathname
-    skip <- fileLocationInfo$offsetBasePathname-fileLocationInfo$.offset;
-    readBin(con, what="integer", size=1, n=skip);
-    fileLocationInfo$.offset <- fileLocationInfo$.offset + skip;
-    fileLocationInfo$basePathname <- readString(con);
-    fileLocationInfo$.offset <- fileLocationInfo$.offset + 
-                                  nchar(fileLocationInfo$basePathname) + 1;
+        
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     # The network volume table
@@ -410,9 +452,15 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   
       table$networkShareName <- readString(con);
       table$.offset <- table$.offset + nchar(table$networkShareName) + 1;
-  
-      if (table$.offset != table$length) {
-        stop("File format error: Length of structure did not match the number of bytes read.");
+
+      if (verbose) {
+        cat("File location info / Network Volume Table:\n");
+        print(table);
+      }
+
+#      if (table$.offset != table$length) {
+      if (table$.offset != table$unknown2) {
+        warning("File format error: Length of table structure did not match the number of bytes read.");
       }
 
       # Update the offset for file location info
@@ -517,6 +565,9 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2005-10-17
+# o BUG FIX: Had problems reading Network only links.  This was because it
+#   still read the local base pathname although it shouldn't.
 # 2005-05-27
 # o Moved to R.utils package.
 # 2004-07-25

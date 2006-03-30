@@ -60,12 +60,12 @@
 #   this function appears slow if called many times.
 # }
 #
-# @examples "filePath.Rex"
+# @examples "../incl/filePath.Rex"
 #
 # @author
 #
 # \seealso{
-#   \code{\link{readWindowsShortcut}}
+#   @see "readWindowsShortcut".
 #   @see "base::file.path".
 # }
 # 
@@ -75,6 +75,27 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  removeEmptyDirs <- function(pathname) {
+    # Check if it is a pathname on a Windows network 
+    isOnNetworkB <- (regexpr("^\\\\\\\\", pathname) != -1);
+    isOnNetworkF <- (regexpr("^//", pathname) != -1);
+
+    # Remove empty directories
+    pathname <- gsub("///*", "/", pathname);
+    pathname <- gsub("\\\\\\\\\\\\*", "\\\\", pathname);
+
+    # If on a network, add the path back again.
+    if (isOnNetworkB) {
+      pathname <- paste("\\\\", pathname, sep="");
+      pathname <- gsub("^\\\\\\\\\\\\*", "\\\\", pathname);
+    }
+    if (isOnNetworkF) {
+      pathname <- paste("//", pathname, sep="");
+      pathname <- gsub("^///*", "//", pathname);
+    }
+    pathname;
+  } # removeEmptyDirs()
+
   removeUpsFromPathname <- function(pathname, split=FALSE) {
     # Treat C:/, C:\\, ... special
     if (regexpr("^[A-Z]:[/\\]$", pathname) != -1)
@@ -83,8 +104,9 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
     components <- strsplit(pathname, split="[/\\]")[[1]];
 
     # Remove all "." parts, because they are non-informative
-    components <- components[components != "."];
-
+    if (length(components) > 1) {
+      components <- components[components != "."];
+    }
   
     # Remove ".." and its parent by reading from the left(!)
     pos <- 2;
@@ -129,7 +151,13 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Create pathname
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (length(args) == 0)
+    return(NULL);
+
   pathname <- paste(args, collapse=fsep);
+
+  # Remove repeated '/' and '\\'.
+  pathname <- removeEmptyDirs(pathname);
 
   if (expandLinks == "none") {
     if (removeUps)
@@ -146,6 +174,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   # 1. Remove ".." and their parents and keep "splits".
   components <- removeUpsFromPathname(pathname, split=TRUE);
+
 
   # 3. Expand the components from the root into a new absolute pathname
   isFirst <- TRUE;
@@ -222,14 +251,23 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       break;
 
     # d. Check for a local pathname and then for a network pathname
+    pathname <- NULL;
     if (expandLinks == "any") {
-      pathname <- lnk$pathname;
-      if (is.null(pathname))
-        pathname <- lnk$relativePath;
-      if (is.null(pathname))
-        pathname <- lnk$networkPathname;
+      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
+        pathname <- lnk$pathname;
+ 
+        if (is.null(pathname))
+          pathname <- lnk$relativePath;
+      }
+
+      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
+        if (is.null(pathname))
+          pathname <- lnk$networkPathname;
+      }
     } else if (expandLinks == "local") {
-      pathname <- lnk$pathname;
+      if (lnk$fileLocationInfo$flags["availableOnLocalVolume"]) {
+        pathname <- lnk$pathname;
+      }
     } else if (expandLinks %in% c("relative")) {
       if (is.null(expandedPathname))
         expandedPathname <- removeUpsFromPathname(pathname0);
@@ -237,7 +275,9 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
       if (removeUps)
         pathname <- removeUpsFromPathname(pathname);
     } else if (expandLinks %in% c("network")) {
-      pathname <- lnk$networkPathname;
+      if (lnk$fileLocationInfo$flags["availableOnNetworkShare"]) {
+        pathname <- lnk$networkPathname;
+      }
     }
 
     if (is.null(pathname)) {
@@ -268,6 +308,17 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
 #############################################################################
 # HISTORY: 
+# 2005-11-21
+# o BUG FIX: expandLinks="any" would return the relative link instead of
+#   the network pathname, even if there were no local pathname.
+# 2005-10-18
+# o BUG FIX: filePath(".") would return "".
+# o BUG FIX: filePath("//shared/foo") would return "/shared/foo".
+# 2005-09-24
+# o Now filePath() removes repeated '/' and '\\', except for network files
+#   such as \\server\foo\bar.
+# 2005-08-12
+# o If no arguments or only NULL arguments are passed, NULL is returned.
 # 2005-06-15
 # o BUG FIX: filePath("../foo/bar/") would incorrectly remove initial "../" 
 #   and give an error. 

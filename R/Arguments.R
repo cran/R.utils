@@ -36,7 +36,7 @@ setConstructorS3("Arguments", function(...) {
 # \arguments{
 #   \item{file}{A @character string specifying the file.}
 #   \item{path}{A @character string specifying the path.}
-#   \item{mustExists}{If @TRUE, the pathname must exists and be readable,
+#   \item{mustExist}{If @TRUE, the pathname must exists and be readable,
 #     otherwise an exception is thrown. If @FALSE, no such test is 
 #     performed.}
 #   \item{absolutePath}{If @TRUE, the absolute pathname is returned.}
@@ -57,7 +57,7 @@ setConstructorS3("Arguments", function(...) {
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExists=TRUE, absolutePath=TRUE, ...) {
+setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -67,24 +67,30 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   file <- getCharacter(static, file);
 
   # Argument 'path':
-  path <- getCharacter(static, path, length=c(0,1));
+  path <- getCharacter(static, path);
 
-  # Argument 'mustExists':
-  mustExists <- getLogical(static, mustExists);
+  if (is.null(file) && is.null(path))
+    throw("Both argument 'file' and 'path' are NULL.");
 
-  # Argument 'mustExists':
+  # Argument 'mustExist':
+  mustExist <- getLogical(static, mustExist);
+
+  # Argument 'mustExist':
   absolutePath <- getLogical(static, absolutePath);
+
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Process arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  pathname <- filePath(path, file);
+  pathname <- filePath(path, file, expandLinks="any");
+
   if (absolutePath)
     pathname <- getAbsolutePath(pathname);
-  if (mustExists) {
+
+  if (mustExist) {
     # Check if file exists
     if (!file.exists(pathname))
-      throw("File not found: ", pathname);
+      throw("Pathname not found: ", pathname);
 
     # Check if file permissions allow reading
     if (file.access(pathname, mode=4) == -1)
@@ -92,6 +98,60 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   }
     
   pathname;
+}, static=TRUE)
+
+
+
+
+#########################################################################/**
+# @RdocMethod getReadablePathnames
+#
+# @title "Gets a readable pathname"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{files}{A @character @vector of filenames.}
+#   \item{paths}{A @character @vector of paths.}
+#   \item{...}{Arguments passed to @seemethod "getReadablePathname".}
+# }
+#
+# \value{
+#  Returns a @character @vector of the pathnames for the files.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "getReadablePathname"
+#   @see "R.utils::filePath".
+#   @seeclass
+# }
+#
+# @keyword IO
+#*/#########################################################################
+setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, paths=NULL, ...) {
+  nbrOfFiles <- length(files);
+  # Argument 'paths':
+  if (length(paths) > nbrOfFiles) {
+    throw("Argument 'paths' is longer than argument 'files': ", 
+                                          length(paths), " > ", nbrOfFiles);
+  }
+
+  # Expand argument 'paths' to be of same length as 'files'
+  paths <- rep(paths, length.out=nbrOfFiles);
+
+  pathnames <- list();
+  for (kk in seq(length=nbrOfFiles)) {
+    pathnames[[kk]] <- Arguments$getReadablePathname(files[kk], 
+                                                       path=paths[kk], ...);
+  }
+
+  unlist(pathnames);
 }, static=TRUE)
 
 
@@ -108,14 +168,18 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 #
 # \arguments{
 #   \item{...}{Arguments passed to @seemethod "getReadablePathname".}
-#   \item{overwrite}{If @TRUE and \code{overwrite} is @TRUE, existing
-#     files are overwritten. Otherwise, and Exception is thrown.}
-#   \item{mkdirs}{If @TRUE, \code{overwrite} is @TRUE, and the path to
+#   \item{mustExist}{If @TRUE and the pathname does not exists,
+#     an Exception is thrown, otherwise not.}
+#   \item{mustNotExist}{If the file exists, and \code{mustNotExist} is
+#     @TRUE, an Exception is thrown. If the file exists, and 
+#     \code{mustNotExist} is @FALSE, or the file does not exists, the 
+#     pathname is accepted.}
+#   \item{mkdirs}{If @TRUE, \code{mustNotExist} is @FALSE, and the path to
 #     the file does not exist, it is (recursively) created.}
 # }
 #
 # \value{
-#  Returns a @character string of the absolute pathname of the file.
+#  Returns a @character string of the pathname of the file.
 #  If the argument was invalid an @see "R.oo::Exception" is thrown.
 # }
 #
@@ -130,23 +194,26 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getWritablePathname", "Arguments", function(static, ..., overwrite=FALSE, mkdirs=TRUE) {
+setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Argument 'overwrite':
-  overwrite <- getLogical(static, overwrite);
+  # Argument 'mustExist':
+  mustExist <- getLogical(static, mustExist);
+
+  # Argument 'mustNotExist':
+  mustNotExist <- getLogical(static, mustNotExist);
 
   # Argument 'mkdirs':
   mkdirs <- getLogical(static, mkdirs);
 
   # Create pathname
-  pathname <- getReadablePathname(static, ..., mustExists=FALSE);
+  pathname <- getReadablePathname(static, ..., mustExist=mustExist);
 
   if (isFile(pathname)) {
-    # Check if it is ok to overwrite file
-    if (!overwrite) {
-      throw("File already exists and will not be overwritten: ", pathname);
+    # Check if it is ok that the file already exists
+    if (mustNotExist) {
+      throw("File already exists: ", pathname);
     }
 
     # Check if file permissions allow writing
@@ -159,6 +226,7 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., overwrite=
       # Check if parent directory should be created
       if (!mkdirs)
         throw("Filepath does not exist: ", parent);
+
       if (!mkdirs(parent))
   	throw("Could not create file path: ", parent);
     }
@@ -168,6 +236,36 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., overwrite=
 }, static=TRUE)
 
 
+
+
+setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustExist=FALSE, mkdirs=TRUE) {
+  # Argument 'mustExist':
+  mustExist <- getLogical(static, mustExist);
+
+  # Argument 'mkdirs':
+  mkdirs <- getLogical(static, mkdirs);
+
+  # Create pathname
+  pathname <- getReadablePathname(static, path=path, ..., mustExist=mustExist);
+
+  # Nothing to do?
+  if (isDirectory(pathname))
+    return(pathname);
+
+  if (!mkdirs)
+    throw("Directory does not exist: ", pathname);
+
+  if (!mkdirs(pathname))
+    throw("Failed to create directory (recursively): ", pathname);
+
+  pathname;
+}, static=TRUE, protected=TRUE)
+
+
+setMethodS3("getWritablePath", "Arguments", function(static, path=NULL, ...) {
+  pathname <- getWritablePathname(static, file="dummy-not-created", path=path, ...);
+  getParent(pathname); 
+}, static=TRUE, protected=TRUE)
 
 
 
@@ -259,7 +357,7 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #   \item{nchar}{A @numeric @vector of length one or two. If one,
 #     the maximum number of characters ("length") in \code{s}. If two, 
 #     the minimum and maximum length of \code{s}.}
-#   \item{gString}{If @TRUE, each string is treated as a @see "GString".}
+#   \item{asGString}{If @TRUE, each string is treated as a @see "GString".}
 #   \item{.name}{A @character string for name used in error messages.}
 #   \item{...}{Not used.}
 # }
@@ -277,22 +375,27 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, gString=TRUE, .name=NULL, ...) {
+setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=FALSE, nchar=NULL, asGString=TRUE, .name=NULL, ...) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(s)));
+
   s <- getVector(static, s, length=length, .name=.name);
 
   # Nothing to check?
   if (length(s) == 0)
     return(s);
 
-  # Coerce to GString, the character string, and optionally trim it.
-  s <- unlist(lapply(s, FUN=function(x) {
-    x <- as.character(GString(x));
-    if (trim)
-      x <- trim(x);
-    x;
-  }))
+  if (asGString) {
+    # Coerce GString to character string.
+    s <- unlist(lapply(s, FUN=function(x) {
+      as.character(GString(x));
+    }));
+  }
+
+  if (trim) {
+    # Trim the strings.
+    s <- unlist(lapply(s, FUN=trim));
+  }
 
   names(s) <- NULL;
 
@@ -314,7 +417,7 @@ setMethodS3("getCharacters", "Arguments", function(static, s, length=NULL, trim=
   unlist(s);
 }, static=TRUE)
 
-setMethodS3("getCharacter", "Arguments", function(static, ..., length=NULL) {
+setMethodS3("getCharacter", "Arguments", function(static, ..., length=c(0,1)) {
   getCharacters(static, ..., length=length);
 }, static=TRUE)
 
@@ -390,8 +493,10 @@ setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode="
   # Nothing to check?
   if (is.null(range))
     return(x);
-  
-  xrange <- range(x, na.rm=TRUE);
+
+  withCallingHandlers({
+    xrange <- range(x, na.rm=TRUE);
+  }, warnings=function(warn) {})
   if (xrange[1] < range[1] || xrange[2] > range[2]) {
     xrange <- as.character(xrange);
     range <- as.character(range);
@@ -637,7 +742,7 @@ setMethodS3("getVerbose", "Arguments", function(static, verbose, defaultThreshol
     verbose <- Verbose(threshold=verbose);
   } else {
     verbose <- getLogical(static, verbose, .name=.name);
-    if (useNullVerbose) {
+    if (!verbose && useNullVerbose) {
       verbose <- NullVerbose();
     } else {
       defaultThreshold <- getNumeric(static, defaultThreshold);
@@ -649,9 +754,156 @@ setMethodS3("getVerbose", "Arguments", function(static, verbose, defaultThreshol
 }, static=TRUE)
 
 
+#########################################################################/**
+# @RdocMethod getRegularExpression
+#
+# @title "Gets a valid regular expression pattern"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{pattern}{A @character string to be validated.}
+#   \item{.name}{A @character string for name used in error messages.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#  Returns a @character string.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "base::grep".
+#   @seeclass
+# }
+#
+# @keyword IO
+#*/#########################################################################
+setMethodS3("getRegularExpression", "Arguments", function(static, pattern=NULL, ..., .name=NULL) {
+  if (is.null(.name)) {
+    .name <- as.character(deparse(substitute(envir)));
+  }
+
+  if (is.null(pattern)) {
+    throw(sprintf("Argument '%s' is not a valid regular expression: NULL", 
+                                                                   .name));
+  }
+
+  pattern <- getCharacter(static, pattern, .name=.name);
+
+  # Validate it
+  tryCatch({
+    regexpr(pattern, "dummy string", ...);
+  }, error = function(ex) {
+    throw(sprintf("Argument '%s' is not a valid regular expression: %s. Error message from regexpr() was: %s", .name, pattern, ex$message));
+  })
+
+  pattern;
+}, static=TRUE)
+
+
+
+#########################################################################/**
+# @RdocMethod getEnvironment
+#
+# @title "Gets an existing environment"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{envir}{An @environment, the name of a loaded package, or @NULL.
+#      If @NULL, the global environment is returned.}
+#   \item{.name}{A @character string for name used in error messages.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#  Returns an @environment.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#
+# @keyword IO
+#*/#########################################################################
+setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NULL, ...) {
+  if (is.null(.name))
+    .name <- as.character(deparse(substitute(envir)));
+
+  if (is.null(envir)) {
+    return(.GlobalEnv);
+  }
+
+  if (is.character(envir)) {
+    name <- Arguments$getCharacter(envir);
+    envirs <- gsub("^package:", "", search());
+    pos <- which(name == envirs);
+    if (length(pos) == 0)
+      throw("Argument 'envir' is not the name of a loaded package: ", envir);
+    envir <- pos.to.env(pos);
+  }
+
+  if (!is.environment(envir)) {
+    throw(sprintf("Argument '%s' is not an environment: %s", 
+                                                   .name, class(envir)[1]));
+  }
+}, static=TRUE)
+
+
+
+
+setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
+  if (is.null(path))
+    return(NULL);
+
+  pathname <- getReadablePathname(static, path=path, ...);
+  if (!isDirectory(pathname))
+    throw("Argument 'path' is not a directory: ", path);
+  pathname;
+}, static=TRUE, protected=TRUE)
+
+
+
 
 ############################################################################
 # HISTORY:
+# 2005-12-05
+# o getNumerics(Inf, range=c(0,Inf)) would give a warning "no finite 
+#   arguments to min; returning Inf". Fixed with a withCallingHandlers().
+# 2005-11-22
+# o Added Rdoc comments for getReadablePathnames().
+# 2005-11-13
+# o Added getReadablePathnames().
+# o Now getCharacter() only accept vectors of length zero or one.
+# 2005-10-25
+# o BUG FIX: New 'mustNotExist' argument got logically the inverse.
+# 2005-10-21
+# o Renamed argument 'overwrite' in getWritablePathname() in Arguments to
+#   'mustNotExist'.  Renamed all 'mustExists' to 'mustExist' in all methods
+#   of class Arguments.
+# 2005-09-06
+# o Replace argument 'gString' of getCharacters() to 'asGString', cf.
+#   Verbose class.
+# o Now Arguments$getReadablePathname() follows Windows shortcut files.
+# 2005-08-01
+# o getReadablePathname() no longer returns the absolute pathname by 
+#   default. This is because on some systems the relative pathname can
+#   be queried wheras the absolute one may not be access due to missing
+#   file permissions.
+# o Added getEnvironment(), getRegularExpression(), 
+#   getReadablePath(), getWritablePath().
 # 2005-07-19
 # o BUG FIX: getCharacters() would not coerce Object:s correctly.
 # 2005-07-07

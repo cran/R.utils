@@ -24,7 +24,7 @@
 #   or @NULL.
 # }
 #
-# @examples "callHooks.Rex"
+# @examples "../incl/callHooks.Rex"
 #
 # @author
 #

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 12:00:03 2005.
+% on Mon Apr 03 17:27:12 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{getThreshold.Verbose}
@@ -32,7 +32,7 @@
   Returns a \code{\link[base]{numeric}} value.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   \code{\link[R.utils:setThreshold.Verbose]{*setThreshold}()} and \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.

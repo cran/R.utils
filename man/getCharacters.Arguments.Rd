@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:46 2005.
+% on Mon Apr 03 17:26:12 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{getCharacters.Arguments}
@@ -26,15 +26,15 @@
  Coerces to a character vector and validates.
 }
 
-\synopsis{getCharacters.Arguments(static, s, length=NULL, trim=FALSE, nchar=NULL, gString=TRUE, .name=NULL, ...)}
-\usage{Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, gString=TRUE, .name=NULL, ...)}
+\synopsis{getCharacters.Arguments(static, s, length=NULL, trim=FALSE, nchar=NULL, asGString=TRUE, .name=NULL, ...)}
+\usage{Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, asGString=TRUE, .name=NULL, ...)}
 
 \arguments{
   \item{s}{A \code{\link[base]{vector}}.}
   \item{nchar}{A \code{\link[base]{numeric}} \code{\link[base]{vector}} of length one or two. If one,
     the maximum number of characters ("length") in \code{s}. If two,
     the minimum and maximum length of \code{s}.}
-  \item{gString}{If \code{\link[base:logical]{TRUE}}, each string is treated as a \code{\link{GString}}.}
+  \item{asGString}{If \code{\link[base:logical]{TRUE}}, each string is treated as a \code{\link{GString}}.}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}
   \item{...}{Not used.}
 }
@@ -44,7 +44,7 @@
  thrown.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

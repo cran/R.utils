@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:39 2005.
+% on Mon Apr 03 17:26:02 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{Non-documented objects}
@@ -17,6 +17,7 @@
 % The Arguments class
 \alias{getCharacter}
 \alias{getCharacters}
+\alias{getDirectory}
 \alias{getDouble}
 \alias{getDoubles}
 \alias{getIndex}
@@ -30,9 +31,17 @@
 \alias{getVector}
 \alias{getVerbose}
 \alias{getReadablePathname}
+\alias{getReadablePathnames}
 \alias{getWritablePathname}
 \alias{inherits}
 \alias{inherits.default}
+\alias{getReadablePath}
+\alias{getRegularExpression}
+\alias{getWritablePath}
+% Devel methods
+\alias{getDirectory.Arguments}
+\alias{getReadablePath.Arguments}
+\alias{getWritablePath.Arguments}
 
 % The Assert class
 \alias{isMatrix}
@@ -80,6 +89,7 @@
 \alias{getBarString}
 \alias{increase}
 \alias{isDone}
+\alias{remove}
 \alias{reset}
 \alias{setMaxValue}
 \alias{setProgress}
@@ -98,6 +108,7 @@
 % The System class
 \alias{currentTimeMillis}
 \alias{findGhostscript}
+\alias{findGraphicsDevice}
 \alias{getHostname}
 \alias{getUsername}
 \alias{openBrowser}
@@ -128,6 +139,11 @@
 \alias{warnings.default}
 \alias{writeRaw}
 \alias{timestamp}
+\alias{getTimestampFormat}
+\alias{setTimestampFormat}
+\alias{timestamp.default}
+\alias{timestampOff}
+\alias{timestampOn}
 
 % The SmartComments class
 \alias{convertComment}
@@ -138,7 +154,11 @@
 % <none>
 
 % Misc.
+\alias{extract}
+\alias{remove.default}
 \alias{verbose}
+\alias{unwrap}
+\alias{wrap}
 
 \description{
   This page contains aliases for all "non-documented" objects that
@@ -152,7 +172,7 @@
   The rest are deprecated methods.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 \keyword{documentation}

@@ -20,6 +20,9 @@
 #   \item{...}{Not used.}
 # }
 #
+# \section{Fields and Methods}{
+#  @allmethods
+# }
 #
 # @author
 #

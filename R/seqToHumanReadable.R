@@ -29,7 +29,7 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
   idx <- as.integer(idx);
   idx <- unique(idx);
   idx <- sort(idx);
-  
+
   s <- "";
   if (length(idx) == 0)
     return(s);
@@ -45,7 +45,11 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
       toValue <- lastValue;
       if (count > 0)
         s <- paste(s, collapse, sep="");
-      s <- paste(s, fromValue, delimiter, toValue, sep="");
+      if (toValue - fromValue == 0) {
+        s <- paste(s, fromValue, sep="");
+      } else {
+        s <- paste(s, fromValue, delimiter, toValue, sep="");
+      }
       fromValue <- value;
       count <- count + 1;
     }
@@ -70,6 +74,8 @@ setMethodS3("seqToHumanReadable", "default", function(idx, delimiter="-", collap
 
 ###########################################################################
 # HISTORY: 
+# 2005-11-14
+# o BUG FIX: Sequences of length one was given as intervals, e.g. 10-10.
 # 2005-02-20
 # o Added '...' to please R CMD check.
 # 2004-10-21

@@ -12,7 +12,9 @@
 # \arguments{
 #  \item{pathname}{A @character string of the pathname to be converted into
 #    an absolute pathname.}
-#  \item{relativeTo}{A @character string of the reference pathname,}
+#  \item{relativeTo}{A @character string of the reference pathname.}
+#  \item{caseSensitive}{If @TRUE, the comparison is case sensitive, otherwise
+#    not.  If @NULL, it is decided from the relative path.}
 #  \item{...}{Not used.}
 # }
 #
@@ -20,17 +22,25 @@
 #  Returns a @character string of the relative pathname.
 # }
 #
+# \section{Non-case sensitive comparison}{
+#   If \code{caseSensitive == NULL}, the relative path is used to decide if
+#   the comparison should be done in a case-sensitive mode or not.
+#   The current check is if it is a Windows path or not, that is, if
+#   the relative path starts with a device letter, then the comparison
+#   is non-case sensitive.
+# }
+#
 # @author
 #
 # \seealso{
-#   @seemethod "getAbsolutePath".
-#   @seemethod "isAbsolutePath".
+#   @see "getAbsolutePath".
+#   @see "isAbsolutePath".
 # }
 #
 # @keyword IO
 # @keyword programming
 #*/###########################################################################
-setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(), ...) {
+setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(), caseSensitive=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -43,8 +53,11 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
                                              paste(pathname, collapse=", "));
   }
 
+  # If not an absolute path, assume it is a relative path already.
+  pathname <- getAbsolutePath(pathname, expandTilde=TRUE);
+
   if (!isAbsolutePath(pathname))
-    throw("Argument 'pathname' is not an absolute pathname: ", pathname);
+    return(pathname);
 
   # Argument 'relativeTo':
   if (is.null(relativeTo))
@@ -55,32 +68,46 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
                                            paste(relativeTo, collapse=", "));
   }
 
-  if (!isAbsolutePath(relativeTo))
-    relativeTo <- getAbsolutePath(relativeTo);
+  # Argument 'caseSensitive':
+  if (is.null(caseSensitive)) {
+    isWindows <- (regexpr("^[a-zA-Z]:", relativeTo) != -1);
+    caseSensitive <- !isWindows;
+  } else {
+    caseSensitive <- as.logical(caseSensitive);
+    if (!caseSensitive %in% c(FALSE, TRUE))
+      throw("Argument 'caseSensitive' must be logical: ", caseSensitive);
+  }
+
+  relativeTo <- getAbsolutePath(relativeTo, expandTilde=TRUE);
 
   # Split the two pathnames into their components
   relativeTo <- unlist(strsplit(relativeTo, split="[\\/]"));
   pathname <- unlist(strsplit(pathname, split="[\\/]"));
+  pathnameC <- pathname;
 
+  # Case sensitive comparisons?
+  if (!caseSensitive) {
+    relativeTo <- tolower(relativeTo);
+    pathnameC <- tolower(pathnameC);
+  }
 
   # 1. Check that the pathnames are "compatible".  
-  if (!identical(relativeTo[1], pathname[1])) {
-    if (regexpr("[A-Z]:", relativeTo[1]) != -1) {
-      warning("Cannot infer relative pathname, because the two pathnames are not on the same device.");
-      return(paste(pathname, collapse="/"));
-    }
+  if (!identical(relativeTo[1], pathnameC[1])) {
+    warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device: ", filePath(relativeTo), " != ", filePath(pathname));
+    return(paste(pathname, collapse="/"));
   }
 
   # 2. Remove all matching components in 'relativeTo' and 'pathname'.
   #    The removed parts constitute their common path.
   for (kk in seq(length=length(relativeTo))) {
     aPart <- relativeTo[1];
-    bPart <- pathname[1];
+    bPart <- pathnameC[1];
     if (!identical(aPart, bPart))
       break;
 
     relativeTo <- relativeTo[-1];
     pathname <- pathname[-1];
+    pathnameC <- pathnameC[-1];
   }
 
   # 3. If there are more components in 'relativeTo', this means that the
@@ -90,11 +117,21 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
   pathname <- c(prefix, pathname);
   pathname <- paste(pathname, collapse="/");
 
+  if (pathname == "")
+    pathname <- ".";
+
   pathname;
 })  
 
 ###########################################################################
 # HISTORY: 
+# 2005-12-05
+# o Now getRelativePath() also recognizes tildes.  
+# 2005-08-02
+# o Relative path "" is not returned as ".".
+# o If path is not absolute, assume it is already relative.
+# o Added argument 'caseSensitive'.
+# o BUG FIX: The comparison of Windows devices was case sensitive.
 # 2005-06-27
 # o Created.
 ###########################################################################

@@ -18,10 +18,17 @@
 #     of any write method has to be equal to or larger than in order to the 
 #     message being written. Thus, the lower the threshold is the more and 
 #     more details will be outputted.}
+#   \item{timestamp}{If @TRUE, each output is preceded with a timestamp.}
 #   \item{removeFile}{If @TRUE and \code{con} is a filename, the file is
 #     first deleted, if it exists.}
+#   \item{asGString}{If @TRUE, all messages are interpreted as 
+#     @see "GString" before being output, otherwise not.}
 #   \item{core}{Internal use only.}
 #   \item{...}{Not used.}
+# }
+#
+# \section{Fields and Methods}{
+#  @allmethods
 # }
 #
 # \section{Output levels}{
@@ -75,11 +82,9 @@
 #   the value of a NullVerbose reference variable is always @FALSE.
 # }
 #
-# @examples "Verbose.Rex"
+# @examples "../incl/Verbose.Rex"
 #
-# \author{
-#   Henrik Bengtsson, \url{http://www.braju.com/R/}
-# }
+# @author
 #
 # \seealso{
 #   @see "NullVerbose".
@@ -88,7 +93,7 @@
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, removeFile=TRUE, core=TRUE, ...) {
+setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...) {
   if (is.character(con)) {
     if (removeFile && isFile(con))
       file.remove(con);
@@ -103,6 +108,12 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, removeF
   # Argument 'threshold':
   threshold <- as.numeric(threshold);
 
+  # Argument 'asGString':
+  asGString <- as.logical(asGString);
+
+  # Argument 'timestamp':
+  timestamp <- as.logical(timestamp);
+
   # Argument 'core':
   if (!is.logical(core))
     throw("Argument 'core' is not logical: ", mode(core));
@@ -111,15 +122,18 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, removeF
   on <- as.logical(on);
 
   extend(Object(core), "Verbose", 
-    indentPos    = 0,
-    indentStep   = 1,
-    rightMargin  = 75,
-    threshold    = threshold,
-    defaultLevel = 0,
-    .ignore      = !on,
-    .con         = con,
-    .stack       = c(),
-    .stackLevel  = c()
+    .timestamp       = timestamp,
+    .timestampFormat = "%Y%m%d %H:%M:%S|",
+    indentPos        = 0,
+    indentStep       = 1,
+    rightMargin      = 75,
+    threshold        = threshold,
+    defaultLevel     = 0,
+    asGString        = asGString,
+    .ignore          = !on,
+    .con             = con,
+    .stack           = c(),
+    .stackLevel      = c()
   )
 })
 
@@ -154,6 +168,8 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, removeF
 #*/###########################################################################
 setMethodS3("as.character", "Verbose", function(this, ...) {
   s <- paste(class(this)[1], ": isOn()=", isOn(this), ", threshold=", this$threshold, sep="");
+  s <- paste(s, ", timestamp=", this$.timestamp, sep="");
+  s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="");
   s;
 })
 
@@ -388,6 +404,42 @@ setMethodS3("as.logical", "Verbose", function(x, ...) {
 
 
 
+###########################################################################/**
+# @RdocMethod as.double
+#
+# @title "Gets a numeric value of this object"
+#
+# \description{
+#   @get "title".  Returns what @seemethod "getThreshold" returns.
+# }
+# 
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns a @numeric value.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "getThreshold" and @seemethod "getThreshold".
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("as.double", "Verbose", function(x, ...) {
+  # To please R CMD check
+  this <- x;
+  getThreshold(this, ...);
+})
+
+
+
 
 ###########################################################################/**
 # @RdocMethod on
@@ -418,7 +470,7 @@ setMethodS3("as.logical", "Verbose", function(x, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("on", "Verbose", function(this, ...) {
-  this$.ignore <- TRUE;
+  this$.ignore <- FALSE;
   invisible(TRUE);
 })
 
@@ -452,7 +504,7 @@ setMethodS3("on", "Verbose", function(this, ...) {
 # @keyword programming
 #*/###########################################################################
 setMethodS3("off", "Verbose", function(this, ...) {
-  this$.ignore <- FALSE;
+  this$.ignore <- TRUE;
   invisible(FALSE);
 })
 
@@ -526,8 +578,11 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
     return(invisible(FALSE));
 
   msg <- paste(..., sep="");
-  msg <- as.character(GString(msg));
+  if (this$asGString)
+    msg <- as.character(GString(msg));
+
   cat(file=this$.con, append=TRUE, msg);
+
   invisible(TRUE);
 }, protected=TRUE)
 
@@ -552,6 +607,8 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
 #  \item{sep}{The default separator @character string.}
 #  \item{newline}{If @TRUE, a newline is added at the end, otherwise not.}
 #  \item{level}{A @numeric value to be compared to the threshold.}
+#  \item{timestamp}{A @logical indicating if output should start with a
+#     timestamp, or not.}
 # }
 #
 # \value{
@@ -561,18 +618,28 @@ setMethodS3("writeRaw", "Verbose", function(this, ..., sep="", level=this$defaul
 # @author
 #
 # \seealso{
+#   @seemethod "timestampOn" and \code{timestampOff}().
 #   @seeclass
 # }
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=this$defaultLevel) {
+setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp) {
   if (!isVisible(this, level))
     return(invisible(FALSE));
 
   indent <- paste(rep(" ", length.out=this$indentPos), collapse="");
   msg <- paste(..., sep=sep);
   msg <- paste(indent, msg, sep="");
+  if (timestamp) {
+    fmt <- this$.timestampFormat;
+    if (is.function(fmt)) {
+      stamp <- fmt();
+    } else {
+      stamp <- format(Sys.time(), fmt);
+    }
+    msg <- paste(stamp, msg, sep="")
+  }
   if (newline)
     msg <- paste(msg, "\n", sep="");
   writeRaw(this, msg);
@@ -781,7 +848,7 @@ setMethodS3("print", "Verbose", function(x, ..., level=this$defaultLevel) {
 # @synopsis
 #
 # \arguments{
-#  \item{...}{Objects to be passed to @see "base::str".}
+#  \item{...}{Objects to be passed to @see "utils::str".}
 #  \item{level}{A @numeric value to be compared to the threshold.}
 # }
 #
@@ -1115,9 +1182,135 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("timestamp", "Verbose", function(this, stamp=format(Sys.time(), "%Y-%m-%d %H:%M:%S"), ...) {
-  cat(this, paste("[", stamp, "]", sep=""), ...);
+setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(thos), ...) {
+  if (is.function(format)) {
+    stamp <- format();
+  } else {
+    stamp <- format(Sys.time(), format);
+  }
+  cat(this, stamp, ...);
 })
+
+ 
+###########################################################################/**
+# @RdocMethod getTimestampFormat
+#
+# @title "Gets the default timestamp format"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns a @character string or a @function.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "setTimestampFormat".
+#   @seemethod "timestampOn".
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("getTimestampFormat", "Verbose", function(this, ...) {
+  this$.timestampFormat;
+})
+
+
+###########################################################################/**
+# @RdocMethod setTimestampFormat
+#
+# @title "Sets the default timestamp format"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{format}{If a @function, this function is called (without arguments)
+#    whenever a timestamp is generated. If a @character string, it used as
+#    the format string in \code{format(Sys.date(), fmt)}.}
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns (invisibly) the old timestamp format.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "getTimestampFormat".
+#   @seemethod "timestampOn".
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("setTimestampFormat", "Verbose", function(this, format="%Y%m%d %H:%M:%S|", ...) {
+  if (!is.function(format))
+    format <- as.character(format);
+
+  oldValue <- this$.timestampFormat;
+  this$.timestampFormat <- format;
+
+  invisible(oldValue);
+})
+
+
+###########################################################################/**
+# @RdocMethod timestampOn
+# @aliasmethod timestampOff
+#
+# @title "Turns automatic timestamping on and off"
+#
+# \description{
+#   @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns (invisibly) the old timestamp status.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "setTimestampFormat".
+#   @seemethod "timestampOn".
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("timestampOn", "Verbose", function(this, ...) {
+  oldStatus <- this$.timestamp;
+  this$.timestamp <- TRUE;
+  invisible(oldStatus);
+})
+
+setMethodS3("timestampOff", "Verbose", function(this, ...) {
+  oldStatus <- this$.timestamp;
+  this$.timestamp <- FALSE;
+  invisible(oldStatus);
+})
+
 
 
 ###########################################################################/**
@@ -1243,6 +1436,20 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2006-03-30
+# o Removed auxillary argument 'obj' which was added two days ago.  It was
+#   a bug in a recent revision of R v2.3.0 devel that caused it.
+# 2006-03-28
+# o Had to add auxillary argument 'obj' to print(), str() and summary(), 
+#   otherwise errors like "Error in str.default() : argument "object" is
+#   missing, with no default" was generated.
+# 2006-03-27
+# o Added as.double().
+# 2005-12-02
+# o BUG FIX: The function of on() and off() were swapped.
+# o Added automatic (optional) timestamping.  Updated example to show this.
+# 2005-09-06
+# o Added option 'asGString' to Verbose constructor.
 # 2005-07-06
 # o BUG FIX: print() did not pass argument 'level' to capture().
 # o Calling GString() in enter() to immediately evaluate GStrings. 

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:51 2005.
+% on Mon Apr 03 17:26:59 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{getUsername.System}
@@ -30,8 +30,9 @@
  }
 
  \details{
-  First this function checks the system environment variables \code{USER},
+  First, this function checks the system environment variables \code{USER},
   and \code{USERNAME}.
+  Second, it checks \code{Sys.info()["user"]} for user name details.
   Finally, it tries to query the system command \code{whoami}.
  }
 

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:37 2005.
+% on Mon Apr 03 17:26:48 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{readWindowsShortcut}
@@ -48,10 +48,19 @@ file.show(history)
 
 }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \details{
+  The MIME type for a Windows Shortcut file is
+  \code{application/x-ms-shortcut}.
+ }
+
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link{filePath}}
+ }
+
+ \references{
+   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
  }
 
 

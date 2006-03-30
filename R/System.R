@@ -38,8 +38,9 @@ setConstructorS3("System", function() {
 # }
 # 
 # \details{
-#  First this function checks the system environment variables \code{HOST},
+#  First, this function checks the system environment variables \code{HOST},
 #  \code{HOSTNAME}, and \code{COMPUTERNAME}. 
+#  Second, it checks \code{Sys.info()["nodename"]} for host name details.
 #  Finally, it tries to query the system command \code{uname -n}.
 # }
 #
@@ -51,7 +52,13 @@ setMethodS3("getHostname", "System", function(static, ...) {
   host <- Sys.getenv(c("HOST", "HOSTNAME", "COMPUTERNAME"));
   host <- host[host != ""];
   if (length(host) == 0) {
-    host <- readLines(pipe("/usr/bin/env uname -n"));
+    # Sys.info() is not implemented on all machines, if not it returns NULL,
+    # which the below code will handle properly.
+    host <- Sys.info()["nodename"];
+    host <- host[host != ""];
+    if (length(host) == 0) {
+      host <- readLines(pipe("/usr/bin/env uname -n"));
+    }
   }
   host[1];
 }, static=TRUE)
@@ -73,8 +80,9 @@ setMethodS3("getHostname", "System", function(static, ...) {
 # }
 # 
 # \details{
-#  First this function checks the system environment variables \code{USER},
+#  First, this function checks the system environment variables \code{USER},
 #  and \code{USERNAME}.
+#  Second, it checks \code{Sys.info()["user"]} for user name details.
 #  Finally, it tries to query the system command \code{whoami}.
 # }
 #
@@ -83,12 +91,18 @@ setMethodS3("getHostname", "System", function(static, ...) {
 # }
 #**/#######################################################################
 setMethodS3("getUsername", "System", function(static, ...) {
-  host <- Sys.getenv(c("USER", "USERNAME"));
-  host <- host[host != ""];
-  if (length(host) == 0) {
-    host <- readLines(pipe("/usr/bin/env whoami"));
+  user <- Sys.getenv(c("USER", "USERNAME"));
+  user <- user[user != ""];
+  if (length(user) == 0) {
+    # Sys.info() is not implemented on all machines, if not it returns NULL,
+    # which the below code will handle properly.
+    user <- Sys.info()["user"];
+    user <- user[user != "" & user != "unknown"];
+    if (length(user) == 0) {
+      user <- readLines(pipe("/usr/bin/env whoami"));
+    }
   }
-  host[1];
+  user[1];
 }, static=TRUE)
 
 
@@ -322,6 +336,19 @@ setMethodS3("parseDebian", "System", function(this, text=NULL, file=NULL, keys=N
 # }
 #*/###########################################################################
 setMethodS3("openBrowser", "System", function(this, query, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  startsWith <- function(prefix, s, ...) {
+    res <- regexpr(paste("^", prefix, sep=""), as.character(s));
+    (res[[1]] != -1);
+  }
+
+  endsWith <- function(suffix, s, ...) {
+    res <- regexpr(paste(suffix, "$", sep=""), as.character(s));
+    (res[[1]] != -1);
+  }
+
   require(R.io);
   
   url <- as.character(query);
@@ -495,8 +522,173 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
 }, static=TRUE)
 
 
+#########################################################################/**
+# @RdocMethod findGraphicsDevice
+#
+# @title "Searches for a working PNG device"
+# 
+# \description{
+#  @get "title".
+#
+#  On Unix, the png device requires that X11 is available, which it is not
+#  when running batch scripts or running \R remotely.  In such cases, an
+#  alternative is to use the \code{bitmap()} device, which generates an
+#  EPS file and the uses Ghostscript to transform it to a PNG file.
+#
+#  Moreover, if identical looking bitmap and vector graphics (EPS) files
+#  are wanted for the same figures, in practice, \code{bitmap()} has
+#  to be used.  
+#
+#  By default, this method tests a list of potential graphical devices and 
+#  returns the first that successfully creates an image file.  
+#  By default, it tries to create a PNG image file by first testing the
+#  \code{bitmap()} device (via \code{png2()}) and then the built-in
+#  \code{png()} device.
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{devices}{A @list of graphics device driver @functions to be
+#     tested.}
+#   \item{maxCount}{The maximum number of subsequent tests for the
+#     the existances of \code{bitmap()} generated image files.}
+#   \item{sleepInterval}{The time in seconds between above subsequent 
+#     tests.}
+#   \item{findGhostscript}{If @TRUE, ghostscript, which is needed by
+#     the \code{bitmap()} device, is searched for on the current system.  
+#     If found, its location is recorded.}
+#   \item{...}{Not used.}
+# }
+#
+# \value{
+#  Returns a @function that generates images, or @NULL.
+# }
+# 
+# @author
+#
+# \examples{
+#   fcn <- System$findGraphicsDevice();
+#   if (identical(fcn, png)) {
+#     cat("PNG device found: png()");
+#   } else if (identical(fcn, png2)) {
+#     cat("PNG device found: png2()");
+#   } else if (identical(fcn, bitmap)) {
+#     cat("PNG device found: bitmap()");
+#   } else {
+#     cat("PNG device not found.");
+#   }
+# }
+#
+# \seealso{
+#   For supported graphical devices, see @see "capabilities".
+#   @see "grDevices::png",
+#   \code{bitmap()} and @see "grDevices::dev2bitmap".
+#   @seemethod "findGhostscript".
+#   @seeclass
+# }
+#
+# @keyword device
+#*/######################################################################### 
+setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, png), maxCount=300, sleepInterval=0.1, findGhostscript=TRUE, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument 'devices':
+  devices <- as.list(devices);
+  for (device in devices) {
+    if (!is.function(device)) {
+      throw("Argument 'devices' specifies a non-function element: ", 
+                                                              mode(device));
+    }
+  }
+
+  # Argument 'maxCount':
+  maxCount <- Arguments$getInteger(maxCount, range=c(1,Inf));
+
+  # Argument 'sleepInterval':
+  sleepInterval <- Arguments$getDouble(sleepInterval, range=c(0,60));
+
+  # Argument 'findGhostscript':
+  findGhostscript <- Arguments$getLogical(findGhostscript);
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Check for a valid ghostscript installation
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (findGhostscript)
+    System$findGhostscript();
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Tempory output file for testing
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  file <- tempfile("findGraphicsDevice-testFile");
+  on.exit({
+    if (file.exists(file)) {
+      file.remove(file);
+    }
+  })
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Find the first functional device
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  for (device in devices) {
+    # Check capabilities
+    if (identical(device, png)) {
+      if (!capabilities("png"))
+        next;
+    }
+
+    if (identical(device, jpeg)) {
+      if (!capabilities("jpeg"))
+        next;
+    }
+
+    tryCatch({
+      device(file);
+      plot(0);
+      dev.off();
+
+      # The following wait-and-poll code is typically only necessary for
+      # the bitmap() device since it calls ghostscript, which is called
+      # without waiting for it to finish.  The default is to poll for the
+      # dummy image file for 30 seconds in intervals of 0.1 seconds.
+      # If not found by then, the device is considered not to be found.
+      # Hopefully, this is never the case.
+      count <- 0;
+      while (count < maxCount) {
+        if (file.exists(file))
+          return(device);
+        Sys.sleep(sleepInterval);
+        count <- count + 1;
+      }
+    }, error = function(error) {
+    });
+  } # for (device in ...)
+  
+  NULL;
+}, static=TRUE)
+
+
 ############################################################################
 # HISTORY:
+# 2005-12-12
+# o Updated getHostname() and getUsername() in System to check details also
+#   using Sys.info().
+# 2005-09-23
+# o BUG FIX: openBrowser() was broken, because startsWith() and endsWith()
+#   were missing.
+# 2005-09-18
+# o Renamed findPngDevice() to findGraphicsDevice(), but it still defaults
+#   to search for a PNG device.
+# o Added arguments 'maxCount', 'sleepInterval' and 'findGhostscript' to 
+#   findPngDevice().
+# 2005-09-16
+# o Added static findPngDevice() to System.  
+#   Added argument 'devices' to findPngDevice() so it is possible to 
+#   specify in which order PNG devices should be tested.  Now bitmap() and
+#   png() is tested by default.
 # 2005-07-18
 # o Example for parseDebian() used package R.lang. Fixed.
 # 2005-05-29

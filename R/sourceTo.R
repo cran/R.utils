@@ -46,7 +46,7 @@
 #  an error is generated.
 # }
 #
-# @examples "sourceTo.Rex"
+# @examples "../incl/sourceTo.Rex"
 #
 # @author
 # 

@@ -33,7 +33,7 @@
 #  options structure defined in \R (\link{options}).
 # }
 #
-# @examples "Options.Rex"
+# @examples "../incl/Options.Rex"
 #
 # @author
 #
@@ -291,6 +291,9 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   getLeaves <- function(list, ...) {
+    if (length(list) == 0)
+      return(NULL);
+
     names <- names(list);
 
     isList <- unlist(lapply(list, FUN=is.list));
@@ -299,8 +302,9 @@ setMethodS3("getLeaves", "Options", function(this, ...) {
     treeNames <- names(trees);
     for (kk in seq(length=length(trees))) {
       tree <- trees[[kk]];
+      treeName <- treeNames[kk];
       treeLeaves <- getLeaves(tree, ...);
-      names(treeLeaves) <- paste(treeNames, names(treeLeaves), sep="/");
+      names(treeLeaves) <- paste(treeName, names(treeLeaves), sep="/");
       leafs <- c(leafs, treeLeaves);
     }
     leafs;
@@ -398,7 +402,7 @@ setMethodS3("hasOption", "Options", function(this, pathname, ...) {
   if (any(nchar(pathname) == 0))
     throw("Argument 'pathname' contains a zero length elements.");
 
-  cur <- this$.options;
+  cur <- as.list(this);
   if (length(cur) == 0)
     return(FALSE);
 
@@ -468,7 +472,7 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
   }
 
   if (is.null(pathname))
-    return(this$.options);
+    return(as.list(this));
 
   # Argument 'pathname':
   pathname <- as.character(pathname);
@@ -478,16 +482,16 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
                                            paste(pathname, collapse=", "));
   }
 
-  if (regexpr("\\.", pathname) != -1) {
-    throw("Argument 'pathname' must not contain a period: ", pathname);
-  }
+#  if (regexpr("\\.", pathname) != -1) {
+#    throw("Argument 'pathname' must not contain a period: ", pathname);
+#  }
 
   pathname <- unlist(strsplit(pathname, split="/"));
 
   if (any(nchar(pathname) == 0))
     throw("Argument 'pathname' contains a zero length elements.");
 
-  cur <- this$.options;
+  cur <- as.list(this);
   if (length(pathname) == 0)
     return(cur);
 
@@ -548,6 +552,9 @@ setMethodS3("getOption", "Options", function(this, pathname=NULL, defaultValue=N
 # @keyword programming
 #*/#########################################################################
 setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TRUE, ...) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   setOptionList <- function(list, path, value) {
     if (length(path) == 1) {
       list[[path]] <- value;
@@ -569,9 +576,9 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
                                            paste(pathname, collapse=", "));
   }
 
-  if (regexpr("\\.", pathname) != -1) {
-    throw("Argument 'pathname' must not contain a period: ", pathname);
-  }
+#  if (regexpr("\\.", pathname) != -1) {
+#    throw("Argument 'pathname' must not contain a period: ", pathname);
+#  }
 
   oldValue <- getOption(this, pathname);
 
@@ -597,6 +604,15 @@ setMethodS3("setOption", "Options", function(this, pathname, value, overwrite=TR
 
 ############################################################################
 # HISTORY:
+# 2006-02-22
+# o BUG FIX: getLeaves() would give an error for Options with an option
+#   tree with branches, i.e. not a single straight path.
+# 2005-10-20
+# o BUG FIX: getLeaves() would give an error for empty Options objects.
+# 2005-09-23
+# o Now the options are always retrieved via as.list(this).  This makes
+#   it easier to override this class to dynamically retrieve options, say
+#   via options().
 # 2005-06-03
 # o Added getLeaves().
 # 2005-06-01

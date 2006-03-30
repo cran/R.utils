@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:51 2005.
+% on Mon Apr 03 17:26:15 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -64,7 +64,7 @@ foo(l)
 print(a)
 }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
   \code{\link[R.oo:attachLocally.Object]{attachLocally}()} of class Object.

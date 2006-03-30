@@ -16,7 +16,7 @@
 #   \item{...}{Not used.}
 # }
 #
-# @examples "insert.Rex"
+# @examples "../incl/insert.Rex"
 #
 # @author
 #

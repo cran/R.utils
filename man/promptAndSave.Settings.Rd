@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:42 2005.
+% on Mon Apr 03 17:26:52 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{promptAndSave.Settings}
@@ -27,8 +27,8 @@
  \arguments{
    \item{saveOption}{A \code{\link[base]{character}} string of the option used to set
       if user is prompted or not.}
-   \item{...}{Arguments passed to \code{\link[write.Options]{write}()}
-      in superclass Options.}
+   \item{...}{Arguments passed to
+      \code{\link[R.utils:write.Options]{write}()} in superclass Options.}
  }
 
  \value{
@@ -44,7 +44,7 @@
    For prompting the user, use "prompt".
  }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link[R.utils:isModified.Settings]{*isModified}()}.

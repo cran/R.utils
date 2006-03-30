@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:55 2005.
+% on Mon Apr 03 17:26:17 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{filePath}
@@ -89,10 +89,10 @@ print(filename)
 stopifnot(file.exists(filename))
 }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   \code{\link{readWindowsShortcut}}
+   \code{\link{readWindowsShortcut}}().
    \code{\link[base]{file.path}}().
  }
 

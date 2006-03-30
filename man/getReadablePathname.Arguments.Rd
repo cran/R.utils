@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:45 2005.
+% on Mon Apr 03 17:26:11 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{getReadablePathname.Arguments}
@@ -22,13 +22,13 @@
  Gets a readable pathname.
 }
 
-\synopsis{getReadablePathname.Arguments(static, file=NULL, path=NULL, mustExists=TRUE, absolutePath=TRUE, ...)}
-\usage{Arguments$getReadablePathname(file=NULL, path=NULL, mustExists=TRUE, absolutePath=TRUE, ...)}
+\synopsis{getReadablePathname.Arguments(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
+\usage{Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
 
 \arguments{
   \item{file}{A \code{\link[base]{character}} string specifying the file.}
   \item{path}{A \code{\link[base]{character}} string specifying the path.}
-  \item{mustExists}{If \code{\link[base:logical]{TRUE}}, the pathname must exists and be readable,
+  \item{mustExist}{If \code{\link[base:logical]{TRUE}}, the pathname must exists and be readable,
     otherwise an exception is thrown. If \code{\link[base:logical]{FALSE}}, no such test is
     performed.}
   \item{absolutePath}{If \code{\link[base:logical]{TRUE}}, the absolute pathname is returned.}
@@ -39,7 +39,7 @@
  Returns a \code{\link[base]{character}} string of the absolute pathname of the file.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   \code{\link[R.utils:getWritablePathname.Arguments]{*getWritablePathname}()}

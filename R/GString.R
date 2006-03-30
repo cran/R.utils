@@ -18,7 +18,7 @@
 #  @allmethods
 # }
 #
-# @examples "GString.Rex"
+# @examples "../incl/GString.Rex"
 #
 # @author
 #
@@ -506,7 +506,11 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
     }
 
     if (!is.null(value)) {
-      value <- as.character(value);
+      tryCatch({
+        value <- as.character(value);
+      }, error = function(ex) {
+        value <<- NA;
+      })
 
       # Apply simple attributes
       for (attr in simpleAttrs) {
@@ -574,11 +578,15 @@ setMethodS3("parse", "GString", function(object, ...) {
   while(TRUE) {
     pattern <- "^\\$(\\[.*\\]|)\\{([^\\}]*)\\}";
     pos <- regexpr(pattern, s);
+    matchLen <- attr(pos, "match.length");
+    pos <- pos[1];
     if (pos != -1) {
       text <- "";
     } else {
       pattern <- "[^\\\\$]\\$(\\[.*\\]|)\\{([^\\}]*)\\}";
       pos <- regexpr(pattern, s);
+      matchLen <- attr(pos, "match.length");
+      pos <- pos[1];
       if (pos != -1) {
         text <- substr(s, start=1, stop=pos);
         text <- gsub("\\\\\\$", "$", text);
@@ -593,7 +601,7 @@ setMethodS3("parse", "GString", function(object, ...) {
     prefix <- list(text=text);
     parts <- append(parts, prefix);
 
-    last <- pos+attr(pos, "match.length")-1;
+    last <- pos + matchLen - 1;
     var <- substr(s, start=pos, stop=last);
 
     attributes <- gsub(pattern, "\\1", var);
@@ -699,6 +707,14 @@ setMethodS3("as.character", "GString", function(object, ...) {
 
 ######################################################################
 # HISTORY:
+# 2005-12-05
+# o BUG FIX: getVariableValue() would generate an error if a
+#   functions was detected. Now, NA is returned.
+# 2005-09-06
+# o BUG FIX of yesterdays patch. Forgot to extract the 'match.length'.
+# 2005-09-05
+# o Expected in parse() that regexpr() only returned one value, but
+#   sometimes it did return more and a warning was generated.
 # 2005-06-09
 # o Added print() to get rid of the class attributes.
 # o Made static method static.

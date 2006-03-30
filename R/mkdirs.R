@@ -25,13 +25,16 @@
 # @author
 #
 # \seealso{
-#   Internally @see "base::dir.create" is used.
+#   Internally \code{\link[base:files]{dir.create}}() is used.
 # }
 #
 # @keyword IO
 # @keyword programming
 #*/########################################################################### 
 setMethodS3("mkdirs", "default", function(pathname, ...) {
+  if (length(pathname) == 0)
+    return(TRUE);
+
   pathname <- as.character(pathname);
 
   # If already is a directory or a file, return FALSE
@@ -55,11 +58,20 @@ setMethodS3("mkdirs", "default", function(pathname, ...) {
   }
 
   # Finally, create this directory
-  dir.create(pathname);
+  res <- dir.create(pathname);
+  if (!res) {
+    # If failed, try to create it by its relative pathname
+    pathname <- getRelativePath(pathname);
+    res <- dir.create(pathname);
+  }
+  res;
 })
 
 ###########################################################################
 # HISTORY: 
+# 2005-08-01
+# o mkdirs() tries to create directory with relative path if absolute
+#   path fails. This sometimes works when the file permission are missing.
 # 2005-07-19
 # o Added internal check for valid parent directory.
 # 2005-05-29

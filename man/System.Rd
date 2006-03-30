@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:50 2005.
+% on Mon Apr 03 17:26:58 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{System}
@@ -41,6 +41,7 @@ extends \link[R.oo]{Object}\cr
 \tabular{rll}{
  \tab \code{\link[R.utils:currentTimeMillis.System]{currentTimeMillis}} \tab Get the current time in milliseconds.\cr
  \tab \code{\link[R.utils:findGhostscript.System]{findGhostscript}} \tab Searches for the ghostview binary on the current system.\cr
+ \tab \code{\link[R.utils:findGraphicsDevice.System]{findGraphicsDevice}} \tab Searches for a working PNG device.\cr
  \tab \code{\link[R.utils:getHostname.System]{getHostname}} \tab Retrieves the computer name of the current host.\cr
  \tab \code{\link[R.utils:getUsername.System]{getUsername}} \tab Retrieves the name of the user running R.\cr
  \tab \code{\link[R.utils:openBrowser.System]{openBrowser}} \tab Opens an HTML document using the OS default HTML browser.\cr
@@ -54,5 +55,5 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, ex
 
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 \keyword{classes}

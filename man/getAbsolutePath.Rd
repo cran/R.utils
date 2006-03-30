@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:58 2005.
+% on Mon Apr 03 17:26:18 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{getAbsolutePath}
@@ -15,7 +15,7 @@
 
 \title{Gets the absolute pathname string}
 
-\usage{\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), ...)}
+\usage{\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), expandTilde=FALSE, ...)}
 
 \description{
   Gets the absolute pathname string.
@@ -25,6 +25,8 @@
  \item{pathname}{A \code{\link[base]{character}} string of the pathname to be converted into
    an absolute pathname.}
  \item{workDirectory}{A \code{\link[base]{character}} string of the current working directory.}
+ \item{expandTilde}{If \code{\link[base:logical]{TRUE}}, tilde (\code{~}) is expanded to the
+   corresponding directory, otherwise not.}
  \item{...}{Not used.}
 }
 
@@ -32,10 +34,10 @@
  Returns a \code{\link[base]{character}} string of the absolute pathname.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[R.utils:isAbsolutePath.]{*isAbsolutePath}()}.
+  \code{\link{isAbsolutePath}}().
 }
 
 

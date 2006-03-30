@@ -17,6 +17,10 @@
 #   \item{...}{Not used.}
 # }
 #
+# \section{Fields and Methods}{
+#  @allmethods
+# }
+#
 # \details{
 #  The 'v' in VComments stands for 'verbose', because of its relationship
 #  to the @see "Verbose" class.
@@ -68,7 +72,7 @@
 #  }
 # }
 #
-# @examples "VComments.Rex"
+# @examples "../incl/VComments.Rex"
 #
 # @author
 #

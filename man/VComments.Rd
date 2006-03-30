@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:54 2005.
+% on Mon Apr 03 17:27:01 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{VComments}
@@ -27,7 +27,7 @@
 \code{~~~~~~~+--}\code{VComments}\cr
 
 \bold{Directly known subclasses:}\cr
-LComments\cr
+\link[R.utils]{LComments}\cr
 
 public static class \bold{VComments}\cr
 extends \emph{\link[R.utils]{SmartComments}}\cr
@@ -43,6 +43,24 @@ extends \emph{\link[R.utils]{SmartComments}}\cr
   \item{letter}{The smart letter.}
   \item{verboseName}{The name of the verbose object.}
   \item{...}{Not used.}
+}
+
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
+\tabular{rll}{
+ \tab \code{\link[R.utils:convertComment.VComments]{convertComment}} \tab Converts a verbose comment to R code.\cr
+ \tab \code{\link[R.utils:reset.VComments]{reset}} \tab Resets a VComments compiler.\cr
+ \tab \code{\link[R.utils:validate.VComments]{validate}} \tab Validates the compiled lines.\cr
+}
+
+
+\bold{Methods inherited from SmartComments}:\cr
+compile, convertComment, parse, reset, validate
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
 }
 
 \details{
@@ -101,15 +119,15 @@ filename <- system.file("data-ex/exampleVComments.R", package="R.utils")
 lines <- readLines(filename)
 
 cat("Code before preprocessing:\n")
-displayCode(lines)
+displayCode(code=lines, pager="console")
 
 lines <- VComments$compile(lines)
 
 cat("Code after preprocessing:\n")
-displayCode(lines)
+displayCode(code=lines, pager="console")
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 

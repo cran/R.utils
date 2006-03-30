@@ -2,6 +2,141 @@
 Package: R.utils
 ================
 
+Version: 0.7.7 [2006-03-30]
+o The method list in the class-overview help page was missing
+  for several classes.
+o Added as.double() to Verbose.
+o saveAnywhere() of Settings now returns (invisibly) the pathname 
+  where the settings were saved.
+
+Version: 0.7.6 [2006-02-15]
+o Since the png2() and jpeg2() devices are in this package, the eps() 
+  device from R.graphics has been moved here for consistency.
+
+Version: 0.7.5 [2006-02-09]
+o as.character.hexmode() is available in R v2.3.0 and forward.  Thus,
+  the method is only added by this package for pre-R v2.3.0.
+
+Version: 0.7.4 [2005-12-23]
+o Updated getHostname() and getUsername() in System to first try to
+  find the details using Sys.info().  After that system environment 
+  variable and so on are checked.
+o Added argument 'expandTilde=FALSE' to getAbsolutePath() so 
+  that tildes (~) are expanded to there corresponding path.
+o Now relative paths handle tildes too.
+o Added optional automatic timestamping for the Verbose class.
+  This is useful for Verbose objects writing to log files.
+o BUG FIX: Added protection against infinite loops in isFile(),
+  where relative path is the same as the absolute path.
+
+Version: 0.7.3 [2005-11-24]
+o Added extract() for arrays, amtrices and vectors.
+
+Version: 0.7.2 [2005-11-22]
+o BUG FIX: filePath(..., expandLinks="any") would return the relative 
+  link instead of the network pathname, even if there were no local 
+  pathname.
+o BUG FIX: Now using scan() instead of readLines() to parse header.  
+  This way the header can now also be quoted. 
+o BUG FIX: Missing object 'ndim' in wrap(); should be 'ndims'. 
+o BUG FIX: Sequences of length one was given as intervals by
+	seqToHumanReadable(), e.g. 10-10. 
+o Static Arguments class: Added getReadablePathnames(). Now getCharacter()
+  accepts vectors of length zero or one only.
+
+Version: 0.7.1 [2005-11-12]
+o Added functions wrap() and unwrap() to reshape arrays (and matrices)
+  by joining and splitting dimensions, respectively, and optionally 
+  by permuting dimensions too.  This is for instance useful when storing
+  multidimensional arrays in tabular formats.
+
+Version: 0.7.0 [2005-11-10]
+o Added trial version of readTable().  It extends the read.table()
+  in two major ways.  First it allows you to specify colClasses as
+  a column name to column class map.  Second, it allows you you to
+  read any subset of rows, which substantially improves speed and
+  decrease memory usage.  Use readTableIndex() to create a look-up
+  index for rows of interest.
+o Added seqToIntervals(), which finds all contigous (integer) regions
+  in a set of integers, cf. seqToHumanReadable().
+o BUG FIX: isDirectory() on a file would result in an infinite recursive
+  loop to itself.
+o Added inifite recursive call detection to listDirectory().
+o Now sourceDirectory() returns the source files invisibly.
+o Gathered files recursively in sourceDirectory(), but it was not needed
+  since sourceDirectory() itself is recursive.
+
+Version: 0.6.3 [2005-10-26]
+o Renamed argument 'overwrite' in getWritablePathname() in Arguments to
+  'mustNotExist'.  Renamed all 'mustExists' to 'mustExist' in all methods
+  of class Arguments.
+
+Version: 0.6.2 [2005-10-20]
+o Update loadAnywhere() for the Settings clas so that it works on 
+  objects too for which the default basename is the static basename.
+o BUG FIX: getLeaves() would give an error for empty Options objects.
+o BUG FIX: filePath(".") would return "".
+o BUG FIX: filePath("//shared/foo") would return "/shared/foo".
+
+Version: 0.6.1 [2005-10-17]
+o BUG FIX: readWindowsShortcut() failed on some Network-only links.
+
+Version: 0.6.0 [2005-09-24]
+o Now filePath() removes repeated '/' and '\\', except for network 
+  files such as \\server\foo\bar.
+o BUG FIX: Argument 'pager' of displayCode() did not support functions.
+o Updated Options class to make it easier for subclasses to retrieve
+  options more easy.  This was needed for the future ROptions class
+  to map to options().
+o BUG FIX: System$openBrowser() was broken, because startsWith() and
+  endsWith() were missing.
+o Added trial version of jpeg2() and png2().
+
+Version: 0.5.9 [2005-09-18]
+o Added static function findGraphicsDevice() to System.  The methods
+  search for a working device among a list of potential ones.  This
+  is for instance useful if it is known in advance that the PNG
+  device is available (then the bitmap() device is an option).
+
+Version: 0.5.8 [2005-09-06]
+o Added argument asGString=TRUE to the Verbose constructor.
+o Added remove() to FileProgressBar.
+o Replace argument 'gString' of getCharacters() to 'asGString', cf.
+  Verbose class.
+o Now Arguments$getReadablePathname() follows Windows shortcut files.
+o BUG FIX: displayCode() was interpreting the code as GString:s.
+o Now making use of relative pathnames internally in copyDirectory().
+  Sometimes relative pathnames will work when the absolute ones does
+  not (because of missing file access rights).
+o BUG FIX: copyDirectory() would not return copied files if recursive==TRUE.
+o BUG FIX: Smart comments preceeded by TABs would not be recognized.
+o GString's parse() could return warning because it was incorrectly
+  assumed that regexpr() did not return more than one value.
+
+Version: 0.5.7 [2005-08-12]
+o Function filePath() returns NULL, if no arguments or only NULL 
+  arguments are passed to it.
+
+Version: 0.5.6 [2005-08-02]
+o BUG FIX: splitByPattern() tried to access non-existing class Argument.
+o Arguments' getReadablePathname() no longer returns the absolute pathname
+  by default. This is because on some systems the relative pathname can
+  be queried wheras the absolute one may not be access due to missing
+  file permissions.
+o isFile() and isDirectory() is now comparing to current working directory
+  if no file information is available (due to missing file permissions);
+  assumes that the current working directory always exists.
+o getParent() now returns NULL instead of "".
+o Added argument 'caseSensitive' to getRelativePath().
+o isAbsolutePath(NULL) returns FALSE.
+o mkdirs() tries to create directory with relative path if absolute
+  path fails. This sometimes works when the file permission are missing.
+o Added argument 'code' to displayCode(). The function now also used
+  file.show() to display the code.
+o Added isUrl() and hasUrlProtocol().
+o Added copyDirectory().
+o Added getEnvironment() and getRegularExpression() to Arguments.
+
 Version: 0.5.5 [2005-07-21]
 o BUG FIX: Example illustrating Windows Shortcut methods tried to
   access 'HISTORY.lnk' and not 'HISTORY.LNK', which would fail on Unix.

@@ -26,6 +26,9 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("isAbsolutePath", "default", function(pathname, ...) {
+  if (length(pathname) == 0)
+     return(FALSE);
+
   pathname <- as.character(pathname);
 
   # Recognize '~' paths
@@ -46,6 +49,8 @@ setMethodS3("isAbsolutePath", "default", function(pathname, ...) {
  
 ###########################################################################
 # HISTORY: 
+# 2005-08-01
+# o A NULL pathname is not an absolute path.
 # 2005-06-01
 # o Now isAbsolutePath() also recognizes paths beginning with '~'.
 # 2005-05-29

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:40 2005.
+% on Mon Apr 03 17:26:52 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{Settings}
@@ -42,6 +42,27 @@ extends \link[R.utils]{Options}\cr
  \arguments{
    \item{basename}{A \code{\link[base]{character}} string of the basename of the settings file.}
    \item{...}{Arguments passed to constructor of superclass \link{Options}.}
+ }
+
+ \section{Fields and Methods}{
+  \bold{Methods:}\cr
+\tabular{rll}{
+ \tab \code{\link[R.utils:findSettings.Settings]{findSettings}} \tab Searches for the settings file in one or several directories.\cr
+ \tab \code{\link[R.utils:getLoadedPathname.Settings]{getLoadedPathname}} \tab Gets the pathname of the settings file loaded.\cr
+ \tab \code{\link[R.utils:isModified.Settings]{isModified}} \tab Checks if settings has been modified compared to whats on file.\cr
+ \tab \code{\link[R.utils:loadAnywhere.Settings]{loadAnywhere}} \tab Loads settings from file.\cr
+ \tab \code{\link[R.utils:promptAndSave.Settings]{promptAndSave}} \tab Prompt user to save modified settings.\cr
+ \tab \code{\link[R.utils:saveAnywhere.Settings]{saveAnywhere}} \tab Saves settings to file.\cr
+}
+
+
+\bold{Methods inherited from Options}:\cr
+as.character, as.list, equals, getLeaves, getOption, hasOption, names, nbrOfOptions, setOption, str
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
  }
 
  \section{Load settings with package and save on exit}{
@@ -118,9 +139,7 @@ stopifnot(equals(settings, settings2))
 
 }
 
- \author{
-   Henrik Bengtsson, \url{http://www.braju.com/R/}
- }
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 

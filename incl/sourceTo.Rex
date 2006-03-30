@@ -30,11 +30,11 @@ cat("=== Example 2 ================================================\n")
 preprocessor <- function(lines, ...) {
   cat("-----------------------------------------\n")
   cat("Source code before preprocessing:\n")
-  displayCode(lines)
+  displayCode(code=lines, pager="console")
   cat("-----------------------------------------\n")
   cat("Source code after preprocessing:\n")
   lines <- VComments$compile(lines)
-  displayCode(lines)
+  displayCode(code=lines, pager="console")
   cat("-----------------------------------------\n")
   lines
 }

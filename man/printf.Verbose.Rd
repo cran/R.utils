@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 12:00:06 2005.
+% on Mon Apr 03 17:27:12 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{printf.Verbose}
@@ -36,7 +36,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

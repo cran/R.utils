@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:57 2005.
+% on Mon Apr 03 17:26:18 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{FileProgressBar}
@@ -46,6 +46,7 @@ extends \link[R.utils]{ProgressBar}\cr
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
+ \tab \code{\link[R.utils:remove.FileProgressBar]{remove}} \tab Removes the progress file for a file progress bar.\cr
  \tab \code{\link[R.utils:update.FileProgressBar]{update}} \tab Updates file progress bar.\cr
 }
 
@@ -66,7 +67,8 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, ex
 
  \examples{
   \dontrun{
-   # Creates a progress bar (of length 100) that displays it self as a file.
+  
+# Creates a progress bar (of length 100) that displays it self as a file.
 pb <- FileProgressBar("~/progress.simulation")
 reset(pb)
 while (!isDone(pb)) {
@@ -78,5 +80,5 @@ while (!isDone(pb)) {
   }
  }
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 \keyword{classes}

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 12:00:01 2005.
+% on Mon Apr 03 17:27:12 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{Verbose}
@@ -25,7 +25,7 @@
 \code{~~+--}\code{Verbose}\cr
 
 \bold{Directly known subclasses:}\cr
-NullVerbose\cr
+\link[R.utils]{NullVerbose}\cr
 
 public static class \bold{Verbose}\cr
 extends \link[R.oo]{Object}\cr
@@ -35,7 +35,7 @@ extends \link[R.oo]{Object}\cr
  Class to writing verbose messages to a connection or file.
 }
 
-\usage{Verbose(con=stderr(), on=TRUE, threshold=0, removeFile=TRUE, core=TRUE, ...)}
+\usage{Verbose(con=stderr(), on=TRUE, threshold=0, asGString=TRUE, timestamp=FALSE, removeFile=TRUE, core=TRUE, ...)}
 
 \arguments{
   \item{con}{A \code{\link[base:connections]{connection}} or a \code{\link[base]{character}} string filename.}
@@ -44,10 +44,57 @@ extends \link[R.oo]{Object}\cr
     of any write method has to be equal to or larger than in order to the
     message being written. Thus, the lower the threshold is the more and
     more details will be outputted.}
+  \item{timestamp}{If \code{\link[base:logical]{TRUE}}, each output is preceded with a timestamp.}
   \item{removeFile}{If \code{\link[base:logical]{TRUE}} and \code{con} is a filename, the file is
     first deleted, if it exists.}
+  \item{asGString}{If \code{\link[base:logical]{TRUE}}, all messages are interpreted as
+    \code{\link{GString}} before being output, otherwise not.}
   \item{core}{Internal use only.}
   \item{...}{Not used.}
+}
+
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
+\tabular{rll}{
+ \tab \code{\link[R.utils:as.character.Verbose]{as.character}} \tab Returns a character string version of this object.\cr
+ \tab \code{\link[R.utils:as.double.Verbose]{as.double}} \tab Gets a numeric value of this object.\cr
+ \tab \code{\link[R.utils:as.logical.Verbose]{as.logical}} \tab Gets a logical value of this object.\cr
+ \tab \code{\link[R.utils:capture.Verbose]{capture}} \tab Captures output of a function.\cr
+ \tab \code{\link[R.utils:cat.Verbose]{cat}} \tab Concatenates and prints objects if above threshold.\cr
+ \tab \code{\link[R.utils:enter.Verbose]{enter}} \tab Writes a message and indents the following output.\cr
+ \tab \code{\link[R.utils:equals.Verbose]{equals}} \tab Checks if this object is equal to another.\cr
+ \tab \code{\link[R.utils:evaluate.Verbose]{evaluate}} \tab Evaluates a function and prints its results if above threshold.\cr
+ \tab \code{\link[R.utils:exit.Verbose]{exit}} \tab Writes a message and unindents the following output.\cr
+ \tab \code{\link[R.utils:getThreshold.Verbose]{getThreshold}} \tab Gets current verbose threshold.\cr
+ \tab \code{\link[R.utils:getTimestampFormat.Verbose]{getTimestampFormat}} \tab Gets the default timestamp format.\cr
+ \tab \code{\link[R.utils:header.Verbose]{header}} \tab Writes a header.\cr
+ \tab \code{\link[R.utils:isOn.Verbose]{isOn}} \tab Checks if the output is on.\cr
+ \tab \code{\link[R.utils:isVisible.Verbose]{isVisible}} \tab Checks if a certain verbose level will be shown or not.\cr
+ \tab \code{\link[R.utils:newline.Verbose]{newline}} \tab Writes one or several empty lines.\cr
+ \tab \code{\link[R.utils:off.Verbose]{off}} \tab Turn off the output.\cr
+ \tab \code{\link[R.utils:on.Verbose]{on}} \tab Turn on the output.\cr
+ \tab \code{popState} \tab  -\cr
+ \tab \code{\link[R.utils:print.Verbose]{print}} \tab Prints objects if above threshold.\cr
+ \tab \code{\link[R.utils:printf.Verbose]{printf}} \tab Formats and prints object if above threshold.\cr
+ \tab \code{\link[R.utils:pushState.Verbose]{pushState}} \tab Pushes the current indentation state of the Verbose object.\cr
+ \tab \code{\link[R.utils:ruler.Verbose]{ruler}} \tab Writes a ruler.\cr
+ \tab \code{\link[R.utils:setDefaultLevel.Verbose]{setDefaultLevel}} \tab Sets the current default verbose level.\cr
+ \tab \code{\link[R.utils:setThreshold.Verbose]{setThreshold}} \tab Sets verbose threshold.\cr
+ \tab \code{\link[R.utils:setTimestampFormat.Verbose]{setTimestampFormat}} \tab Sets the default timestamp format.\cr
+ \tab \code{\link[R.utils:str.Verbose]{str}} \tab Prints the structure of an object if above threshold.\cr
+ \tab \code{\link[R.utils:summary.Verbose]{summary}} \tab Generates a summary of an object if above threshold.\cr
+ \tab \code{\link[R.utils:timestamp.Verbose]{timestamp}} \tab Writes a timestamp.\cr
+ \tab \code{timestampOff} \tab  -\cr
+ \tab \code{\link[R.utils:timestampOn.Verbose]{timestampOn}} \tab Turns automatic timestamping on and off.\cr
+ \tab \code{\link[R.utils:warnings.Verbose]{warnings}} \tab Outputs any warnings recorded.\cr
+ \tab \code{\link[R.utils:writeRaw.Verbose]{writeRaw}} \tab Writes objects if above threshold.\cr
+}
+
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
 }
 
 \section{Output levels}{
@@ -109,13 +156,19 @@ header(verbose, "A verbose writer example", padding=0)
 enter(verbose, "Analysis A")
 for (kk in 1:10) {
   printf(verbose, "step \%d\n", kk)
-  if (kk == 4) {
-    cat(verbose, "Turning OFF verbose messages")
-    on(verbose)
-  } else if (kk == 6) {
+  if (kk == 2) {
+    cat(verbose, "Turning ON automatic timestamps")
+    timestampOn(verbose);
+  } else if (kk == 4) {
+    timestampOff(verbose);
+    cat(verbose, "Turned OFF automatic timestamps")
+    cat(verbose, "Turning OFF verbose messages for steps ", kk, "-6")
     off(verbose)
-    cat(verbose, "Turned ON verbose messages")
+  } else if (kk == 6) {
+    on(verbose)
+    cat(verbose, "Turned ON verbose messages just before step ", kk+1)
   }
+
   if (kk \%in\% c(5,8)) {
     enter(verbose, "Sub analysis ", kk)
     for (jj in c("i", "ii", "iii")) {
@@ -138,9 +191,7 @@ ruler(verbose)
 newline(verbose)
 }
 
-\author{
-  Henrik Bengtsson, \url{http://www.braju.com/R/}
-}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   \code{\link{NullVerbose}}.

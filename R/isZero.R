@@ -33,10 +33,10 @@
 # @author
 #
 # \seealso{
-#   @see "base::.Machine".
+#   \code{\link[base:zMachine]{.Machine}}.
 # }
 #
-# @examples "isZero.Rex"
+# @examples "../incl/isZero.Rex"
 #
 # @keyword "logic"
 #*/#########################################################################

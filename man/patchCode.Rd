@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:30 2005.
+% on Mon Apr 03 17:26:42 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{patchCode}
@@ -58,7 +58,7 @@
    file tree containing patches.
 
    To set an options, see \code{\link[base]{options}}(). To set a system
-   environment, see \code{\link[base]{Sys.putenv}}().
+   environment, see \code{\link[base:putenv]{Sys.putenv}}().
    The character \code{;} is interpreted as a separator. Due to
    incompatibility with Windows pathnames, \code{:} is \emph{not} a
    valid separator.
@@ -74,12 +74,12 @@
    patchCode()
  }}
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
   \code{\link[base]{source}}().
   \code{\link[base]{library}}().
-  \code{\link[R.basic]{relibrary}}.
+  \code{\link{relibrary}}().
  }
 
 

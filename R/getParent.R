@@ -57,12 +57,17 @@ setMethodS3("getParent", "default", function(pathname, fsep=.Platform$file.sep, 
     components <- components[-len];
   }
 
+  if (length(components) == 0)
+    return(NULL);
+
   # Re-build path to string...
   paste(components, sep="", collapse=fsep);
 })
 
 ###########################################################################
 # HISTORY: 
+# 2005-08-01
+# o Empty parent directory is now returned as NULL.
 # 2005-05-29
 # o Created by copying code in the File class of the R.io package.
 ###########################################################################

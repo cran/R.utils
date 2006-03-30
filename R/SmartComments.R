@@ -16,6 +16,10 @@
 #   \item{...}{Not used.}
 # }
 #
+# \section{Fields and Methods}{
+#  @allmethods
+# }
+#
 # \details{
 #  A "smart" source-code comment is an \R comment, which start with a '\#',
 #  but is followed by a single letter, then a single symbol and a second
@@ -39,9 +43,7 @@
 #  }
 # }
 #
-# \author{
-#   Henrik Bengtsson, \url{http://www.braju.com/R/}
-# }
+# @author
 #
 # \seealso{
 #   @see "VComments".
@@ -130,7 +132,7 @@ setMethodS3("reset", "SmartComments", function(this, ...) {
 #*/###########################################################################
 setMethodS3("parse", "SmartComments", function(this, lines, currLine, ..., letter=this$letter, pattern=NULL) {
   if (is.null(pattern))
-    pattern <- paste("^([ ]*)(#", letter, ")(.)(#)(.*)", sep="");
+    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="");
 
   # Get next line
   line <- lines[currLine];
@@ -236,7 +238,7 @@ setMethodS3("compile", "SmartComments", function(this, lines, trim=TRUE, exclude
     
     # 2. Among these, check for "Smart" comments.
     letter <- this$letter;
-    pattern <- paste("^([ ]*)(#", letter, ")(.)(#)(.*)", sep="");
+    pattern <- paste("^([ \t]*)(#", letter, ")(.)(#)(.*)", sep="");
     idxSmartComments <- which(regexpr(pattern, comments) != -1);
     if (length(idxSmartComments) == 0)
       return(lines);
@@ -358,6 +360,8 @@ setMethodS3("validate", "SmartComments", function(this, lines, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2005-09-04
+# o BUG FIX: Smart comments preceeded by TABs would not be recognized.
 # 2005-06-26
 # o Made class and methods non-static, but they can still be used by the
 #   static class instance, which then works as a default object.

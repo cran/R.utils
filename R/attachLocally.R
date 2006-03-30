@@ -29,7 +29,7 @@
 #   Returns (invisibly) a @character @vector of the fields copied.
 # }
 # 
-# @examples "attachLocally.Rex"
+# @examples "../incl/attachLocally.Rex"
 #
 # @author
 # 

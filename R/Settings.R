@@ -16,6 +16,10 @@
 #   \item{...}{Arguments passed to constructor of superclass \link{Options}.}
 # }
 #
+# \section{Fields and Methods}{
+#  @allmethods
+# } 
+#
 # \section{Load settings with package and save on exit}{
 #  Here is a generic \code{.First.lib()} function for loading settings
 #  with package. It also (almost) assures that the package is detached
@@ -66,11 +70,9 @@
 #  }
 # }
 #
-# @examples "Settings.Rex"
+# @examples "../incl/Settings.Rex"
 #
-# \author{
-#   Henrik Bengtsson, \url{http://www.braju.com/R/}
-# }
+# @author
 #
 # @keyword programming
 # @keyword IO
@@ -229,11 +231,13 @@ setMethodS3("findSettings", "Settings", function(static, basename, paths=c(".", 
 #      this was not the case, argument \code{path} is used.}
 #   \item{path}{The default path, if no settings files are specified.
 #      This defaults to the current user's home directory.}
-#   \item{...}{Arguments passed to \code{\link[write.Options]{write}()}
-#      in superclass Options.}
+#   \item{...}{Arguments passed to 
+#      \code{\link[R.utils:save.Object]{save}()} in superclass Object.}
 # }
 #
-# \value{Returns nothing.}
+# \value{
+#   Returns (invisibly) the pathname to the save settings file.
+# }
 #
 # @author
 #
@@ -261,6 +265,8 @@ setMethodS3("saveAnywhere", "Settings", function(this, file=NULL, path="~", ...)
 
   # Save Object
   save(this, file=file, ...);
+
+  invisible(file);
 })
 
 
@@ -304,6 +310,10 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Argument 'file':
+  if (is.null(file)) {
+    file <- static$.basename;
+  }
+
   if (inherits(file, "connection")) {
   } else {
     file <- as.character(file);
@@ -345,8 +355,8 @@ setMethodS3("loadAnywhere", "Settings", function(static, file=NULL, ..., verbose
 # \arguments{
 #   \item{saveOption}{A @character string of the option used to set
 #      if user is prompted or not.}
-#   \item{...}{Arguments passed to \code{\link[write.Options]{write}()}
-#      in superclass Options.}
+#   \item{...}{Arguments passed to 
+#      \code{\link[R.utils:write.Options]{write}()} in superclass Options.}
 # }
 #
 # \value{
@@ -422,6 +432,12 @@ setMethodS3("promptAndSave", "Settings", function(this, saveOption="saveSettings
 
 ############################################################################
 # HISTORY:
+# 2006-02-22
+# o saveAnywhere() now returns the pathname where the settings were saved.
+# o Rdoc: Fixed a missing link in saveAnywhere().
+# 2005-10-20
+# o Update loadAnywhere() so that it works on objects too for which the
+#   default basename is the static basename.
 # 2005-06-11
 # o Added last modified date in loading message.
 # 2005-06-01

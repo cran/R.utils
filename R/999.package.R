@@ -1,6 +1,5 @@
 #########################################################################/**
-# @RdocAbout
-# @alias R.utils
+# @RdocPackage R.utils
 #
 # \description{
 #   @eval "getDescription(R.utils)"
@@ -19,7 +18,7 @@
 # }
 #
 # \section{Requirements}{
-#   This package requires the \code{R.oo} package [1].
+#   This package requires the \pkg{R.oo} package [1].
 # } 
 #
 # \section{Installation and updates}{
@@ -28,9 +27,9 @@
 #
 #   \code{install.packages("R.utils")}
 #
-#   Required packages are installed in the same way.  To update, do
-#   \code{update.packages()}.  To get the "devel" version, add argument
-#   \code{contriburl="@eval "getContribUrl(R.utils)""} to the above commands.
+#   Required packages are installed in the same way.  
+#
+#   To get the "devel" version, see \url{http://www.braju.com/R/}.
 # } 
 #
 # \section{To get started}{
@@ -48,6 +47,8 @@
 #    \item{\link{FileProgressBar}}{[beta] A ProgressBar that reports progess 
 #            as file size.}
 #    \item{\link{System}}{[alpha] Methods for access to system.}
+#    \item{\link{Verbose}}{[alpha] A class for verbose and log output. 
+#            Utilized by the VComments and LComments classes.}
 #    \item{\link{SmartComments}, \link{VComments}, \link{LComments}}{[alpha] 
 #            Methods for preprocessing source code comments of certain 
 #            formats into R code.}
@@ -70,8 +71,8 @@
 #  too little time to add myself. Contributions are appreciated.
 #  \itemize{
 #    \item Write a TclTkProgressBar class.
-#    \item Improve/stabalize the GString class.
-#    \item Mature the SmartComments classes, but also add AComments and
+#    \item Improve/stabilize the GString class.
+#    \item Mature the SmartComments classes.  Also add AComments and
 #          PComments for assertion and progress/status comments.
 #  }
 #
@@ -92,11 +93,6 @@
 # }
 #
 # \section{References}{
-# [1] Henrik Bengtsson, \emph{The R.oo package - Object-Oriented Programming
-#     with References Using Standard R Code}, In Kurt Hornik, Friedrich
-#     Leisch and Achim Zeileis, editors, Proceedings of the 3rd
-#     International Workshop on Distributed Statistical Computing
-#     (DSC 2003), March 20-22, Vienna, Austria. 
-#     \url{http://www.ci.tuwien.ac.at/Conferences/DSC-2003/Proceedings/}
+# [1] @include "../incl/BengtssonH_2003.bib.Rdoc" \cr
 # }
 #*/#########################################################################  

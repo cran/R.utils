@@ -55,31 +55,24 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
   onError <- match.arg(onError);
 
   # Argument 'verbose'
-  if (inherits(verbose, "Verbose")) {
-  } else if (is.numeric(verbose)) {
-    verbose <- Verbose();
-  } else {
-    verbose <- as.logical(verbose);
-    if (verbose)
-      verbose <- Verbose(, threshold=-1);
-  }
+  verbose <- Arguments$getVerbose(verbose);
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # start...
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  verbose && cat(verbose, "Sourcing directory recursively: ", path);
-
   # Store files that get sourced.
   sourcedFiles <- c();
 
   # First, if recursive, follow all directories...
   if (recursive) {
-    dirs <- list.files(path=path, recursive=TRUE,
+    verbose && cat(verbose, "Sourcing directory recursively: ", path);
+    dirs <- list.files(path=path, recursive=FALSE,
                                           all.files=TRUE, full.names=TRUE);
+    dirs <- dirs[!(basename(dirs) %in% c(".", ".."))];
     for (dir in dirs) {
       pathname <- filePath(dir);
       if (isDirectory(pathname)) {
-        verbose && cat(verbose && "Entering: ", pathname);
+        verbose && cat(verbose, "Entering: ", pathname);
         sourcedFiles <- c(sourcedFiles, 
           sourceDirectory(pathname, pattern=pattern, recursive=recursive, 
                        envir=envir, onError=onError, verbose=verbose, ...)
@@ -87,10 +80,12 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
        
       }
     } # for (dir ...)
+  } else {
+    verbose && cat(verbose, "Sourcing directory (non-recursively): ", path);
   }
 
-  # Then, get all files...
-  files <- listDirectory(path, pattern=pattern, recursive=TRUE,
+  # Then, get all files in current directory...
+  files <- listDirectory(path, pattern=pattern, recursive=FALSE,
                                           allNames=TRUE, fullNames=TRUE);
 
   if (verbose) {
@@ -133,7 +128,8 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
           print(verbose, ex);
           tryCatch({
             # Display source code with erroneous line highlighted.
-            capture(verbose, displayCode(scriptFile, highlight=ex$message));
+            cat(verbose, displayCode(scriptFile, highlight=ex$message, 
+                                                             pager="none"));
           }, error = function(ex) {})
         }
         verbose && exit(verbose, suffix="...failed");
@@ -156,11 +152,19 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
   } # for (file ...)
 
   # Return files that was sourced.
-  sourcedFiles;
+  invisible(sourcedFiles);
 })   # sourceDirectory()
 
 ###########################################################################
 # HISTORY:
+# 2006-02-22
+# o Modernized the processing of argument 'verbose' using Arguments.
+# 2005-12-05
+# o sourceDirectory() did not work correctly on recursive calls.
+# 2005-10-28
+# o Now sourceDirectory() returns the source files invisibly.
+# o Gathered files recursively in sourceDirectory(), but it was not needed
+#   since sourceDirectory() itself is recursive.
 # 2005-07-18
 # o BUG FIX: If there are no files to source in a directory, and verbose
 #   is active, basefile() on NULL was called generating an error.

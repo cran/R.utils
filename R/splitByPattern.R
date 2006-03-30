@@ -22,6 +22,8 @@
 #   if element is a pattern part and \code{"FALSE"} otherwise.
 # }
 #
+# @examples "../incl/splitByPattern.Rex"
+#
 # @author
 #
 # \seealso{
@@ -32,10 +34,10 @@
 #*/######################################################################### 
 setMethodS3("splitByPattern", "default",  function(str, pattern, ...) {
   # Argument 'str':
-  str <- Argument$getCharacter(str);
+  str <- Arguments$getCharacter(str);
 
   # Argument 'pattern':
-  pattern <- Argument$getCharacter(pattern);
+  pattern <- Arguments$getCharacter(pattern);
 
   parts <- c();
   while(TRUE) {
@@ -64,6 +66,8 @@ setMethodS3("splitByPattern", "default",  function(str, pattern, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2005-07-27
+# o BUG FIX: Used 'Argument' instead of 'Arguments'.
 # 2005-07-06
 # o Created.
 ############################################################################

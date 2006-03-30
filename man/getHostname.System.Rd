@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:50 2005.
+% on Mon Apr 03 17:26:59 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{getHostname.System}
@@ -30,8 +30,9 @@
  }
 
  \details{
-  First this function checks the system environment variables \code{HOST},
+  First, this function checks the system environment variables \code{HOST},
   \code{HOSTNAME}, and \code{COMPUTERNAME}.
+  Second, it checks \code{Sys.info()["nodename"]} for host name details.
   Finally, it tries to query the system command \code{uname -n}.
  }
 

@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 12:00:10 2005.
+% on Mon Apr 03 17:27:13 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{timestamp.Verbose}
@@ -22,7 +22,7 @@
   Writes a timestamp with default format [2005-06-23 21:20:03].
 }
 
-\usage{\method{timestamp}{Verbose}(this, stamp=format(Sys.time(), "\%Y-\%m-\%d \%H:\%M:\%S"), ...)}
+\usage{\method{timestamp}{Verbose}(this, format=getTimestampFormat(thos), ...)}
 
 \arguments{
  \item{stamp}{A timestamp \code{\link[base]{character}} to be written.}
@@ -33,7 +33,7 @@
   Returns nothing.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

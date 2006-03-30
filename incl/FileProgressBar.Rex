@@ -1,3 +1,4 @@
+
 # Creates a progress bar (of length 100) that displays it self as a file.
 pb <- FileProgressBar("~/progress.simulation")
 reset(pb)

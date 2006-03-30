@@ -15,11 +15,13 @@
 #   \item{...}{Ignored.}
 # }
 #
-# @examples "NullVerbose.Rex"
-#
-# \author{
-#   Henrik Bengtsson, \url{http://www.braju.com/R/}
+# \section{Fields and Methods}{
+#  @allmethods
 # }
+#
+# @examples "../incl/NullVerbose.Rex"
+#
+# @author
 #
 # @keyword programming
 # @keyword IO
@@ -27,7 +29,6 @@
 setConstructorS3("NullVerbose", function(...) {
   extend(Verbose(core=FALSE, ...), "NullVerbose")
 })
-
 
 
 ###########################################################################/**

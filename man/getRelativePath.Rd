@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:58:59 2005.
+% on Mon Apr 03 17:26:19 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{getRelativePath}
@@ -15,7 +15,7 @@
 
 \title{Gets the relative pathname relative to a directory}
 
-\usage{\method{getRelativePath}{default}(pathname, relativeTo=getwd(), ...)}
+\usage{\method{getRelativePath}{default}(pathname, relativeTo=getwd(), caseSensitive=NULL, ...)}
 
 \description{
   Gets the relative pathname relative to a directory.
@@ -24,7 +24,9 @@
 \arguments{
  \item{pathname}{A \code{\link[base]{character}} string of the pathname to be converted into
    an absolute pathname.}
- \item{relativeTo}{A \code{\link[base]{character}} string of the reference pathname,}
+ \item{relativeTo}{A \code{\link[base]{character}} string of the reference pathname.}
+ \item{caseSensitive}{If \code{\link[base:logical]{TRUE}}, the comparison is case sensitive, otherwise
+   not.  If \code{\link[base]{NULL}}, it is decided from the relative path.}
  \item{...}{Not used.}
 }
 
@@ -32,11 +34,19 @@
  Returns a \code{\link[base]{character}} string of the relative pathname.
 }
 
-\author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+\section{Non-case sensitive comparison}{
+  If \code{caseSensitive == NULL}, the relative path is used to decide if
+  the comparison should be done in a case-sensitive mode or not.
+  The current check is if it is a Windows path or not, that is, if
+  the relative path starts with a device letter, then the comparison
+  is non-case sensitive.
+}
+
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  \code{\link[R.utils:getAbsolutePath.]{*getAbsolutePath}()}.
-  \code{\link[R.utils:isAbsolutePath.]{*isAbsolutePath}()}.
+  \code{\link{getAbsolutePath}}().
+  \code{\link{isAbsolutePath}}().
 }
 
 

@@ -26,7 +26,7 @@
 #
 # \examples{
 #  \dontrun{
-#   @include "FileProgressBar.Rex"
+#   @include "../incl/FileProgressBar.Rex"
 #  }
 # }
 #
@@ -91,8 +91,49 @@ setMethodS3("update", "FileProgressBar", function(object, visual=TRUE, ...) {
 
 
 
+
+#########################################################################/**
+# @RdocMethod remove
+#
+# @title "Removes the progress file for a file progress bar"
+# 
+# @synopsis
+#
+# \description{
+#   @get "title".
+# }
+#
+# \arguments{
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns (invisibly) @TRUE, if there is no progress file afterwards. 
+#   Otherwise, @FALSE is returned.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#*/######################################################################### 
+setMethodS3("remove", "FileProgressBar", function(object, ...) {
+  # To please R CMD check...
+  this <- object;
+
+  if (isFile(this$pathname))
+    file.remove(this$pathname);
+
+  invisible(isFile(this$pathname));
+})
+
+
+
 ############################################################################
 # HISTORY:
+# 2005-09-06
+# o Added remove() method to remove progress files.
 # 2005-03-01
 # o Update constructor for new argument 'newlineWhenDone' in superclass.
 # 2004-10-21

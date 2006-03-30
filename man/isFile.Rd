@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:11 2005.
+% on Mon Apr 03 17:26:26 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{isFile}
@@ -33,10 +33,10 @@
 
 
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
-   To check if it is a directory see \code{\link[R.utils:isDirectory.]{*isDirectory}()}.
+   To check if it is a directory see \code{\link{isDirectory}}().
    Internally \code{\link[base]{file.info}}() is used.
  }
 

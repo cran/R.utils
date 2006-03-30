@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:22 2005.
+% on Mon Apr 03 17:26:37 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{NullVerbose}
@@ -43,6 +43,35 @@ extends \link[R.utils]{Verbose}\cr
   \item{...}{Ignored.}
 }
 
+\section{Fields and Methods}{
+ \bold{Methods:}\cr
+\tabular{rll}{
+ \tab \code{cat} \tab  -\cr
+ \tab \code{enter} \tab  -\cr
+ \tab \code{evaluate} \tab  -\cr
+ \tab \code{exit} \tab  -\cr
+ \tab \code{header} \tab  -\cr
+ \tab \code{\link[R.utils:isOn.NullVerbose]{isOn}} \tab Checks if the output is on.\cr
+ \tab \code{\link[R.utils:isVisible.NullVerbose]{isVisible}} \tab Checks if a certain verbose level will be shown or not.\cr
+ \tab \code{newline} \tab  -\cr
+ \tab \code{print} \tab  -\cr
+ \tab \code{printf} \tab  -\cr
+ \tab \code{ruler} \tab  -\cr
+ \tab \code{str} \tab  -\cr
+ \tab \code{summary} \tab  -\cr
+ \tab \code{\link[R.utils:writeRaw.NullVerbose]{writeRaw}} \tab All output methods.\cr
+}
+
+
+\bold{Methods inherited from Verbose}:\cr
+as.character, as.double, as.logical, capture, cat, enter, equals, evaluate, exit, getThreshold, getTimestampFormat, header, isOn, isVisible, newline, off, on, popState, print, printf, pushState, ruler, setDefaultLevel, setThreshold, setTimestampFormat, str, summary, timestamp, timestampOff, timestampOn, warnings, writeRaw
+
+\bold{Methods inherited from Object}:\cr
+$, $<-, [[, [[<-, as.character, attach, attachLocally, clone, detach, equals, extend, finalize, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
+
+}
+
 \examples{
 verbose <- Verbose()
 cat(verbose, "A verbose messages")
@@ -51,9 +80,7 @@ verbose <- NullVerbose()
 cat(verbose, "A verbose messages")   # Ignored
 }
 
-\author{
-  Henrik Bengtsson, \url{http://www.braju.com/R/}
-}
+\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 
 

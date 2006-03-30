@@ -3,10 +3,10 @@
 % 
 %  
 % 
-% on Thu Jul 21 11:59:29 2005.
+% on Mon Apr 03 17:26:42 2006.
 % 
 % Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2004.
+% by Henrik Bengtsson, 2001-2006.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
  \name{getOption.Options}
@@ -38,7 +38,7 @@
    If a \code{\link[base]{vector}} of options are queried, a \code{\link[base]{list}} of values are returned.
    For non-existing options, the default value is returned.}
 
- \author{Henrik Bengtsson \url{http://www.braju.com/R/}}
+ \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.
