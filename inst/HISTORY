@@ -2,6 +2,14 @@
 Package: R.utils
 ================
 
+Version: 0.7.9 [2006-07-17]
+o The capture() method in Verbose modified a text connection while it was
+  still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for
+  pointing this out.
+
+Version: 0.7.8 [2006-05-22]
+o Added the TextStatusBar class.
+
 Version: 0.7.7 [2006-03-30]
 o The method list in the class-overview help page was missing
   for several classes.

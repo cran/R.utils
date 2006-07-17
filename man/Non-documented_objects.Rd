@@ -1,12 +1,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  
+%  999.NonDocumentedObjects.R
 % 
-% on Mon Apr 03 17:26:02 2006.
-% 
-% Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2006.
+% by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{Non-documented objects}
@@ -113,6 +110,14 @@
 \alias{getUsername}
 \alias{openBrowser}
 \alias{parseDebian}
+
+% The System class
+\alias{getLabel}
+\alias{setLabel}
+
+% The TextStatusBar class
+\alias{setLabels}
+\alias{updateLabels}
 
 % The Verbose class
 \alias{capture}

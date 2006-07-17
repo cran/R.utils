@@ -1009,10 +1009,10 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
   }
 
   indent <- paste(rep(" ", length.out=this$indentPos), collapse="");
-  bfr <- paste(indent, bfr, sep="");
-  bfr <- paste(bfr, collapse="\n");
-  bfr <- paste(bfr, "\n", sep="");
-  writeRaw(this, bfr);
+  bfr2 <- paste(indent, bfr, sep="");
+  bfr2 <- paste(bfr2, collapse="\n");
+  bfr2 <- paste(bfr2, "\n", sep="");
+  writeRaw(this, bfr2);
 })
 
 
@@ -1436,6 +1436,10 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2006-07-17
+# o The capture() method in Verbose modified a text connection while it was
+#   still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for
+#   pointing this out.
 # 2006-03-30
 # o Removed auxillary argument 'obj' which was added two days ago.  It was
 #   a bug in a recent revision of R v2.3.0 devel that caused it.

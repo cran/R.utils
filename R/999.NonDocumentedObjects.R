@@ -101,6 +101,14 @@
 # @alias openBrowser
 # @alias parseDebian
 #
+# % The System class
+# @alias getLabel
+# @alias setLabel
+#
+# % The TextStatusBar class
+# @alias setLabels
+# @alias updateLabels
+#
 # % The Verbose class
 # @alias capture
 # @alias cat

@@ -1,39 +1,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  
+%  callHooks.R
 % 
-% on Mon Apr 03 17:26:15 2006.
-% 
-% Generator was the Rdoc class, which is part of the R.oo package written
-% by Henrik Bengtsson, 2001-2006.
+% by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \name{callHooks}
 \alias{callHooks.default}
 \alias{callHooks}
 
-\title{Call hook functions}
+\title{Call hook functions by hook name}
 
 \description{
-  Call hook functions.
+  Call hook functions by hook name.
 }
 
 \usage{\method{callHooks}{default}(hookName, ..., removeCalledHooks=FALSE)}
 
 \arguments{
  \item{hookName}{A \code{\link[base]{character}} string of the hook name.}
- \item{...}{Argument passed to the hook function.}
+ \item{...}{Argument passed to each hook function.}
  \item{removeCalledHooks}{If \code{\link[base:logical]{TRUE}}, called hook functions are removed,
     otherwise not.}
 }
 
 \value{
-  Returns (invisibly) a \code{\link[base]{list}} that is possible named with hook names,
-  if possible.  Each element in the list is in turn a \code{\link[base]{list}} with three
-  element: \code{fcn} is the hook function called, \code{result}
-  is its return value, and \code{exception} is the exception caught
-  or \code{\link[base]{NULL}}.
+  Returns (invisibly) whatever \code{\link{callHooks.list}}() returns.
 }
 
 \examples{
@@ -86,6 +79,8 @@ cat("Erroneous hooks: ", sum(isErroneous), "\n");
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
+  Internally, after retriving hook functions, \code{\link{callHooks.list}}() is
+  called.
   See \link[base:UserHooks]{UserHooks} how to set hooks.
 }
 
