@@ -168,8 +168,9 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 #    if (!is.null(quote) && nchar(quote) > 0) {
 #    }
 
+    names <- paste("'", colnames, "'", sep="");
     verbose && cat(verbose, "Read ", length(colnames), " column names: ", 
-                                            paste(colnames, collapse=", "));
+                                              paste(names, collapse=", "));
   }
 
   if (!is.null(col.names))
@@ -209,10 +210,12 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
   # Read full data table?
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (is.null(rows)) {
+    verbose && enter(verbose, "Reading the complete data table");
     df <- read.table(file, colClasses=colClasses, header=FALSE, 
                      skip=0, nrows=nrows, check.names=check.names, 
                      col.names=colnames, ...);
     verbose && str(verbose, df);
+    verbose && exit(verbose);
 
     # Return table
     return(df);
@@ -363,6 +366,8 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
 ############################################################################
 # HISTORY:
+# 2006-07-28
+# o Added more verbose output.
 # 2005-11-21
 # o BUG FIX: Tried to read the header with a 'sep' set to a regular 
 #   expression, but only accepts single characters.

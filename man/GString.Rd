@@ -56,7 +56,7 @@ extends character\cr
 
 
 \bold{Methods inherited from character}:\cr
-all.equal, as.data.frame, as.Date, getDLLRegisteredRoutines
+all.equal, as.data.frame, as.Date, getDLLRegisteredRoutines, isOpen
 
 }
 

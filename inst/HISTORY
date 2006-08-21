@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 0.8.0 [2006-08-21]
+o Added isOpen() to check if there is another connection opened to 
+  a specific file.
+o pushState() of Verbose generated an unnecessary warning due to 
+  a typo.
+
 Version: 0.7.9 [2006-07-17]
 o The capture() method in Verbose modified a text connection while it was
   still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for

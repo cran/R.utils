@@ -3,6 +3,7 @@
 
 getOption <- appendVarArgs(getOption)
 inherits <- appendVarArgs(inherits)
+isOpen <- appendVarArgs(isOpen)
 parse <- appendVarArgs(parse)
 if (exists("timestamp", mode="function"))
   timestamp <- appendVarArgs(timestamp)

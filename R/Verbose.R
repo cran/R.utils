@@ -1400,7 +1400,7 @@ setMethodS3("pushState", "Verbose", function(this, ...) {
 
   stack <- list(
     stack      = this$.stack,
-    stackLevel = this$.stackLevel,
+    stackLevel = this$.stackLevel
   )
 
   this$.stackState <- append(this$.stackState, list(stack));
@@ -1436,6 +1436,9 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2006-09-12
+# o Created a list with an empty list() in pushState().  This generated
+#   warnings, but not errors.
 # 2006-07-17
 # o The capture() method in Verbose modified a text connection while it was
 #   still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for

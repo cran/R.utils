@@ -160,6 +160,8 @@
 
 % Misc.
 \alias{extract}
+\alias{isOpen}
+\alias{isOpen.default}
 \alias{remove.default}
 \alias{verbose}
 \alias{unwrap}
