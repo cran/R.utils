@@ -51,12 +51,15 @@ extends character\cr
  \tab \code{\link[R.utils:getBuiltinTime.GString]{getBuiltinTime}} \tab Gets the current time.\cr
  \tab \code{\link[R.utils:getBuiltinUsername.GString]{getBuiltinUsername}} \tab Gets the username of the user running R.\cr
  \tab \code{\link[R.utils:getRaw.GString]{getRaw}} \tab Gets the unprocessed GString.\cr
+ \tab \code{\link[R.utils:getVariableValue.GString]{getVariableValue}} \tab Gets a variable value given a name and attributes.\cr
+ \tab \code{\link[R.utils:parse.GString]{parse}} \tab Parses a GString.\cr
  \tab \code{\link[R.utils:print.GString]{print}} \tab Prints the processed GString.\cr
 }
 
 
-\bold{Methods inherited from character}:\cr
+ \bold{Methods inherited from character}:\cr
 all.equal, as.data.frame, as.Date, getDLLRegisteredRoutines, isOpen
+
 
 }
 

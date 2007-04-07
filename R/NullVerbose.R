@@ -16,7 +16,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods
+#  @allmethods  
 # }
 #
 # @examples "../incl/NullVerbose.Rex"

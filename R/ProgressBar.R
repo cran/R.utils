@@ -67,7 +67,10 @@ setConstructorS3("ProgressBar", function(max=100, ticks=10, stepLength=1, newlin
 #   @seeclass
 # }
 #*/######################################################################### 
-setMethodS3("as.character", "ProgressBar", function(this, ...) {
+setMethodS3("as.character", "ProgressBar", function(x, ...) {
+  # To please R CMD check
+  this <- x;
+
   s <- paste(data.class(this), ": max=", this$max, ", value=", this$value, sep="");
   s;
 })

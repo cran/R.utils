@@ -84,7 +84,10 @@ setConstructorS3("Options", function(options=list(), ...) {
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("as.character", "Options", function(this, ...) {
+setMethodS3("as.character", "Options", function(x, ...) {
+  # To please R CMD check
+  this <- x;
+
   s <- paste(class(this)[1], ": ", nbrOfOptions(this), " options set.", sep="");
   s;
 })

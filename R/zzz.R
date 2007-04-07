@@ -10,6 +10,13 @@
   # Add a default Verbose object at threshold -1.
   assign("verbose", Verbose(threshold=-1), pos=getPosition(pkg));
 
+  # Patch for Sys.setenv() and Sys.putenv()
+  # Sys.setenv() replaces Sys.putenv() from R v2.5.0. Code for migration.
+  if (!exists("Sys.setenv", mode="function", envir=baseenv())) {
+    env <- as.environment("package:R.utils");
+    assign("Sys.setenv", Sys.putenv, envir=env);
+  }
+
   # Make .Last() call finalizeSession() when R finishes.
   tryCatch({
     addFinalizerToLast();

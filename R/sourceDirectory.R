@@ -146,6 +146,9 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
         } else {
           # Rethrow error.
           signalCondition(ex);
+          msg <- sprintf("sourceDirectory() failed to source '%s': %s",
+                                                    pathname, ex$message);
+          stop(msg);
         }
       }) # tryCatch()
     }
@@ -157,6 +160,9 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
 
 ###########################################################################
 # HISTORY:
+# 2006-09-15
+# o BUG FIX: onError="error" would not throw an error.  Why can't you
+#   rethrow a condition using signalCondition()?
 # 2006-02-22
 # o Modernized the processing of argument 'verbose' using Arguments.
 # 2005-12-05

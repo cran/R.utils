@@ -60,11 +60,12 @@ extends \link[R.utils]{Verbose}\cr
 }
 
 
-\bold{Methods inherited from Verbose}:\cr
-as.character, as.double, as.logical, capture, cat, enter, equals, evaluate, exit, getThreshold, getTimestampFormat, header, isOn, isVisible, newline, off, on, popState, print, printf, pushState, ruler, setDefaultLevel, setThreshold, setTimestampFormat, str, summary, timestamp, timestampOff, timestampOn, warnings, writeRaw
+ \bold{Methods inherited from Verbose}:\cr
+as.character, as.double, as.logical, capture, cat, enter, equals, evaluate, exit, getThreshold, getTimestampFormat, header, isOn, isVisible, less, more, newline, off, on, popState, print, printf, pushState, ruler, setDefaultLevel, setThreshold, setTimestampFormat, str, summary, timestamp, timestampOff, timestampOn, warnings, writeRaw
 
-\bold{Methods inherited from Object}:\cr
+ \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
 
 }
 

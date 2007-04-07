@@ -48,10 +48,10 @@ extends \link[R.utils]{ProgressBar}\cr
 }
 
 
-\bold{Methods inherited from ProgressBar}:\cr
+ \bold{Methods inherited from ProgressBar}:\cr
 as.character, getBarString, increase, isDone, reset, setMaxValue, setProgress, setStepLength, setTicks, setValue, update
 
-\bold{Methods inherited from Object}:\cr
+ \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
 
  }

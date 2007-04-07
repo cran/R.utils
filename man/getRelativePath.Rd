@@ -20,7 +20,7 @@
 
 \arguments{
  \item{pathname}{A \code{\link[base]{character}} string of the pathname to be converted into
-   an absolute pathname.}
+   an relative pathname.}
  \item{relativeTo}{A \code{\link[base]{character}} string of the reference pathname.}
  \item{caseSensitive}{If \code{\link[base:logical]{TRUE}}, the comparison is case sensitive, otherwise
    not.  If \code{\link[base]{NULL}}, it is decided from the relative path.}
@@ -37,6 +37,23 @@
   The current check is if it is a Windows path or not, that is, if
   the relative path starts with a device letter, then the comparison
   is non-case sensitive.
+}
+
+\details{
+  In case the two paths are on different file systems, for instance,
+  C:/foo/bar/ and D:/foo/, the method returns \code{pathname} as is.
+}
+
+\examples{
+  getRelativePath("foo", "foo")                       # "."
+  getRelativePath("foo/bar", "foo")                   # "bar"
+  getRelativePath("foo/bar", "foo/bar/yah")           # ".."
+  getRelativePath("foo/bar/cool", "foo/bar/yah/sub/") # "../../cool"
+  getRelativePath.default("/foo/bar/", "/bar/foo/")   # "../../foo/bar"
+
+  # Windows
+  getRelativePath("C:/foo/bar/", "C:/bar/")           # "../foo/bar"
+  getRelativePath("C:/foo/bar/", "D:/bar/")           # "C:/foo/bar"
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

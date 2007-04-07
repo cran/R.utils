@@ -20,7 +20,11 @@ for (kk in seq(length=nfiles)) {
     setLabel(sb, "progress", 100*kk/nfiles)
     if (kk %% 10 == 1 || kk == nfiles)
       setLabel(sb, "file", substr(basename(file), 1, 44))
-    update(sb)
+
+    size <- file.info(file)$size/1024;
+    # popMessage() calls update() too
+    popMessage(sb, sprintf("Processing %s (%.2fkB)", 
+                                       basename(file), size))
   }
 
   # Read the file
@@ -29,7 +33,7 @@ for (kk in seq(length=nfiles)) {
 
   # Emulate slow process
   if (interactive())
-    Sys.sleep(rexp(1, rate=20))
+    Sys.sleep(rexp(1, rate=40))
 
   # Update the status bar
   if (sb) {

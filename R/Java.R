@@ -25,7 +25,7 @@
 # @synopsis
 #
 # \section{Fields and Methods}{
-#  @allmethods
+#  @allmethods  
 # }
 #
 # @examples "../incl/Java.Rex"

@@ -19,7 +19,7 @@
   Gets the processed character string.
 }
 
-\usage{\method{as.character}{GString}(object, ...)}
+\usage{\method{as.character}{GString}(x, ...)}
 
 \arguments{
  \item{...}{Not used.}

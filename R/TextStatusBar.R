@@ -19,7 +19,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods
+#  @allmethods  
 # }
 #
 # \details{
@@ -295,8 +295,54 @@ setMethodS3("updateLabels", "TextStatusBar", function(this, ...) {
 })
 
 
+
+###########################################################################/**
+# @RdocMethod popMessage
+#
+# @title "Adds a message above the status bar"
+#
+# \description{
+#   @get "title" by scrolling up previous messages popped.
+# }
+# 
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Arguments passed to @see "base::cat".}
+#  \item{collapse, sep}{Default values to @see "base::cat".}
+# }
+#
+# \value{
+#   Returns nothing.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep="") {
+  lastStr <- this$.lastStr;
+
+  # Erase current statusbar
+  backspaces <- rep("\b", nchar(lastStr));
+  erazor <- c(backspaces, rep(" ", nchar(lastStr)), backspaces);
+  cat(erazor, sep="");
+  this$.lastStr <- "";
+    
+  cat(..., collapse=collapse, sep=sep);
+  cat("\n");
+  update(this);
+})
+
+
 ############################################################################
 # HISTORY: 
+# 2006-10-04
+# o Added popMessage() to TextStatusBar.
 # 2006-04-21
 # o Added setLabels() and updateLabels().
 # 2006-04-06

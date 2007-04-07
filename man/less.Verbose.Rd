@@ -6,32 +6,34 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{as.character.Verbose}
-\alias{as.character.Verbose}
-\alias{Verbose.as.character}
-\alias{as.character.Verbose}
-\alias{as.character,Verbose-method}
+ \name{less.Verbose}
+\alias{less.Verbose}
+\alias{Verbose.less}
+\alias{less.Verbose}
+\alias{less,Verbose-method}
 
 
- \title{Returns a character string version of this object}
+ \title{Creates a cloned instance with a higher threshold}
 
  \description{
-   Returns a character string version of this object.
+   Creates a cloned instance with a higher threshold.
  }
 
- \usage{\method{as.character}{Verbose}(x, ...)}
+ \usage{\method{less}{Verbose}(this, ..., dThreshold=1)}
 
  \arguments{
+  \item{dThreshold}{The amount the threshold should be raised.}
   \item{...}{Not used.}
  }
 
  \value{
-   Returns a \code{\link[base]{character}} string.
+   Returns a cloned \code{\link{Verbose}} object.
  }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
  \seealso{
+   \code{\link[R.utils:more.Verbose]{*more}()}
    For more information see \code{\link{Verbose}}.
  }
 

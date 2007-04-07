@@ -2,19 +2,92 @@
 Package: R.utils
 ================
 
+Version: 0.8.9 [2007-04-07]
+o Removed never needed require(R.io) in openBrowser() for System.
+
+
+Version: 0.8.8 [2007-04-03]
+o Added saveObject() and loadObject().
+o Removed the warning in getRelativePath() about "Cannot infer 
+  relative pathname, because the two pathnames are not refering
+  to the same root/device".  The warning was more confusing than
+  helpful.
+o BUG FIX: getAbsolutePath("C:/foo/", expandTilde=TRUE) would return
+  "C://foo" and not "C:/foo".  Now the method also replace all
+  multiple occurances of slashes with a single one.  This bug
+  cause getRelativePath("C:/foo", "C:/") to return the wrong thing.
+o BUG FIX: toCamelCase(toCamelCase(s)) would not be equal to
+  toCamelCase(s), but instead result in all lower case letters.
+o BUG FIX: Default value of argument 'format' of timestamp() 
+  was invalid.
+
+
+Version: 0.8.7 [2007-03-24]
+o Added moveInSearchPath() to reshuffle the search path. Useful
+  to change the order of packages after they have loaded.
+o Added toCamelCase() to convert strings.
+o Added loadToEnv() for loading saved data to a new environment.
+o The warning message on "cannot refer relative pathname" for
+  getRelativePath() didn't paste the path resulting in a funny
+  looking warning.
+
+
+Version: 0.8.6 [2007-02-27]
+o An R.utils (v0.8.4) modified .Last() function saved in .RData from
+  previous R sessions will be updated with the new modifactions
+  according to R.utils v0.8.5.
+
+
+Version: 0.8.5 [2007-02-26]
+o Added argument 'depth' to getParent().
+o BUG FIX:  Added tryCatch() and explicit check for finalizeSession().
+  Otherwise if, under special circumstance, one might get the error
+  'Error in .Last() : could not find function "finalizeSession"' when 
+  trying to quit R with quit().  Thanks Elizabeth Purdum at UC Berkeley 
+  for reporting this.
+o When running R v2.5.0, Sys.getenv() is used instead of deprecated
+  Sys.putenv().
+
+
+Version: 0.8.4 [2007-01-10]
+o Now System$findGhostscript() searches all 'Program Files' directories
+  too, if on Windows.
+
+
+Version: 0.8.3 [2006-11-10]
+o Added arrayIndex() to get the multi-dimensional index of an array
+  from a one-dimensional index.
+
+
+Version: 0.8.2 [2006-10-05]
+o Added popMessage() to TextStatusBar. See example().
+o Added argument 'modifiedOnly' to sourceTo() so that a file is only 
+  sourced if it has been modified since the last call.  Note that this
+  argument is passed on by sourceDirectory() too.
+
+
+Version: 0.8.1 [2006-09-16]
+o BUG FIX: sourceDirectory(..., onError="error") would quietly ignore
+  errors in source().
+o Added methods more() and less() to the Verbose class.
+
+
 Version: 0.8.0 [2006-08-21]
 o Added isOpen() to check if there is another connection opened to 
   a specific file.
 o pushState() of Verbose generated an unnecessary warning due to 
   a typo.
 
+
 Version: 0.7.9 [2006-07-17]
 o The capture() method in Verbose modified a text connection while it was
   still open; from R v2.4.0 this is not allowed.  Thanks Brian Ripley for
   pointing this out.
 
+
 Version: 0.7.8 [2006-05-22]
 o Added the TextStatusBar class.
+
 
 Version: 0.7.7 [2006-03-30]
 o The method list in the class-overview help page was missing
@@ -22,14 +95,17 @@ o The method list in the class-overview help page was missing
 o Added as.double() to Verbose.
 o saveAnywhere() of Settings now returns (invisibly) the pathname 
   where the settings were saved.
+	
 
 Version: 0.7.6 [2006-02-15]
 o Since the png2() and jpeg2() devices are in this package, the eps() 
   device from R.graphics has been moved here for consistency.
+	
 
 Version: 0.7.5 [2006-02-09]
 o as.character.hexmode() is available in R v2.3.0 and forward.  Thus,
   the method is only added by this package for pre-R v2.3.0.
+	
 
 Version: 0.7.4 [2005-12-23]
 o Updated getHostname() and getUsername() in System to first try to
@@ -43,8 +119,10 @@ o Added optional automatic timestamping for the Verbose class.
 o BUG FIX: Added protection against infinite loops in isFile(),
   where relative path is the same as the absolute path.
 
+
 Version: 0.7.3 [2005-11-24]
 o Added extract() for arrays, amtrices and vectors.
+
 
 Version: 0.7.2 [2005-11-22]
 o BUG FIX: filePath(..., expandLinks="any") would return the relative 
@@ -58,11 +136,13 @@ o BUG FIX: Sequences of length one was given as intervals by
 o Static Arguments class: Added getReadablePathnames(). Now getCharacter()
   accepts vectors of length zero or one only.
 
+
 Version: 0.7.1 [2005-11-12]
 o Added functions wrap() and unwrap() to reshape arrays (and matrices)
   by joining and splitting dimensions, respectively, and optionally 
   by permuting dimensions too.  This is for instance useful when storing
   multidimensional arrays in tabular formats.
+
 
 Version: 0.7.0 [2005-11-10]
 o Added trial version of readTable().  It extends the read.table()
@@ -80,10 +160,12 @@ o Now sourceDirectory() returns the source files invisibly.
 o Gathered files recursively in sourceDirectory(), but it was not needed
   since sourceDirectory() itself is recursive.
 
+
 Version: 0.6.3 [2005-10-26]
 o Renamed argument 'overwrite' in getWritablePathname() in Arguments to
   'mustNotExist'.  Renamed all 'mustExists' to 'mustExist' in all methods
   of class Arguments.
+
 
 Version: 0.6.2 [2005-10-20]
 o Update loadAnywhere() for the Settings clas so that it works on 
@@ -92,8 +174,10 @@ o BUG FIX: getLeaves() would give an error for empty Options objects.
 o BUG FIX: filePath(".") would return "".
 o BUG FIX: filePath("//shared/foo") would return "/shared/foo".
 
+
 Version: 0.6.1 [2005-10-17]
 o BUG FIX: readWindowsShortcut() failed on some Network-only links.
+
 
 Version: 0.6.0 [2005-09-24]
 o Now filePath() removes repeated '/' and '\\', except for network 
@@ -106,11 +190,13 @@ o BUG FIX: System$openBrowser() was broken, because startsWith() and
   endsWith() were missing.
 o Added trial version of jpeg2() and png2().
 
+
 Version: 0.5.9 [2005-09-18]
 o Added static function findGraphicsDevice() to System.  The methods
   search for a working device among a list of potential ones.  This
   is for instance useful if it is known in advance that the PNG
   device is available (then the bitmap() device is an option).
+
 
 Version: 0.5.8 [2005-09-06]
 o Added argument asGString=TRUE to the Verbose constructor.
@@ -127,9 +213,11 @@ o BUG FIX: Smart comments preceeded by TABs would not be recognized.
 o GString's parse() could return warning because it was incorrectly
   assumed that regexpr() did not return more than one value.
 
+
 Version: 0.5.7 [2005-08-12]
 o Function filePath() returns NULL, if no arguments or only NULL 
   arguments are passed to it.
+
 
 Version: 0.5.6 [2005-08-02]
 o BUG FIX: splitByPattern() tried to access non-existing class Argument.
@@ -151,6 +239,7 @@ o Added isUrl() and hasUrlProtocol().
 o Added copyDirectory().
 o Added getEnvironment() and getRegularExpression() to Arguments.
 
+
 Version: 0.5.5 [2005-07-21]
 o BUG FIX: Example illustrating Windows Shortcut methods tried to
   access 'HISTORY.lnk' and not 'HISTORY.LNK', which would fail on Unix.
@@ -158,11 +247,13 @@ o BUG FIX: getCharacters() would not coerce Object:s correctly.
 o Now sourceDirectory() does 'chdir=FALSE' instead of 'chdir=FALSE'.
 o Now mkdirs() has an internal check for infinit-recursive calls.
 
+
 Version: 0.5.4 [2005-07-19]
 o BUG FIX: If there are no files to source in a directory, and verbose
   is active, basefile() on NULL was called generating an error.
 o BUG FIX: sourceTo(..., chdir=TRUE) would generate an error. This
   would for instance make sourceDirectory() useless.
+
 
 Version: 0.5.3 [2005-07-18]
 o Added resetWarnings() and splitByPattern().
@@ -172,11 +263,13 @@ o sourceDirectory() is no longer catching warnings in tryCatch(),
   because otherwise it will interrupt the call as if the warnings 
   were errors.
 
+
 Version: 0.5.2 [2005-06-27]
 o Added getRelativePath().
 o Added LComments which is a VComments class with different defaults.
 o Made SmartComments classes and methods non-static.
 o Escaping double quotes in VComments messages.
+
 
 Version: 0.5.1 [2005-06-23]
 o Package passes R CMD check for R v2.1.0.
@@ -190,6 +283,7 @@ o Added trial version of SmartComments and subclass VComments where
 o Now it is possible to set the default verbose level used by
   all Verbose methods if not explicitly given.
 o Now all Verbose messages are GString:ed. This makes VComments slim.
+
 
 Version: 0.5.0 [2005-06-19]
 o Package passes R CMD check for R v2.1.0.

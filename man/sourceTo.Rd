@@ -12,7 +12,7 @@
 
  \title{Parses and evaluates code from a file or a connection}
 
- \usage{\method{sourceTo}{default}(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame())}
+ \usage{\method{sourceTo}{default}(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE)}
 
  \description{
    Parses and evaluates code from a file or a connection.
@@ -36,6 +36,8 @@
       otherwise in the calling environment.}
    \item{envir}{An \code{\link[base]{environment}} in which \code{\link[base]{source}}() should be
       called. If \code{\link[base]{NULL}}, the global environment is used.}
+   \item{modifiedOnly}{If \code{\link[base:logical]{TRUE}}, the file is sourced only if modified
+      since the last time it was sourced, otherwise regardless.}
  }
 
  \value{
@@ -114,7 +116,7 @@ setHook("sourceTo/onPreprocess", oldHooks, action="replace")
 
  \seealso{
   \code{\link{sourceDirectory}}().
-  Compare to \code{\link[base]{source}}().
+  \code{\link[base]{sys.source}}() and \code{\link[base]{source}}().
  }
 
 

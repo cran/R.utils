@@ -28,7 +28,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods
+#  @allmethods  
 # }
 #
 # \section{Output levels}{
@@ -166,7 +166,10 @@ setConstructorS3("Verbose", function(con=stderr(), on=TRUE, threshold=0, asGStri
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("as.character", "Verbose", function(this, ...) {
+setMethodS3("as.character", "Verbose", function(x, ...) {
+  # To please R CMD check
+  this <- x;
+
   s <- paste(class(this)[1], ": isOn()=", isOn(this), ", threshold=", this$threshold, sep="");
   s <- paste(s, ", timestamp=", this$.timestamp, sep="");
   s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="");
@@ -784,9 +787,92 @@ setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep=
     level <- lastLevel;
 
   cat(this, msg, suffix, sep="", level=level);
+
   invisible(TRUE);
 })
 
+
+
+###########################################################################/**
+# @RdocMethod more
+#
+# @title "Creates a cloned instance with a lower threshold"
+#
+# \description{
+#   @get "title".
+# }
+# 
+# @synopsis
+#
+# \arguments{
+#  \item{dThreshold}{The amount the threshold should be lowered.}
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns a cloned @see "Verbose" object.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "less"
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("more", "Verbose", function(this, dThreshold=1, ...) {
+  # Clone first!
+  res <- clone(this);
+
+  # Decrease the threshold
+  res$threshold <- res$threshold - dThreshold;
+
+  # Return the clone
+  res;
+})
+
+
+###########################################################################/**
+# @RdocMethod less
+#
+# @title "Creates a cloned instance with a higher threshold"
+#
+# \description{
+#   @get "title".
+# }
+# 
+# @synopsis
+#
+# \arguments{
+#  \item{dThreshold}{The amount the threshold should be raised.}
+#  \item{...}{Not used.}
+# }
+#
+# \value{
+#   Returns a cloned @see "Verbose" object.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seemethod "more"
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("less", "Verbose", function(this, ..., dThreshold=1) {
+  # Clone first!
+  res <- clone(this);
+
+  # Increase the threshold
+  res$threshold <- res$threshold + dThreshold;
+
+  # Return the clone
+  res;
+})
 
 
 ###########################################################################/**
@@ -1182,7 +1268,7 @@ setMethodS3("header", "Verbose", function(this, ..., char="-", padding=0, prefix
 #
 # @keyword programming
 #*/###########################################################################
-setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(thos), ...) {
+setMethodS3("timestamp", "Verbose", function(this, format=getTimestampFormat(this), ...) {
   if (is.function(format)) {
     stamp <- format();
   } else {
@@ -1436,6 +1522,14 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2007-03-28
+# o BUG FIX: Argument 'format' of timestamp() defaulted to 
+#   getTimestampFormat(thos) - 'thos' not 'this'.
+# 2006-09-19
+# o Added Rdoc comments for the less() and the more() methods.
+# 2006-09-14
+# o Added trial versions of less() and more().  Have not though about 
+#   side-effects of cloning the Verbose object, e.g. writing to file etc.
 # 2006-09-12
 # o Created a list with an empty list() in pushState().  This generated
 #   warnings, but not errors.

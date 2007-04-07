@@ -15,7 +15,7 @@
 # }
 #
 # \section{Fields and Methods}{
-#  @allmethods
+#  @allmethods  
 # }
 #
 # @examples "../incl/GString.Rex"
@@ -668,7 +668,10 @@ setMethodS3("parse", "GString", function(object, ...) {
 #   @seeclass
 # }
 #*/###########################################################################
-setMethodS3("as.character", "GString", function(object, ...) {
+setMethodS3("as.character", "GString", function(x, ...) {
+  # To please R CMD check
+  object <- x;
+
   parts <- parse(object, ...);
   ...abcdef <- TRUE;
 

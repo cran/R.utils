@@ -51,14 +51,16 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.utils:getReadablePathname.Arguments]{getReadablePathname}} \tab Gets a readable pathname.\cr
  \tab \code{\link[R.utils:getReadablePathnames.Arguments]{getReadablePathnames}} \tab Gets a readable pathname.\cr
  \tab \code{\link[R.utils:getRegularExpression.Arguments]{getRegularExpression}} \tab Gets a valid regular expression pattern.\cr
+ \tab \code{\link[R.utils:getVector.Arguments]{getVector}} \tab Validates a vector.\cr
  \tab \code{\link[R.utils:getVerbose.Arguments]{getVerbose}} \tab Coerces to Verbose object.\cr
  \tab \code{getWritablePath} \tab  -\cr
  \tab \code{\link[R.utils:getWritablePathname.Arguments]{getWritablePathname}} \tab Gets a writable pathname.\cr
 }
 
 
-\bold{Methods inherited from Object}:\cr
+ \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
 
 }
 

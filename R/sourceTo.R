@@ -27,6 +27,8 @@
 #      otherwise in the calling environment.}
 #   \item{envir}{An @environment in which @see "base::source" should be
 #      called. If @NULL, the global environment is used.}
+#   \item{modifiedOnly}{If @TRUE, the file is sourced only if modified
+#      since the last time it was sourced, otherwise regardless.}
 # }
 # 
 # \value{
@@ -52,22 +54,40 @@
 # 
 # \seealso{
 #  @see "sourceDirectory".
-#  Compare to @see "base::source".
+#  @see "base::sys.source" and @see "base::source".
 # }
 #
 # @keyword programming
 # @keyword IO
 #*/###########################################################################
-setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame()) {
+setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  lastSourced <- getOption("R.utils::sourceTo/lastSourced");
+  if (is.null(lastSourced)) {
+    lastSourced <- list();
+    options("R.utils::sourceTo/lastSourced"=lastSourced);
+  }
+
   if (is.character(file)) {
     if (!isFile(file))
       throw("Argument 'file' is not an existing file: ", file);
     isReadable <- (file.access(file, mode=4) == 0);
     if (!isReadable)
       throw("Argument 'file' is a non-readable file: ", file);
+
+    absPathname <- getAbsolutePath(file);
+    if (modifiedOnly) {
+      # Check if file has been modified since last time.
+      lastModified <- file.info(file)$mtime;
+      lastSrcd <- lastSourced[[absPathname]];
+      if (!is.null(lastSrcd) && (lastSrcd > lastModified)) {
+        return(invisible(NULL));
+      }
+      lastSourced[[absPathname]] <- Sys.time();
+    }
 
     # Open file
     fh <- file(file, open="r");
@@ -133,12 +153,24 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   }, list=list(args=args));
 
   # Call source()
-  eval(expr, envir=envir);
+  res <- eval(expr, envir=envir);
+
+  # If successfully sourced, record last modification date.
+  if (is.character(file)) {
+    options("R.utils::sourceTo/lastSourced"=lastSourced);
+  }
+
+  invisible(res);
 }) # sourceTo()
 
 
 #############################################################################
 # HISTORY: 
+# 2007-01-11
+# o Added Rdoc link to sys.source().
+# 2006-10-04
+# o Added argument 'modifiedOnly' to sourceTo() so that a file is only 
+#   sourced if it has been modified since the last call.
 # 2005-07-18
 # o BUG FIX: Since the function now reads the lines itself and only pass
 #   a text connection to source(), argument 'chdir' has to be dealt with

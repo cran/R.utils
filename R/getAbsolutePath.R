@@ -22,6 +22,10 @@
 #  Returns a @character string of the absolute pathname.
 # }
 #
+# \details{
+#  This method will replace replicated slashes ('/') with a single one.
+# }
+#
 # @author
 #
 # \seealso{
@@ -81,11 +85,17 @@ setMethodS3("getAbsolutePath", "default", function(pathname, workDirectory=getwd
   if (expandTilde)
     pathname <- file.path(dirname(pathname), basename(pathname));
 
+  # Especially expandTilde=TRUE may add an extra /.
+  pathname <- gsub("//*", "/", pathname);
+
   pathname;
 })  
 
 ###########################################################################
 # HISTORY: 
+# 2007-04-03
+# o BUG FIX: getAbsolutePath("C:/foo/", expandTilde=TRUE) would return
+#   "C://foo" and not "C:/foo".
 # 2005-12-05
 # o Added argument 'expandTilde'.  This is needed to get a valid output
 #   path for a graphics device!

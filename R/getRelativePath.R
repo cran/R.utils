@@ -11,7 +11,7 @@
 #
 # \arguments{
 #  \item{pathname}{A @character string of the pathname to be converted into
-#    an absolute pathname.}
+#    an relative pathname.}
 #  \item{relativeTo}{A @character string of the reference pathname.}
 #  \item{caseSensitive}{If @TRUE, the comparison is case sensitive, otherwise
 #    not.  If @NULL, it is decided from the relative path.}
@@ -28,6 +28,23 @@
 #   The current check is if it is a Windows path or not, that is, if
 #   the relative path starts with a device letter, then the comparison
 #   is non-case sensitive.
+# }
+#
+# \details{
+#   In case the two paths are on different file systems, for instance,
+#   C:/foo/bar/ and D:/foo/, the method returns \code{pathname} as is.
+# }
+#
+# \examples{
+#   getRelativePath("foo", "foo")                       # "."
+#   getRelativePath("foo/bar", "foo")                   # "bar"
+#   getRelativePath("foo/bar", "foo/bar/yah")           # ".."
+#   getRelativePath("foo/bar/cool", "foo/bar/yah/sub/") # "../../cool"
+#   getRelativePath.default("/foo/bar/", "/bar/foo/")   # "../../foo/bar"
+#
+#   # Windows
+#   getRelativePath("C:/foo/bar/", "C:/bar/")           # "../foo/bar"
+#   getRelativePath("C:/foo/bar/", "D:/bar/")           # "C:/foo/bar"
 # }
 #
 # @author
@@ -91,10 +108,11 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
     pathnameC <- tolower(pathnameC);
   }
 
-  # 1. Check that the pathnames are "compatible".  
+  # 1. Check that the pathnames are "compatible".
   if (!identical(relativeTo[1], pathnameC[1])) {
-    warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device: ", filePath(relativeTo), " != ", filePath(pathname));
-    return(paste(pathname, collapse="/"));
+    pathname <- paste(pathname, collapse="/");
+    # warning("Cannot infer relative pathname, because the two pathnames are not refering to the same root/device (will use absolute pathname instead): ", paste(relativeTo, collapse="/"), " != ", pathname);
+    return(pathname);
   }
 
   # 2. Remove all matching components in 'relativeTo' and 'pathname'.
@@ -125,6 +143,12 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
 ###########################################################################
 # HISTORY: 
+# 2007-04-03
+# o Removed the warning when a relative path could not be found because
+#   the two paths are on different file systems.
+# 2007-03-20
+# o The warning message on "cannot refer relative pathname" didn't paste
+#   the path resulting in a funny looking warning.
 # 2005-12-05
 # o Now getRelativePath() also recognizes tildes.  
 # 2005-08-02

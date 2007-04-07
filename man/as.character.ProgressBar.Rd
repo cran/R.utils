@@ -19,7 +19,7 @@
    Gets a string description of the progress bar.
  }
 
- \usage{\method{as.character}{ProgressBar}(this, ...)}
+ \usage{\method{as.character}{ProgressBar}(x, ...)}
 
  \arguments{
   \item{...}{Not used.}

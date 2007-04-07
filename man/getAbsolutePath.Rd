@@ -31,6 +31,10 @@
  Returns a \code{\link[base]{character}} string of the absolute pathname.
 }
 
+\details{
+ This method will replace replicated slashes ('/') with a single one.
+}
+
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{

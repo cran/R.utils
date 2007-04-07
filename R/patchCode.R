@@ -46,7 +46,7 @@
 #   file tree containing patches.
 #
 #   To set an options, see @see "base::options". To set a system 
-#   environment, see \code{\link[base:putenv]{Sys.putenv}}(). 
+#   environment, see \code{\link[base:putenv]{Sys.setenv}}(). 
 #   The character \code{;} is interpreted as a separator. Due to 
 #   incompatibility with Windows pathnames, \code{:} is \emph{not} a
 #   valid separator.
@@ -58,7 +58,7 @@
 #  
 #   # Patch all source code files in R_PATCHES
 #   options("R_PATCHES"="~/R-patches/")
-#   # alternatively, Sys.putenv("R_PATCHES"="~/R-patches/")
+#   # alternatively, Sys.setenv("R_PATCHES"="~/R-patches/")
 #   patchCode()
 # }}
 #

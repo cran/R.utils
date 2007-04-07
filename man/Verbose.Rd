@@ -67,6 +67,8 @@ extends \link[R.oo]{Object}\cr
  \tab \code{\link[R.utils:header.Verbose]{header}} \tab Writes a header.\cr
  \tab \code{\link[R.utils:isOn.Verbose]{isOn}} \tab Checks if the output is on.\cr
  \tab \code{\link[R.utils:isVisible.Verbose]{isVisible}} \tab Checks if a certain verbose level will be shown or not.\cr
+ \tab \code{\link[R.utils:less.Verbose]{less}} \tab Creates a cloned instance with a higher threshold.\cr
+ \tab \code{\link[R.utils:more.Verbose]{more}} \tab Creates a cloned instance with a lower threshold.\cr
  \tab \code{\link[R.utils:newline.Verbose]{newline}} \tab Writes one or several empty lines.\cr
  \tab \code{\link[R.utils:off.Verbose]{off}} \tab Turn off the output.\cr
  \tab \code{\link[R.utils:on.Verbose]{on}} \tab Turn on the output.\cr
@@ -88,8 +90,9 @@ extends \link[R.oo]{Object}\cr
 }
 
 
-\bold{Methods inherited from Object}:\cr
+ \bold{Methods inherited from Object}:\cr
 $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach, equals, extend, finalize, gc, getEnvironment, getFields, getInstanciationTime, getStaticInstance, hasField, hashCode, ll, load, objectSize, print, save
+
 
 }
 
