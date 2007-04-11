@@ -499,12 +499,16 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
     pfDirs <- Sys.getenv(c("ProgramFiles", "PROGRAMFILES_SHORT", 
                                                    "CommonProgramFiles"));
 
-    # Get all paths
-    paths0 <- file.path(c(systemDrives, pfDirs), "gs");
+    # Get all possible paths
+    paths0 <- sapply(systemDrives, FUN=function(systemDrive) {
+      file.path(c(systemDrive, pfDirs), "gs");
+    })
+    paths0 <- unlist(paths0, use.names=FALSE);
 
     # Keep only those that are directories
     paths <- paths0[file.exists(paths0)];  # Avoids warnings
-    paths <- paths[sapply(paths, FUN=isDirectory)];
+    if (length(paths) > 0)
+      paths <- paths[sapply(paths, FUN=isDirectory)];
 
     # Now search each of them for an ghostscript executable
     pattern <- "gswin32c.exe$";
@@ -689,6 +693,9 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
 
 ############################################################################
 # HISTORY:
+# 2007-04-11
+# o BUG FIX: findGhostscript() would give error on "invalid subscript type"
+#   if non of the paths to be searched exist.
 # 2007-04-07
 # o Removed never needed require(R.io) in openBrowser() for System.
 # 2007-01-22
