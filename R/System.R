@@ -468,9 +468,9 @@ setMethodS3("openBrowser", "System", function(this, query, ...) {
 #   Returns a @vector of full pathnames where ghostscript is found. 
 # }
 #
-# \examples{
+# \examples{\dontrun{
 #   print(System$findGhostscript())
-# }
+# }}
 #
 # @author
 #
@@ -532,7 +532,7 @@ setMethodS3("findGhostscript", "System", function(static, updateRGSCMD=TRUE, ...
   } else if (updateRGSCMD) {
     if (!is.null(paths0)) {
       warning("Ghostscript not found. Searched directories: ", 
-                                               paste(path0, collapse=", "));
+                                             paste(paths0, collapse=", "));
     } else {
       warning("Ghostscript not found.");
     }
@@ -693,6 +693,9 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
 
 ############################################################################
 # HISTORY:
+# 2007-04-12
+# o BUG FIX: findGhostscript() would give error "paste(path0, collapse = ",
+#   ") : object "path0" not found" on Windows if Ghostscript was not found.
 # 2007-04-11
 # o BUG FIX: findGhostscript() would give error on "invalid subscript type"
 #   if non of the paths to be searched exist.

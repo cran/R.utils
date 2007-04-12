@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 0.9.1 [2007-04-12]
+o BUG FIX: findGhostscript() would give error "paste(path0, collapse
+  = ", ") : object "path0" not found" on Windows if Ghostscript was 
+  not found.  This error was caught by CRAN.  These problems have
+  not been detected locally where Ghostscript is installed.
+
 Version: 0.9.0 [2007-04-11]
 o BUG FIX: findGhostscript() of System would give error on 
   "invalid subscript type" if non of the paths to be searched exist.
