@@ -1,6 +1,6 @@
 Package: R.utils
-Version: 0.9.1
-Date: 2007-04-12
+Version: 0.9.5
+Date: 2007-06-09
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
@@ -11,4 +11,4 @@ License: LGPL version 2.1 or newer (the releases)
 URL: http://www.braju.com/R/
 DevelURL: http://www.maths.lth.se/help/R/
 LazyLoad: TRUE
-Packaged: Thu Apr 12 08:12:11 2007; hb
+Packaged: Wed Aug  1 18:55:15 2007; hb

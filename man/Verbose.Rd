@@ -22,7 +22,7 @@
 \code{~~+--}\code{Verbose}\cr
 
 \bold{Directly known subclasses:}\cr
-\link[R.utils]{NullVerbose}\cr
+\link[R.utils]{MultiVerbose}, \link[R.utils]{NullVerbose}\cr
 
 public static class \bold{Verbose}\cr
 extends \link[R.oo]{Object}\cr
@@ -145,6 +145,15 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clone, detach
   Moreover, if using the \code{\link{NullVerbose}} class for ignoring all verbose
   messages, the above trick will indeed speed up the code, because
   the value of a NullVerbose reference variable is always \code{\link[base:logical]{FALSE}}.
+}
+
+\section{Extending the Verbose class}{
+  If extending this class, make sure to output messages via
+  \code{\link[R.utils:writeRaw.Verbose]{*writeRaw}()} or one of the other output methods (which in
+  turn all call the former).
+  This guarantees that \code{\link[R.utils:writeRaw.Verbose]{*writeRaw}()} has full control of the
+  output, e.g. this makes it possible to split output to standard
+  output and to file.
 }
 
 \examples{

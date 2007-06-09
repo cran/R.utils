@@ -12,7 +12,7 @@
 #  \emph{WARNING: This method is very much in an alpha stage. 
 #  Expect it to change.}
 #
-#  This method is an extension to the default @see "base::read.table" 
+#  This method is an extension to the default @see "utils::read.table" 
 #  function in \R.  It is possible to specify a column name to column class
 #  map such that the column classes are automatically assigned from the
 #  column header in the file. 
@@ -29,7 +29,7 @@
 #      filename.  Unopened files are opened and closed at the end.}
 #   \item{colClasses}{Either a named or an unnamed @character @vector. 
 #      If unnamed, it specified the column classes just as used by
-#      @see "base::read.table".  
+#      @see "utils::read.table".  
 #      If it is a named vector, \code{names(colClasses)} are used to match 
 #      the column names read (this requires that \code{header=TRUE}) and 
 #      the column classes are set to the corresponding values.
@@ -55,7 +55,7 @@
 #      is @FALSE here.}
 #   \item{path}{If \code{file} is a filename, this path is added to it, 
 #     otherwise ignored.}
-#   \item{...}{Arguments passed to @see "base::read.table" used internally.}
+#   \item{...}{Arguments passed to @see "utils::read.table" used internally.}
 #   \item{stripQuotes}{If @TRUE, quotes are stripped from values before
 #     being parse. 
 #     This argument is only effective when \code{method=="readLines"}.
@@ -80,7 +80,7 @@
 # 
 # \seealso{
 #  @see "readTableIndex".
-#  @see "base::read.table".
+#  @see "utils::read.table".
 # }
 #
 # @keyword IO
@@ -148,17 +148,27 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     skip <- 0;
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Get the formals of read.table()  
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (compareVersion(as.character(getRversion()), "2.5.0") < 0) {
+    formals <- formals(base::read.table);
+  } else {
+    formals <- formals(utils::read.table);
+  }
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Read the header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header) {
     sep <- list(...)$sep;
     if (is.null(sep))
-      sep <- formals(base::read.table)$sep;
+      sep <- formals$sep;
 
     quote <- list(...)$quote;
     if (is.null(quote))
-      quote <- formals(base::read.table)$quote;
+      quote <- formals$quote;
 
     colnames <- scan(file=file, what=character(0), sep=sep, quote=quote, nlines=1, quiet=TRUE);
 #    colnames <- readLines(file, n=1);
@@ -256,7 +266,7 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
     if (stripQuotes) {
       quote <- list(...)$quote;
       if (is.null(quote))
-        quote <- formals(base::read.table)$quote;
+        quote <- formals$quote;
       if (nchar(quote) > 0) {
         verbose && enter(verbose, "Stripping quotes from all lines: ", quote);
         quotes <- unlist(strsplit(quote, split=""));
@@ -366,6 +376,9 @@ setMethodS3("readTable", "default", function(file, colClasses=NULL, isPatterns=F
 
 ############################################################################
 # HISTORY:
+# 2007-05-10
+# o BUG FIX: readTable() tried to access base::read.table() but that was
+#   moved to 'utils' as of R v2.5.0.
 # 2006-07-28
 # o Added more verbose output.
 # 2005-11-21

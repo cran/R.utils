@@ -82,6 +82,15 @@
 #   the value of a NullVerbose reference variable is always @FALSE.
 # }
 #
+# \section{Extending the Verbose class}{
+#   If extending this class, make sure to output messages via 
+#   @seemethod "writeRaw" or one of the other output methods (which in
+#   turn all call the former).
+#   This guarantees that @seemethod "writeRaw" has full control of the
+#   output, e.g. this makes it possible to split output to standard 
+#   output and to file.
+# }
+#
 # @examples "../incl/Verbose.Rex"
 #
 # @author
@@ -170,7 +179,8 @@ setMethodS3("as.character", "Verbose", function(x, ...) {
   # To please R CMD check
   this <- x;
 
-  s <- paste(class(this)[1], ": isOn()=", isOn(this), ", threshold=", this$threshold, sep="");
+  s <- paste(class(this)[1], ": isOn()=", isOn(this), ", 
+                                         threshold=", this$threshold, sep="");
   s <- paste(s, ", timestamp=", this$.timestamp, sep="");
   s <- paste(s, ", timestampFormat=", this$.timestampFormat, sep="");
   s;
@@ -220,7 +230,7 @@ setMethodS3("equals", "Verbose", function(this, other, ...) {
   }
 
   TRUE;
-})
+}, protected=TRUE)
 
 
 
@@ -553,7 +563,8 @@ setMethodS3("isOn", "Verbose", function(this, ...) {
 # @title "Writes objects if above threshold"
 #
 # \description{
-#   @get "title". 
+#   @get "title".
+#   This method is used by all other methods of this class for output.
 # }
 # 
 # @synopsis
@@ -645,6 +656,8 @@ setMethodS3("cat", "Verbose", function(this, ..., sep="", newline=TRUE, level=th
   }
   if (newline)
     msg <- paste(msg, "\n", sep="");
+
+  # Write output
   writeRaw(this, msg);
 })
 
@@ -1065,6 +1078,7 @@ setMethodS3("capture", "Verbose", function(this, ..., level=this$defaultLevel) {
 
   args <- substitute(list(...))[-1];
 
+  bfr <- NULL;  # To please R CMD check R v2.6.0.
   file <- textConnection("bfr", "w", local=TRUE);
   sink(file);
   on.exit({
@@ -1522,6 +1536,8 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2007-05-26
+# o Made equals() of Verbose protected.
 # 2007-03-28
 # o BUG FIX: Argument 'format' of timestamp() defaulted to 
 #   getTimestampFormat(thos) - 'thos' not 'this'.

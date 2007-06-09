@@ -675,6 +675,8 @@ setMethodS3("as.character", "GString", function(x, ...) {
   parts <- parse(object, ...);
   ...abcdef <- TRUE;
 
+  envir <- parent.frame(n=1); # Correct?
+
   isVariable <- (names(parts) == "variable");
   for (kk in which(isVariable)) {
     part <- parts[[kk]];

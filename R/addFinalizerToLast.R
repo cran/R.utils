@@ -58,8 +58,10 @@ setMethodS3("addFinalizerToLast", "default", function(...) {
       tryCatch({
         if (exists("finalizeSession", mode="function"))
           finalizeSession();
-        if (exists(".LastOriginal", mode="function"))
+        if (exists(".LastOriginal", mode="function")) {
+          .LastOriginal <- get(".LastOriginal", mode="function");
           .LastOriginal();
+        }
       }, error = function(ex) {
         cat("Ignoring error occured in .Last(): ", as.character(ex));
       })

@@ -45,6 +45,9 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
   if (!inherits(file, "connection")) {
     file <- filePath(path, file, expandLinks="any");
   }
+
+  # Declare variable
+  saveLoadReference <- NULL;
  
   # load.default() recognized gzip'ed files too.
   vars <- base::load(file=file);
@@ -59,6 +62,8 @@ setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
 
 ##############################################################################
 # HISTORY:
+# 2007-06-09
+# o Added explicit "declaration" of 'saveLoadReference'.
 # 2007-04-03
 # o Moved to R.utils from aroma.affymetrix.
 # 2006-11-24

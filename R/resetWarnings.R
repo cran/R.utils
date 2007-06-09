@@ -31,7 +31,7 @@ setMethodS3("resetWarnings", "default", function(...) {
   if (exists("last.warning", envir=.GlobalEnv)) {
     lw <- get("last.warning", envir=.GlobalEnv);
     count <- length(lw);
-    rm(last.warning, envir=.GlobalEnv);
+    rm(list="last.warning", envir=.GlobalEnv);
   } else {
     count <- 0;
   }
@@ -43,6 +43,9 @@ setMethodS3("resetWarnings", "default", function(...) {
 
 ############################################################################
 # HISTORY: 
+# 2007-06-09
+# o Using rm(list="last.warning") instead of rm(last.warning) in 
+#   resetWarnings().
 # 2005-07-07
 # o Created.
 ############################################################################

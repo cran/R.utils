@@ -41,7 +41,7 @@ setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, comp
   # Argument 'file':
   if (is.null(file)) {
     require("digest") || throw("Package not loaded: digest");
-    file <- digest(as.list(object));  # Might be slow.
+    file <- digest::digest(as.list(object));  # Might be slow.
     file <- sprintf("%s.xdr", file);
   } 
   if (!inherits(file, "connection")) {
@@ -58,6 +58,8 @@ setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, comp
 
 ##############################################################################
 # HISTORY:
+# 2007-06-09
+# o Replaced digest() with digest::digest().
 # 2007-04-03
 # o Moved to R.utils from aroma.affymetrix.
 # 2006-11-24

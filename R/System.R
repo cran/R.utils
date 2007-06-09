@@ -257,7 +257,7 @@ setMethodS3("parseDebian", "System", function(this, text=NULL, file=NULL, keys=N
     parameters <- as.list(values);
     names(parameters) <- pkeys;
   } else {
-    idx <- omit.na(match(keys, pkeys));
+    idx <- na.omit(match(keys, pkeys));
     parameters <- as.list(values[idx]);
     names(parameters) <- pkeys[idx];
   }
@@ -693,6 +693,9 @@ setMethodS3("findGraphicsDevice", "System", function(static, devices=list(png2, 
 
 ############################################################################
 # HISTORY:
+# 2007-06-09
+# o BUG FIX: Used omit.na() instead of na.omit() in static method 
+#   parseDebian() of System.
 # 2007-04-12
 # o BUG FIX: findGhostscript() would give error "paste(path0, collapse = ",
 #   ") : object "path0" not found" on Windows if Ghostscript was not found.

@@ -17,6 +17,7 @@
 
  \description{
    Writes objects if above threshold.
+   This method is used by all other methods of this class for output.
  }
 
  \usage{\method{writeRaw}{Verbose}(this, ..., sep="", level=this$defaultLevel)}

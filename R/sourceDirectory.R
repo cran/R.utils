@@ -128,7 +128,7 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
           print(verbose, ex);
           tryCatch({
             # Display source code with erroneous line highlighted.
-            cat(verbose, displayCode(scriptFile, highlight=ex$message, 
+            cat(verbose, displayCode(pathname, highlight=ex$message, 
                                                              pager="none"));
           }, error = function(ex) {})
         }
@@ -160,6 +160,8 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
 
 ###########################################################################
 # HISTORY:
+# 2007-06-09
+# o BUG FIX: Replaced non-existing 'scriptFile' with 'pathname'.
 # 2006-09-15
 # o BUG FIX: onError="error" would not throw an error.  Why can't you
 #   rethrow a condition using signalCondition()?

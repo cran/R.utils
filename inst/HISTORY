@@ -2,16 +2,45 @@
 Package: R.utils
 ================
 
+Version: 0.9.5 [2007-06-09]
+o Updated code to pass the more strict R CMD check R v2.6.0.
+o BUG FIX: Used omit.na() instead of na.omit() in static method 
+  parseDebian() of System.
+
+
+Version: 0.9.4 [2007-05-10]
+o BUG FIX: readTable() tried to access base::read.table() but that was
+  moved to 'utils' as of R v2.5.0.
+
+
+Version: 0.9.3 [2007-05-09]
+o BUG FIX: Using the R v2.4.x build of R.utils in R v2.5.0 gives
+  "Error in parse.default(text = src) : 4 arguments passed to 
+  'parse' which requires 6".  This is because the internal call
+  in base::parse() use different sets of arguments in R v2.4.1 
+  and R v2.5.0. The fix was to dynamically assign patch.default()
+  when the package is loaded.
+
+
+Version: 0.9.2 [2007-04-26]
+o Added trial version of a MultiVerbose class.  With this class it
+  is possible to write verbose output via multiple Verbose objects
+  through one MultiVerbose object, e.g. writing to standard output
+  and to log file at the same time.
+
+
 Version: 0.9.1 [2007-04-12]
 o BUG FIX: findGhostscript() would give error "paste(path0, collapse
   = ", ") : object "path0" not found" on Windows if Ghostscript was 
   not found.  This error was caught by CRAN.  These problems have
   not been detected locally where Ghostscript is installed.
 
+
 Version: 0.9.0 [2007-04-11]
 o BUG FIX: findGhostscript() of System would give error on 
   "invalid subscript type" if non of the paths to be searched exist.
   This error was caught by CRAN.
+
 
 Version: 0.8.9 [2007-04-07]
 o Removed never needed require(R.io) in openBrowser() for System.

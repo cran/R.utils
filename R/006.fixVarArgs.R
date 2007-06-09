@@ -4,13 +4,15 @@
 getOption <- appendVarArgs(getOption)
 inherits <- appendVarArgs(inherits)
 isOpen <- appendVarArgs(isOpen)
-parse <- appendVarArgs(parse)
+
 if (exists("timestamp", mode="function"))
   timestamp <- appendVarArgs(timestamp)
 
 
 ############################################################################
 # HISTORY:
+# 2006-05-09
+# o Now '...' is added to parse() in zzz.R.
 # 2006-03-28
 # o Added fix to fresh timestamp() in utils.
 # 2005-05-26

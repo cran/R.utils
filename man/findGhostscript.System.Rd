@@ -36,9 +36,9 @@
    Returns a \code{\link[base]{vector}} of full pathnames where ghostscript is found.
  }
 
- \examples{
+ \examples{\dontrun{
    print(System$findGhostscript())
- }
+ }}
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 

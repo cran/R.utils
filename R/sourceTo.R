@@ -150,7 +150,7 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   # Create a call expression to source(file=fh, ..., local=local)
   expr <- substitute({
     do.call("source", args)
-  }, list=list(args=args));
+  }, list(args=args));
 
   # Call source()
   res <- eval(expr, envir=envir);
@@ -166,6 +166,8 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
 
 #############################################################################
 # HISTORY: 
+# 2007-06-09
+# o Removed (incorrect) argument name 'list' from all substitute() calls.
 # 2007-01-11
 # o Added Rdoc link to sys.source().
 # 2006-10-04

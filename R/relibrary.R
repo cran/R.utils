@@ -60,8 +60,12 @@ relibrary <- function(package, character.only=FALSE, warn.conflicts=FALSE, ...) 
     .Internal(detach(pos));
   }
 
-  library(package=package, character.only=TRUE,
-                           warn.conflicts=warn.conflicts, ...);
+##  library(package=package, character.only=TRUE,
+##                           warn.conflicts=warn.conflicts, ...);
+  args <- list(package=package, character.only=TRUE, 
+               warn.conflicts=warn.conflicts, ...);
+  do.call("library", args=args);
+
   options(relibrary=options.relibrary);
 } # relibrary
 
@@ -69,6 +73,9 @@ relibrary <- function(package, character.only=FALSE, warn.conflicts=FALSE, ...) 
 
 ############################################################################
 # HISTORY:
+# 2007-06-09
+# o Replaced library(...) call with do.call("library", ...) to please 
+#   R CMD check for R v2.6.0.
 # 2001-08-06
 # * Now relibrary will set the option "relibrary" to the name of the package
 #   it is currently reloading. This option can be used by the package itself
