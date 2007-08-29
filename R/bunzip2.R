@@ -1,7 +1,7 @@
 #########################################################################/**
-# @RdocDefault gunzip
+# @RdocDefault bunzip2
 #
-# @title "Gunzip a file"
+# @title "Bunzip a file"
 #
 # @synopsis
 #
@@ -10,7 +10,7 @@
 # }
 #
 # \arguments{
-#  \item{filename}{Pathname of (gzip'ed) input file to be gunzip'ed.}
+#  \item{filename}{Pathname of (bzip2'ed) input file to be bunzip2'ed.}
 #  \item{destname}{Pathname of output file.}
 #  \item{overwrite}{If the output file already exists, then if 
 #    \code{overwrite} is @TRUE the file is silently overwritting, otherwise
@@ -26,8 +26,8 @@
 # }
 #
 # \details{
-#   Internally \code{gzfile()} (see @see "base::connections") is used to
-#   read chunks of the gzip'ed file, which are then written to the output 
+#   Internally \code{bzfile()} (see @see "base::connections") is used to
+#   read chunks of the bzip2'ed file, which are then written to the output 
 #   file.
 # }
 #
@@ -36,13 +36,13 @@
 # @keyword "file"
 # @keyword "programming"
 #*/######################################################################### 
-setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+setMethodS3("bunzip2", "default", function(filename, destname=gsub("[.]bz2$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
   if (filename == destname) 
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
   if (!overwrite && file.exists(destname))
     stop(sprintf("File already exists: %s", destname));
 
-  inn <- gzfile(filename, "rb");
+  inn <- bzfile(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
   out <- file(destname, "wb"); 
@@ -50,12 +50,13 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
   nbytes <- 0;
   repeat { 
-    bfr <- readBin(inn, what=raw(0), size=1, n=BFR.SIZE);
+    bfr <- readBin(inn, what=raw(0), n=BFR.SIZE);
     n <- length(bfr);
     if (n == 0)
       break;
     nbytes <- nbytes + n;
-    writeBin(bfr, con=out, size=1); 
+    writeBin(bfr, con=out, size=1);
+    rm(bfr);
   };
 
   if (remove) {
@@ -71,18 +72,5 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 ############################################################################
 # HISTORY:
 # 2007-08-14
-# o Increased the BFR.SIZE 10 times.
-# o Added argument 'remove'.
-# o Updated the regular expression for generating the output filename.
-# o Now the data is read as a raw buffer (and not as integers anymore).
-# 2005-02-20
-# o Now using setMethodS3() and added '...' to please R CMD check.
-# 2004-02-12
-# o Made into a default function.
-# 2003-12-31
-# o Copied from the com.braju.sma package and made independent of R.oo.
-# 2003-10-29
-# o BUG FIX: The 2nd on.exit() in gunzip() was overwriting the first one
-#   with the result that the open input gzfile() connection was never
-#   closed. We ran out of connections after a while.
+# o Created from gunzip.R.
 ############################################################################

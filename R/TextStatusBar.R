@@ -339,8 +339,55 @@ setMethodS3("popMessage", "TextStatusBar", function(this, ..., collapse="", sep=
 })
 
 
+
+
+###########################################################################/**
+# @RdocMethod flush
+#
+# @title "Flushes the output"
+#
+# \description{
+#   @get "title".
+# }
+# 
+# @synopsis
+#
+# \arguments{
+#  \item{...}{Arguments passed to @see "base::cat".}
+# }
+#
+# \value{
+#   Returns nothing.
+# }
+#
+# \details{
+#   All this methods does is to call @see "utils::flush.console", which
+#   flushes the output to the console.
+# }
+#
+# @author
+#
+# \seealso{
+#   @see "utils::flush.console".
+#   @seeclass
+# }
+#
+# @keyword programming
+#*/###########################################################################
+setMethodS3("flush", "TextStatusBar", function(con, ...) {
+  # To please R CMD check
+  this <- con;
+
+  flush.console();
+})
+
+
+
+
 ############################################################################
 # HISTORY: 
+# 2007-08-15
+# o Added flush() to TextStatusBar.
 # 2006-10-04
 # o Added popMessage() to TextStatusBar.
 # 2006-04-21

@@ -35,7 +35,6 @@
 #
 # @keyword programming
 # @keyword IO
-# @keyword internal
 #*/###########################################################################
 setMethodS3("loadObject", "default", function(file, path=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

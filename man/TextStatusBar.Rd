@@ -44,6 +44,7 @@ extends \link[R.oo]{Object}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
+ \tab \code{\link[R.utils:flush.TextStatusBar]{flush}} \tab Flushes the output.\cr
  \tab \code{\link[R.utils:getLabel.TextStatusBar]{getLabel}} \tab Gets the current value of a label.\cr
  \tab \code{\link[R.utils:newline.TextStatusBar]{newline}} \tab Writes a newline.\cr
  \tab \code{\link[R.utils:popMessage.TextStatusBar]{popMessage}} \tab Adds a message above the status bar.\cr
@@ -101,6 +102,7 @@ for (kk in seq(length=nfiles)) {
     # popMessage() calls update() too
     popMessage(sb, sprintf("Processing \%s (\%.2fkB)",
                                        basename(file), size))
+    flush(sb)
   }
 
   # Read the file
@@ -108,8 +110,9 @@ for (kk in seq(length=nfiles)) {
   nlines <- nlines + length(lines)
 
   # Emulate slow process
-  if (interactive())
+  if (interactive()) {
     Sys.sleep(rexp(1, rate=40))
+  }
 
   # Update the status bar
   if (sb) {

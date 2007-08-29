@@ -1,25 +1,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  gunzip.R
+%  bunzip2.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{gunzip}
-\alias{gunzip.default}
-\alias{gunzip}
+\name{bunzip2}
+\alias{bunzip2.default}
+\alias{bunzip2}
 
-\title{Gunzip a file}
+\title{Bunzip a file}
 
-\usage{\method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)}
+\usage{\method{bunzip2}{default}(filename, destname=gsub("[.]bz2$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)}
 
 \description{
- Gunzip a file.
+ Bunzip a file.
 }
 
 \arguments{
- \item{filename}{Pathname of (gzip'ed) input file to be gunzip'ed.}
+ \item{filename}{Pathname of (bzip2'ed) input file to be bunzip2'ed.}
  \item{destname}{Pathname of output file.}
  \item{overwrite}{If the output file already exists, then if
    \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting, otherwise
@@ -35,8 +35,8 @@
 }
 
 \details{
-  Internally \code{gzfile()} (see \code{\link[base]{connections}}) is used to
-  read chunks of the gzip'ed file, which are then written to the output
+  Internally \code{bzfile()} (see \code{\link[base]{connections}}) is used to
+  read chunks of the bzip2'ed file, which are then written to the output
   file.
 }
 

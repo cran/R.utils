@@ -27,12 +27,10 @@
 # \seealso{
 #   @see "loadObject" to load an object from file.
 #   @see "digest::digest" for how hash codes are calculated from an object.
-#   Internally @see "base::save" is used.
 # }
 #
 # @keyword programming
 # @keyword IO
-# @keyword internal
 #*/###########################################################################
 setMethodS3("saveObject", "default", function(object, file=NULL, path=NULL, compress=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

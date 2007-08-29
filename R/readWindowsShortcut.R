@@ -565,6 +565,9 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2007-08-24
+# o BUG FIX: Inside if (header$flags["hasCustomIcon"]) {}, non-used variable
+#   'nbytes' was used instead of intended 'nchars'.
 # 2005-10-17
 # o BUG FIX: Had problems reading Network only links.  This was because it
 #   still read the local base pathname although it shouldn't.

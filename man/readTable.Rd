@@ -21,7 +21,7 @@
   \emph{WARNING: This method is very much in an alpha stage.
   Expect it to change.}
 
-  This method is an extension to the default \code{\link[base]{read.table}}()
+  This method is an extension to the default \code{\link[utils]{read.table}}
   function in \R.  It is possible to specify a column name to column class
   map such that the column classes are automatically assigned from the
   column header in the file.
@@ -38,7 +38,7 @@
       filename.  Unopened files are opened and closed at the end.}
    \item{colClasses}{Either a named or an unnamed \code{\link[base]{character}} \code{\link[base]{vector}}.
       If unnamed, it specified the column classes just as used by
-      \code{\link[base]{read.table}}().
+      \code{\link[utils]{read.table}}.
       If it is a named vector, \code{names(colClasses)} are used to match
       the column names read (this requires that \code{header=TRUE}) and
       the column classes are set to the corresponding values.
@@ -64,7 +64,7 @@
       is \code{\link[base:logical]{FALSE}} here.}
    \item{path}{If \code{file} is a filename, this path is added to it,
      otherwise ignored.}
-   \item{...}{Arguments passed to \code{\link[base]{read.table}}() used internally.}
+   \item{...}{Arguments passed to \code{\link[utils]{read.table}} used internally.}
    \item{stripQuotes}{If \code{\link[base:logical]{TRUE}}, quotes are stripped from values before
      being parse.
      This argument is only effective when \code{method=="readLines"}.
@@ -89,7 +89,7 @@
 
  \seealso{
   \code{\link{readTableIndex}}().
-  \code{\link[base]{read.table}}().
+  \code{\link[utils]{read.table}}.
  }
 
 

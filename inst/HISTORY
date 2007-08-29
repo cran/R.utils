@@ -2,6 +2,19 @@
 Package: R.utils
 ================
 
+Version: 0.9.6 [2007-08-29]
+o Made documentation for saveObject() and loadObject() public.
+o Now the startup message when loading the package is generated with
+  packageStartupMessage() so that it can be suppressed.
+o Added flush() to TextStatusBar.  Added flush() to example(TextStatusBar)
+  so it displays correctly on Rgui on Windows.
+o Added bunzip2(), cf. gunzip().
+o Added argument 'remove' to gunzip().
+o BUG FIX: There was a typo in readWindowsShortcut() causing field
+  'iconFilename' to potentially be invalid.  Thanks Tony Plate for
+  reporting this. 
+
+
 Version: 0.9.5 [2007-06-09]
 o Updated code to pass the more strict R CMD check R v2.6.0.
 o BUG FIX: Used omit.na() instead of na.omit() in static method 

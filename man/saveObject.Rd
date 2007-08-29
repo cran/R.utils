@@ -36,12 +36,9 @@
 \seealso{
   \code{\link{loadObject}}() to load an object from file.
   \code{\link[digest]{digest}} for how hash codes are calculated from an object.
-  Internally \code{\link[base]{save}}() is used.
 }
-
 
 
 
 \keyword{programming}
 \keyword{IO}
-\keyword{internal}

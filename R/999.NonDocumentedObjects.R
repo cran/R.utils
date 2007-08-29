@@ -162,6 +162,14 @@
 # @alias lapply
 # @alias lapply.default
 #
+# % Private
+# @alias toFileListTree
+# @alias toFileListTree.character
+# @alias pasteTree
+# @alias pasteTree.FileListTree
+# @alias cat.FileListTree 
+# 
+#
 # \description{
 #   This page contains aliases for all "non-documented" objects that 
 #   \code{R CMD check} detects in this package. 
