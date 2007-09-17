@@ -2,6 +2,15 @@
 Package: R.utils
 ================
 
+Version: 0.9.7 [2007-09-17]
+o BUG FIX/WORKAROUND: moveInSearchPath() would make the package 
+  environment loose  the 'path' attribute, which is for instance is
+  needed by packageDescription().  This would in turn cause 
+  sessionInfo() to throw an error.  Now moveInSearchPath() makes sure
+  to set all attributes on a moved package environment to what it
+  used to be.
+
+
 Version: 0.9.6 [2007-08-29]
 o Made documentation for saveObject() and loadObject() public.
 o Now the startup message when loading the package is generated with

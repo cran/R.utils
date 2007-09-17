@@ -92,8 +92,14 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   if (to > from)
     to <- to - 1;
 
+
   # Attach at new position
   attach(env, pos=to, name=attr(env, "name"));
+
+  # Restore attributes (patch for bug in attach()? /HB 2007-09-17)
+  attrs <- attributes(env);
+  env <- as.environment(attr(env, "name"));
+  attributes(env) <- attrs;
 
   # Return the name of the environment moved.
   invisible(attr(env, "name"));
@@ -102,6 +108,12 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 
 ############################################################################
 # HISTORY:
+# 2007-09-17
+# o BUG FIX: moveInSearchPath() would make the package environment loose 
+#   the 'path' attribute, which is for instance needed by 
+#   packageDescription().  Now moveInSearchPath() makes sure to set all
+#   attributes on a moved package environment to what it used to be.
+#   BTW, is this a bug in base::attach()?  Reported to r-devel 2007-09-17.
 # 2007-03-24
 # o Moved to R.utils from aroma.affymetrix.
 # 2007-03-06
