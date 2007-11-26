@@ -2,6 +2,17 @@
 Package: R.utils
 ================
 
+Version: 0.9.8 [2007-11-26]
+o Added copyFile() which safely copies a file by copying to a
+  temporary file, which is then renamed.
+o Added isEof() for connections to test for "End of File".
+o Added reassignInPackage().
+o Added dataFrame(), which allocated a data frame of given size
+  and column classes.
+o BUG FIX: writeRaw() of MultiVerbose returned a list of logicals.  
+  Now it returns TRUE (invisibly).
+
+
 Version: 0.9.7 [2007-09-17]
 o BUG FIX/WORKAROUND: moveInSearchPath() would make the package 
   environment loose  the 'path' attribute, which is for instance is

@@ -35,6 +35,9 @@
 # @alias isScalar
 # @alias isVector
 #
+# % The connection class
+# @alias isEof
+#
 # % The GString class
 # @alias getBuiltinDate
 # @alias getBuiltinDatetime
