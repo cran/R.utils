@@ -46,13 +46,15 @@
 #
 # @author
 #*/#########################################################################
-eps <- function(file = "Rplot%03d.ps", horizontal=FALSE, paper="special", ...) {
+eps <- function(file="Rplot%03d.eps", horizontal=FALSE, paper="special", ...) {
   postscript(file=file, onefile=FALSE, horizontal=horizontal, paper=paper, ...);
 }
 
 
 ############################################################################
 # HISTORY:
+# 2007-12-07
+# o The default EPS file had extension *.ps not *.eps.
 # 2005-01-16
 # o Corrected argument in example code from 'onepage' to 'onefile'.
 # 2004-02-01

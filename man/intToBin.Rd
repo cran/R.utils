@@ -29,6 +29,7 @@
 }
 
 \value{
+ Returns a \code{\link[base]{character}}.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

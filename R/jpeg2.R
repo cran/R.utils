@@ -23,9 +23,6 @@
 #
 # @author
 #
-# \seealso{
-# }
-#
 # @keyword device
 #*/########################################################################### 
 setMethodS3("jpeg2", "default", function(filename, width=480, height=480, res=144, type="jpeg", ...) {

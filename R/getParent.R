@@ -39,7 +39,7 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
       return(NULL);
 
     # Treat C:/, C:\\, ... special, that is, not at all.
-    if (regexpr("^[A-Z]:[/\\]$", pathname) != -1)
+    if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
       return(paste(gsub("[\\/]$", "", pathname), fsep=fsep, sep=""));
   
     # Split by '/' or '\\'
@@ -49,12 +49,12 @@ setMethodS3("getParent", "default", function(pathname, depth=1, fsep=.Platform$f
   
     if (len == 2) {
       # Treat C:/, C:\\, ... special, that is, not at all.
-      if (regexpr("^[A-Z]:$", components[1]) != -1)
+      if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:$", components[1]) != -1)
         return(paste(components[1], fsep, sep=""));
     }
   
     name <- components[len];
-    reg <- regexpr("^[A-Z]:", name);
+    reg <- regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:", name);
     if (reg != -1) {
       components[len] <- substring(name, first=1, last=attr(reg, "match.length"));
       if (len == 1)

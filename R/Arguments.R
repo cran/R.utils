@@ -714,7 +714,7 @@ setMethodS3("getLogical", "Arguments", function(static, ..., length=1) {
 #       \code{verbose} was interpreted as a @logical value.}
 #   \item{useNullVerbose}{If \code{verbose} can be interpreted as @FALSE, 
 #       return a @see NullVerbose object if @TRUE.}
-#   \item{...}{Not used.}
+#   \item{...}{Passed to the constructor of @see "Verbose".}
 #   \item{.name}{A @character string for name used in error messages.}
 # }
 #
@@ -739,14 +739,14 @@ setMethodS3("getVerbose", "Arguments", function(static, verbose, defaultThreshol
 
   if (is.numeric(verbose)) {
     verbose <- getDouble(static, verbose, .name=.name);
-    verbose <- Verbose(threshold=verbose);
+    verbose <- Verbose(threshold=verbose, ...);
   } else {
     verbose <- getLogical(static, verbose, .name=.name);
     if (!verbose && useNullVerbose) {
       verbose <- NullVerbose();
     } else {
       defaultThreshold <- getNumeric(static, defaultThreshold);
-      verbose <- Verbose(threshold=defaultThreshold);
+      verbose <- Verbose(threshold=defaultThreshold, ...);
     }
   }
 
@@ -879,6 +879,10 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2008-02-26
+# o Now the '...' arguments to Arguments$getVerbose() are passed to the
+#   constructor of Verbose.  This allows the construct of
+#   Arguments$getVerbose(-10, timestamp=TRUE).
 # 2005-12-05
 # o getNumerics(Inf, range=c(0,Inf)) would give a warning "no finite 
 #   arguments to min; returning Inf". Fixed with a withCallingHandlers().

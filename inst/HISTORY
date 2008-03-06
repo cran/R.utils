@@ -2,6 +2,29 @@
 Package: R.utils
 ================
 
+Version: 1.0.1 [2008-03-06]
+o BUG FIX: Regular expression pattern 'a-Z' is illegal on (at least) 
+  some locale, e.g. 'C' (where 'A-z' works). The only way to specify 
+  the ASCII alphabet is to list all characters explicitly, which we now
+  do in all methods of the package.  See the r-devel thread 
+  "invalid regular expression '[a-Z]'" on 2008-03-05 for details.
+
+
+Version: 1.0.0 [2008-02-26]
+o Added touchFile() for updating the timestamp of a file.
+o Added colClasses() for creating "colClasses" vectors.
+o Added isPackageLoaded(). 
+o The default filename for eps() had extension *.ps not *.eps.
+o Cleaned out empty sections from the Rd help pages.
+o Now the '...' arguments to Arguments$getVerbose() are passed 
+  to the constructor of Verbose.  This allows constructs such
+  as Arguments$getVerbose(-10, timestamp=TRUE).
+o BUG FIX: When argument 'values' of insert() was a non-list
+  its values were placed in a single-element list even when 
+  'ats' contained more than one element.  Should have been 
+  as.list() in those cases.
+
+
 Version: 0.9.8 [2007-11-26]
 o Added copyFile() which safely copies a file by copying to a
   temporary file, which is then renamed.

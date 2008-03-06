@@ -31,7 +31,7 @@ setMethodS3("toUrl", "default", function(pathname, safe=TRUE, ...) {
   toURLEncodedPath <- function(pathname, encodeUrlSyntax=FALSE, ...) {
     hexDigits <- c("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", 
                                                 "A", "B", "C", "D", "E", "F");
-    # "...Only alphanumerics [0-9a-zA-Z], the special characters
+    # "...Only alphanumerics [0-9a...zA...Z], the special characters
     # "$-_.+!*'()," [not including the quotes - ed], and reserved
     # characters used for their reserved purposes may be used unencoded
     # within a URL." [1]
@@ -43,9 +43,9 @@ setMethodS3("toUrl", "default", function(pathname, safe=TRUE, ...) {
     
     # Note '-' must be last!!!
     if (encodeUrlSyntax == TRUE) {
-      keepSet <- "[0-9a-zA-Z$_.+!*'(),-]";
+      keepSet <- "[0-9abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_.+!*'(),-]";
     } else {
-      keepSet <- "[0-9a-zA-Z$_.+!*'(),;/?:@=#&-]";
+      keepSet <- "[0-9abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ$_.+!*'(),;/?:@=#&-]";
     }
     res <- NULL;
 
@@ -75,7 +75,7 @@ setMethodS3("toUrl", "default", function(pathname, safe=TRUE, ...) {
 
   # Anything that contains at least two alphabetic letters followed
   # by a colon is assumed to be a protocol, e.g. http:, file: and mailto:.
-  hasProtocol <- (regexpr("^[a-z][a-z]*:", url) != -1);
+  hasProtocol <- (regexpr("^[abcdefghijklmnopqrstuvwxyz]+:", url) != -1);
 
   # If prefix is missing, assume a file...
   if (!hasProtocol) {

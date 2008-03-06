@@ -98,7 +98,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
 
   removeUpsFromPathname <- function(pathname, split=FALSE) {
     # Treat C:/, C:\\, ... special
-    if (regexpr("^[A-Z]:[/\\]$", pathname) != -1)
+    if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
       return(gsub("\\\\", "/", pathname));
   
     components <- strsplit(pathname, split="[/\\]")[[1]];
@@ -166,7 +166,7 @@ setMethodS3("filePath", "default", function(..., fsep=.Platform$file.sep, remove
   }
 
   # Treat C:/, C:\\, ... special
-  if (regexpr("^[A-Z]:[/\\]$", pathname) != -1)
+  if (regexpr("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]:[/\\]$", pathname) != -1)
     return(gsub("\\\\", "/", pathname));
 
   # Requires that the 'pathname' is a absolute pathname.

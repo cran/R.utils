@@ -38,9 +38,6 @@
   Returns a named \code{\link[base]{list}} of parameter values.
 }
 
-\details{
-}
-
 \examples{
  file <- file.path(Package("R.utils")$path, "DESCRIPTION")
  l <- System$parseDebian(file=file)

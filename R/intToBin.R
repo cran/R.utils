@@ -19,6 +19,7 @@
 # }
 #
 # \value{
+#  Returns a @character.
 # }
 #
 # @author
@@ -72,6 +73,7 @@ setMethodS3("as.character", "binmode", function(x, ...) {
 # }
 #
 # \value{
+#  Returns a @character.
 # }
 #
 # @author

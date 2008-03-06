@@ -58,6 +58,8 @@ file.show(history)
 
  \references{
    [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
+   [2] Hager J, The Windows Shortcut File Format (as reverse-engineered by),
+       version 1.0.
  }
 
 

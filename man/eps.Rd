@@ -17,7 +17,7 @@
   the postscript driver where some arguments have different default values.
  }
 
- \usage{eps(file="Rplot\%03d.ps", horizontal=FALSE, paper="special", ...)}
+ \usage{eps(file="Rplot\%03d.eps", horizontal=FALSE, paper="special", ...)}
 
  \arguments{
    \item{file}{Default file name (pattern).}

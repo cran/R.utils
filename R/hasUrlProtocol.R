@@ -24,7 +24,7 @@
 # @keyword programming
 #*/###########################################################################
 setMethodS3("hasUrlProtocol", "default", function(pathname, ...) {
-  pattern <- "^([a-z][a-z]*)(://.*)";
+  pattern <- "^([abcdefghijklmnopqrstuvwxyz]+)(://.*)";
   (regexpr(pattern, pathname) != -1);
 })
 

@@ -87,7 +87,7 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   # Argument 'caseSensitive':
   if (is.null(caseSensitive)) {
-    isWindows <- (regexpr("^[a-zA-Z]:", relativeTo) != -1);
+    isWindows <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]:", relativeTo) != -1);
     caseSensitive <- !isWindows;
   } else {
     caseSensitive <- as.logical(caseSensitive);

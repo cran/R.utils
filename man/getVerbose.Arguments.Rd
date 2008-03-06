@@ -31,7 +31,7 @@
       \code{verbose} was interpreted as a \code{\link[base]{logical}} value.}
   \item{useNullVerbose}{If \code{verbose} can be interpreted as \code{\link[base:logical]{FALSE}},
       return a \code{\link{NullVerbose}} object if \code{\link[base:logical]{TRUE}}.}
-  \item{...}{Not used.}
+  \item{...}{Passed to the constructor of \code{\link{Verbose}}.}
   \item{.name}{A \code{\link[base]{character}} string for name used in error messages.}
 }
 

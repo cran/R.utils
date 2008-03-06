@@ -34,6 +34,8 @@
 # 
 # \references{
 #   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
+#   [2] Hager J, The Windows Shortcut File Format (as reverse-engineered by), 
+#       version 1.0.
 # }
 #
 # @keyword IO
@@ -43,7 +45,7 @@
 # An Unofficial Guide to the URL File Format, \url{http://www.cyanwerks.com/file-format-url.html} (contains info about Hotkeys)
 # Parsing Windows Shortcuts (lnk) files in java, \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/9afeaa58e2a405b3%239afeaa58e2a405b3?sa=X&oi=groupsr&start=0&num=3} (got Java code)
 # Windows shell links, \url{http://wiki.tcl.tk/1844} (contain Tcl code)
-#
+# xxmklink - create a shortcut, http://www.xxcopy.com/xxcopy38.htm
 setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -183,19 +185,19 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   # Assert and parse header
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (header$magic != 76) {
-    stop(paste("File format error: Magic dword in header is not 0000004C (76): ", header$magic, sep=""));
+    stop("File format error: Magic dword in header is not 0000004C (76): ", header$magic);
   }
 
   knownGuid <- c(1,20,2,0,0,0,0,0,192,0,0,0,0,0,0,70);
   if (!all.equal(header$guid, knownGuid)) {
-    stop(paste("File format error: Unknown GUID: ", paste(header$guid, collapse=","), sep=""));
+    stop("File format error: Unknown GUID: ", paste(header$guid, collapse=","));
   }
 
   flags <- intToBin(header$flags);
   flags <- rev(strsplit(flags, split="")[[1]]);
   flags <- as.logical(as.integer(flags));
   if (length(flags) > 8)
-    stop(paste("File format error: Too many bits in flags in header: ", length(flags), sep=""));
+    stop("File format error: Too many bits in flags in header: ", length(flags));
   flags <- c(flags, rep(FALSE, length.out=8-length(flags)));
   names(flags) <- c("hasShellItemIdList", "pointsToFileOrDirectory", "hasDescription", "hasRelativePath", "hasWorkingDirectory", "hasCommandLineArguments", "hasCustomIcon", "unicodedStrings");
   header$flags <- flags;
@@ -206,7 +208,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     fileAttributes <- rev(strsplit(fileAttributes, split="")[[1]]);
     fileAttributes <- as.logical(as.integer(fileAttributes));
     if (length(fileAttributes) > 13)
-      stop(paste("File format error: Too many bits in flags in header: ", length(fileAttributes), sep=""));
+      stop("File format error: Too many bits in flags in header: ", length(fileAttributes));
     fileAttributes <- c(fileAttributes, rep(FALSE, length.out=13-length(fileAttributes)));
     names(fileAttributes) <- c("isReadOnly", "isHidden", "isSystemFile", "isVolumeLabel", "isDirectory", "isModifiedSinceLastBackup", "isEncrypted", "isNormal", "isTemporary", "isSparseFile", "hasReparsePointData", "isCompressed", "isOffline");
     header$fileAttributes <- fileAttributes;
@@ -220,24 +222,24 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   }
 
   if (header$fileLength < 0) {
-    stop(paste("File format error: File length is negative: ", header$fileLength));
+    stop("File format error: File length is negative: ", header$fileLength);
   }
 
   if (header$flags["hasCustomIcon"]) {
   } else {
     if (header$iconNumber != 0)
-      stop(paste("File format error: Expected zero icon number: ", header$iconNumber));
+      stop("File format error: Expected zero icon number: ", header$iconNumber);
   }
 
   swNames <- c("SW_HIDE", "SW_NORMAL", "SW_SHOWMINIMIZED", "SW_SHOWMAXIMIZED", "SW_SHOWNOACTIVATE", "SW_SHOW", "SW_MINIMIZE", "SW_SHOWMINNOACTIVE", "SW_SHOWNA", "SW_RESTORE", "SW_SHOWDEFAULT");
   if (header$showWndValue %in% 0:10) {
     names(header$showWndValue) <- swNames[header$showWndValue+1];
   } else {
-      stop(paste("File format error: showWndValue in header is out of range [0:10]: ", header$showWndValue));
+      stop("File format error: showWndValue in header is out of range [0:10]: ", header$showWndValue);
   }
 
   if (!all(header$unknown == 0)) {
-    stop(paste("File format error: Last 2 dwords in header are not zero: ", header$unknown, sep=""));
+    stop("File format error: Last 2 dwords in header are not zero: ", header$unknown, sep="");
   }
 
   lnk <- list(header=header);
@@ -298,7 +300,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
     if (fileLocationInfo$flags %in% 0:3) {
     } else {
-      stop(paste("File format error: Unknown volume flag: ", fileLocationInfo$flags, sep=""));
+      stop("File format error: Unknown volume flag: ", fileLocationInfo$flags);
     }
     flags <- intToBin(fileLocationInfo$flags);
     flags <- rev(strsplit(flags, split="")[[1]]);
@@ -565,6 +567,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2007-12-08
+# o CLEAN UP: Replaced all stop(paste()) with stop().
 # 2007-08-24
 # o BUG FIX: Inside if (header$flags["hasCustomIcon"]) {}, non-used variable
 #   'nbytes' was used instead of intended 'nchars'.

@@ -117,9 +117,6 @@ print(all)
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
- \seealso{
- }
-
 
 \keyword{classes}
 \keyword{programming}

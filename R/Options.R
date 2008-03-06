@@ -37,9 +37,6 @@
 #
 # @author
 #
-# \seealso{
-# }
-#
 # @keyword programming
 #*/#########################################################################
 setConstructorS3("Options", function(options=list(), ...) {

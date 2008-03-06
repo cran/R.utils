@@ -453,7 +453,7 @@ setMethodS3("getVariableValue", "GString", function(static, name, attributes=NUL
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   attrs <- strsplit(attributes, split=", ")[[1]];
   if (length(attrs) > 0) {
-    isSimpleAttr <- (regexpr("^[a-zA-Z0-9._][a-zA-Z0-9._]*=.*$", attrs) == -1);
+    isSimpleAttr <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9._]+=.*$", attrs) == -1);
     simpleAttrs <- attrs[isSimpleAttr];
     if (length(simpleAttrs) == 0)
       simpleAttrs <- NULL;
