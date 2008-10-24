@@ -9,7 +9,6 @@
 \name{as.character.binmode}
 \alias{as.character.binmode}
 
-\alias{as.character.hexmode}
 
 \title{Converts a binary/octal/hexadecimal number into a string}
 
@@ -19,7 +18,6 @@
 
 \usage{
  \method{as.character}{binmode}(x, ...)
- \method{as.character}{hexmode}(x, ...)
 }
 
 \arguments{

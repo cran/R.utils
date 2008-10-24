@@ -48,7 +48,7 @@ setMethodS3("reassignInPackage", "default", function(name, pkgName, value, keepO
 
   pos <- which(obj$where == sprintf("namespace:%s", pkgName));
   if (length(pos) == 0) {
-    throw("Argument 'name' does not refere to an existing object: ", name);
+    throw("Argument 'name' does not refer to an existing object: ", name);
   }
   oldValue <- obj$objs[[pos]];
 

@@ -81,6 +81,7 @@
 # \seealso{
 #  @see "readTableIndex".
 #  @see "utils::read.table".
+#  @see "colClasses".
 # }
 #
 # @keyword IO

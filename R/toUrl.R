@@ -21,6 +21,10 @@
 #
 # @author
 #
+# \seealso{
+#   @see "utils::URLencode".
+# }
+#
 # @keyword IO
 # @keyword programming
 #*/###########################################################################

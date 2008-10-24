@@ -26,8 +26,22 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \examples{
-  print(seqToIntervals(1:10))  # [1 10]
-  print(seqToIntervals(c(1:10, 15:18, 20)))  # [1 10; 15 18; 20 20]
+x <- 1:10
+y <- seqToIntervals(x)
+print(y)  # [1 10]
+
+x <- c(1:10, 15:18, 20)
+y <- seqToIntervals(x)
+print(y)  # [1 10; 15 18; 20 20]
+
+z <- intervalsToSeq(y)
+print(z)
+stopifnot(all.equal(x,z))
+}
+
+\seealso{
+ 
+  \code{\link[R.utils:intervalsToSeq.matrix]{*intervalsToSeq}()}.
 }
 
 

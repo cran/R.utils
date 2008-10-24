@@ -13,8 +13,8 @@
 #  \item{path}{A path to a directory to be sourced.}
 #  \item{pattern}{A regular expression file name pattern to identify 
 #        source code files.}
-#  \item{recursive}{If @TRUE, subdirectories are recursively sourced too,
-#        otherwise not.}
+#  \item{recursive}{If @TRUE, subdirectories are recursively sourced 
+#        first, otherwise not.}
 #  \item{envir}{An @environment in which the code should be evaluated.}
 #  \item{onError}{If an error occures, the error may stop the job,
 #        give a warning, or silently be skipped.}
@@ -24,6 +24,11 @@
 #
 # \value{
 #  Returns a @vector of the full pathnames of the files sourced.
+# }
+#
+# \section{Details}{
+#   Subdirectories and files in each (sub-)directory are sourced
+#   in lexicographic order.
 # }
 #
 # \section{Hooks}{
@@ -42,7 +47,7 @@
 #**/#######################################################################
 # Create a filename pattern for R files and Windows shortcuts too such.
 # sourceTo() will automatically recognize those too.
-setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...) {
+setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.](r|R|s|S|q)([.](lnk|LNK))*$", recursive=TRUE, envir=parent.frame(), onError=c("error", "warning", "skip"), verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -69,6 +74,11 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
     dirs <- list.files(path=path, recursive=FALSE,
                                           all.files=TRUE, full.names=TRUE);
     dirs <- dirs[!(basename(dirs) %in% c(".", ".."))];
+
+    # Source directories in lexicographic order
+    if (length(dirs) > 0)  # To avoid warning():s
+      dirs <- sort(dirs);
+
     for (dir in dirs) {
       pathname <- filePath(dir);
       if (isDirectory(pathname)) {
@@ -87,6 +97,10 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
   # Then, get all files in current directory...
   files <- listDirectory(path, pattern=pattern, recursive=FALSE,
                                           allNames=TRUE, fullNames=TRUE);
+
+  # Source files in lexicographic order
+  if (length(files) > 0)  # To avoid warning():s
+    files <- sort(files);
 
   if (verbose) {
     if (length(files) > 0) {
@@ -160,6 +174,12 @@ setMethodS3("sourceDirectory", "default", function(path, pattern=".*[.]R([.](lnk
 
 ###########################################################################
 # HISTORY:
+# 2008-10-24
+# o Now sourceDirectory() also searches for source files with extensions
+#   *.r, *.q, *.s, and *.S, cf. R manual 'Writing R Extensions'.
+# 2008-07-24
+# o Now sourceDirectory() is guaranteed to source directories and files 
+#   in lexicographic order.
 # 2007-06-09
 # o BUG FIX: Replaced non-existing 'scriptFile' with 'pathname'.
 # 2006-09-15

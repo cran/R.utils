@@ -20,7 +20,8 @@
 # @author
 #
 # \seealso{
-#   See also @see "base::load".
+#   Internally @see "base::load" is used.
+#   See also @see "loadObject".
 # }
 #
 # @keyword IO

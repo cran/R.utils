@@ -22,6 +22,9 @@
   setMethodS3("parse", "default", appendVarArgs(base::parse), 
                                             conflict="quiet", envir=env);
 
+  # Add as.character.hexmode(), if missing.
+  .patchAsCharacterHexMode();
+
   # Make .Last() call finalizeSession() when R finishes.
   tryCatch({
     addFinalizerToLast();
@@ -47,6 +50,8 @@
 
 ############################################################################
 # HISTORY: 
+# 2008-07-03
+# o Now as.character.hexmode() is added from .First.lib().
 # 2007-06-09
 # o Added "declaration" of '.LastOriginal' in .Last.lib().
 # 2006-05-09

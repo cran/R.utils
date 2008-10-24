@@ -7,7 +7,9 @@
 #
 # \description{
 #  Provides access to a copy of the command line arguments supplied when 
-#  this \R session was invoked.
+#  this \R session was invoked.  This function is backward compatible with
+#  @see "base::commandArgs" of the \pkg{base} package, but adds more
+#  features.
 # }
 #
 # \arguments{
@@ -31,7 +33,7 @@
 #      If \code{"current"}, the current platform is used. If \code{"ANY"} or
 #      @NULL, all three OSs are assumed for total cross-platform
 #      compatibility.}
-#   \item{...}{Not used.}
+#   \item{...}{Passed to @see "base::commandArgs" of the \pkg{base} package.}
 # }
 #
 # \value{
@@ -87,11 +89,15 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   if (any(is.na(match(os, c("unix", "mac", "windows")))))
     stop("Argument 'os' contains unknown values.");
 
-  # Reserved R command line options according to
-  # "An Introduction to R" for R v2.0.1:
+  # Reserved R command line options according to paragraph
+  # 'R accepts the following command-line options' in
+  # "An Introduction to R" for R v 2.7.1 (was v2.0.1):
 
-  # General arguments  
-  reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
+  # General arguments
+  # According to R v2.0.1:
+## reservedArgs <- c("--help", "-h", "--version", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--verbose", "--args");
+  # According to R v2.7.1:
+  reservedArgs <- c("--help", "-h", "--version", "--encoding=.*", "--save", "--no-save", "--no-environ", "--no-site-file", "--no-init-file", "--restore", "--no-restore", "--no-restore-data", "--no-restore-history", "--vanilla", "-f", "--file=.*", "=e", "--min-vsize=.*", "--max-vsize=.*", "--min-nsize=.*", "--max-nsize=.*", "--max-ppsize=.*", "--quiet", "--silent", "-q", "--slave", "--interactive", "--verbose", "--args");
 
   # a) Unix
   if ("unix" %in% os) {
@@ -105,9 +111,9 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   
   # c) Windows
   if ("windows" %in% os) {
-    reservedArgs <- c(reservedArgs, "--ess", "--max-mem-size=.*");
+    reservedArgs <- c(reservedArgs, "--no-Rconsole", "--ess", "--max-mem-size=.*");
     # Additional command-line options for RGui.exe
-    reservedArgs <- c(reservedArgs, "--mdi", "--sdi", "--no-mdi", "--debug")
+    reservedArgs <- c(reservedArgs, "--mdi", "--sdi", "--no-mdi", "--debug");
   }
 
   # If duplicates where created, remove them
@@ -117,22 +123,27 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
   reservedArgs <- paste("^", reservedArgs, "$", sep="");
   
   # Flag reserved arguments
-  args <- .Internal(commandArgs());
+  args <- base::commandArgs(...);
+
   isReserved <- logical(length(args));
   for (rarg in reservedArgs)
     isReserved <- isReserved | (regexpr(rarg, args) != -1);
-  attr(args, "isReserved") <- isReserved;
 
   # Flag environment variable arguments
   pattern <- "^([^=-]*)(=)(.*)$";
   isEnvVars <- (regexpr(pattern, args) != -1);
-  attr(args, "isEnvVars") <- isEnvVars;
-  
-  if (excludeReserved)
-    args <- args[!attr(args, "isReserved")];
 
+  # Exclude non wanted elements
+  keep <- rep(TRUE, length(args));
+  if (excludeReserved)
+    keep <- keep & !isReserved;
   if (excludeEnvVars)
-    args <- args[!attr(args, "isEnvVars")];
+    keep <- keep & !isEnvVars;
+
+  attrs <- list(isReserved=isReserved, isEnvVars=isEnvVars);
+  attrs <- c(attributes(args), attrs);
+  args <- args[keep];
+  attributes(args) <- attrs;
 
   if (asValues) {
     keys <- args[1];
@@ -191,6 +202,15 @@ commandArgs <- function(asValues=FALSE, excludeReserved=FALSE, excludeEnvVars=FA
 
 ############################################################################
 # HISTORY:
+# 2008-10-17
+# o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") : 
+#   invalid argument type' if both arguments excludeReserved=TRUE and
+#   excludeEnvVars=TRUE were used.
+# 2008-08-04
+# o Now commandArgs(...) pass '...' to base::commandArgs() making it
+#   fully backward compatible.
+# o Updated to recognize all command line options as of R v2.7.1 and 
+#   R v2.8.0 devel.
 # 2005-06-19
 # o Added argument 'excludeEnvVars'. 
 # o Now commandArgs(asValue=FALSE) also returns attribute 'isEnvVars'.

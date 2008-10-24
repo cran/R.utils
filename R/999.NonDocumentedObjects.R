@@ -154,16 +154,24 @@
 # % The VComments class
 # % <none>
 #
+# % Intervals
+# @alias inAnyInterval
+# @alias mapToIntervals
+# @alias mergeIntervals
+# @alias intervalsToSeq
+#
 # % Misc.
 # @alias extract
+# @alias gunzip.default
 # @alias isOpen
 # @alias isOpen.default
-# @alias remove.default
-# @alias verbose
-# @alias unwrap
-# @alias wrap
 # @alias lapply
 # @alias lapply.default
+# @alias remove.default
+# @alias unwrap
+# @alias verbose
+# @alias wrap
+# @alias whichVector
 #
 # % Private
 # @alias toFileListTree
@@ -171,6 +179,8 @@
 # @alias pasteTree
 # @alias pasteTree.FileListTree
 # @alias cat.FileListTree 
+# @alias toAsciiRegExprPattern
+# @alias toAsciiRegExprPattern.character
 # 
 #
 # \description{

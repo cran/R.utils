@@ -16,7 +16,9 @@
 
 \description{
  Provides access to a copy of the command line arguments supplied when
- this \R session was invoked.
+ this \R session was invoked.  This function is backward compatible with
+ \code{\link[base]{commandArgs}}() of the \pkg{base} package, but adds more
+ features.
 }
 
 \arguments{
@@ -40,7 +42,7 @@
      If \code{"current"}, the current platform is used. If \code{"ANY"} or
      \code{\link[base]{NULL}}, all three OSs are assumed for total cross-platform
      compatibility.}
-  \item{...}{Not used.}
+  \item{...}{Passed to \code{\link[base]{commandArgs}}() of the \pkg{base} package.}
 }
 
 \value{

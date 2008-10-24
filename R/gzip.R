@@ -1,7 +1,8 @@
 #########################################################################/**
-# @RdocDefault gunzip
+# @RdocDefault gzip
+# @alias gunzip
 #
-# @title "Gunzip a file"
+# @title "Gzip/Gunzip a file"
 #
 # @synopsis
 #
@@ -10,11 +11,11 @@
 # }
 #
 # \arguments{
-#  \item{filename}{Pathname of (gzip'ed) input file to be gunzip'ed.}
+#  \item{filename}{Pathname of input file.}
 #  \item{destname}{Pathname of output file.}
 #  \item{overwrite}{If the output file already exists, then if 
-#    \code{overwrite} is @TRUE the file is silently overwritting, otherwise
-#    an exception is thrown.}
+#    \code{overwrite} is @TRUE the file is silently overwritting, 
+#    otherwise an exception is thrown.}
 #  \item{remove}{If @TRUE, the input file is removed afterward, 
 #    otherwise not.}
 #  \item{BFR.SIZE}{The number of bytes read in each chunk.}
@@ -22,13 +23,22 @@
 # }
 #
 # \value{
-#   Returns the number of (input/compressed) bytes read.
+#   Returns the number of (input) bytes read.
 # }
 #
 # \details{
 #   Internally \code{gzfile()} (see @see "base::connections") is used to
-#   read chunks of the gzip'ed file, which are then written to the output 
+#   read (write) chunks to (from) the gzip file.
 #   file.
+# }
+#
+# \examples{
+#   cat(file="foo.txt", "Hello world!")
+#   gzip("foo.txt")
+#   print(file.info("foo.txt.gz"))
+#   gunzip("foo.txt.gz")
+#   print(file.info("foo.txt"))
+#   file.remove("foo.txt")
 # }
 #
 # @author
@@ -36,6 +46,39 @@
 # @keyword "file"
 # @keyword "programming"
 #*/######################################################################### 
+setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
+  if (filename == destname) 
+    stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
+  if (!overwrite && file.exists(destname))
+    stop(sprintf("File already exists: %s", destname));
+
+  inn <- file(filename, "rb");
+  on.exit(if (!is.null(inn)) close(inn));
+
+  out <- gzfile(destname, "wb"); 
+  on.exit(close(out), add=TRUE);
+
+  nbytes <- 0;
+  repeat { 
+    bfr <- readBin(inn, what=raw(0), size=1, n=BFR.SIZE);
+    n <- length(bfr);
+    if (n == 0)
+      break;
+    nbytes <- nbytes + n;
+    writeBin(bfr, con=out, size=1); 
+  };
+
+  if (remove) {
+    close(inn);
+    inn <- NULL;
+    file.remove(filename);
+  }
+    
+  invisible(nbytes);
+})
+
+
+
 setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e7, ...) {
   if (filename == destname) 
     stop(sprintf("Argument 'filename' and 'destname' are identical: %s", filename));
@@ -70,6 +113,8 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
 ############################################################################
 # HISTORY:
+# 2008-05-15
+# o Added gzip().
 # 2007-08-14
 # o Increased the BFR.SIZE 10 times.
 # o Added argument 'remove'.

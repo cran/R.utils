@@ -90,6 +90,7 @@
  \seealso{
   \code{\link{readTableIndex}}().
   \code{\link[utils]{read.table}}.
+  \code{\link{colClasses}}().
  }
 
 

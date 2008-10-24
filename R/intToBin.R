@@ -1,6 +1,5 @@
 ########################################################################/**
 # @RdocFunction as.character.binmode
-# @alias as.character.hexmode
 #
 # @title "Converts a binary/octal/hexadecimal number into a string"
 #
@@ -10,7 +9,6 @@
 #
 # \usage{
 #  \method{as.character}{binmode}(x, ...)
-#  \method{as.character}{hexmode}(x, ...)
 # }
 #
 # \arguments{
@@ -93,6 +91,9 @@ intToBin <- function(x) {
 
 ############################################################################
 # HISTORY:
+# 2008-07-03
+# o Removed documentation for as.character() for 'hexmode' since it is
+#   now in the 'base' package.
 # 2005-02-20
 # o Now using setMethodS3() and added '...' to please R CMD check.
 # 2004-10-18

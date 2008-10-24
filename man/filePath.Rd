@@ -82,8 +82,6 @@ filename <- system.file("data-ex/HISTORY.LNK", package="R.utils")
 print(filename)
 filename <- filePath(filename, expandLinks="relative")
 print(filename)
-
-stopifnot(file.exists(filename))
 }
 
  \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}

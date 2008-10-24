@@ -30,6 +30,10 @@
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
+\seealso{
+  \code{\link[utils]{URLencode}}.
+}
+
 
 
 \keyword{IO}

@@ -29,7 +29,8 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
-  See also \code{\link[base]{load}}().
+  Internally \code{\link[base]{load}}() is used.
+  See also \code{\link{loadObject}}().
 }
 
 

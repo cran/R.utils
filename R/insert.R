@@ -59,9 +59,10 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
     }
   }
 
-  if (length(ats) != length(values)) 
+  if (length(ats) != length(values)) {
     throw("Argument 'ats' and argument 'values' has different lengths: ", 
                                        length(ats), " != ", length(values));
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Setup
@@ -111,7 +112,7 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
   ns <- tos-froms+1;
   tos2 <- froms2 + ns - 1;
 
-  for (kk in 1:length(froms2)) {
+  for (kk in seq(along=froms2)) {
     from <- froms[kk];
     to <- tos[kk];
     from2 <- froms2[kk];
@@ -127,6 +128,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
 
 ############################################################################
 # HISTORY:
+# 2008-03-31
+# o BUG FIX: If 'x' in insert(x, ...) was zero length, an "Error in from:to
+#   : NA/NaN argument" was thrown.
 # 2008-02-21
 # o BUG FIX: When 'values' was a non-list its values were placed in a 
 #   single-element list.  Should have been as.list().

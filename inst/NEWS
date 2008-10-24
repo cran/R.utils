@@ -2,6 +2,73 @@
 Package: R.utils
 ================
 
+Version: 1.1.0 [2008-10-24]
+o Now sourceDirectory() also searches for source files with extensions
+  *.r, *.q, *.s, and *.S, cf. R manual 'Writing R Extensions'.
+
+
+Version: 1.0.9 [2008-10-17]
+o BUG FIX: commandArgs() would 'Error in !attr(args, "isEnvVars") : 
+  invalid argument type' if both arguments excludeReserved=TRUE and
+  excludeEnvVars=TRUE were used.
+
+
+Version: 1.0.8 [2008-10-16]
+o Now devDone(which=1) does nothing.  Before it gave an error.
+o BUG FIX: Argument 'type' of devNew() did not take function:s.
+
+
+Version: 1.0.7 [2008-09-20]
+o Added mapToIntervals(), inAnyInterval(), and mergeIntervals().
+
+
+Version: 1.0.6 [2008-09-08]
+o Now devNew() filters out arguments 'file' and 'filename' if the
+  device is interactive.
+
+
+Version: 1.0.5 [2008-08-04]
+o Now commandArgs(...) pass '...' to base::commandArgs() making it
+  fully backward compatible.  It is also updated to recognize all
+  R command line options as of R v2.7.1 and R v2.8.0 devel.
+
+
+Version: 1.0.4 [2008-08-01]
+o Now sourceDirectory() is guaranteed to source directories and files 
+  in lexicographic order.
+o Added countLines() for counting number of lines in a text file.
+o Added several functions for extending the current functions dealing
+  with devices.  All added functions can address a device by a label
+  in addition to the standard device index.  The devGetLabel() and
+  devSetLabel() gets and sets the label of a give device.  devList()
+  lists the indices of existing device named by their labels, cf.
+  dev.list().  The functions devSet() and devOff() work like 
+  dev.set() and dev.off() but accept labels as well.  Furthermore, 
+  devSet(idx) will open a device with index 'idx' if it does not 
+  exists, and devSet(label) a device with that label if not already
+  opened.  The devIsOpen() checks if a device is open or not. The 
+  devDone() function calls devOff() except for screen devices.
+
+
+Version: 1.0.3 [2008-07-10]
+o Added readBinFragments() and writeBinFragments() to read and write
+  binary data scattered across a connection or a file.  These methods
+  moved from the R.huge package.
+o Added intervalsToSeq(), which is bijective to seqToIntervals().
+o Added whichVector(), which is almost twice as fast which() for
+  logical vectors, especially when there are no missing values.
+o IMPROVEMENT: Major speed up of seqToIntervals().  
+o Added gzip().
+o Renamed inst/HISTORY to inst/NEWS according to new R standards.
+o CLEAN UP: as.character() for 'hexmode' is only added if missing.
+o BETA: Added (for now internal) toAsciiRegExprPattern().
+
+
+Version: 1.0.2 [2008-03-31]
+o BUG FIX: If 'x' in insert(x, ...) had zero length, an 
+  "Error in from:to : NA/NaN argument" was thrown.
+
+
 Version: 1.0.1 [2008-03-06]
 o BUG FIX: Regular expression pattern 'a-Z' is illegal on (at least) 
   some locale, e.g. 'C' (where 'A-z' works). The only way to specify 

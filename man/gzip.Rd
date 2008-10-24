@@ -1,29 +1,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  gunzip.R
+%  gzip.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{gunzip}
-\alias{gunzip.default}
+\name{gzip}
+\alias{gzip.default}
+\alias{gzip}
 \alias{gunzip}
 
-\title{Gunzip a file}
+\title{Gzip/Gunzip a file}
 
-\usage{\method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)}
+\usage{\method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)}
 
 \description{
- Gunzip a file.
+ Gzip/Gunzip a file.
 }
 
 \arguments{
- \item{filename}{Pathname of (gzip'ed) input file to be gunzip'ed.}
+ \item{filename}{Pathname of input file.}
  \item{destname}{Pathname of output file.}
  \item{overwrite}{If the output file already exists, then if
-   \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting, otherwise
-   an exception is thrown.}
+   \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting,
+   otherwise an exception is thrown.}
  \item{remove}{If \code{\link[base:logical]{TRUE}}, the input file is removed afterward,
    otherwise not.}
  \item{BFR.SIZE}{The number of bytes read in each chunk.}
@@ -31,13 +32,22 @@
 }
 
 \value{
-  Returns the number of (input/compressed) bytes read.
+  Returns the number of (input) bytes read.
 }
 
 \details{
   Internally \code{gzfile()} (see \code{\link[base]{connections}}) is used to
-  read chunks of the gzip'ed file, which are then written to the output
+  read (write) chunks to (from) the gzip file.
   file.
+}
+
+\examples{
+  cat(file="foo.txt", "Hello world!")
+  gzip("foo.txt")
+  print(file.info("foo.txt.gz"))
+  gunzip("foo.txt.gz")
+  print(file.info("foo.txt"))
+  file.remove("foo.txt")
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
