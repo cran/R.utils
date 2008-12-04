@@ -93,7 +93,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
       throw("Pathname not found: ", pathname);
 
     # Check if file permissions allow reading
-    if (file.access(pathname, mode=4) == -1)
+    if (fileAccess(pathname, mode=4) == -1)
       throw("No permission to read file: ", pathname);
   }
     
@@ -217,7 +217,7 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
     }
 
     # Check if file permissions allow writing
-    if (file.access(pathname, mode=2) == -1)
+    if (fileAccess(pathname, mode=2) == -1)
       throw("No permission to (over-)write file: ", pathname);
   } else {
     # Check if parent directory exists
@@ -879,6 +879,9 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2008-12-01
+# o Now getReadablePathname() and getWritablePathname() use the more
+#   trusted fileAccess() of R.utils.
 # 2008-02-26
 # o Now the '...' arguments to Arguments$getVerbose() are passed to the
 #   constructor of Verbose.  This allows the construct of

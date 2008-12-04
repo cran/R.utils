@@ -38,7 +38,8 @@
 \details{
   Internally \code{gzfile()} (see \code{\link[base]{connections}}) is used to
   read (write) chunks to (from) the gzip file.
-  file.
+  If the process is interrupted before completed, the partially written
+  output file is automatically removed.
 }
 
 \examples{

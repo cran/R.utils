@@ -782,7 +782,19 @@ setMethodS3("enter", "Verbose", function(this, ..., indent=this$indentStep, sep=
 setMethodS3("exit", "Verbose", function(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL) {
   args <- list(...);
 
+  # Argument 'indent' 
+  if (this$indentPos + indent < 0) {
+    throw("Cannot exit(): Argument 'indent' makes 'indentPos' negative: ",
+                                                    this$indentPos + indent);
+  }
+
   len <- length(this$.stack);
+
+  # Balance check
+  if (length(len) == 0) {
+    throw("Internal error:  Cannot exit(). Unbalanced enter()/exit() stack - it is already empty.");
+  }
+
   lastMsg <- this$.stack[len];
   this$.stack <- this$.stack[-len];
   lastLevel <- this$.stackLevel[len];
@@ -1536,6 +1548,8 @@ setMethodS3("popState", "Verbose", function(this, ...) {
 
 ############################################################################
 # HISTORY: 
+# 2008-11-22
+# o STABILITY: Added balance and sanity checks for exit() of Verbose.
 # 2007-05-26
 # o Made equals() of Verbose protected.
 # 2007-03-28

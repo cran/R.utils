@@ -2,6 +2,28 @@
 Package: R.utils
 ================
 
+Version: 1.1.1 [2008-12-03]
+o Now getReadablePathname() and getWritablePathname() of Arguments, 
+  and sourceTo() use the more trusted fileAccess() instead of 
+  file.access() of 'base'.  This will hopefully solve some problems
+  where these methods incorrectly gives an error reporting lack of 
+  file permissions; this could happen when some OSs mounted to other
+  external file systems.
+o Added fileAccess() which is intended to give tries harder than
+  file.access() to infer file permissions.
+o STABILITY: Added balance and sanity checks for exit() of Verbose.
+o Now gzip() and gunzip() removes the partially written output file if
+  the process is interrupted.
+o BUG FIX: readWindowsShortcut() would not work with some Windows
+  shortcut files linking to a Windows network file system and generated
+  on Windows Vista.  Their "flags" in the file headers had more than 
+  the 8 known bits, which was reported as a file format error.  Although
+  we don't know what these unknown bits are for, we now accept them
+  quitely accepted so at least the known part of the file format is
+  returned.
+o BUG FIX: filePath("\\\\shared/foo") would return "\\shared/foo".
+
+
 Version: 1.1.0 [2008-10-24]
 o Now sourceDirectory() also searches for source files with extensions
   *.r, *.q, *.s, and *.S, cf. R manual 'Writing R Extensions'.

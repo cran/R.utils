@@ -33,19 +33,24 @@
 # }
 # 
 # \references{
-#   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
-#   [2] Hager J, The Windows Shortcut File Format (as reverse-engineered by), 
-#       version 1.0.
+#   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.\cr
+#   [2] Hager J, \emph{The Windows Shortcut File Format}
+#       (as reverse-engineered by), version 1.0.\cr
+#   [3] Microsoft Developer Network, \emph{IShellLink Interface}, 2008.
+#       \url{http://msdn2.microsoft.com/en-us/library/bb774950.aspx} \cr
+#   [4] Andrews D, \emph{Parsing Windows Shortcuts (lnk) files in java},
+#       comp.lang.java.help, Aug 1999.
+#       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
+#   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
+#       April 2008. \url{http://wiki.tcl.tk/1844}
 # }
 #
 # @keyword IO
 #*/###########################################################################
 # MORE REFERENCES:
-# FILExt, \url{http://filext.com/detaillist.php?extdetail=LNK}, 2005.
 # An Unofficial Guide to the URL File Format, \url{http://www.cyanwerks.com/file-format-url.html} (contains info about Hotkeys)
-# Parsing Windows Shortcuts (lnk) files in java, \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/9afeaa58e2a405b3%239afeaa58e2a405b3?sa=X&oi=groupsr&start=0&num=3} (got Java code)
-# Windows shell links, \url{http://wiki.tcl.tk/1844} (contain Tcl code)
 # xxmklink - create a shortcut, http://www.xxcopy.com/xxcopy38.htm
+# FILExt, \url{http://filext.com/detaillist.php?extdetail=LNK}, 2005.
 setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
@@ -177,7 +182,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   );
 
   if (verbose) {
-    cat("File header read:");
+    cat("File header read:\n");
     print(header);
   }
 
@@ -195,11 +200,19 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
   flags <- intToBin(header$flags);
   flags <- rev(strsplit(flags, split="")[[1]]);
-  flags <- as.logical(as.integer(flags));
-  if (length(flags) > 8)
-    stop("File format error: Too many bits in flags in header: ", length(flags));
-  flags <- c(flags, rep(FALSE, length.out=8-length(flags)));
-  names(flags) <- c("hasShellItemIdList", "pointsToFileOrDirectory", "hasDescription", "hasRelativePath", "hasWorkingDirectory", "hasCommandLineArguments", "hasCustomIcon", "unicodedStrings");
+  flags <- as.integer(flags);
+  flags <- as.logical(flags);
+  knownFlagNames <- c("hasShellItemIdList", "pointsToFileOrDirectory", "hasDescription", "hasRelativePath", "hasWorkingDirectory", "hasCommandLineArguments", "hasCustomIcon", "unicodedStrings");
+  if (length(flags) <= length(knownFlagNames)) {
+    flags <- c(flags, rep(FALSE, length.out=length(knownFlagNames)-length(flags)));
+    names(flags) <- knownFlagNames;
+  } else {
+    extraFlags <- sprintf("unknown%d", 1:(length(flags)-length(knownFlagNames)));
+    names(flags) <- c(knownFlagNames, extraFlags);
+    if (!is.element(length(extraFlags), c(0,2))) {
+    warning("Detected a possibly unsupported file format: There are unknown 'flags' in the Windows Shortcut link file: ", paste(paste(names(flags), flags, sep="="), collapse=", "));
+    }
+  }
   header$flags <- flags;
   rm(flags);
 
@@ -344,6 +357,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     #  10h    ASCIZ   Volume label
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnLocalVolume"]) {
+      if (verbose)
+        cat("availableOnLocalVolume...\n");
       # Skip to local volume table
       skip <- fileLocationInfo$offsetLocalVolumeInfo-fileLocationInfo$.offset;
       readBin(con, what="integer", size=1, n=skip);
@@ -411,6 +426,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
   
       if (verbose)
         cat("basePathname='", fileLocationInfo$basePathname, "'\n", sep="");
+      if (verbose)
+        cat("availableOnLocalVolume...done\n");
     }
         
 
@@ -431,6 +448,9 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
     #           NetWare server to test.
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if (fileLocationInfo$flags["availableOnNetworkShare"]) {
+      if (verbose)
+        cat("availableOnNetworkShare...\n");
+
       # Skip to local volume table
       skip <- fileLocationInfo$offsetNetworkVolumeInfo-fileLocationInfo$.offset;
       readBin(con, what="integer", size=1, n=skip);
@@ -462,7 +482,7 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #      if (table$.offset != table$length) {
       if (table$.offset != table$unknown2) {
-        warning("File format error: Length of table structure did not match the number of bytes read.");
+        warning("Unexpected file format: Length of table structure did not match the number of bytes read.");
       }
 
       # Update the offset for file location info
@@ -481,6 +501,9 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
         cat("File location info / Network Volume Table:\n");
         print(fileLocationInfo$networkVolumeTable)
       }
+
+      if (verbose)
+        cat("availableOnNetworkShare...done\n");
     }
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -567,6 +590,11 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2008-12-03
+# o BUG FIX: At least on Windows Vista, for some shortcut files that linked
+#   to a Windows network file system, there were more than the 8 known bits
+#   in the file flags.  This generated an error.  Known they are quitely
+#   accepted with a warning.
 # 2007-12-08
 # o CLEAN UP: Replaced all stop(paste()) with stop().
 # 2007-08-24

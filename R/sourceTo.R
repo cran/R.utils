@@ -74,7 +74,7 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
   if (is.character(file)) {
     if (!isFile(file))
       throw("Argument 'file' is not an existing file: ", file);
-    isReadable <- (file.access(file, mode=4) == 0);
+    isReadable <- (fileAccess(file, mode=4) == 0);
     if (!isReadable)
       throw("Argument 'file' is a non-readable file: ", file);
 
@@ -166,6 +166,8 @@ setMethodS3("sourceTo", "default", function(file, chdir=FALSE, ..., local=TRUE, 
 
 #############################################################################
 # HISTORY: 
+# 2008-12-01
+# o Now sourceTo() uses the more trusted fileAccess() of R.utils.
 # 2007-06-09
 # o Removed (incorrect) argument name 'list' from all substitute() calls.
 # 2007-01-11

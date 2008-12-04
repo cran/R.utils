@@ -57,9 +57,16 @@ file.show(history)
  }
 
  \references{
-   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.
-   [2] Hager J, The Windows Shortcut File Format (as reverse-engineered by),
-       version 1.0.
+   [1] Wotsit's Format, \url{http://www.wotsit.org/}, 2005.\cr
+   [2] Hager J, \emph{The Windows Shortcut File Format}
+       (as reverse-engineered by), version 1.0.\cr
+   [3] Microsoft Developer Network, \emph{IShellLink Interface}, 2008.
+       \url{http://msdn2.microsoft.com/en-us/library/bb774950.aspx} \cr
+   [4] Andrews D, \emph{Parsing Windows Shortcuts (lnk) files in java},
+       comp.lang.java.help, Aug 1999.
+       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
+   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
+       April 2008. \url{http://wiki.tcl.tk/1844}
  }
 
 

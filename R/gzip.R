@@ -29,7 +29,8 @@
 # \details{
 #   Internally \code{gzfile()} (see @see "base::connections") is used to
 #   read (write) chunks to (from) the gzip file.
-#   file.
+#   If the process is interrupted before completed, the partially written
+#   output file is automatically removed.
 # }
 #
 # \examples{
@@ -55,8 +56,16 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
   inn <- file(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
+  outComplete <- FALSE;
   out <- gzfile(destname, "wb"); 
-  on.exit(close(out), add=TRUE);
+  on.exit({
+    close(out);
+    # Was the compression incomplete?
+    if (!outComplete) {
+      # Remove the incomplete compressed files
+      file.remove(destname);
+    }
+  }, add=TRUE);
 
   nbytes <- 0;
   repeat { 
@@ -67,6 +76,7 @@ setMethodS3("gzip", "default", function(filename, destname=sprintf("%s.gz", file
     nbytes <- nbytes + n;
     writeBin(bfr, con=out, size=1); 
   };
+  outComplete <- TRUE;
 
   if (remove) {
     close(inn);
@@ -88,8 +98,16 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
   inn <- gzfile(filename, "rb");
   on.exit(if (!is.null(inn)) close(inn));
 
+  outComplete <- FALSE;
   out <- file(destname, "wb"); 
-  on.exit(close(out), add=TRUE);
+  on.exit({
+    close(out);
+    # Was the decompression incomplete?
+    if (!outComplete) {
+      # Remove the incomplete compressed files
+      file.remove(destname);
+    }
+  }, add=TRUE);
 
   nbytes <- 0;
   repeat { 
@@ -100,6 +118,7 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
     nbytes <- nbytes + n;
     writeBin(bfr, con=out, size=1); 
   };
+  outComplete <- TRUE;
 
   if (remove) {
     close(inn);
@@ -113,6 +132,9 @@ setMethodS3("gunzip", "default", function(filename, destname=gsub("[.]gz$", "", 
 
 ############################################################################
 # HISTORY:
+# 2008-11-03
+# o Now gzip() and gunzip() removes the partially written output file if
+#   the process is interrupted.
 # 2008-05-15
 # o Added gzip().
 # 2007-08-14
