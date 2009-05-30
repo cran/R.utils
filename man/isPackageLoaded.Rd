@@ -34,6 +34,7 @@
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
 
 \seealso{
+  To check if a package is installed or not, see \code{\link{isPackageInstalled}}().
   \code{\link[base]{require}}().
 }
 

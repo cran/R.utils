@@ -2,6 +2,53 @@
 Package: R.utils
 ================
 
+Version: 1.1.7 [2009-05-30]
+o BUG FIX: Argument 'dThreshold' of less() for Verbose had to be named
+  in order to be mapped.
+
+
+Version: 1.1.6 [2009-05-19]
+o UPDATE: Now getEnvironment(), getRegularExpression(), and 
+  getReadablePathname() give clearer error messages if more the input
+  contains more than one element.
+o Now Arguments$getWritablePathname() better explains why a file cannot
+  be opened for creation/modification due to wrong file permissions.
+
+
+Version: 1.1.5 [2009-05-16]
+o Changed argument 'asMode' for Arguments$getNumerics() to default to
+  NULL instead of "numeric".  This will case the method to return integer
+  if the input is integer, and double if the input is double.  The
+  previous default was alway returning doubles, cf. notes on common 
+  misconception of how as.numeric() works.  In the case when the input
+  is neither integer or double, the default is to coerce to doubles.
+
+
+Version: 1.1.4 [2009-04-04]
+o Now getReadablePathname(..., mustExist=TRUE) of Arguments reports also
+  the working directory if the a relative pathname is missing.
+o BUG FIX: getReadablePathname(..., mustExist=TRUE) of Arguments gave an
+  internal error if the pathname was in the current directory and did 
+  not exist.
+
+
+Version: 1.1.3 [2009-01-12]
+o Added isPackageInstalled().
+o FIXUP: There were some Rd warnings with the new R v2.9.0.
+
+
+Version: 1.1.2 [2008-12-27]
+o Now getReadablePathname(..., mustExist=TRUE) and 
+  getWritablePathname(..., mkdirs=FALSE) of Arguments report which
+  of the parent directories exists when the requested pathname is not 
+  found.  This will help troubleshooting missing pathnames.
+o Added removeDirectory() for a convenient and safe way to remove
+  directories.
+o Added argument 'useNames' to insert(), which is now aware of names
+  of the input object.
+o Added subplots() originating from (obsolete) R.graphics.
+
+
 Version: 1.1.1 [2008-12-03]
 o Now getReadablePathname() and getWritablePathname() of Arguments, 
   and sourceTo() use the more trusted fileAccess() instead of 

@@ -48,7 +48,7 @@
 #
 # @keyword programming
 #*/########################################################################### 
-setMethodS3("unwrap", "array", function(x, split=rep("\\.", length(dim(x))), drop=FALSE, ...) {
+setMethodS3("unwrap", "array", function(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

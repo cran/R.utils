@@ -67,6 +67,9 @@ file.show(history)
        \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
    [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
        April 2008. \url{http://wiki.tcl.tk/1844}
+   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com,
+       April 24, 2009.
+       \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
  }
 
 

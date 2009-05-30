@@ -62,12 +62,17 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'file':
-  if (inherits(file, "connection"))
-    throw("In this context, argument 'file' cannot be a connection.");
-  file <- getCharacter(static, file);
+  if (!is.null(file)) {
+    if (inherits(file, "connection")) {
+      throw("In this context, argument 'file' cannot be a connection.");
+    }
+    file <- getCharacter(static, file, length=c(1,1));
+  }
 
   # Argument 'path':
-  path <- getCharacter(static, path);
+  if (!is.null(path)) {
+    path <- getCharacter(static, path, length=c(1,1));
+  }
 
   if (is.null(file) && is.null(path))
     throw("Both argument 'file' and 'path' are NULL.");
@@ -84,17 +89,45 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   pathname <- filePath(path, file, expandLinks="any");
 
-  if (absolutePath)
+  if (absolutePath) {
     pathname <- getAbsolutePath(pathname);
+  }
 
   if (mustExist) {
     # Check if file exists
-    if (!file.exists(pathname))
-      throw("Pathname not found: ", pathname);
+    if (!file.exists(pathname)) {
+      # Locate the first parent directory that does not exist
+      depth <- 1;
+      while(TRUE) {
+        parent <- getParent(pathname, depth=depth);
+        if (is.null(parent) || isDirectory(parent))
+          break;
+        depth <- depth + 1;
+      } # while()
+
+      reason <- NULL;
+      if (is.null(parent)) {
+        parent <- getParent(pathname);
+        if (is.null(parent)) {
+          reason <- "no such file in the current working directory";
+        } else {
+          reason <- sprintf("none of the parent directories [%s/] exist", parent);
+        }
+      } else {
+        reason <- sprintf("%s/ exists, but nothing beyond", parent);
+      }
+      if (!is.null(reason))
+        if (!isAbsolutePath(pathname)) {
+          reason <- sprintf("%s; current directory is '%s'", reason, getwd());
+        }
+        reason <- sprintf(" (%s)", reason);
+      throw("Pathname not found: ", pathname, reason);
+    }
 
     # Check if file permissions allow reading
-    if (fileAccess(pathname, mode=4) == -1)
-      throw("No permission to read file: ", pathname);
+    if (fileAccess(pathname, mode=4) == -1) {
+      throw("Pathname exists, but there is no permission to read file: ", pathname);
+    }
   }
     
   pathname;
@@ -216,19 +249,22 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
       throw("File already exists: ", pathname);
     }
 
-    # Check if file permissions allow writing
-    if (fileAccess(pathname, mode=2) == -1)
-      throw("No permission to (over-)write file: ", pathname);
+    # Check if file permissions allow to modify existing
+    if (fileAccess(pathname, mode=2) == -1) {
+      throw("No permission to modify existing file: ", pathname);
+    }
   } else {
     # Check if parent directory exists
     parent <- getParent(pathname);
     if (!isDirectory(parent)) {
       # Check if parent directory should be created
-      if (!mkdirs)
-        throw("Filepath does not exist: ", parent);
+      if (!mkdirs) {
+        parent <- Arguments$getReadablePath(parent, mustExist=TRUE);
+      }
 
-      if (!mkdirs(parent))
-  	throw("Could not create file path: ", parent);
+      if (!mkdirs(parent)) {
+  	throw("Failed not create file path: ", parent);
+      }
     }
   }
 
@@ -309,8 +345,13 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
   if (is.null(.name))
     .name <- as.character(deparse(substitute(ss)));
 
-  if (length[1] > 0 && !is.vector(x))
-    throw(sprintf("Argument '%s' is not a vector: %s", .name, mode(x)));
+  # See ?is.vector for how it is defined. /HB 2009-05-19
+  attrs <- attributes(x);
+  attributes(x) <- attrs[intersect(names(attrs), c("names", "dim"))];
+
+  if (length[1] > 0 && !is.vector(x)) {
+    throw(sprintf("Argument '%s' is not a vector: %s", .name, storage.mode(x)));
+  }
 
   xlen <- length(x);
 
@@ -328,11 +369,13 @@ setMethodS3("getVector", "Arguments", function(static, x, length=NULL, .name=NUL
       }
     }
   } else {
-    if (!xlen %in% length) {
+    if (!is.element(xlen, length)) {
       throw(sprintf("Number of elements in argument '%s' is not in {%s}: %d", 
                                  .name, seqToHumanReadable(length), xlen, ));
     }
   }
+
+  attributes(x) <- attrs;
 
   x;
 }, static=TRUE, private=TRUE)
@@ -459,32 +502,43 @@ setMethodS3("getCharacter", "Arguments", function(static, ..., length=c(0,1)) {
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode="numeric", disallow=NULL, ..., .name=NULL) {
+setMethodS3("getNumerics", "Arguments", function(static, x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL) {
   if (is.null(.name))
     .name <- as.character(deparse(substitute(x)));
   x <- getVector(static, x, ..., .name=.name);
+  xMode <- storage.mode(x);
 
   # Coerce the mode of 'x'
-  if (!is.null(asMode))
-    mode(x) <- asMode;
+  if (is.null(asMode)) {
+    if (is.element(xMode, c("integer", "double"))) {
+      asMode <- xMode;
+    } else {
+      asMode <- "double";
+    }
+  }
+
+  # Update/coerce mode?
+  if (xMode != asMode) {
+    storage.mode(x) <- asMode;
+  }
 
   # Nothing to do?
   if (length(x) == 0)
     return(x);
 
   if (!is.null(disallow)) {
-    if ("NaN" %in% disallow && any(is.nan(x))) {
+    if (is.element("NaN", disallow) && any(is.nan(x))) {
       throw(sprintf("Argument '%s' contains %d NaN value(s).", 
                                                    .name, sum(is.nan(x))));
     }
 
-    if ("NA" %in% disallow && any(is.na(x) & !is.nan(x))) {
+    if (is.element("NA", disallow) && any(is.na(x) & !is.nan(x))) {
       throw(sprintf("Argument '%s' contains %d NA value(s).", 
                                                     .name, sum(is.na(x))));
     }
 
     # For conveniency, disallow 'Inf' here too; other range takes care of it.
-    if ("Inf" %in% disallow && any(is.infinite(x))) {
+    if (is.element("Inf", disallow) && any(is.infinite(x))) {
       throw(sprintf("Argument '%s' contains %d NA value(s).", 
                                              .name, sum(is.infinite(x))));
     }
@@ -675,7 +729,7 @@ setMethodS3("getLogicals", "Arguments", function(static, x, ..., disallow=c("NA"
     x <- as.logical(x);
 
   if (!is.null(disallow)) {
-    if ("NA" %in% disallow && any(is.na(x))) {
+    if (is.element("NA", disallow) && any(is.na(x))) {
       throw(sprintf("Argument '%s' contains %d NA value(s).", 
                                                     .name, sum(is.na(x))));
     }
@@ -794,7 +848,7 @@ setMethodS3("getRegularExpression", "Arguments", function(static, pattern=NULL, 
                                                                    .name));
   }
 
-  pattern <- getCharacter(static, pattern, .name=.name);
+  pattern <- getCharacter(static, pattern, .name=.name, length=c(1,1));
 
   # Validate it
   tryCatch({
@@ -847,7 +901,7 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
   }
 
   if (is.character(envir)) {
-    name <- Arguments$getCharacter(envir);
+    name <- getCharacter(static, envir, length=c(1,1));
     envirs <- gsub("^package:", "", search());
     pos <- which(name == envirs);
     if (length(pos) == 0)
@@ -879,6 +933,31 @@ setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
 
 ############################################################################
 # HISTORY:
+# 2009-05-18
+# o UPDATE: Now getWritablePathname() gives a more precise error message
+#   if the file exists but the rights to modifies it does not.
+# o UPDATE: Now getEnvironment(), getRegularExpression(), and 
+#   getReadablePathname() give clearer error messages if more the input
+#   contains more than one element.
+# 2009-05-15
+# o Changed argument 'asMode' for Arguments$getNumerics() to default to
+#   NULL instead of "numeric".  This will case the method to return integer
+#   if the input is integer, and double if the input is double.  The
+#   previous default was alway returning doubles, cf. notes on common 
+#   misconception of how as.numeric() works.  In the case when the input
+#   is neither integer or double, the default is to coerce to doubles.
+#   Also, the method is now using storage.mode() instead of mode().
+# 2009-04-04
+# o Now getReadablePathname(..., mustExist=TRUE) of Arguments reports also
+#   the working directory if the a relative pathname is missing.
+# o BUG FIX: getReadablePathname(..., mustExist=TRUE) of Arguments gave an
+#   internal error if the pathname was in the current directory and did 
+#   not exist.
+# 2008-12-27
+# o Now getReadablePathname(..., mustExist=TRUE) and 
+#   getWritablePathname(..., mkdirs=FALSE) of Arguments report which
+#   of the parent directories exists when the requested pathname is not 
+#   found.  This will help troubleshooting missing pathnames.
 # 2008-12-01
 # o Now getReadablePathname() and getWritablePathname() use the more
 #   trusted fileAccess() of R.utils.

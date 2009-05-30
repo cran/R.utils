@@ -1,16 +1,21 @@
 
 # Insert at first position
-x <- insert(1:3, ats=1, values=rep(NA,2))
-Ex <- c(NA,NA,1:3)
+y <- c(a=1, b=2, c=3)
+print(y)
+x <- insert(y, ats=1, values=rep(NA,2))
+Ex <- c(NA,NA,y)
 print(x)
-stopifnot(identical(as.double(x),as.double(Ex)))
+stopifnot(identical(x,Ex))
 
-
-# Insert at last position
-x <- insert(1:3, ats=4, values=2:1)
-Ex <- c(1:3,2:1)
+x <- insert(y, ats=1, values=rep(NA,2), useNames=FALSE)
 print(x)
-stopifnot(identical(as.double(x),as.double(Ex)))
+
+# Insert at last position (names of 'values' are ignored
+# because input vector has not names)
+x <- insert(1:3, ats=4, values=c(d=2, e=1))
+Ex <- c(1:3,2,1)
+print(x)
+stopifnot(identical(x,Ex))
 
 
 # Insert in the middle of a vector

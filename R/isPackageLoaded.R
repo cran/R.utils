@@ -25,6 +25,7 @@
 # @author
 #
 # \seealso{
+#   To check if a package is installed or not, see @see "isPackageInstalled".
 #   @see "base::require".
 # }
 #

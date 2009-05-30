@@ -32,7 +32,7 @@
   \item{eps}{The smallest possible floating point.}
   \item{neps}{A scale factor of \code{eps} specifying how close to zero
      "close" means. If \code{eps} is the smallest value such that
-     code{1 + eps != 1}, i.e. \code{.Machine$double.eps}, \code{neps} must
+     \code{1 + eps != 1}, i.e. \code{.Machine$double.eps}, \code{neps} must
      be greater or equal to one.}
   \item{...}{Not used.}
 }

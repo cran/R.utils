@@ -43,6 +43,9 @@
 #       \url{http://groups.google.com/group/comp.lang.java.help/browse_thread/thread/a2e147b07d5480a2/} \cr
 #   [5] Multiple authors, \emph{Windows shell links} (in Tcl), Tcler's Wiki,
 #       April 2008. \url{http://wiki.tcl.tk/1844}
+#   [6] Daniel S. Bensen, \emph{Shortcut File Format (.lnk)}, Stdlib.com, 
+#       April 24, 2009.
+#       \url{http://www.stdlib.com/art6-Shortcut-File-Format-lnk.html}
 # }
 #
 # @keyword IO
@@ -590,6 +593,8 @@ setMethodS3("readWindowsShortcut", "default", function(con, verbose=FALSE, ...) 
 
 #############################################################################
 # HISTORY: 
+# 2009-05-14
+# o Added another reference to the Rdocs.
 # 2008-12-03
 # o BUG FIX: At least on Windows Vista, for some shortcut files that linked
 #   to a Windows network file system, there were more than the 8 known bits

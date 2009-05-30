@@ -23,8 +23,8 @@
  Coerces to a numeric vector and validates.
 }
 
-\synopsis{getNumerics.Arguments(static, x, range=NULL, asMode="numeric", disallow=NULL, ..., .name=NULL)}
-\usage{Arguments$getNumerics(x, range=NULL, asMode="numeric", disallow=NULL, ..., .name=NULL)}
+\synopsis{getNumerics.Arguments(static, x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)}
+\usage{Arguments$getNumerics(x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}}.}

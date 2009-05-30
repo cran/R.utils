@@ -37,7 +37,7 @@
 #   Furthermore, the bounds are currently treated as real values.  
 #   For instance, merging [0,1] and [2,3] will return the same intervals.
 #   Note, if integer intervals were treated specially, we would merge
-#   these intervals to integer interval [0,3] == {0,1,2,3}.
+#   these intervals to integer interval [0,3] == \{0,1,2,3\}.
 # }
 #
 # @author

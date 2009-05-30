@@ -13,6 +13,8 @@
 #   \item{x}{The @vector of data values.}
 #   \item{ats}{The indices of \code{x} where the values should be inserted.}
 #   \item{values}{A @list or a @vector of the values to be inserted.}
+#   \item{useNames}{If @FALSE, the names attribute is dropped/ignored, 
+#      otherwise not.  Only applied if argument \code{x} is named.}
 #   \item{...}{Not used.}
 # }
 #
@@ -22,7 +24,7 @@
 #
 # @keyword "manip"
 #*/#########################################################################t
-setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
+setMethodS3("insert", "default", function(x, ats, values=NA, useNames=TRUE, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -51,6 +53,15 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
   if (!is.vector(values))
     throw("Argument 'values' is not a vector: ", class(values));
 
+  # Argument 'useNames':
+  useNames <- as.logical(useNames);
+
+  # Deal with the names attribute too?
+  if (useNames) {
+    names <- names(x);
+    useNames <- (!is.null(names));
+  }
+
   if (!is.list(values)) {
     if (length(ats) == 1) {
       values <- list(values);
@@ -75,8 +86,11 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
   nvalues <- unlist(lapply(values, FUN=length));
 
   # Allocate the result vector
-  x2 <- vector(mode=mode(x), length=length(x) + sum(nvalues));
+  n2 <- length(x) + sum(nvalues);
+  x2 <- vector(mode=mode(x), length=n2);
   storage.mode(x2) <- storage.mode(x);
+  if (useNames)
+    names2 <- character(n2);
 
   # 'ats' positions in the result vector
   n <- length(ats);
@@ -87,7 +101,14 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   for (kk in 1:length(ats2)) {
     idx2 <- ats2[kk] + 0:(nvalues[kk]-1);
-    x2[idx2] <- values[[kk]];
+    valuesKK <- values[[kk]];
+    x2[idx2] <- valuesKK;
+    if (useNames) {
+      valueNames <- names(valuesKK);
+      if (is.null(valueNames))
+        valueNames <- character(length(valuesKK));
+      names2[idx2] <- valueNames;
+    }
   }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -120,7 +141,12 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
     idx <- from:to;
     idx2 <- from2:to2;
     x2[idx2] <- x[idx];
+    if (useNames)
+      names2[idx2] <- names[idx];
   }
+
+  if (useNames)
+    names(x2) <- names2;
 
   x2;
 })
@@ -128,6 +154,9 @@ setMethodS3("insert", "default", function(x, ats, values=NA, ...) {
 
 ############################################################################
 # HISTORY:
+# 2008-12-27
+# o Added argument 'useNames' to insert(), which is now aware of names
+#   of the input object.
 # 2008-03-31
 # o BUG FIX: If 'x' in insert(x, ...) was zero length, an "Error in from:to
 #   : NA/NaN argument" was thrown.

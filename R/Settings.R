@@ -49,8 +49,9 @@
 #     # Detach package when R finishes, which will save package settings too.
 #     onSessionExit(function(...) detachPackage(pkgname));
 #
-#     cat(getName(pkg), " v", getVersion(pkg), " (", getDate(pkg), ")",
-#         " successfully loaded. See ?", pkgname, " for help.\n", sep="");
+#     packageStartupMessage(getName(pkg), " v", getVersion(pkg), 
+#         " (", getDate(pkg), ") successfully loaded. See ?", pkgname,
+#         " for help.\n", sep="");
 #   } # .First.lib() 
 #  }
 #
