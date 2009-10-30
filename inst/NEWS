@@ -2,6 +2,24 @@
 Package: R.utils
 ================
 
+Version: 1.2.4 [2009-10-30]
+o ROBUSTIFICATION: Lowered the risk for saveObject() to leave an
+  imcomplete file due to say power failures etc.  This is done by
+  first writing to a temporary file, which is then renamed.  If the
+  temporary file already exists, an exception is thrown.
+o ROBUSTIFICATION: Now Arguments$getWritablePathname(path) validates 
+  that there is enough file permissions so that a file can be created
+  in the 'path' directory.
+o CLEAN UP: On Windows Vista, createLink() produced a stderr message
+  "You do not have sufficient privilege to perform this operation", when
+  trying to use Windows 'mklink' command.  Those message are now silenced.
+
+
+Version: 1.2.3 [2009-10-20]
+o Added findSourceTraceback(), which finds the pathnames of all
+  files currently being source():ed.
+
+
 Version: 1.2.2 [2009-10-16]
 o Some cleanup of Rd files to meet the stricter requirements.
 
