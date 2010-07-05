@@ -2,6 +2,12 @@
 Package: R.utils
 ================
 
+Version: 1.4.4 [2010-07-05]
+o Now arrayIndex() returns an @integer @matrix.
+o DOCUMENTATION: Now the help of arrayIndex() links to the
+  new arrayInd() in the base package.
+
+
 Version: 1.4.3 [2010-06-23]
 o BUG FIX: getAbsolutePath("//server/dir/") would incorrectly drop
   the initial double-slashes ('//') and return "/server/dir/".
@@ -79,7 +85,7 @@ o If 'x' is a logical vector, Arguments$getIndices(x) will now return
 
 Version: 1.2.4 [2009-10-30]
 o ROBUSTIFICATION: Lowered the risk for saveObject() to leave an
-  imcomplete file due to say power failures etc.  This is done by
+  incomplete file due to say power failures etc.  This is done by
   first writing to a temporary file, which is then renamed.  If the
   temporary file already exists, an exception is thrown.
 o ROBUSTIFICATION: Now Arguments$getWritablePathname(path) validates 
