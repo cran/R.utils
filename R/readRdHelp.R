@@ -111,7 +111,7 @@ setMethodS3("readRdHelp", "default", function(..., format=c("text", "html", "lat
 ############################################################################
 # HISTORY:
 # 2010-09-15
-# o Added some support for readRdHelp(..., format="text") of R < 2.10.0.
+# o Added some support for readRdHelp(..., format="text") on R < 2.10.0.
 # 2010-08-28
 # o Renamed to readRdHelp().
 # 2010-08-23
