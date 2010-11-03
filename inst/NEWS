@@ -2,10 +2,26 @@
 Package: R.utils
 ================
 
+Version: 1.5.6 [2010-11-03]
+o Added resample(), which contrary to sample() also works
+  when drawing from a single element.
+
+
+Version: 1.5.5 [2010-10-26]
+o Now argument 'which' to devSet() can be any object.  If not a 
+  single numeric or a single character string, then a checksum 
+  character string is generated using digest::digest(which).
+
+
+Version: 1.5.4 [2010-10-13]
+o Now the 'link' argument of createLink() is inferred from the 
+  'target' argument if it is "." (or NULL).
+
+
 Version: 1.5.3 [2010-09-29]
 o Added an example to help(findSourceTraceback).
-o BUG FIX: Each entries identified by findSourceTraceback() would 
-  be duplicated.
+o BUG FIX: Each entry identified by findSourceTraceback()
+  would be duplicated.
 
 
 Version: 1.5.2 [2010-09-15]
