@@ -26,6 +26,10 @@
 #      successfully created, the already original file is restored.
 #      If restoration also failed, the original file remains as
 #      the pathname with suffix \code{".bak"} appended.}
+#   \item{backup}{If @TRUE and a file with the same pathname already exists,
+#      then it is backed up while creating the new file.  If the new file
+#      was not successfully created, the original file is restored from
+#      the backup copy.}
 #   \item{verbose}{A @logical or @see "Verbose".}
 # }
 #
@@ -38,14 +42,18 @@
 # @author
 # 
 # \seealso{
-#  Internally @see "pushTemporaryFile" and @see "popTemporaryFile" is used.
+#  Internally,
+#  @see "pushTemporaryFile" and @see "popTemporaryFile" are used for
+#  working toward a temporary file, and
+#  @see "pushBackupFile" and @see "popBackupFile" are used for backing up
+#  and restoring already existing file.
 # }
 #
 # @keyword "utilities" 
 # @keyword "programming"
 # @keyword "IO"
 #*/#########################################################################  
-setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, verbose=FALSE) {
+setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -55,6 +63,9 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
   # Argument 'overwrite':
   overwrite <- Arguments$getLogical(overwrite);
 
+  # Argument 'backup':
+  backup <- Arguments$getLogical(backup);
+  
   # Arguments 'filename' & 'path':
   pathname <- Arguments$getWritablePathname(filename, path=path, mustNotExist=(!skip && !overwrite));
 
@@ -82,34 +93,14 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
     return(pathname);
   }
 
-  # Backing up existing file?
-  pathnameB <- NULL;
-  if (overwrite && isFile(pathname)) {
-    verbose && enter(verbose, "Backing up existing file");
-    pathnameB <- sprintf("%s.bak", pathname);
-    pathnameB <- Arguments$getWritablePathname(pathnameB, mustNotExist=TRUE);
-    file.rename(pathname, pathnameB);
-    pathnameB <- Arguments$getWritablePathname(pathnameB, mustExist=TRUE);
-    verbose && exit(verbose);
-
-    # Restore backup file, in case creation of new file was not succesful.
+  # Back existing file, if it exists?
+  if (backup) {
+    pathnameB <- pushBackupFile(pathname, verbose=verbose);
     on.exit({
-      # Successful?
-      successful <- isFile(pathname);
-      if (successful) {
-        # Drop backup
-        verbose && enter(verbose, "Removing backup file because the new file was successfully created");
-        file.remove(pathnameB);
-        verbose && exit(verbose);
-      } else {
-        verbose && enter(verbose, "Restoring original file from backup because the creation of the new file failed");
-        file.rename(pathnameB, pathname);
-        pathname <- Arguments$getWritablePathname(pathname, mustExist=TRUE);
-        verbose && exit(verbose);
-      }
+      # Restore or drop backup file
+      popBackupFile(pathnameB, drop=TRUE, verbose=verbose);
     }, add=TRUE);
   }
-
 
   # Write to a temporary pathname
   pathnameT <- pushTemporaryFile(pathname, ..., verbose=verbose);
@@ -136,6 +127,9 @@ setMethodS3("createFileAtomically", "default", function(filename, path=NULL, FUN
 
 ############################################################################
 # HISTORY:
+# 2011-03-01
+# o Added argument 'backup'.
+# o Now createFileAtomically() utilizes push- and popBackupFile().
 # 2011-02-28
 # o Added createFileAtomically().
 # o Created.

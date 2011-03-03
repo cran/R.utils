@@ -1,6 +1,6 @@
 Package: R.utils
-Version: 1.6.4
-Date: 2011-02-28
+Version: 1.6.5
+Date: 2011-03-03
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
@@ -11,8 +11,6 @@ Description: This package provides utility classes and methods useful
 License: LGPL (>= 2.1)
 URL: http://www.braju.com/R/
 LazyLoad: TRUE
+Packaged: 2011-03-03 16:15:29 UTC; hb
 Repository: CRAN
-Repository/R-Forge/Project: r-dots
-Repository/R-Forge/Revision: 471
-Date/Publication: 2011-03-03 06:53:02
-Packaged: 2011-03-01 21:42:25 UTC; rforge
+Date/Publication: 2011-03-04 07:15:56
