@@ -84,7 +84,6 @@
 
  % The Options class
  \alias{hasOption}
- \alias{setOption}
  \alias{getOption}
  \alias{getOption.default}
  \alias{getLeaves}

@@ -415,7 +415,7 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=NULL, par=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -568,6 +568,14 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
     devNew(type, pathname, ...);
     on.exit({
       devDone();
+
+      # Archive file?
+      if (getOption("R.archive::devEval", FALSE)) {
+        # For now, trick R CMD check not to look for R.archive
+        pkgName <- "R.archive";
+        archiveFile <- NULL; rm(archiveFile);
+        if (require(pkgName, character.only=TRUE)) archiveFile(pathname);
+      }
     }, add=TRUE);
   
     eval(expr, envir=envir);
@@ -635,6 +643,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-10
+# o Now argument 'aspectRatio' of devNew() defaults to 1 (instead of @NULL).
+# 2011-03-09
+# o Added support for automatic file archiving in devEval().
 # 2011-02-20
 # o Changed argument 'force' of devEval() to default to TRUE.
 # o Added argument 'par' to devNew() allowing for applying graphical
