@@ -318,7 +318,7 @@ devOff <- function(which=dev.cur(), ...) {
 ###########################################################################/**
 # @RdocFunction devDone
 #
-# @title "Closes an on-screen (interactive) device"
+# @title "Closes an open device unless it is a on-screen (interactive) device"
 #
 # \description{
 #  @get "title".
@@ -482,8 +482,11 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 
   devSetLabel(label=label);
 
-  if (!is.null(par)) {
-    par(par);
+  # Default and user-specific parameters
+  parT <- getOption("devNew/args/par", list());
+  parT <- c(parT, par);
+  if (length(parT) > 0) {
+    par(parT);
   }
 
   invisible(res);
@@ -541,19 +544,24 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path="figures/", force=TRUE) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), force=TRUE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Argument 'filename' & 'path':
   pathname <- Arguments$getWritablePathname(filename, path=path);
 
+  # Argument 'name' and 'tags':
+  fullname <- paste(c(name, tags), collapse=",");
+  fullname <- unlist(strsplit(fullname, split=",", fixed=TRUE));
+  fullname <- trim(fullname);
+  fullname <- fullname[nchar(fullname) > 0];
+  fullname <- paste(fullname, collapse=",");
+
   # Argument 'force':
   force <- Arguments$getLogical(force);
 
   # Result object
-  fullname <- paste(c(name, tags), collapse=",");
-
   res <- list(
     type = type,
     name = name,
@@ -570,11 +578,10 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
       devDone();
 
       # Archive file?
-      if (getOption("R.archive::devEval", FALSE)) {
-        # For now, trick R CMD check not to look for R.archive
-        pkgName <- "R.archive";
-        archiveFile <- NULL; rm(archiveFile);
-        if (require(pkgName, character.only=TRUE)) archiveFile(pathname);
+      if (isPackageLoaded("R.archive")) {
+        # To please R CMD check
+        getArchiveOption <- archiveFile <- NULL;
+        if (getArchiveOption("devEval", FALSE)) archiveFile(pathname);
       }
     }, add=TRUE);
   
@@ -643,6 +650,17 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2011-03-18
+# o Now devEval() does a better job of "cleaning up" 'name' and 'tags'.
+# o Now argument 'path' of devEval() defaults to 
+#   getOption("devEval/args/path", "figures/").
+# o devNew() gained option 'devNew/args/par', which can be used to specify 
+#   the default graphical parameters for devNew().  Any additional 
+#   parameters passed via argument 'par' will override such default ones,
+#   if both specifies the same parameter.
+# 2011-03-16
+# o Now R.archive:ing is only done if the R.archive package is loaded.
+# o DOCUMENTATION: The title of devDone() was incorrect.
 # 2011-03-10
 # o Now argument 'aspectRatio' of devNew() defaults to 1 (instead of @NULL).
 # 2011-03-09

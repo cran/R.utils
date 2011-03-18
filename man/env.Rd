@@ -59,7 +59,7 @@ str(x);
 
  \references{
    [1] R-devel thread 'Create an environment and assign objects to it in
-       one go?' on March 9-10, 2010.\cr
+       one go?' on March 9-10, 2011.\cr
  }
 
 
