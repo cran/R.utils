@@ -1,6 +1,6 @@
 Package: R.utils
-Version: 1.7.4
-Date: 2011-04-03
+Version: 1.7.5
+Date: 2011-04-12
 Title: Various programming utilities
 Author: Henrik Bengtsson <henrikb@braju.com>
 Maintainer: Henrik Bengtsson <henrikb@braju.com>
@@ -11,6 +11,6 @@ Description: This package provides utility classes and methods useful
 License: LGPL (>= 2.1)
 URL: http://www.braju.com/R/
 LazyLoad: TRUE
-Packaged: 2011-04-03 20:46:22 UTC; hb
+Packaged: 2011-04-27 00:29:59 UTC; hb
 Repository: CRAN
-Date/Publication: 2011-04-04 19:23:34
+Date/Publication: 2011-04-27 09:20:38
