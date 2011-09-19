@@ -204,6 +204,7 @@
  \alias{getCommonPrefix}
  \alias{mergeByCommonTails}
  \alias{splitByCommonTails}
+ \alias{writeDataFrame}
 
 
  \description{
