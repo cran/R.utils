@@ -1,4 +1,4 @@
-4a854118c09eb01ef801986198d4ddc8 *DESCRIPTION
+78dd73e55e42173da222b1e15a82efe6 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -41,7 +41,7 @@ e020a4686e1c4519aa295ac33d45e05c *R/createFileAtomically.R
 4e5e9945e60bb4f1135c6c2976c7c927 *R/createWindowsShortcut.R
 18b487ebd888626088dface300142548 *R/dataFrame.R
 523eb3a2c8fb3eb31be8eaa29afeba2e *R/detachPackage.R
-aa879cbb382af09ce94ac30ddb144523 *R/deviceUtils.R
+a0cf5cabf303c674fbfc47279742503a *R/deviceUtils.R
 5cd287a2029ed98e7964c51e853b83d2 *R/dimNA.R
 5b54120842e6b8205e38b0fb38faaad8 *R/displayCode.R
 2f59d3689bb730d75741c1fdbbe5059a *R/doCall.R
@@ -101,7 +101,7 @@ b002cad8f0c1f4d2c85bd1a2afa8fca7 *R/pushTemporaryFile.R
 dc7919ebc5f7edf86c90cab05a60f0b0 *R/readRdHelp.R
 654f89ba114ac9cc33ddfae1bb566cca *R/readTable.R
 688274ff5dc6b2dbf99a562a0d568f42 *R/readTableIndex.R
-29fb6f9ee48361ef09348ade1b35d220 *R/readWindowsShortcut.R
+6e86daaa4c28ce5ade2e1362604fe785 *R/readWindowsShortcut.R
 c70af7038c9ac73ef2a8f1849d108c00 *R/reassignInPackage.R
 9036bccea8b39afdae57f4386a019982 *R/relibrary.R
 5cad9fa46def47b7c9253b06ae754d06 *R/removeDirectory.R
@@ -165,14 +165,14 @@ cefbb8775c8dfd3f21897f5de14eb351 *incl/getAbsolutePath.Rex
 1e8ecc860844387f7021a13ce6a1a9d5 *incl/pushBackupFile.Rex
 e186727f6c77e8ae6d0777b6def80b34 *incl/pushTemporaryFile.Rex
 003ba2dde4e3ad7c650a8f3fe8f44760 *incl/readBinFragments.Rex
-f6e39156019e4c7e4081c622add1c163 *incl/readWindowsShortcut.Rex
+6dda474a952a3b91f470dad805c92021 *incl/readWindowsShortcut.Rex
 045d7eee12cc23f3f0fe1beb0c0c141f *incl/seqToIntervals.Rex
 02327bbe9facc7acb2741571cd5dfca8 *incl/sourceTo.Rex
 9181246bb7c3074c2ba15774428bc2fe *incl/splitByPattern.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-c49bb3466f3f47b032e64d36782b20cf *inst/NEWS
+93f4c9aed19dcdafb727f7e336752113 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -377,7 +377,7 @@ da9199709b7c920f39762b03bfaa1697 *man/readRdHelp.Rd
 fc6ad3720c316efe19a5bf9eb392518d *man/readTable.Rd
 23da745f53feac1eba1b4f9254351ca0 *man/readTableIndex.Rd
 eccfbaed18139bfa34786ccad885e32d *man/readUTF.Java.Rd
-8f8140e327476ac45a49c16198bb3cc5 *man/readWindowsShortcut.Rd
+ff5cb0a7d73d2ad919574e409d92233c *man/readWindowsShortcut.Rd
 0aa7cec84f6fbea64c25e2d5a9858465 *man/reassignInPackage.Rd
 5b7e8ce2e5460927183b633d4b1c7b16 *man/relibrary.Rd
 85f9d11470c3a0252779d29d48134e09 *man/remove.FileProgressBar.Rd
