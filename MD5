@@ -1,10 +1,10 @@
-78dd73e55e42173da222b1e15a82efe6 *DESCRIPTION
+2da86c45b63ad5f6591da8dc280452c6 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
-fecc0d8dc7c19277590528b0b1ea54f0 *R/999.NonDocumentedObjects.R
+593b847537248f5a5313f6b0d7c690be *R/999.NonDocumentedObjects.R
 cac01492780d7dacf188414aec7b99c7 *R/999.package.R
-86b6f399e15f302cb281b07912e46c7e *R/Arguments.R
+fc49207fc3967b9b6299c9a2df889c2c *R/Arguments.R
 0877d40bc4096f1baf3f7290deadcd2a *R/Assert.R
 10009865593a51dd3ce4392ae44291b8 *R/FileListTree.R
 9f59b9996214f79ad3fb11005aeff35c *R/FileProgressBar.R
@@ -37,7 +37,7 @@ d17e79d58c6bdfc2084852acd0ddc311 *R/commandArgs.R
 ca36a01dacc8e47b75c7bd1f04c19c70 *R/copyFile.R
 aaab1ca8e99a65f7bc5ab5e90dbca34c *R/countLines.R
 e020a4686e1c4519aa295ac33d45e05c *R/createFileAtomically.R
-695b483da290fbd6921d2fba95b95bf7 *R/createLink.R
+72502ce0051421b8a1b7918e0f9e1ce8 *R/createLink.R
 4e5e9945e60bb4f1135c6c2976c7c927 *R/createWindowsShortcut.R
 18b487ebd888626088dface300142548 *R/dataFrame.R
 523eb3a2c8fb3eb31be8eaa29afeba2e *R/detachPackage.R
@@ -63,6 +63,7 @@ a142967a119790492407dc65198cab78 *R/hasUrlProtocol.R
 67059b94e526d2bc534237fb1230e547 *R/hpaste.R
 d435ed49272712bb9af5a886adddc2d5 *R/inAnyInterval.R
 aa5c18f0ed83d9341662b75f0ee3f022 *R/insert.R
+b1a63083fbaf790c49455d246d17573a *R/installPackages.R
 357cace4fe1099d2b48a5e4448fddbfa *R/intToBin.R
 bea184cfe85ef716d2dabfebf6435b7f *R/intToHex.R
 85577887b460a7573293b7b99f5a8cf5 *R/intToOct.R
@@ -172,7 +173,7 @@ e186727f6c77e8ae6d0777b6def80b34 *incl/pushTemporaryFile.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-93f4c9aed19dcdafb727f7e336752113 *inst/NEWS
+2fe65c4739a55a63f5636564f7e83c52 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -183,7 +184,7 @@ c3c99424df94377226ca583cb947775d *man/GString.Rd
 ad7cb43e6d8dbb729d99537af47e95d1 *man/Java.Rd
 9686b865a07313e6e3baede3b94f1924 *man/LComments.Rd
 f28d8f9c4f300e1d8606f7bf61d1f35d *man/MultiVerbose.Rd
-e48f570a64ee63c4fef445ec98124711 *man/Non-documented_objects.Rd
+0476e4c80d782073f6955728a1306534 *man/Non-documented_objects.Rd
 04bdbef6bb062b3987b6d3ff6db78e23 *man/NullVerbose.Rd
 69495a0acc26afa981f20aaaae4cf4a6 *man/Options.Rd
 4d5b76dd729bac91467ccdf3b47f7c2b *man/ProgressBar.Rd
@@ -227,7 +228,7 @@ d66def7acf252b2c3a2f9eb48be6ec5f *man/convertComment.SmartComments.Rd
 a49d0e116be769918977b6fa194055e5 *man/copyFile.Rd
 122f164abc1d22e4f2729325d0170172 *man/countLines.Rd
 73544c9204e4a2e0c70bcfb7443d9c80 *man/createFileAtomically.Rd
-5d79cb84198909fcbf5fdbc1bbff809a *man/createLink.Rd
+f4c97835d9541028590a79823567c661 *man/createLink.Rd
 0a736ef90fdbf9eb007097330e91de88 *man/createWindowsShortcut.Rd
 37de32ae38245c4be15d96d6a9d21813 *man/currentTimeMillis.System.Rd
 a864515eeea561fd425bec8bd02b3882 *man/dataFrame.Rd
