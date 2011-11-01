@@ -1,4 +1,4 @@
-2da86c45b63ad5f6591da8dc280452c6 *DESCRIPTION
+20502ded2c5fd028eab5b331ce562ae8 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -41,7 +41,7 @@ e020a4686e1c4519aa295ac33d45e05c *R/createFileAtomically.R
 4e5e9945e60bb4f1135c6c2976c7c927 *R/createWindowsShortcut.R
 18b487ebd888626088dface300142548 *R/dataFrame.R
 523eb3a2c8fb3eb31be8eaa29afeba2e *R/detachPackage.R
-a0cf5cabf303c674fbfc47279742503a *R/deviceUtils.R
+43422b07fb6decea17b8ac7d59f4af70 *R/deviceUtils.R
 5cd287a2029ed98e7964c51e853b83d2 *R/dimNA.R
 5b54120842e6b8205e38b0fb38faaad8 *R/displayCode.R
 2f59d3689bb730d75741c1fdbbe5059a *R/doCall.R
@@ -128,7 +128,7 @@ d918f7c04d01cc17d04b7f2267c87e67 *R/touchFile.R
 7d76ba24b1578834dc5e27a71e21a767 *R/wrap.array.R
 7e83955f97cf445001ae3d825c8232d2 *R/writeBinFragments.R
 46cef5444f33cfb8b18b83461cfdb5d7 *R/writeDataFrame.R
-aa8f1fbe66996e82590cb93d5f99f13e *R/zzz.R
+e7157a2f476bb2196cfb5feb71134bee *R/zzz.R
 5135155a71eefccbccfd5d0631e19be9 *incl/BengtssonH_2003.bib.Rdoc
 82c6dd1902610aecb8ea3bfa16646509 *incl/FileProgressBar.Rex
 4dadd98190875720e7d3742f3763e968 *incl/GString.Rex
@@ -173,7 +173,7 @@ e186727f6c77e8ae6d0777b6def80b34 *incl/pushTemporaryFile.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-2fe65c4739a55a63f5636564f7e83c52 *inst/NEWS
+7db3d9e82b5e768ef30748f969b877c4 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -234,7 +234,7 @@ f4c97835d9541028590a79823567c661 *man/createLink.Rd
 a864515eeea561fd425bec8bd02b3882 *man/dataFrame.Rd
 6575fed3c1e7519142240ed18f0b052d *man/detachPackage.Rd
 32fc17680205d901e8a51c3479a6dd17 *man/devDone.Rd
-55d687ba18b70da366d6b7bec720f3fd *man/devEval.Rd
+41abfd1f0f3cd059751d53b768c692f9 *man/devEval.Rd
 f9d499cabca7ba067a368fe0ba457051 *man/devGetLabel.Rd
 fb995df8b4e4a2da90a9dd362683c01d *man/devIsOpen.Rd
 3ce76cd9f8ecb65fa36354de0bef8273 *man/devList.Rd

@@ -2,9 +2,17 @@
 Package: R.utils
 ================
 
+Version: 1.8.7 [2011-11-01]
+o CLEANUP: Fixed a R CMD check NOTE that would show up in R v2.15.0 devel.
+
+
+Version: 1.8.6 [2011-10-31]
+o Added argument 'field' to devEval().
+
+
 Version: 1.8.5 [2011-10-16]
 o CORRECTION: Arguments$getNumerics(c(Inf), disallow="Inf") would report
-  that it contains "NA" instead of "Inf" values".
+  that it contains "NA" instead of "Inf" values.
 
 
 Version: 1.8.4 [2011-10-08]
