@@ -2,6 +2,38 @@
 Package: R.utils
 ================
 
+Version: 1.9.3 [2011-11-07]
+o Added 'quarts' to the list of (possible) devices for devOptions().
+o BUG FIX: devOptions() assumed that all devices exist on
+  all platforms, causing it to give an error on some.
+
+
+Version: 1.9.2 [2011-11-06]
+o Added evalCapture() for evaluating an expression and
+  capturing its deparsed code and/or output.
+
+
+Version: 1.9.1 [2011-11-05]
+o Added toEPS(), toPDF(), toPNG() and toSVG().
+o Added devOptions().
+o Added default 'width' and 'height' values to eps().
+o Turned png2() and jpeg2() into plain functions without a generic.  
+  This is consistent with how eps() is defined.
+o GENERALIZATION: Now the default 'width' is inferred from 
+  devOptions() if needed.
+o DOCUMENTATION: Added an example to help(devEval).
+
+
+Version: 1.9.0 [2011-11-03]
+o Added queryRCmdCheck(), which retrieves the status of 'R CMD check',
+  iff it is running.
+
+
+Version: 1.8.8 [2011-11-01]
+o Added argument 'dims' to extract() for arrays.  Also, argument 'drop'
+  was moved to the end.
+
+
 Version: 1.8.7 [2011-11-01]
 o CLEANUP: Fixed a R CMD check NOTE that would show up in R v2.15.0 devel.
 
