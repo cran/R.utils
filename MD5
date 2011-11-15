@@ -1,14 +1,14 @@
-3d6e7df03749b10e8737faac329c0c62 *DESCRIPTION
+fe486d744b573424dc0fae5ccdf84516 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
 1978c6ebf81854c7febee050d45e4fb7 *R/999.NonDocumentedObjects.R
 cac01492780d7dacf188414aec7b99c7 *R/999.package.R
-fc49207fc3967b9b6299c9a2df889c2c *R/Arguments.R
+450b3f74fda82a50153fdb2223792531 *R/Arguments.R
 0877d40bc4096f1baf3f7290deadcd2a *R/Assert.R
 10009865593a51dd3ce4392ae44291b8 *R/FileListTree.R
 9f59b9996214f79ad3fb11005aeff35c *R/FileProgressBar.R
-0c217abcecbe75eaf0116a405197feb0 *R/GString.R
+940cb539ae685d2dcd4b6af90502a1c4 *R/GString.R
 4fbd8c7c8912acd0c21927f6fdfb3aa1 *R/GenericSummary.R
 235a1e56ceeb5ccde6a063fc1ff14eb1 *R/Java.R
 cc84e1ab6de83534ad05cd9a71e13cca *R/LComments.R
@@ -42,7 +42,7 @@ e020a4686e1c4519aa295ac33d45e05c *R/createFileAtomically.R
 18b487ebd888626088dface300142548 *R/dataFrame.R
 523eb3a2c8fb3eb31be8eaa29afeba2e *R/detachPackage.R
 f0f326eae3e0894f7a47af8959fb6ace *R/devOptions.R
-8f42c23dcc81441759faaed11fdc488b *R/deviceUtils.R
+b3e62af692a1854b20702a15680b3186 *R/deviceUtils.R
 5cd287a2029ed98e7964c51e853b83d2 *R/dimNA.R
 5b54120842e6b8205e38b0fb38faaad8 *R/displayCode.R
 2f59d3689bb730d75741c1fdbbe5059a *R/doCall.R
@@ -181,7 +181,7 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-95bb46f1106c96167905752a6dbc2f5e *inst/NEWS
+c7605c1cce434ded1c7e67ce70109bd6 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
