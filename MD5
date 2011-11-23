@@ -1,4 +1,4 @@
-fe486d744b573424dc0fae5ccdf84516 *DESCRIPTION
+c5b111ebe07b355129fbb85544df5722 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -8,7 +8,7 @@ cac01492780d7dacf188414aec7b99c7 *R/999.package.R
 0877d40bc4096f1baf3f7290deadcd2a *R/Assert.R
 10009865593a51dd3ce4392ae44291b8 *R/FileListTree.R
 9f59b9996214f79ad3fb11005aeff35c *R/FileProgressBar.R
-940cb539ae685d2dcd4b6af90502a1c4 *R/GString.R
+e30d21a8daac0dcf70fa104325acdfb1 *R/GString.R
 4fbd8c7c8912acd0c21927f6fdfb3aa1 *R/GenericSummary.R
 235a1e56ceeb5ccde6a063fc1ff14eb1 *R/Java.R
 cc84e1ab6de83534ad05cd9a71e13cca *R/LComments.R
@@ -49,7 +49,7 @@ b3e62af692a1854b20702a15680b3186 *R/deviceUtils.R
 237cea637b69586c1cbaf3ac4c7912c7 *R/downloadFile.R
 d0a52423f7a2239eaf2652f6c235b209 *R/env.R
 3e847b49cdcf60d2c133d48e16649f77 *R/eps.R
-f2ef33492dc788d9772cab7a4f11209e *R/evalCapture.R
+e1dcd0979840af2086d03a2ce147e8e9 *R/evalCapture.R
 718971998d976dd21e87719fd524e431 *R/evalWithTimeout.R
 5d37a6e1ecb42090f93c8c00550d4956 *R/extract.array.R
 a9ec44b58f817fb6eed318ff776918d5 *R/fileAccess.R
@@ -181,7 +181,7 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-c7605c1cce434ded1c7e67ce70109bd6 *inst/NEWS
+4130ff3444bf8284b336533d3c5dbc51 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
