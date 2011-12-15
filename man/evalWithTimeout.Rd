@@ -16,7 +16,7 @@
  Evaluate an R expression and interrupts it if it takes too long.
 }
 
-\usage{evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "ignore"))}
+\usage{evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"))}
 
 \arguments{
   \item{...}{The R expression to be evaluated as passed
@@ -33,8 +33,10 @@
 }
 
 \value{
- Returns the results of the expression evaluated,
- or \code{\link[base]{NULL}} if \code{onTimeout="warning"} and a timeout event occured.
+ Returns the results of the expression evaluated.
+ If timed out, \code{\link[base]{NULL}} is returned if \code{onTimeout} was
+ \code{"warning"} or \code{"silent"}.
+ If \code{"error"} a \code{\link{TimeoutException}} is thrown.
 }
 
 \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
@@ -74,6 +76,15 @@ tryCatch({
 res <- evalWithTimeout({
   foo();
 }, timeout=1.08, onTimeout="warning");
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+# Evaluate code, if it takes too long, generate
+# a timeout, and return silently NULL.
+# - - - - - - - - - - - - - - - - - - - - - - - - -
+res <- evalWithTimeout({
+  foo();
+}, timeout=1.08, onTimeout="silent");
 }
 
 \seealso{

@@ -1,4 +1,4 @@
-c5b111ebe07b355129fbb85544df5722 *DESCRIPTION
+4a99a7a42518f946b596de3c1c5935a5 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -50,7 +50,7 @@ b3e62af692a1854b20702a15680b3186 *R/deviceUtils.R
 d0a52423f7a2239eaf2652f6c235b209 *R/env.R
 3e847b49cdcf60d2c133d48e16649f77 *R/eps.R
 e1dcd0979840af2086d03a2ce147e8e9 *R/evalCapture.R
-718971998d976dd21e87719fd524e431 *R/evalWithTimeout.R
+612d11b762ac87302845e4fd89c6cbab *R/evalWithTimeout.R
 5d37a6e1ecb42090f93c8c00550d4956 *R/extract.array.R
 a9ec44b58f817fb6eed318ff776918d5 *R/fileAccess.R
 16f2a64a2f33cd66eb350cdea12a44e5 *R/filePath.R
@@ -123,7 +123,7 @@ f3700d730502145e85855b9f2409dbba *R/splitByCommonTails.R
 f5acb4f44c5f04c8e21f094689854ed0 *R/stext.R
 596f21552dc9063b08bf160a8f3da53a *R/subplots.R
 aa80c8d708db45d566e12d25c551f210 *R/toAsciiRegExprPattern.R
-89bd74af64a1289b6720e406b7783e9f *R/toCamelCase.R
+36c310845748970e16f6a6daacd33716 *R/toCamelCase.R
 1e7a0137e695ccfd6fcaf7c65fa9d793 *R/toEPS.R
 2bb6cd656e949bb5d19b031717acf8a3 *R/toUrl.R
 d918f7c04d01cc17d04b7f2267c87e67 *R/touchFile.R
@@ -160,7 +160,7 @@ d6a230f7b97ce378ef119eb84b8f0330 *incl/devEval.Rex
 07952611b989bf725520ebd858c7b53f *incl/displayCode.Rex
 bce05d94c82523487df13ef8e5e3030b *incl/env.Rex
 3206400d14edd4d510de4156d7853482 *incl/evalCapture.Rex
-57d1435e794def84a20435834e4e088f *incl/evalWithTimeout.Rex
+3ee5a7c60838dab995219326a20d4487 *incl/evalWithTimeout.Rex
 d6ab4386f44d6d4e2c5755ff576068c0 *incl/extract.array.Rex
 d3621368313bdf5a13870cf5367f4817 *incl/fileAccess.Rex
 49a42fa53dee08cc85c20ccfdaca08ca *incl/filePath.Rex
@@ -178,10 +178,11 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 045d7eee12cc23f3f0fe1beb0c0c141f *incl/seqToIntervals.Rex
 02327bbe9facc7acb2741571cd5dfca8 *incl/sourceTo.Rex
 9181246bb7c3074c2ba15774428bc2fe *incl/splitByPattern.Rex
+792c265902b72749772617f6bf1b327f *incl/toCamelCase.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-4130ff3444bf8284b336533d3c5dbc51 *inst/NEWS
+5c676b7e292c7ecec3f9da6bf7f1b72e *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -242,7 +243,7 @@ f4c97835d9541028590a79823567c661 *man/createLink.Rd
 a864515eeea561fd425bec8bd02b3882 *man/dataFrame.Rd
 6575fed3c1e7519142240ed18f0b052d *man/detachPackage.Rd
 32fc17680205d901e8a51c3479a6dd17 *man/devDone.Rd
-40e7b85ce2f4723cee5ac15452ce77a9 *man/devEval.Rd
+1c6f98df2a3fd5b19308ea0789d43844 *man/devEval.Rd
 f9d499cabca7ba067a368fe0ba457051 *man/devGetLabel.Rd
 fb995df8b4e4a2da90a9dd362683c01d *man/devIsOpen.Rd
 3ce76cd9f8ecb65fa36354de0bef8273 *man/devList.Rd
@@ -261,7 +262,7 @@ c3b27b3c670cbfc8dd8aabdca23f3aca *man/eps.Rd
 d58113ea22a4e60e8aa1946669ea3e21 *man/equals.Options.Rd
 4369897802617f32da8b2d15329e8368 *man/equals.Verbose.Rd
 1d8bb22dcd022735ed5b899e5e9e6486 *man/evalCapture.Rd
-44d59fd0c564bbf67043fec03f73ad6a *man/evalWithTimeout.Rd
+72676adc9b890b170d9b497d7a2f4f04 *man/evalWithTimeout.Rd
 dd2d90bdd38bb20985af1b2806726458 *man/evaluate.Verbose.Rd
 f2c0b8a57a06a25125213fe82098220a *man/exit.Verbose.Rd
 ea14292cf1c75b297c60e9d767cf3ee5 *man/extract.array.Rd
@@ -427,7 +428,7 @@ fdef850c988af2dfbcdc22be361e38cf *man/subplots.Rd
 9cb0ff5ed42c235f373fe714ba0b5f34 *man/summary.Verbose.Rd
 75678c1714c61fc76353fe9e2d1f7c94 *man/timestamp.Verbose.Rd
 e498b209b2b9535db03ab258d2b9f9f7 *man/timestampOn.Verbose.Rd
-d4dffb0de331af4ac8961f2a4484679c *man/toCamelCase.Rd
+c340bc5e6dc1ff1319a0f99dae71271f *man/toCamelCase.Rd
 cd0c4990ca20e883f8ed80951ce6ebb2 *man/toEPS.Rd
 3aa67d57ea5f5c80379d78bdaebc66ed *man/toUrl.Rd
 eda7f20e846143108a5f621ac5abc167 *man/touchFile.Rd

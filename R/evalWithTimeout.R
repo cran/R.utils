@@ -24,8 +24,10 @@
 # }
 #
 # \value{
-#  Returns the results of the expression evaluated, 
-#  or @NULL if \code{onTimeout="warning"} and a timeout event occured.
+#  Returns the results of the expression evaluated.
+#  If timed out, @NULL is returned if \code{onTimeout} was 
+#  \code{"warning"} or \code{"silent"}.
+#  If \code{"error"} a @see "TimeoutException" is thrown.
 # }
 #
 # @author
@@ -44,7 +46,7 @@
 # @keyword IO
 # @keyword programming
 #*/########################################################################### 
-evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "ignore")) {
+evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent")) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -65,7 +67,8 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
   }, error = function(ex) {
     msg <- ex$message;
     # Was it a timeout?
-    if (regexpr("reached elapsed time limit", msg) != -1) {
+    pattern <- gettext("reached elapsed time limit");
+    if (regexpr(pattern, msg) != -1) {
       ex <- TimeoutException(msg, cpu=cpu, elapsed=elapsed);
       if (onTimeout == "error") {
         throw(ex);
@@ -85,6 +88,11 @@ evalWithTimeout <- function(..., envir=parent.frame(), timeout, cpu=timeout, ela
 
 ############################################################################
 # HISTORY:
+# 2011-12-16
+# o GENERALIZATION: evalWithTimeout() would fail to detect timeouts
+#   in non-English locales.
+# o Improved the Rd help.
+# o BUG FIX: Now evalWithTimeout(..., onTimeout="silent") works.
 # 2010-12-07
 # o Added Rdoc comments with an example.
 # 2010-12-06
