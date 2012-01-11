@@ -1,4 +1,4 @@
-4a99a7a42518f946b596de3c1c5935a5 *DESCRIPTION
+d8b8449490ead15faa4e499e1553b974 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -23,7 +23,7 @@ d19cb0a22f17d054094b54bdc29f41f3 *R/Settings.R
 d3b608c94f3e1bd88a6ba0f9aab79d87 *R/TextStatusBar.R
 d144ef94fd89c68150979d66ea8cf7d1 *R/TimeoutException.R
 2fe4bf047423a3ce3a75d71c40f602e3 *R/VComments.R
-f0eaf3d6de47acdf900c098b9a28fa1f *R/Verbose.R
+b347202299b2d59af74d554320328414 *R/Verbose.R
 1f408fb105c06b6606cb93f81a367d7b *R/addFinalizerToLast.R
 c00da965d00b8a60925a8947a1d0eefd *R/arrayIndex.R
 19ef18473b69265a7218dcae9700cbad *R/as.character.hexmode,patch.R
@@ -50,7 +50,7 @@ b3e62af692a1854b20702a15680b3186 *R/deviceUtils.R
 d0a52423f7a2239eaf2652f6c235b209 *R/env.R
 3e847b49cdcf60d2c133d48e16649f77 *R/eps.R
 e1dcd0979840af2086d03a2ce147e8e9 *R/evalCapture.R
-612d11b762ac87302845e4fd89c6cbab *R/evalWithTimeout.R
+f79f1f31934771a19f25b15592a223d7 *R/evalWithTimeout.R
 5d37a6e1ecb42090f93c8c00550d4956 *R/extract.array.R
 a9ec44b58f817fb6eed318ff776918d5 *R/fileAccess.R
 16f2a64a2f33cd66eb350cdea12a44e5 *R/filePath.R
@@ -182,7 +182,7 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-5c676b7e292c7ecec3f9da6bf7f1b72e *inst/NEWS
+505a87902238f6b8e4d7783db25588ec *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -262,7 +262,7 @@ c3b27b3c670cbfc8dd8aabdca23f3aca *man/eps.Rd
 d58113ea22a4e60e8aa1946669ea3e21 *man/equals.Options.Rd
 4369897802617f32da8b2d15329e8368 *man/equals.Verbose.Rd
 1d8bb22dcd022735ed5b899e5e9e6486 *man/evalCapture.Rd
-72676adc9b890b170d9b497d7a2f4f04 *man/evalWithTimeout.Rd
+0fbbb9f20de6d79610cb9dab94920ae0 *man/evalWithTimeout.Rd
 dd2d90bdd38bb20985af1b2806726458 *man/evaluate.Verbose.Rd
 f2c0b8a57a06a25125213fe82098220a *man/exit.Verbose.Rd
 ea14292cf1c75b297c60e9d767cf3ee5 *man/extract.array.Rd
