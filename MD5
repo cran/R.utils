@@ -1,4 +1,4 @@
-d8b8449490ead15faa4e499e1553b974 *DESCRIPTION
+1188ee70d4eb06d437aaab5d84db5d1c *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 f118354c43cf6240c551ae9bda5e1493 *R/006.fixVarArgs.R
@@ -19,7 +19,7 @@ b0d3e3b1d01ad3f3566f51087951568c *R/Options.R
 d19cb0a22f17d054094b54bdc29f41f3 *R/Settings.R
 445d4a063e3608ecb09afed6aed449de *R/SmartComments.R
 466944a280343e5b5105713a459b347c *R/Sys.setenv.patch.R
-5d3fa301da9ba8ad50ef07f7752f041e *R/System.R
+3995c2e2fadb456ecc9cf56ccea84a58 *R/System.R
 d3b608c94f3e1bd88a6ba0f9aab79d87 *R/TextStatusBar.R
 d144ef94fd89c68150979d66ea8cf7d1 *R/TimeoutException.R
 2fe4bf047423a3ce3a75d71c40f602e3 *R/VComments.R
@@ -106,7 +106,7 @@ dc7919ebc5f7edf86c90cab05a60f0b0 *R/readRdHelp.R
 654f89ba114ac9cc33ddfae1bb566cca *R/readTable.R
 688274ff5dc6b2dbf99a562a0d568f42 *R/readTableIndex.R
 6e86daaa4c28ce5ade2e1362604fe785 *R/readWindowsShortcut.R
-c70af7038c9ac73ef2a8f1849d108c00 *R/reassignInPackage.R
+c79953f34203fc3688fed95d1238e12e *R/reassignInPackage.R
 9036bccea8b39afdae57f4386a019982 *R/relibrary.R
 5cad9fa46def47b7c9253b06ae754d06 *R/removeDirectory.R
 a2efffabbf0eb693e7acec562835d449 *R/renameFile.R
@@ -182,7 +182,7 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-505a87902238f6b8e4d7783db25588ec *inst/NEWS
+8d96a4297f349a23ceb8130b4e857625 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
@@ -270,7 +270,7 @@ e6949f012b4c9b5ee11004cbceddde8d *man/fileAccess.Rd
 e3e5438973bfe60f12d726344c04bbe7 *man/filePath.Rd
 34702e239ccba8f79aff6f12f233e21d *man/finalizeSession.Rd
 59dc2d71d94b18f97e3e073f970e0e92 *man/findGhostscript.System.Rd
-a7760cbffab5ab1d48016cd0a443176b *man/findGraphicsDevice.System.Rd
+01dcb8a58cfb9a2c09967c608108bd09 *man/findGraphicsDevice.System.Rd
 209664fd9cbabe0d633ff84b60fb1ab0 *man/findSettings.Settings.Rd
 d811625cc68cf6edfc30aed8937bc13b *man/findSourceTraceback.Rd
 a305ddbbd87cb5008ca01ca4f6f93d06 *man/flush.TextStatusBar.Rd
