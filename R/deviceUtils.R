@@ -381,7 +381,10 @@ devDone <- function(which=dev.cur(), ...) {
 #     opened. This string should match the name of an existing device 
 #     @function.}
 #   \item{...}{Additional arguments passed to the device @function, e.g.
-#     \code{width} and \code{height}.}
+#     \code{width} and \code{height}.  If not given, the are inferred
+#     from @see "devOptions".}
+#   \item{scale}{A @numeric scalar factor specifying how much the
+#     width and the height should be rescaled.}
 #   \item{aspectRatio}{A @numeric ratio specifying the aspect ratio
 #     of the image.  See below.}
 #   \item{par}{An optional named @list of graphical settings applied,
@@ -393,6 +396,13 @@ devDone <- function(which=dev.cur(), ...) {
 #
 # \value{
 #   Returns what the device @function returns.
+# }
+#
+# \section{Width and heights}{
+#   The default width and height of the generated image is specific to
+#   the type of device used.  There is not straightforward programatical
+#   way to infer these defaults; here we use @see "devOptions", which
+#   in most cases returns the correct defaults.
 # }
 #
 # \section{Aspect ratio}{
@@ -417,7 +427,19 @@ devDone <- function(which=dev.cur(), ...) {
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label=NULL) {
+devNew <- function(type=getOption("device"), ..., scale=1, aspectRatio=1, par=NULL, label=NULL) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  cleanLength <- function(x, ...) {
+    name <- substitute(x);
+    if (is.null(x) || !is.numeric(x) || !is.finite(x)) {
+      warning("Ignoring non-finite '", name, "' value: ", x);
+      x <- NULL;
+    }
+    x;
+  } # cleanLength()
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -425,6 +447,11 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
   if (is.function(type)) {
   } else {
     type <- as.character(type);
+  }
+
+  # Argument 'scale':
+  if (!is.null(scale)) {
+    scale <- Arguments$getDouble(scale, range=c(0,Inf));
   }
 
   # Argument 'aspectRatio':
@@ -449,44 +476,100 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
   # Arguments to be passed to the device function
   args <- list(...);
 
-  # Drop 'width' and 'height' if NULL
+  # Drop 'width' and 'height', iff NULL (=treat as non-specified/missing)
   args$width <- args$width;
   args$height <- args$height;
 
-  # Update argument 'height' by aspect ratio?
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Update the 'height' by argument 'aspectRatio'?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (!is.null(aspectRatio)) {
     width <- args$width;
     height <- args$height;
 
-    if (is.null(width) && is.null(height)) {
+    # Were both 'width' and 'height' explicitly specified?
+    if (!is.null(width) && !is.null(height)) {
       if (aspectRatio != 1) {
+        warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+      }
+    } else {
+      # None of 'width' and 'height' was specified?
+      if (is.null(width) && is.null(height)) {
+        # (a) Infer 'width' from devOptions()...
         width <- devOptions(type)$width;
-        if (!is.null(width) && is.numeric(width) && is.finite(width)) {
+        width <- cleanLength(width);
+        if (!is.null(width)) {
           args$width <- width;
           args$height <- aspectRatio * width;
         } else {
           warning("Argument 'aspectRatio' was ignored because none of 'width' and 'height' were given and 'width' could not be inferred from devOptions(\"", type, "\"): ", aspectRatio);
         }
+      } else if (!is.null(width)) {
+        # Argument 'width' was specified but not 'height'
+        args$height <- aspectRatio * width;
+      } else if (!is.null(height)) {
+        # Argument 'height' was specified but not 'width'
+        args$width <- height / aspectRatio;
       }
-    } else if (!is.null(width) && !is.null(height)) {
-      if (aspectRatio != 1) {
-        warning("Argument 'aspectRatio' was ignored because both 'width' and 'height' were given: ", aspectRatio);
+    }
+  } # if (!is.null(aspectRatio))
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Rescale 'width' & 'height' by argument 'scale'?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  if (!is.null(scale) && scale != 1) {
+    width <- args$width;
+
+    # Infer 'width' from the settings
+    if (is.null(width)) {
+      width <- devOptions(type)$width;
+      width <- cleanLength(width);
+    }
+
+    # Possible to rescale?
+    if (is.null(width)) {
+      warning("Argument 'scale' was ignored because it was not possible to infer 'width': ", scale);
+    } else {
+      # Infer 'height'...
+      if (!is.null(aspectRatio)) {
+        # ...from aspect ratio
+        height <- aspectRatio * width;
+      } else {
+        # ...from settings
+        height <- args$height;
+        if (is.null(height)) {
+          height <- devOptions(type)$height;
+          height <- cleanLength(height);
+        }
+        if (is.null(height)) {
+          warning("Argument 'scale' was ignored because it was not possible to infer 'height': ", scale);
+        }
       }
-    } else if (!is.null(width)) {
-      args$height <- aspectRatio * width;
-    } else if (!is.null(height)) {
-      args$width <- height / aspectRatio;
+    }
+
+    # So finally, possible to rescale?
+    if (!is.null(width) && !is.null(height)) {
+      args$width <- scale * width;
+      args$height <- scale * height;
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Device type aliases?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (is.character(type)) {
     if (type == "jpg") {
       type <- "jpeg";
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Exclude 'file' and 'filename' arguments?
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   if (is.character(type)) {
     knownInteractive <- grDevices:::.known_interactive.devices;
     if (is.element(tolower(type), tolower(knownInteractive))) {
@@ -495,7 +578,10 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
     }
   }
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Open device by calling device function
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   res <- do.call(type, args=args);
 
   devSetLabel(label=label);
@@ -538,6 +624,9 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 #   \item{path}{The directory where then image should be saved, if any.}
 #   \item{field}{An optional @character string specifying a specific
 #     field of the named result @list to be returned.}
+#   \item{onIncomplete}{A @character string specifying what to do with
+#     an image file that was incompletely generated due to an interrupt
+#     or an error.}
 #   \item{force}{If @TRUE, and the image file already exists, then it is
 #     overwritten, otherwise not.}
 # }
@@ -555,6 +644,12 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 #   specfied by argument \code{path} with a filename consisting of
 #   the \code{name} followed by optional comma-separated \code{tags}
 #   and a filename extension given by argument \code{ext}.
+#
+#   By default, the image file is only created if the \code{expr}
+#   is evaluated completely.  If it is, for instance, interrupted
+#   by the user or due to an error, then any incomplete/blank image
+#   file that was created will be removed.  This behavior can be
+#   turned of using argument \code{onIncomplete}.
 # }
 #
 # @examples "../incl/devEval.Rex"
@@ -570,7 +665,11 @@ devNew <- function(type=getOption("device"), ..., aspectRatio=1, par=NULL, label
 # @keyword device
 # @keyword utilities
 #*/########################################################################### 
-devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, force=getOption("devEval/args/force", TRUE)) {
+devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="Rplot", tags=NULL, ..., ext=substitute(type), filename=sprintf("%s.%s", paste(c(name, tags), collapse=","), ext), path=getOption("devEval/args/path", "figures/"), field=NULL, onIncomplete=c("remove", "keep"), force=getOption("devEval/args/force", TRUE)) {
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -589,8 +688,13 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
     field <- Arguments$getCharacter(field);
   }
 
+  # Argument 'onIncomplete':
+  onIncomplete <- match.arg(onIncomplete);
+
   # Argument 'force':
   force <- Arguments$getLogical(force);
+
+
 
   # Result object
   res <- list(
@@ -604,6 +708,8 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
   );
 
   if (force || !isFile(pathname)) {
+    done <- FALSE;
+
     devNew(type, pathname, ...);
     on.exit({
       devDone();
@@ -614,9 +720,19 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
         getArchiveOption <- archiveFile <- NULL;
         if (getArchiveOption("devEval", FALSE)) archiveFile(pathname);
       }
+
+      if (!done) {
+        if (onIncomplete == "remove") {
+          # Remove an incomplete image file
+          if (isFile(pathname)) {
+            file.remove(pathname);
+          }
+        }
+      }
     }, add=TRUE);
   
     eval(expr, envir=envir);
+    done <- TRUE;
   }
 
   # Subset?
@@ -688,6 +804,15 @@ devEval <- function(type=getOption("device"), expr, envir=parent.frame(), name="
 
 ############################################################################
 # HISTORY: 
+# 2012-02-28
+# o Added argument 'onIncomplete' to devEval().  The default is now to
+#   remove any half-generated image files so that no incomplete/blank
+#   image files are left behind.
+# 2012-02-26
+# o BUG FIX: Before devNew(..., aspectRatio=1) would ignore
+#   devOptions(...)$width if neither argument 'width' nor 'height'
+#   was given.
+# o Added argument 'scale' to devNew().
 # 2011-11-05
 # o Now the default 'width' is inferred from devOptions() is 'height'
 #   is not given and aspectRatio != 1.
