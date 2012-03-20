@@ -1,4 +1,4 @@
-d7013fb2329dbe48a73545f3c19d8936 *DESCRIPTION
+f560a315b1f90cfee4f1045f3423e2a0 *DESCRIPTION
 9d3f7f0d7d992f7c06c5961c0bed023e *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 4f1464fda3833052b4651f4ef3fd99a0 *R/006.fixVarArgs.R
@@ -132,7 +132,7 @@ d918f7c04d01cc17d04b7f2267c87e67 *R/touchFile.R
 7d76ba24b1578834dc5e27a71e21a767 *R/wrap.array.R
 7e83955f97cf445001ae3d825c8232d2 *R/writeBinFragments.R
 46cef5444f33cfb8b18b83461cfdb5d7 *R/writeDataFrame.R
-e7157a2f476bb2196cfb5feb71134bee *R/zzz.R
+63399191daa3a69746bd065d455ae805 *R/zzz.R
 5135155a71eefccbccfd5d0631e19be9 *incl/BengtssonH_2003.bib.Rdoc
 82c6dd1902610aecb8ea3bfa16646509 *incl/FileProgressBar.Rex
 4dadd98190875720e7d3742f3763e968 *incl/GString.Rex
@@ -182,7 +182,7 @@ e82dbc96def1ccf7ba4fdc62fedea00b *incl/queryRCmdCheck.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 ed41ed9ae3229dcf804e6c3efad37cc5 *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-124a649f2c1d9b6f564ce82bbda46e6e *inst/NEWS
+fdf66eefda089e4ef0a06bbcfd5ebb25 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
