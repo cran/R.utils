@@ -2,6 +2,51 @@
 Package: R.utils
 ================
 
+Version: 1.16.0 [2012-07-11]
+o CLEANUP: Dropped the graphics device related functions that
+  were moved to R.devices.
+o System$findGraphicsDevice() no longer tries to create a PNG
+  device using png2(), because that has now moved to R.devices.
+o Updated package dependencies.
+
+
+Version: 1.15.1 [2012-06-16]
+o Now package only imports/no longer depends on the 'utils' package.
+  This means that all packages that depends on 'R.utils' for loading
+  'utils' for them need to explicitly load it themselves.
+
+
+Version: 1.15.0 [2012-05-22]
+o Added systemR() for launching an external R process.
+o Package no longer loads (via a DESCRIPTION Depends) the
+  R.devices package, because that would cause a circular
+  package dependency.  Instead, we're keeping the graphical
+  device functions here until all reverse dependent packages
+  have been set to explicitly use R.devices.
+
+
+Version: 1.14.0 [2012-05-01]
+o Copied all functions related to graphics devices to new package
+  R.devices (v2.1.1), which is now on CRAN.  For backward
+  compatibility, the R.utils package will for now depend and 
+  hence load the R.devices package.
+
+
+Version: 1.13.1 [2012-04-16]
+o Added findFiles(), which orginates from the affxparser package.
+
+
+Version: 1.13.0 [2012-04-07]
+o Added toBMP() and toTIFF().
+
+
+Version: 1.12.2 [2012-04-05]
+o Now it is possible to have devEval() rename incompletely generated
+  image files, by using argument onIncomplete="rename".  This will simplify
+  troubleshooting.  The default is still to remove incomplete files.
+o ROBUSTNESS: Updated package dependencies.
+
+
 Version: 1.12.1 [2012-03-20]
 o BUG FIX: .onAttach() would try to call getMessage(ex) on an 'error'
   if there was a problem adding a finalizer, resulting in "no applicable
