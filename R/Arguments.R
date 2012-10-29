@@ -21,6 +21,122 @@ setConstructorS3("Arguments", function(...) {
 
 
 
+#########################################################################/**
+# @RdocMethod getFilename
+#
+# @title "Gets and validates a filename"
+#
+# \description{
+#  @get "title".
+# }
+#
+# @synopsis
+#
+# \arguments{
+#   \item{filename}{A @character string.}
+#   \item{nchar}{An @integer @vector of length two specifying the range
+#     of valid filename lengths.}
+#   \item{class}{A @character string specifying the class of valid
+#     filenames.}
+#   \item{.name}{The name of the argument validated.}
+#   \item{.type}{Not used.}
+# }
+#
+# \value{
+#  Returns a @character string if filename is valid, 
+#  otherwise an exception is thrown.
+# }
+#
+# \details{
+#   When argument \code{class="safe"}, the following 86 ASCII characters
+#   are allowed in filenames:
+#   \preformatted{
+#      #$%&'()+,-.0123456789;=         (24 including initial space)
+#     @ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_  (31)
+#     `abcdefghijklmnopqrstuvwxyz{|}~  (31)
+#   }
+#   This class of filenames has been extensively tested on for 
+#   cross-platform support on Microsoft Windows, OSX and various 
+#   Unix flavors.
+# }
+#
+# \references{
+#   [1] Microsoft, \emph{Naming Files, Paths, and Namespaces} (Section 'Windows Naming Conventions'), 2012. \url{http://msdn.microsoft.com/en-us/library/aa365247.aspx#naming_conventions}.
+# }
+#
+# @author
+#
+# \seealso{
+#   @seeclass
+# }
+#*/######################################################################### 
+setMethodS3("getFilename", "Arguments", function(static, filename, nchar=c(1,128), class=c("safe"), .name=NULL, .type="filename", ...) {
+##
+## OLD NOTES:
+##   Valid filename characters:
+## * The FTP RFCs require (7-bit) ASCII characters (and presumably not control
+##   characters either). The 95 printable ASCII characters are (note initial 
+##   space):
+## 
+##    !"#$%&'()*+,-./0123456789:;<=>?  (32)
+##   @ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_  (32)
+##   `abcdefghijklmnopqrstuvwxyz{|}~   (31)
+## 
+## * On Windows the following 9 characters aren't allowed: \ / : * ? " < > !.  
+##   This leaves us with:
+## 
+##    #$%&'()+,-.0123456789;=          (24)
+##   @ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_   (31)
+##   `abcdefghijklmnopqrstuvwxyz{|}~   (31)
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Validate arguments
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Argument '.name':
+  if (is.null(.name)) {
+    .name <- as.character(deparse(substitute(filename)));
+  }
+
+  # Argument 'filename':
+  filename <- getCharacter(static, filename, nchar=nchar, .name=.name);
+
+  # Argument 'class':
+  class <- match.arg(class);
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Filter out valid characters
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  chars <- filename;
+
+  # Always valid characters
+  chars <- gsub("[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0-9_.,]", "", chars);
+  chars <- gsub("[-]", "", chars);
+  chars <- gsub("[+]", "", chars);
+
+  # Filter out according to classes.
+  if ("safe" %in% class) {
+    chars <- gsub("[ ]", "", chars);
+    chars <- gsub("[\\[\\]]", "", chars);
+    chars <- gsub("[#$%&'()`{|}~]", "", chars);
+    chars <- gsub("[=]", "", chars);
+  }
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Check for remaining (=invalid) characters
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (nchar(chars) > 0) {
+    chars <- unlist(strsplit(chars, split=""));
+    chars <- sort(unique(chars));
+    chars <- sprintf("'%s'", chars);
+    chars <- paste(chars, collapse=", ");
+    throw(sprintf("Not a valid %s. Argument '%s' contains non-valid %s characters (%s): %s", .type, .name, .type, chars, filename));
+  }
+
+  filename;
+}, static=TRUE, private=TRUE)
+
+
 
 #########################################################################/**
 # @RdocMethod getReadablePathname
@@ -101,7 +217,9 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     }
   }
 
-  pathname <- filePath(path, file, expandLinks="any");
+  # NB: Here 'mustExist=TRUE' means that filePath() will always return
+  # a pathname, not that it will give an error if file does not exist.
+  pathname <- filePath(path, file, expandLinks="any", mustExist=TRUE);
 
   if (absolutePath) {
     pathname <- getAbsolutePath(pathname);
@@ -142,7 +260,7 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
     if (fileAccess(pathname, mode=4) == -1) {
       throw("Pathname exists, but there is no permission to read file: ", pathname);
     }
-  }
+  } # if (mustExist)
     
   pathname;
 }, static=TRUE)
@@ -223,6 +341,8 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #     pathname is accepted.}
 #   \item{mkdirs}{If @TRUE, \code{mustNotExist} is @FALSE, and the path to
 #     the file does not exist, it is (recursively) created.}
+#   \item{maxTries}{A positive @integer specifying how many times the
+#     method should try to create a missing directory before giving up.}
 # }
 #
 # \value{
@@ -232,6 +352,18 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #
 # \section{Missing values}{
 #   If any argument in \code{...} is @NA, an exception is thrown.
+# }
+#
+# \section{Slow file systems}{
+#   On very rare occassions, we have observed on a large shared file 
+#   system that if one tests for the existance of a directory immediately 
+#   after creating it with @see "base::dir.create", it may appear not
+#   to be created.  We believe this is due to the fact that there is a
+#   short delay between creating a directory and that information being
+#   fully propagated on the file system.  To minimize the risk for such
+#   false assertions on "slow" file systems, this method tries to create
+#   a missing directory multiple times (argument \code{maxTries}) (while
+#   waiting a short period of time between each round) before giving up.
 # }
 #
 # @author
@@ -245,7 +377,7 @@ setMethodS3("getReadablePathnames", "Arguments", function(static, files=NULL, pa
 #
 # @keyword IO
 #*/#########################################################################
-setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE) {
+setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5L) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -276,39 +408,72 @@ setMethodS3("getWritablePathname", "Arguments", function(static, ..., mustExist=
       throw("No permission to modify existing file: ", pathname);
     }
   } else {
-    # Check if parent directory exists
+    # Check if directory exists
     path <- getParent(pathname);
     if (!isDirectory(path)) {
-      # Check if parent directory should be created
+      # Does the directory have to exists (mkdirs=FALSE)?
       if (!mkdirs) {
-        path <- Arguments$getReadablePath(path, mustExist=TRUE);
+        path <- getReadablePath(static, path, mustExist=TRUE);
       }
 
-      if (!mkdirs(path)) {
-  	throw("Failed not create file path: ", path);
+      # If not, first try to create the parent directory, iff missing.
+      # This should give a more informative error message, if it fails.
+      pathP <- getParent(path);
+      createParent <- !isDirectory(pathP);
+      if (createParent) {
+        pathnameP <- getWritablePathname(static, file="dummy-not-tested", path=pathP, mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=maxTries);
+      }
+
+      # Argument 'maxTries':
+      maxTries <- getInteger(static, maxTries, range=c(1L,100L));
+
+      # Try to create the directory
+      res <- FALSE;
+      for (tt in 1:maxTries) {
+        mkdirs(path);
+        # Succeeded?
+        res <- isDirectory(path);
+        if (res) break;
+        # If not, wait a bit and try again...
+        Sys.sleep(0.5);
+      } # for (tt in ...)
+
+      if (!res) {
+        # Check if file permissions allow to create a directory
+        pathP <- ifelse(is.null(pathP), ".", pathP);
+        if (fileAccess(pathP, mode=2) == -1) {
+          reason <- ", most likely because of lack of file permissions";
+        } else {
+          reason <- " for unknown reasons"
+        }
+        
+        throw(sprintf("Failed not create file path (tried %d time(s))%s (%s %s but nothing beyond; current directory is '%s'): %s", maxTries, reason, pathP, ifelse(createParent, "was created", "exists"), getwd(), path));
       }
     }
 
-    # Check if file permissions allow to create a file in the directory
-    pathT <- ifelse(is.null(path), ".", path);
-    if (fileAccess(pathT, mode=2) == -1) {
-      throw("No write permission for directory: ", path);
-    }
-
-    # Try to create a file
-    filenameT <- basename(tempfile());
-    pathnameT <- filePath(path, filenameT);
-    on.exit({
-      if (isFile(pathnameT)) {
-        file.remove(pathnameT);
+    filename <- basename(pathname);
+    if (filename != "dummy-not-tested") {
+      # Check if file permissions allow to create a file in the directory
+      pathT <- ifelse(is.null(path), ".", path);
+      if (fileAccess(pathT, mode=2) == -1) {
+        throw("No write permission for directory: ", path);
       }
-    }, add=TRUE);
-    tryCatch({
-      cat(file=pathnameT, Sys.time());
-    }, error = function(ex) {
-      throw("No permission to create a new file in directory: ", path);
-    });
-  }
+  
+      # Try to create a file
+      filenameT <- basename(tempfile());
+      pathnameT <- filePath(path, filenameT);
+      on.exit({
+        if (isFile(pathnameT)) {
+          file.remove(pathnameT);
+        }
+      }, add=TRUE);
+      tryCatch({
+        cat(file=pathnameT, Sys.time());
+      }, error = function(ex) {
+        throw("No permission to create a new file in directory: ", path);
+      });
+    } # if (filename != "dummy-not-tested")
+  } # if (isFile(pathname))
 
   pathname;
 }, static=TRUE)
@@ -341,14 +506,18 @@ setMethodS3("getDirectory", "Arguments", function(static, path=NULL, ..., mustEx
   }
 
   # Nothing to do?
-  if (isDirectory(pathname))
+  if (isDirectory(pathname)) {
     return(pathname);
+  }
 
-  if (!mkdirs)
+  if (!mkdirs) {
     throw("Directory does not exist: ", pathname);
+  }
 
-  if (!mkdirs(pathname))
+  mkdirs(pathname);
+  if (!isDirectory(pathname)) {
     throw("Failed to create directory (recursively): ", pathname);
+  }
 
   pathname;
 }, static=TRUE, protected=TRUE)
@@ -1039,16 +1208,16 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
 
 
 
-setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, ...) {
+setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
   if (is.null(path))
     return(NULL);
 
-  pathname <- getReadablePathname(static, path=path, ...);
-  if (!is.na(pathname) && !isDirectory(pathname)) {
+  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
+  if (mustExist && !is.na(path) && !isDirectory(path)) {
     throw("Argument 'path' is not a directory: ", path);
   }
 
-  pathname;
+  path;
 }, static=TRUE, protected=TRUE)
 
 
@@ -1123,6 +1292,15 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2012-10-21
+# o ROBUSTNESS: Added argument 'maxTries' to Arguments$getWritablePathname()
+#   to have the method try to create missing directories multiple times
+#   before giving up.
+# 2012-10-16
+# o Moved Arguments$getFilename() from R.filesets to R.utils.
+#   Added Rd help.
+# 2012-09-24
+# o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
 # 2011-11-15
 # o SPEEDUP: Now Arguments$getCharacters(s, asGString=TRUE) is much
 #   faster for elements of 's' that are non-GStrings.  For long character

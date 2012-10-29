@@ -2,6 +2,78 @@
 Package: R.utils
 ================
 
+Version: 1.18.0 [2012-10-29]
+o Added trial version of readWindowsShellLink(), which eventually
+  will replace readWindowsShortcut().
+o GENERALIZATION: Now filePath() does a better job reading Windows
+  Shell Links/Windows Shortcut (*.lnk) files.
+o ROBUSTNESS: Now createWindowsShortcut() uses an improved validation
+  strategy of the created *.lnk file.
+
+
+Version: 1.17.4 [2012-10-26]
+o BUG FIX: example(createWindowsShortcut) could throw an error on
+  some systems.  The exact reason for this is unknown, so for now
+  it's instead generating a warning rather that an error.
+
+
+Version: 1.17.3 [2012-10-26]
+o RECOMMENDATION: Since R v2.11.0, you should use base::which() instead
+  of whichVector(), which now help("whichVector") also explains.  Also,
+  whichVector() was removed from the help index of the package.
+o CRAN POLICY: Made the examples run faster for R CMD check.
+
+
+Version: 1.17.2 [2012-10-21]
+o ROBUSTNESS: Added argument 'maxTries' to Arguments$getWritablePathname()
+  to have the method try to create missing directories multiple times
+  before giving up.  This also means that it will take a longer for
+  this method to fail creating a directory.
+o Now Arguments$getWritablePathname() gives a more informative error 
+  if failed, analogously to Arguments$getReadablePathname().
+
+
+Version: 1.17.1 [2012-10-19]
+o mkdirs(path) could generate a warning if the path was created
+  by another process as a race condition.  Now it always checks to 
+  see if the directory already exists just before trying to create
+  the directory.
+
+
+Version: 1.17.0 [2012-10-16]
+o Moved Arguments$getFilename() from R.filesets to R.utils.
+  Added Rd help.
+o ROBUSTNESS: Bumped up package dependencies.
+
+
+Version: 1.16.6 [2012-10-09]
+o BUG FIX: evalWithTimeout() would not reset the time limits after
+  returning.  Thanks to Gregory Ryslik at Yale University for 
+  reporting on this.
+
+
+Version: 1.16.5 [2012-09-26]
+o Added argument 'skip' to createLink().
+o ROBUSTNESS: Now createLink(..., overwrite=TRUE) will try to undo 
+  the overwrite, iff it failed to create the new link.
+o BUG FIX: createLink(..., overwrite=TRUE) would give an error saying
+  "file already exists" (iff that is true) when it tries to create
+  a "unix-symlink" link.  Thanks Taku Tokuyasu at UCSF for the report.
+
+
+Version: 1.16.4 [2012-09-24]
+o BUG FIX: Arguments$getReadablePath(..., mustExist=FALSE) did not work.
+
+
+Version: 1.16.3 [2012-09-21]
+o Now insert() silently expands 'values' to be of the same length 
+  as 'ats', iff length(values) == 1.
+o toCamelCase(..., preserveSameCase=TRUE) makes all-upper-case
+  words into same-case words, e.g. toCamelCase("HTML View",
+  preserveSameCase=TRUE) outputs "htmlView" (not "hTMLView").
+  Added system tests for toCamelCase().
+
+
 Version: 1.16.2 [2012-09-12]
 o ROBUSTNESS/CRAN POLICY: moveInSearchPath() no longer calls
   .Internal(detach(...)) but instead base::detach() in such a
