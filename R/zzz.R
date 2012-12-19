@@ -2,54 +2,51 @@
 # conflicts() in [R] base.
 .conflicts.OK <- TRUE;
 
+.onLoad <- function(libname, pkgname) {
+  ns <- asNamespace(pkgname);
+  # This make print(R.utils::R.utils) work without loading the package
+  delayedAssign(pkgname, Package(pkgname), assign.env=ns);
+} # .onLoad()
 
-## .First.lib <- function(libname, pkgname) {
+
 .onAttach <- function(libname, pkgname) { 
-  pkg <- Package(pkgname);
-  pos <- getPosition(pkg);
-  assign(pkgname, pkg, pos=pos);
+  pos <- which(sprintf("package:%s", pkgname) == search());
 
-  # Add a default Verbose object at threshold -1.
-  assign("verbose", Verbose(threshold=-1), pos=pos);
+  if (length(pos) == 1L) {
+    # Add a default Verbose object at threshold -1.
+    assign("verbose", Verbose(threshold=-1), pos=pos);
 
-  # Patch for Sys.setenv() and Sys.putenv()
-  # Sys.setenv() replaces Sys.putenv() from R v2.5.0. Code for migration.
-  if (!exists("Sys.setenv", mode="function", envir=baseenv())) {
-    # To please R CMD check on R (>= 2.15.0)
-    Sys.putenv <- NULL; rm("Sys.putenv"); 
-    assign("Sys.setenv", Sys.putenv, pos=pos);
-  }
+    # Patch for default parse() depending on R version
+#    env <- as.environment("package:R.utils");
+#    setMethodS3("parse", "default", appendVarArgs(base::parse), 
+#                                       conflict="quiet");
+#    assign("parse.default", parse.default, pos=pos);
+#    assignInNamespace("parse.default", parse.default, pos=pos);
+  
+    # Make .Last() call finalizeSession() when R finishes.
+    tryCatch({
+      addFinalizerToLast();
+    }, error=function(ex) {
+      msg <- paste("The R.utils package may have failed to append a session finalizer to .Last(), because: ", ex$message, sep="");
+      warning(msg, call.=FALSE, immediate.=TRUE);
+    })
 
-  # Patch for default parse() depending on R version
-#  env <- as.environment("package:R.utils");
-#  setMethodS3("parse", "default", appendVarArgs(base::parse), 
-#                                            conflict="quiet");#  , envir=env);
-#  assign("parse.default", parse.default, pos=pos);
-#  assignInNamespace("parse.default", parse.default, pos=pos);
+    pkg <- Package(pkgname);
+    assign(pkgname, pkg, pos=pos);
 
-  # Add as.character.hexmode(), if missing.
-  .patchAsCharacterHexMode();
+    onSessionExit(function(...) detachPackage(pkgname));
 
-  # Make .Last() call finalizeSession() when R finishes.
-  tryCatch({
-    addFinalizerToLast();
-  }, error=function(ex) {
-    msg <- paste("The R.utils package may have failed to append a session finalizer to .Last(), because: ", ex$message, sep="");
-    warning(msg, call.=FALSE, immediate.=TRUE);
-  })
-
-  onSessionExit(function(...) detachPackage(pkgname));
-
-  packageStartupMessage(getName(pkg), " v", getVersion(pkg), " (", 
-    getDate(pkg), ") successfully loaded. See ?", pkgname, " for help.");
-}
+    startupMessage(pkg);
+  } # if (length(pos) == 1L)
+} # .onAttach()
 
 
 .Last.lib <- function(libpath) {
   # Revert to original .Last() function
   .LastOriginal <- NULL; # To please R CMD check R v2.6.0
   if (exists(".LastOriginal", mode="function", envir=.GlobalEnv)) {
-    assign(".Last", .LastOriginal, envir=.GlobalEnv);
+    env <- globalenv(); # To please R CMD check
+    assign(".Last", .LastOriginal, envir=env);
     rm(".LastOriginal", envir=.GlobalEnv);
   }
 } # .Last.lib()

@@ -266,6 +266,18 @@ setMethodS3("getReadablePathname", "Arguments", function(static, file=NULL, path
 }, static=TRUE)
 
 
+setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
+  if (is.null(path))
+    return(NULL);
+
+  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
+  if (mustExist && !is.na(path) && !isDirectory(path)) {
+    throw("Argument 'path' is not a directory: ", path);
+  }
+
+  path;
+}, static=TRUE, protected=TRUE)
+
 
 
 #########################################################################/**
@@ -957,17 +969,20 @@ setMethodS3("getIndices", "Arguments", function(static, x, ..., max=Inf, range=c
     }
   }
 
+  # Identify indices
+  x <- getIntegers(static, x, ..., range=range, .name=.name);
 
   # Special dealing with range = c(0,0)
   if (!is.null(range)) {
     if (range[2] < 1L) {
-      if (length(x) > 0) {
-        throw(sprintf("Argument 'x' is of length %d although the range ([%s,%s]) implies that is should be empty.", length(x), range[1], range[2]));
+      xt <- x[is.finite(x)];
+      if (length(xt) > 0) {
+        throw(sprintf("Argument 'x' contains %d non-missing indices although the range ([%s,%s]) implies that there should be none.", length(xt), range[1L], range[2L]));
       }
     }
   }
 
-  getIntegers(static, x, ..., range=range, .name=.name);
+  x;
 }, static=TRUE)
 
 setMethodS3("getIndex", "Arguments", function(static, ..., length=1) {
@@ -1208,21 +1223,6 @@ setMethodS3("getEnvironment", "Arguments", function(static, envir=NULL, .name=NU
 
 
 
-setMethodS3("getReadablePath", "Arguments", function(static, path=NULL, mustExist=TRUE, ...) {
-  if (is.null(path))
-    return(NULL);
-
-  path <- getReadablePathname(static, path=path, mustExist=mustExist, ...);
-  if (mustExist && !is.na(path) && !isDirectory(path)) {
-    throw("Argument 'path' is not a directory: ", path);
-  }
-
-  path;
-}, static=TRUE, protected=TRUE)
-
-
-
-
 
 
 #########################################################################/**
@@ -1292,6 +1292,11 @@ setMethodS3("getInstanceOf", "Arguments", function(static, object, class, coerce
 
 ############################################################################
 # HISTORY:
+# 2012-12-01
+# o BUG FIX: Arguments$getIndices(NA_integer_, max=0, disallow="NaN")
+#   would give "Exception: Argument 'x' is of length 1 although the range
+#   ([0,0]) implies that is should be empty." although it should return
+#   NA_integer.
 # 2012-10-21
 # o ROBUSTNESS: Added argument 'maxTries' to Arguments$getWritablePathname()
 #   to have the method try to create missing directories multiple times

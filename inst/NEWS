@@ -2,6 +2,54 @@
 Package: R.utils
 ================
 
+Version: 1.19.3 [2012-12-19]
+o Utilizing new startupMessage() of R.oo.
+
+
+Version: 1.19.2 [2012-12-18]
+o R CMD check for R devel no longer gives a NOTE on attach().
+
+
+Version: 1.19.1 [2012-12-02]
+o CLEANUP: R CMD check no longer warns on global assignments.
+o BUG FIX: Arguments$getIndices(x, max=0, disallow="NaN") where 'x'
+  contains only NA_integer_, would give "Exception: Argument 'x' is 
+  of length 1 although the range ([0,0]) implies that is should be
+  empty." although it should return 'x' as is.
+
+
+Version: 1.19.0 [2012-11-29]
+o CLEANUP: Dropped lapply() for MultiVerbose.
+o Added as.list() to MultiVerbose.
+
+
+Version: 1.18.4 [2012-11-21]
+o Now declaring all S3 methods in the namespace.
+
+
+Version: 1.18.3 [2012-11-06]
+o BUG FIX: queryRCmdCheck() did not detect "tests" evidences when
+  'R CMD check' was testing multiple architectures.
+
+
+Version: 1.18.2 [2012-11-04]
+o CLEANUP: Replaced all whichVector() with which(), because the
+  latter is now the fastest again.
+o CLEANUP: Dropped pre-R 2.3.0 patch of as.character.hexmode().
+o CLEANUP: Dropped pre-R 2.5.0 patch of Sys.setenv().
+o BUG FIX: The 'columnClasses' header field created by writeDataFrame()
+  would contain "integer" for "factor":s.  Now using class(x)[1] instead
+  of storage.mode(x) to infer column classes.
+o BUG FIX: Despite documented header fields 'createdBy' and 'createdOn'
+  to be ignored if NULL, they did set the corresponding' element in
+  'header' argument to NULL if they were NULL.
+
+
+Version: 1.18.1 [2012-10-31]
+o Now gzip()/gunzip()/bunzip2() creates the directory of destination
+  pathname 'destfile', iff missing.
+
+
 Version: 1.18.0 [2012-10-29]
 o Added trial version of readWindowsShellLink(), which eventually
   will replace readWindowsShortcut().
