@@ -1,5 +1,5 @@
-fe6e12046679bf202f48caa524d9e934 *DESCRIPTION
-d477f280676708fa7011f6082eca686c *NAMESPACE
+5721006e8f6c49b1c1b5e43027e897b2 *DESCRIPTION
+94e10c268d6e0939f5f9ecde10e25d38 *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 795f24938a78fefa87416d23c2fc6a20 *R/006.fixVarArgs.R
 a7e76b9496514cba2fad2709af0fc271 *R/999.NonDocumentedObjects.R
@@ -74,7 +74,7 @@ f81c1a9222f88365aa27a149e3c33b29 *R/isAbsolutePath.R
 5a9aa10c0d8cb12a2f75396a2e31655f *R/isFile.R
 65091dfc136c5d6b4a3518bfb292b878 *R/isOpen.character.R
 df6ad070d8da6e8c78044be25a9c8aca *R/isPackageInstalled.R
-9e8bf0ccb284b138835c5d004c0b5ca1 *R/isPackageLoaded.R
+776f17ca0c32be022825a5ea1ebb1ccc *R/isPackageLoaded.R
 344969d029dab41654298a3198b1cbd8 *R/isReplicated.R
 d2b281b988abe8e1ec65eed052d4b637 *R/isSingle.R
 f7ae5fcff900a4c825cb275b987d2cc3 *R/isUrl.R
@@ -177,7 +177,7 @@ b8f98409744cdeec74965981817701dc *incl/readWindowsShellLink.Rex
 fd2e74656cae19439ded3f08c26a4904 *incl/touchFile.Rex
 eecaeae6492b79c1b001f917e7ac9e0e *incl/whichVector.Rex
 f14bf20e80cc09f95aba2e2c1e50614b *incl/wrap.array.Rex
-c1336505a9e2bbda7baddb3b14002af8 *inst/NEWS
+94f4bf8da6d0a1b0130aee5b1826ca9f *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 637b485d438f840b23761205cd3963ac *inst/data-ex/NEWS.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
