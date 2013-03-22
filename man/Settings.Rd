@@ -34,7 +34,9 @@ extends \link[R.utils]{Options}\cr
   Class for applicational settings.
  }
 
- \usage{Settings(basename=NULL, ...)}
+ \usage{
+Settings(basename=NULL, ...)
+}
 
  \arguments{
    \item{basename}{A \code{\link[base]{character}} string of the basename of the settings file.}
@@ -136,7 +138,7 @@ stopifnot(equals(settings, settings2))
 
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 
 

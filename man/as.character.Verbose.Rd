@@ -9,9 +9,7 @@
  \name{as.character.Verbose}
 \alias{as.character.Verbose}
 \alias{Verbose.as.character}
-\alias{as.character.Verbose}
 \alias{as.character,Verbose-method}
-
 
  \title{Returns a character string version of this object}
 
@@ -19,7 +17,9 @@
    Returns a character string version of this object.
  }
 
- \usage{\method{as.character}{Verbose}(x, ...)}
+ \usage{
+\method{as.character}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns a \code{\link[base]{character}} string.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

@@ -9,9 +9,7 @@
  \name{evaluate.Verbose}
 \alias{evaluate.Verbose}
 \alias{Verbose.evaluate}
-\alias{evaluate.Verbose}
 \alias{evaluate,Verbose-method}
-
 
  \title{Evaluates a function and prints its results if above threshold}
 
@@ -20,7 +18,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{evaluate}{Verbose}(this, fun, ..., level=this$defaultLevel)}
+ \usage{
+\method{evaluate}{Verbose}(this, fun, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{fun}{A \code{\link[base]{function}} to be evaluated (only if above threshold).}
@@ -32,7 +32,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

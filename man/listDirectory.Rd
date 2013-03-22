@@ -20,7 +20,9 @@
  directory names are also returned.
 }
 
-\usage{\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE, ...)}
+\usage{
+\method{listDirectory}{default}(pathname, pattern=NULL, recursive=FALSE, allNames=FALSE, fullNames=FALSE, ...)
+}
 
 \arguments{
   \item{pathname}{A pathname to be listed.}
@@ -37,7 +39,7 @@
  Returns a \code{\link[base]{vector}} of file names.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{list.files}}() is used.

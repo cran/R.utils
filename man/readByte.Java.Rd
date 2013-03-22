@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readByte.Java}
+\name{Java$readByte}
+\alias{Java$readByte}
 \alias{readByte.Java}
 \alias{Java.readByte}
-\alias{readByte.Java}
 \alias{readByte,Java-method}
-
 
 \title{Reads a Java formatted byte (8 bits) from a connection}
 
@@ -21,8 +20,13 @@
   the range [-128,127].
 }
 
-\synopsis{readByte.Java(static, con, n=1, ...)}
-\usage{Java$readByte(con, n=1, ...)}
+\usage{
+## Static method (use this):
+## Java$readByte(con, n=1, ...)
+
+## Don't use the below:
+\method{readByte}{Java}(static, con, n=1, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}
@@ -38,7 +42,7 @@
   This method is included for consistency reasons only.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{readBin}}().

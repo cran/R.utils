@@ -12,7 +12,9 @@
 
  \title{Reads binary data from disjoint sections of a connection or a file}
 
- \usage{\method{readBinFragments}{default}(con, what, idxs=1, origin=c("current", "start"), size=NA, ..., verbose=FALSE)}
+ \usage{
+\method{readBinFragments}{default}(con, what, idxs=1, origin=c("current", "start"), size=NA, ..., verbose=FALSE)
+}
 
  \description{
   Reads binary data from disjoint sections of a connection or a file.
@@ -140,7 +142,7 @@ cat("Write connection...done\n")
 file.remove(pathname)
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{writeBinFragments}}().

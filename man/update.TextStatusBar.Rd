@@ -9,9 +9,7 @@
  \name{update.TextStatusBar}
 \alias{update.TextStatusBar}
 \alias{TextStatusBar.update}
-\alias{update.TextStatusBar}
 \alias{update,TextStatusBar-method}
-
 
  \title{Updates the status bar (visually)}
 
@@ -19,7 +17,9 @@
    Updates the status bar (visually).
  }
 
- \usage{\method{update}{TextStatusBar}(object, ...)}
+ \usage{
+\method{update}{TextStatusBar}(object, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{TextStatusBar}}.

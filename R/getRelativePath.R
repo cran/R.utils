@@ -59,6 +59,18 @@
 #*/###########################################################################
 setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(), caseSensitive=NULL, ...) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  getWindowsDrivePattern <- function(fmtstr, ...) {
+    # Windows drive letters
+    drives <- "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    # Support also lower case
+    drives <- paste(c(drives, tolower(drives)), collapse="");
+    sprintf(fmtstr, drives);
+  } # getWindowsDrivePattern()
+
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pathname':
@@ -74,6 +86,10 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   if (is.null(pathname)) {
     pathname <- ".";
+  }
+
+  if (isUrl(pathname)) {
+    return(pathname);
   }
 
   # If not an absolute path, assume it is a relative path already.
@@ -93,7 +109,8 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
   # Argument 'caseSensitive':
   if (is.null(caseSensitive)) {
-    isWindows <- (regexpr("^[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ]:", relativeTo) != -1);
+    pattern <- getWindowsDrivePattern("^[%s]:");
+    isWindows <- (regexpr(pattern, relativeTo) != -1);
     caseSensitive <- !isWindows;
   } else {
     caseSensitive <- as.logical(caseSensitive);
@@ -149,6 +166,9 @@ setMethodS3("getRelativePath", "default", function(pathname, relativeTo=getwd(),
 
 ###########################################################################
 # HISTORY: 
+# 2013-02-21
+# o For conveniency, getAbsolutePath() and getRelativePath() returns 
+#   the same pathname if it is a URL.
 # 2009-12-30
 # o ROBUSTNESS: Now getParent(), getAbsolutePath() and getRelativePath()
 #   returns a (character) NA if the input is NA.

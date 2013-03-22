@@ -17,7 +17,9 @@
   side effects.
  }
 
- \usage{\method{renameFile}{default}(pathname, newPathname, overwrite=FALSE, ..., verbose=FALSE)}
+ \usage{
+\method{renameFile}{default}(pathname, newPathname, overwrite=FALSE, ..., verbose=FALSE)
+}
 
  \arguments{
    \item{pathname}{The pathname of the file to be renamed.}
@@ -33,7 +35,7 @@
    If it failed, an exception is thrown.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base:files]{file.rename}()}.

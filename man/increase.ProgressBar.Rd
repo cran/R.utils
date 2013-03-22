@@ -9,9 +9,7 @@
  \name{increase.ProgressBar}
 \alias{increase.ProgressBar}
 \alias{ProgressBar.increase}
-\alias{increase.ProgressBar}
 \alias{increase,ProgressBar-method}
-
 
  \title{Increases (steps) progress bar}
 
@@ -19,7 +17,9 @@
    Increases (steps) progress bar.
  }
 
- \usage{\method{increase}{ProgressBar}(this, stepLength=this$stepLength, visual=TRUE, ...)}
+ \usage{
+\method{increase}{ProgressBar}(this, stepLength=this$stepLength, visual=TRUE, ...)
+}
 
  \arguments{
   \item{stepLength}{Positive or negative step length.}
@@ -30,7 +30,7 @@
    Returns new value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.

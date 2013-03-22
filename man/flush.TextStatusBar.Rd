@@ -9,9 +9,7 @@
  \name{flush.TextStatusBar}
 \alias{flush.TextStatusBar}
 \alias{TextStatusBar.flush}
-\alias{flush.TextStatusBar}
 \alias{flush,TextStatusBar-method}
-
 
  \title{Flushes the output}
 
@@ -19,7 +17,9 @@
    Flushes the output.
  }
 
- \usage{\method{flush}{TextStatusBar}(con, ...)}
+ \usage{
+\method{flush}{TextStatusBar}(con, ...)
+}
 
  \arguments{
   \item{...}{Arguments passed to \code{\link[base]{cat}}().}
@@ -34,7 +34,7 @@
    flushes the output to the console.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[utils]{flush.console}}.

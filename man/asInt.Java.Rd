@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asInt.Java}
+\name{Java$asInt}
+\alias{Java$asInt}
 \alias{asInt.Java}
 \alias{Java.asInt}
-\alias{asInt.Java}
 \alias{asInt,Java-method}
-
 
 \title{Converts an numeric to a Java integer}
 
@@ -19,8 +18,13 @@
   Converts an numeric to a Java integer.
 }
 
-\synopsis{asInt.Java(static, x, ...)}
-\usage{Java$asInt(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asInt(x, ...)
+
+## Don't use the below:
+\method{asInt}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}
@@ -31,7 +35,7 @@
   Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

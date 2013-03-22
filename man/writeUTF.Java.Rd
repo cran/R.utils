@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeUTF.Java}
+\name{Java$writeUTF}
+\alias{Java$writeUTF}
 \alias{writeUTF.Java}
 \alias{Java.writeUTF}
-\alias{writeUTF.Java}
 \alias{writeUTF,Java-method}
-
 
 \title{Writes a string to a connection in Java format (UTF-8)}
 
@@ -21,15 +20,20 @@
   there is a short integer telling how many bytes (characters?) follows.
 }
 
-\synopsis{writeUTF.Java(static, con, str, ...)}
-\usage{Java$writeUTF(con, str, ...)}
+\usage{
+## Static method (use this):
+## Java$writeUTF(con, str, ...)
+
+## Don't use the below:
+\method{writeUTF}{Java}(static, con, str, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}
   \item{str}{String to be written.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

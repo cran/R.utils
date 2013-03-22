@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getCharacters.Arguments}
+\name{Arguments$getCharacters}
+\alias{Arguments$getCharacters}
 \alias{getCharacters.Arguments}
 \alias{Arguments.getCharacters}
-\alias{getCharacters.Arguments}
 \alias{getCharacters,Arguments-method}
-
 \alias{Arguments.getCharacter}
 \alias{getCharacter.Arguments}
 \alias{getCharacter,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a character vector and validates.
 }
 
-\synopsis{getCharacters.Arguments(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)}
-\usage{Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)
+
+## Don't use the below:
+\method{getCharacters}{Arguments}(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE, asGString=TRUE, .name=NULL, ...)
+}
 
 \arguments{
   \item{s}{A \code{\link[base]{vector}}.}
@@ -43,7 +47,7 @@
  thrown.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

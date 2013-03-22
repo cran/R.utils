@@ -16,7 +16,9 @@
   Saves an object to a file or a connection.
 }
 
-\usage{\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)}
+\usage{
+\method{saveObject}{default}(object, file=NULL, path=NULL, compress=TRUE, ..., safe=TRUE)
+}
 
 \arguments{
  \item{object}{The object to be saved.}
@@ -34,11 +36,12 @@
  Returns (invisibly) the pathname or the \code{\link[base:connections]{connection}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{loadObject}}() to load an object from file.
   \code{\link[digest]{digest}} for how hash codes are calculated from an object.
+  See also \code{\link[base]{saveRDS}}().
 }
 
 

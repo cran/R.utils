@@ -18,7 +18,9 @@
    the pattern. Also, it only takes a single character string.
  }
 
- \usage{\method{splitByPattern}{default}(str, pattern, ...)}
+ \usage{
+\method{splitByPattern}{default}(str, pattern, ...)
+}
 
  \arguments{
   \item{str}{A single \code{\link[base]{character}} string to be split.}
@@ -39,7 +41,7 @@ cat(rspCode, "\n")
 print(rspParts)
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Compare to \code{\link[base]{strsplit}}().

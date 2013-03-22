@@ -32,7 +32,9 @@ extends \link[R.oo]{Object}\cr
  A status bar at the R prompt that can be updated.
 }
 
-\usage{TextStatusBar(fmt=paste("\%-", getOption("width") - 1, "s", sep = ""), ...)}
+\usage{
+TextStatusBar(fmt=paste("\%-", getOption("width") - 1, "s", sep = ""), ...)
+}
 
 \arguments{
   \item{fmt}{A \code{\link[base]{character}} format string to be used by \code{\link[base]{sprintf}}().
@@ -122,7 +124,7 @@ for (kk in seq(length=nfiles)) {
 cat("\n")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

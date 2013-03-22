@@ -9,9 +9,7 @@
  \name{writeRaw.Verbose}
 \alias{writeRaw.Verbose}
 \alias{Verbose.writeRaw}
-\alias{writeRaw.Verbose}
 \alias{writeRaw,Verbose-method}
-
 
  \title{Writes objects if above threshold}
 
@@ -20,7 +18,9 @@
    This method is used by all other methods of this class for output.
  }
 
- \usage{\method{writeRaw}{Verbose}(this, ..., sep="", level=this$defaultLevel)}
+ \usage{
+\method{writeRaw}{Verbose}(this, ..., sep="", level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{paste}}().}
@@ -32,7 +32,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

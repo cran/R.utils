@@ -9,8 +9,6 @@
 
  \name{whichVector.logical}
 \alias{whichVector.logical}
-\alias{whichVector.logical}
-
  \alias{whichVector.matrix}
 
  \title{Identifies TRUE elements in a logical vector}
@@ -24,7 +22,9 @@
    are no missing values.
  }
 
- \usage{\method{whichVector}{logical}(x, na.rm=TRUE, use.names=TRUE, ...)}
+ \usage{
+\method{whichVector}{logical}(x, na.rm=TRUE, use.names=TRUE, ...)
+}
 
  \arguments{
    \item{x}{A \code{\link[base]{logical}} \code{\link[base]{vector}} of length N.}
@@ -110,7 +110,7 @@ stopifnot(identical(idxs1, idxs2));
 
  }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{which}}()

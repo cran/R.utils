@@ -16,7 +16,9 @@
  Finds one or several files in multiple directories.
 }
 
-\usage{\method{findFiles}{default}(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE, allFiles=TRUE, ...)}
+\usage{
+\method{findFiles}{default}(pattern=NULL, paths=NULL, recursive=FALSE, firstOnly=TRUE, allFiles=TRUE, ...)
+}
 
 \arguments{
  \item{pattern}{A regular expression file name pattern to match.}
@@ -46,7 +48,7 @@
   For more details, see \code{\link{filePath}}().
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

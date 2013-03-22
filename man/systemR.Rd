@@ -13,7 +13,9 @@
 
  \title{Launches another R process from within R}
 
- \usage{\method{systemR}{default}(command="", ..., Rcommand="R", verbose=FALSE)}
+ \usage{
+\method{systemR}{default}(command="", ..., Rcommand="R", verbose=FALSE)
+}
 
  \description{
    Launches another R process from within R via \code{\link[base]{system}}() by automatically locating the
@@ -39,7 +41,7 @@ res <- systemR("--slave -e cat(runif(1))", intern=TRUE)
 cat("A random number: ", res, "\n", sep="")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \references{
   [1] R-devel thread 'Best way to locate R executable from within R?',

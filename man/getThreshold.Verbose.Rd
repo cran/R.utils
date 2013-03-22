@@ -9,9 +9,7 @@
 \name{getThreshold.Verbose}
 \alias{getThreshold.Verbose}
 \alias{Verbose.getThreshold}
-\alias{getThreshold.Verbose}
 \alias{getThreshold,Verbose-method}
-
 
 \title{Gets current verbose threshold}
 
@@ -19,7 +17,9 @@
   Gets current verbose threshold.
 }
 
-\usage{\method{getThreshold}{Verbose}(this, ...)}
+\usage{
+\method{getThreshold}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{numeric}} value.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:setThreshold.Verbose]{*setThreshold}()} and \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.

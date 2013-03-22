@@ -16,7 +16,9 @@
  Displays the contents of a text file with line numbers and more.
 }
 
-\usage{\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL, pager=getOption("pager"), ...)}
+\usage{
+\method{displayCode}{default}(con=NULL, code=NULL, numerate=TRUE, lines=-1, wrap=79, highlight=NULL, pager=getOption("pager"), ...)
+}
 
 \arguments{
   \item{con}{A \code{\link[base:connections]{connection}} or a \code{\link[base]{character}} string filename.
@@ -52,7 +54,7 @@ cat("Displaying: ", file, ":\n", sep="")
 displayCode(file, lines=100:110, wrap=65, highlight=c(101,104:108))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
  \code{\link[base]{file.show}}().

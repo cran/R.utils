@@ -12,7 +12,9 @@
 
  \title{Creates a file atomically}
 
- \usage{\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE)}
+ \usage{
+\method{createFileAtomically}{default}(filename, path=NULL, FUN, ..., skip=FALSE, overwrite=FALSE, backup=TRUE, verbose=FALSE)
+}
 
  \description{
   Creates a file atomically by first creating and writing to a temporary file which
@@ -95,7 +97,7 @@ cat(bfr3, sep="\n")
 file.remove("foobar.txt.tmp")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   Internally,

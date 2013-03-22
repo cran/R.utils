@@ -16,14 +16,16 @@
  Gets all contigous intervals of a vector of indices.
 }
 
-\usage{\method{seqToIntervals}{default}(idx, ...)}
+\usage{
+\method{seqToIntervals}{default}(idx, ...)
+}
 
 \arguments{
   \item{idx}{A \code{\link[base]{vector}} of \code{\link[base]{integer}} indices.}
   \item{...}{Not used.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 x <- 1:10

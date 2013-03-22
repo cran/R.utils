@@ -9,9 +9,7 @@
  \name{reset.VComments}
 \alias{reset.VComments}
 \alias{VComments.reset}
-\alias{reset.VComments}
 \alias{reset,VComments-method}
-
 
  \title{Resets a VComments compiler}
 
@@ -19,7 +17,9 @@
    Resets a VComments compiler.
  }
 
- \usage{\method{reset}{VComments}(this, ...)}
+ \usage{
+\method{reset}{VComments}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{VComments}}.

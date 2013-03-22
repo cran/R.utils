@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinPid.GString}
+\name{GString$getBuiltinPid}
+\alias{GString$getBuiltinPid}
 \alias{getBuiltinPid.GString}
 \alias{GString.getBuiltinPid}
-\alias{getBuiltinPid.GString}
 \alias{getBuiltinPid,GString-method}
-
 
 \title{Gets the process id of the current R session}
 
@@ -19,8 +18,13 @@
   Gets the process id of the current R session.
 }
 
-\synopsis{getBuiltinPid.GString(static, ...)}
-\usage{GString$getBuiltinPid(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinPid(...)
+
+## Don't use the below:
+\method{getBuiltinPid}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +34,7 @@
   Returns an \code{\link[base]{integer}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

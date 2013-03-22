@@ -9,9 +9,7 @@
  \name{nbrOfOptions.Options}
 \alias{nbrOfOptions.Options}
 \alias{Options.nbrOfOptions}
-\alias{nbrOfOptions.Options}
 \alias{nbrOfOptions,Options-method}
-
 
  \title{Gets the number of options set}
 
@@ -19,7 +17,9 @@
   Gets the number of options set.
  }
 
- \usage{\method{nbrOfOptions}{Options}(this, ...)}
+ \usage{
+\method{nbrOfOptions}{Options}(this, ...)
+}
 
  \arguments{
    \item{...}{Not used.}
@@ -27,7 +27,7 @@
 
  \value{Returns an \code{\link[base]{integer}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Options}}.

@@ -16,7 +16,9 @@
   C-style formatted output.
 }
 
-\usage{\method{printf}{default}(fmt, ..., sep="", file="")}
+\usage{
+\method{printf}{default}(fmt, ..., sep="", file="")
+}
 
 \arguments{
  \item{fmt}{A \code{\link[base]{character}} vector of format strings.
@@ -44,7 +46,7 @@
   printf(c("x=\%.2f\n", "y=\%.2f\n"), c(x,y))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
    For C-style formatting of \code{\link[base]{character}} strings, see \code{\link[base]{sprintf}}().

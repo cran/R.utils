@@ -9,9 +9,7 @@
  \name{updateLabels.TextStatusBar}
 \alias{updateLabels.TextStatusBar}
 \alias{TextStatusBar.updateLabels}
-\alias{updateLabels.TextStatusBar}
 \alias{updateLabels,TextStatusBar-method}
-
 
  \title{Sets the new values of given labels and updates the status bar}
 
@@ -19,7 +17,9 @@
    Sets the new values of given labels and updates the status bar.
  }
 
- \usage{\method{updateLabels}{TextStatusBar}(this, ...)}
+ \usage{
+\method{updateLabels}{TextStatusBar}(this, ...)
+}
 
  \arguments{
   \item{...}{A set of named arguments.}
@@ -29,7 +29,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:setLabels.TextStatusBar]{*setLabels}()}.

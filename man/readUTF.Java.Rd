@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readUTF.Java}
+\name{Java$readUTF}
+\alias{Java$readUTF}
 \alias{readUTF.Java}
 \alias{Java.readUTF}
-\alias{readUTF.Java}
 \alias{readUTF,Java-method}
-
 
 \title{Reads a Java (UTF-8) formatted string from a connection}
 
@@ -19,8 +18,13 @@
   Reads a Java (UTF-8) formatted string from a connection.
 }
 
-\synopsis{readUTF.Java(static, con, as.character=TRUE, ...)}
-\usage{Java$readUTF(con, as.character=TRUE, ...)}
+\usage{
+## Static method (use this):
+## Java$readUTF(con, as.character=TRUE, ...)
+
+## Don't use the below:
+\method{readUTF}{Java}(static, con, as.character=TRUE, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}
@@ -41,7 +45,7 @@
   read \emph{incorrectly} without any warnings.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{readBin}}().

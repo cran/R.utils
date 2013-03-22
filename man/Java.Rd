@@ -45,7 +45,9 @@ extends \link[R.oo]{Object}\cr
    \code{LONG.MIN}, and \code{LONG.MAX}.
 }
 
-\usage{Java()}
+\usage{
+Java()
+}
 
 \section{Fields and Methods}{
  \bold{Methods:}\cr
@@ -112,5 +114,5 @@ close(inn)
 file.remove(pathname)
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 \keyword{classes}

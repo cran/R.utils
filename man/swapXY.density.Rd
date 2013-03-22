@@ -9,8 +9,6 @@
 
  \name{swapXY.density}
 \alias{swapXY.density}
-\alias{swapXY.density}
-
 
  \title{Swaps x and y coordinates of a density object}
 
@@ -18,7 +16,9 @@
   Swaps x and y coordinates of a density object returned by \code{\link[stats]{density}}.
  }
 
- \usage{\method{swapXY}{density}(object, ...)}
+ \usage{
+\method{swapXY}{density}(object, ...)
+}
 
  \arguments{
    \item{...}{Not used.}
@@ -29,7 +29,7 @@
    elements 'x' and 'y' swapped.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    See \code{\link[stats]{density}} for estimating densities.

@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinRhome.GString}
+\name{GString$getBuiltinRhome}
+\alias{GString$getBuiltinRhome}
 \alias{getBuiltinRhome.GString}
 \alias{GString.getBuiltinRhome}
-\alias{getBuiltinRhome.GString}
 \alias{getBuiltinRhome,GString-method}
-
 
 \title{Gets the path where R is installed}
 
@@ -19,8 +18,13 @@
   Gets the path where R is installed.
 }
 
-\synopsis{getBuiltinRhome.GString(static, ...)}
-\usage{GString$getBuiltinRhome(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinRhome(...)
+
+## Don't use the below:
+\method{getBuiltinRhome}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +34,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

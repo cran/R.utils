@@ -16,7 +16,9 @@
   Registers a function to be called when the R session finishes.
 }
 
-\usage{\method{onSessionExit}{default}(fcn, action=c("prepend", "append", "replace"), ...)}
+\usage{
+\method{onSessionExit}{default}(fcn, action=c("prepend", "append", "replace"), ...)
+}
 
 \arguments{
  \item{fcn}{A \code{\link[base]{function}} to be called without argument.}
@@ -39,7 +41,7 @@
   Moreover, when \R is run in batch mode, \code{.Last()} is never called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{\dontrun{
   onSessionExit(function(...) {

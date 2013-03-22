@@ -34,7 +34,9 @@ extends \emph{\link[R.utils]{SmartComments}}\cr
  The VComments class.
 }
 
-\usage{VComments(letter="V", verboseName="verbose", ...)}
+\usage{
+VComments(letter="V", verboseName="verbose", ...)
+}
 
 \arguments{
   \item{letter}{The smart letter.}
@@ -124,7 +126,7 @@ cat("Code after preprocessing:\n")
 displayCode(code=lines, pager="console")
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

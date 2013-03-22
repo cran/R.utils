@@ -9,9 +9,7 @@
  \name{popMessage.TextStatusBar}
 \alias{popMessage.TextStatusBar}
 \alias{TextStatusBar.popMessage}
-\alias{popMessage.TextStatusBar}
 \alias{popMessage,TextStatusBar-method}
-
 
  \title{Adds a message above the status bar}
 
@@ -19,7 +17,9 @@
    Adds a message above the status bar by scrolling up previous messages popped.
  }
 
- \usage{\method{popMessage}{TextStatusBar}(this, ..., collapse="", sep="")}
+ \usage{
+\method{popMessage}{TextStatusBar}(this, ..., collapse="", sep="")
+}
 
  \arguments{
   \item{...}{Arguments passed to \code{\link[base]{cat}}().}
@@ -30,7 +30,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{TextStatusBar}}.

@@ -6,17 +6,21 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{currentTimeMillis.System}
+\name{System$currentTimeMillis}
+\alias{System$currentTimeMillis}
 \alias{currentTimeMillis.System}
 \alias{System.currentTimeMillis}
-\alias{currentTimeMillis.System}
 \alias{currentTimeMillis,System-method}
-
 
 \title{Get the current time in milliseconds}
 
-\synopsis{currentTimeMillis.System(this, ...)}
-\usage{System$currentTimeMillis(...)}
+\usage{
+## Static method (use this):
+## System$currentTimeMillis(...)
+
+## Don't use the below:
+\method{currentTimeMillis}{System}(this, ...)
+}
 
 \description{
   Get the current time in milliseconds.
@@ -26,7 +30,7 @@
   Returns an \code{\link[base]{integer}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{Sys.time}}().

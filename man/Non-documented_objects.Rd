@@ -185,8 +185,6 @@
  \alias{gunzip.default}
  \alias{isOpen}
  \alias{isOpen.default}
- \alias{lapply}
- \alias{lapply.default}
  \alias{remove.default}
  \alias{unwrap}
  \alias{verbose}
@@ -224,7 +222,7 @@
    The rest are deprecated methods.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 
 \keyword{documentation}

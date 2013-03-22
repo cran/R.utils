@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{isVector.Assert}
+ \name{Assert$isVector}
+\alias{Assert$isVector}
 \alias{isVector.Assert}
 \alias{Assert.isVector}
-\alias{isVector.Assert}
 \alias{isVector,Assert-method}
-
 
  \title{Static method asserting thatan object is a vector}
 
@@ -19,8 +18,13 @@
    Static method asserting thatan object is a vector.
  }
 
- \synopsis{isVector.Assert(static, x, length=NULL, ...)}
-\usage{Assert$isVector(x, length=NULL, ...)}
+ \usage{
+## Static method (use this):
+## Assert$isVector(x, length=NULL, ...)
+
+## Don't use the below:
+\method{isVector}{Assert}(static, x, length=NULL, ...)
+}
 
  \arguments{
   \item{x}{Object to be checked.}
@@ -32,7 +36,7 @@
    Returns (invisibly) \code{\link[base:logical]{TRUE}}, or throws an exception.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Assert}}.

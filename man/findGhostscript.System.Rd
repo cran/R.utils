@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findGhostscript.System}
+ \name{System$findGhostscript}
+\alias{System$findGhostscript}
 \alias{findGhostscript.System}
 \alias{System.findGhostscript}
-\alias{findGhostscript.System}
 \alias{findGhostscript,System-method}
-
 
  \title{Searches for the ghostview binary on the current system}
 
@@ -21,8 +20,13 @@
    Currently only Windows and Unix is supported.
  }
 
- \synopsis{findGhostscript.System(static, updateRGSCMD=TRUE, ...)}
-\usage{System$findGhostscript(updateRGSCMD=TRUE, ...)}
+ \usage{
+## Static method (use this):
+## System$findGhostscript(updateRGSCMD=TRUE, ...)
+
+## Don't use the below:
+\method{findGhostscript}{System}(static, updateRGSCMD=TRUE, ...)
+}
 
  \arguments{
    \item{updateRGSCMD}{If \code{\link[base:logical]{TRUE}} and ghostscript is found, then the system
@@ -40,7 +44,7 @@
    print(System$findGhostscript())
  }}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{Sys.getenv}}().

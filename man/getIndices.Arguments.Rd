@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getIndices.Arguments}
+\name{Arguments$getIndices}
+\alias{Arguments$getIndices}
 \alias{getIndices.Arguments}
 \alias{Arguments.getIndices}
-\alias{getIndices.Arguments}
 \alias{getIndices,Arguments-method}
-
 \alias{Arguments.getIndex}
 \alias{getIndex.Arguments}
 \alias{getIndex,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIndices.Arguments(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
-\usage{Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getIndices(x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+
+## Don't use the below:
+\method{getIndices}{Arguments}(static, x, ..., max=Inf, range=c(1 * (max > 0), max), .name=NULL)
+}
 
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.  If \code{\link[base]{logical}}, \code{\link[base]{which}}() is used.}
@@ -38,7 +42,7 @@
  Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

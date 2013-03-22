@@ -16,7 +16,9 @@
   Gets the  on R CMD check if the current R session was launched by it.
 }
 
-\usage{queryRCmdCheck(...)}
+\usage{
+queryRCmdCheck(...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -53,5 +55,5 @@ print(search())
 print(getwd())
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 

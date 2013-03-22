@@ -9,9 +9,7 @@
  \name{isDone.ProgressBar}
 \alias{isDone.ProgressBar}
 \alias{ProgressBar.isDone}
-\alias{isDone.ProgressBar}
 \alias{isDone,ProgressBar-method}
-
 
  \title{Checks if progress bar is completed}
 
@@ -19,7 +17,9 @@
    Checks if progress bar is completed.
  }
 
- \usage{\method{isDone}{ProgressBar}(this, ...)}
+ \usage{
+\method{isDone}{ProgressBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns \code{\link[base:logical]{TRUE}} or \code{\link[base:logical]{FALSE}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{ProgressBar}}.

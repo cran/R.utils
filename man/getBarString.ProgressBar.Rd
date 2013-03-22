@@ -9,9 +9,7 @@
  \name{getBarString.ProgressBar}
 \alias{getBarString.ProgressBar}
 \alias{ProgressBar.getBarString}
-\alias{getBarString.ProgressBar}
 \alias{getBarString,ProgressBar-method}
-
 
  \title{Gets the progress bar string to be displayed}
 
@@ -19,7 +17,9 @@
    Gets the progress bar string to be displayed.
  }
 
- \usage{\method{getBarString}{ProgressBar}(this, ...)}
+ \usage{
+\method{getBarString}{ProgressBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns a \code{\link[base]{character}} string.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{ProgressBar}}.

@@ -9,9 +9,7 @@
  \name{more.Verbose}
 \alias{more.Verbose}
 \alias{Verbose.more}
-\alias{more.Verbose}
 \alias{more,Verbose-method}
-
 
  \title{Creates a cloned instance with a lower threshold}
 
@@ -19,7 +17,9 @@
    Creates a cloned instance with a lower threshold.
  }
 
- \usage{\method{more}{Verbose}(this, dThreshold=1, ...)}
+ \usage{
+\method{more}{Verbose}(this, dThreshold=1, ...)
+}
 
  \arguments{
   \item{dThreshold}{The amount the threshold should be lowered.}
@@ -30,7 +30,7 @@
    Returns a cloned \code{\link{Verbose}} object.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:less.Verbose]{*less}()}

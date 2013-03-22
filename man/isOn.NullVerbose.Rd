@@ -9,9 +9,7 @@
 \name{isOn.NullVerbose}
 \alias{isOn.NullVerbose}
 \alias{NullVerbose.isOn}
-\alias{isOn.NullVerbose}
 \alias{isOn,NullVerbose-method}
-
 
 \title{Checks if the output is on}
 
@@ -19,7 +17,9 @@
   Checks if the output is on.
 }
 
-\usage{\method{isOn}{NullVerbose}(this, ...)}
+\usage{
+\method{isOn}{NullVerbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns always \code{\link[base:logical]{FALSE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{NullVerbose}}.

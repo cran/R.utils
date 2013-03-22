@@ -9,9 +9,7 @@
 \name{isOn.Verbose}
 \alias{isOn.Verbose}
 \alias{Verbose.isOn}
-\alias{isOn.Verbose}
 \alias{isOn,Verbose-method}
-
 
 \title{Checks if the output is on}
 
@@ -19,7 +17,9 @@
   Checks if the output is on.
 }
 
-\usage{\method{isOn}{Verbose}(this, ...)}
+\usage{
+\method{isOn}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns \code{\link[base:logical]{TRUE}} if output is on, otherwise \code{\link[base:logical]{FALSE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:on.Verbose]{*on}()} and \code{\link[R.utils:off.Verbose]{*off}()}.

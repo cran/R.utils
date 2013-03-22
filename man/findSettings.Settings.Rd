@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findSettings.Settings}
+ \name{Settings$findSettings}
+\alias{Settings$findSettings}
 \alias{findSettings.Settings}
 \alias{Settings.findSettings}
-\alias{findSettings.Settings}
 \alias{findSettings,Settings-method}
-
 
  \title{Searches for the settings file in one or several directories}
 
@@ -19,8 +18,13 @@
    Searches for the settings file in one or several directories.
  }
 
- \synopsis{findSettings.Settings(static, basename, paths=c(".", "~"), ...)}
-\usage{Settings$findSettings(basename, paths=c(".", "~"), ...)}
+ \usage{
+## Static method (use this):
+## Settings$findSettings(basename, paths=c(".", "~"), ...)
+
+## Don't use the below:
+\method{findSettings}{Settings}(static, basename, paths=c(".", "~"), ...)
+}
 
  \arguments{
   \item{basename}{A \code{\link[base]{character}} string of the basename of the settings file.}
@@ -34,7 +38,7 @@
    file found, otherwise \code{\link[base]{NULL}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Settings}}.

@@ -9,9 +9,7 @@
 \name{setDefaultLevel.Verbose}
 \alias{setDefaultLevel.Verbose}
 \alias{Verbose.setDefaultLevel}
-\alias{setDefaultLevel.Verbose}
 \alias{setDefaultLevel,Verbose-method}
-
 
 \title{Sets the current default verbose level}
 
@@ -19,7 +17,9 @@
   Sets the current default verbose level.
 }
 
-\usage{\method{setDefaultLevel}{Verbose}(this, level, ...)}
+\usage{
+\method{setDefaultLevel}{Verbose}(this, level, ...)
+}
 
 \arguments{
  \item{level}{A \code{\link[base]{numeric}} value.}
@@ -30,7 +30,7 @@
   Returns old default level.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

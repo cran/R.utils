@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getIntegers.Arguments}
+\name{Arguments$getIntegers}
+\alias{Arguments$getIntegers}
 \alias{getIntegers.Arguments}
 \alias{Arguments.getIntegers}
-\alias{getIntegers.Arguments}
 \alias{getIntegers,Arguments-method}
-
 \alias{Arguments.getInteger}
 \alias{getInteger.Arguments}
 \alias{getInteger,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a integer vector and validates.
 }
 
-\synopsis{getIntegers.Arguments(static, ..., disallow=c("NA", "NaN"))}
-\usage{Arguments$getIntegers(..., disallow=c("NA", "NaN"))}
+\usage{
+## Static method (use this):
+## Arguments$getIntegers(..., disallow=c("NA", "NaN"))
+
+## Don't use the below:
+\method{getIntegers}{Arguments}(static, ..., disallow=c("NA", "NaN"))
+}
 
 \arguments{
   \item{...}{Arguments passed to @method "getNumeric".}
@@ -35,7 +39,7 @@
  Returns a \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

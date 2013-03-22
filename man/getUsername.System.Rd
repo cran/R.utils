@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{getUsername.System}
+ \name{System$getUsername}
+\alias{System$getUsername}
 \alias{getUsername.System}
 \alias{System.getUsername}
-\alias{getUsername.System}
 \alias{getUsername,System-method}
-
 
  \title{Retrieves the name of the user running R}
 
@@ -19,8 +18,13 @@
   Retrieves the name of the user running R.
  }
 
- \synopsis{getUsername.System(static, ...)}
-\usage{System$getUsername(...)}
+ \usage{
+## Static method (use this):
+## System$getUsername(...)
+
+## Don't use the below:
+\method{getUsername}{System}(static, ...)
+}
 
  \value{
   Returns a \code{\link[base]{character}} string.

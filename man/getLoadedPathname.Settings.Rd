@@ -9,9 +9,7 @@
  \name{getLoadedPathname.Settings}
 \alias{getLoadedPathname.Settings}
 \alias{Settings.getLoadedPathname}
-\alias{getLoadedPathname.Settings}
 \alias{getLoadedPathname,Settings-method}
-
 
  \title{Gets the pathname of the settings file loaded}
 
@@ -19,7 +17,9 @@
    Gets the pathname of the settings file loaded.
  }
 
- \usage{\method{getLoadedPathname}{Settings}(this, ...)}
+ \usage{
+\method{getLoadedPathname}{Settings}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -30,7 +30,7 @@
    loaded. If no file was read, \code{\link[base]{NULL}} is returned.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Settings}}.

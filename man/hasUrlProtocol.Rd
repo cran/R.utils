@@ -16,7 +16,9 @@
  Checks if one or several pathnames has a URL protocol.
 }
 
-\usage{\method{hasUrlProtocol}{default}(pathname, ...)}
+\usage{
+\method{hasUrlProtocol}{default}(pathname, ...)
+}
 
 \arguments{
   \item{pathname}{A \code{\link[base]{character}} \code{\link[base]{vector}}.}
@@ -27,7 +29,7 @@
  Returns a \code{\link[base]{logical}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

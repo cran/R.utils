@@ -9,9 +9,7 @@
  \name{printf.Verbose}
 \alias{printf.Verbose}
 \alias{Verbose.printf}
-\alias{printf.Verbose}
 \alias{printf,Verbose-method}
-
 
  \title{Formats and prints object if above threshold}
 
@@ -21,7 +19,9 @@
    calls.
  }
 
- \usage{\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp)}
+ \usage{
+\method{printf}{Verbose}(this, fmtstr, ..., level=this$defaultLevel, timestamp=this$.timestamp)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{sprintf}}().}
@@ -35,7 +35,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

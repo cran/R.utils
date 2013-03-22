@@ -9,9 +9,7 @@
  \name{setProgress.ProgressBar}
 \alias{setProgress.ProgressBar}
 \alias{ProgressBar.setProgress}
-\alias{setProgress.ProgressBar}
 \alias{setProgress,ProgressBar-method}
-
 
  \title{Sets current progress}
 
@@ -19,7 +17,9 @@
    Sets current progress.
  }
 
- \usage{\method{setProgress}{ProgressBar}(this, progress, visual=TRUE, ...)}
+ \usage{
+\method{setProgress}{ProgressBar}(this, progress, visual=TRUE, ...)
+}
 
  \arguments{
   \item{progress}{A \code{\link[base]{double}} in [0,1] specifying the relative progress.}
@@ -31,7 +31,7 @@
    Returns old value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:setValue.ProgressBar]{*setValue}()}.

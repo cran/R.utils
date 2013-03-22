@@ -9,9 +9,7 @@
 \name{on.Verbose}
 \alias{on.Verbose}
 \alias{Verbose.on}
-\alias{on.Verbose}
 \alias{on,Verbose-method}
-
 
 \title{Turn on the output}
 
@@ -19,7 +17,9 @@
   Turn on the output.
 }
 
-\usage{\method{on}{Verbose}(this, ...)}
+\usage{
+\method{on}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns (invisibly) \code{\link[base:logical]{TRUE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:off.Verbose]{*off}()} and \code{\link[R.utils:isOn.Verbose]{*isOn}()}.

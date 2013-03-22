@@ -2,6 +2,78 @@
 Package: R.utils
 ================
 
+Version: 1.23.2 [2013-03-22]
+o BUG FIX: Previous update caused commandArgs(..., adhoc=TRUE) 
+  to coerce 'T' and 'F' to logicals TRUE and FALSE.  They are
+  now preserved as character string.
+
+
+Version: 1.23.1 [2013-03-21]
+o Now commandArgs(..., adhoc=TRUE) utilizes utils::type.convert().
+
+
+Version: 1.23.0 [2013-03-20]
+o Added ecget() which is like eget() with the default value
+  corresponding to the command-line argument.
+o Added eget() for retrieving a single variable, with a 
+  fallback to a default value, e.g. n <- eget(n=42).
+o Added support for cmdArg(n=42) as an alias to cmdArg("n", 42).
+
+
+Version: 1.22.0 [2013-03-14]
+o Added cmdArg() for retrieving a single command line argument
+  with a default value and type, e.g. n <- cmdArg("n", 42).
+
+
+Version: 1.21.2 [2013-03-11]
+o Bumped up package dependencies.
+
+
+Version: 1.21.1 [2013-03-08]
+o Added an Authors@R field to the DESCRIPTION.
+
+
+Version: 1.21.0 [2013-03-07]
+o Major improvement of commandArgs().  For instance, now it never
+  consider arguments after '--args' to be reserved or environment
+  variable arguments; they are always user arguments.  It is also
+  doing a better job on interpreting -*<key>=<value> arguments;
+  previously it could happen that it would split the <value>.
+  Added systems test for commandArgs() and cmdArgs().
+
+
+Version: 1.20.2 [2013-03-07]
+o Now argument 'eps' for isZero() may also be a character string
+  specifying either "double.eps" or "single.eps".
+
+
+Version: 1.20.1 [2013-03-04]
+o DOCUMENTATION: Updated the help usage section for all static methods.
+
+
+Version: 1.20.0 [2013-02-24]
+o Added cmdArgs() which is short for R.utils::commandArgs(asValues=TRUE,
+  adhoc=TRUE, unique=TRUE, excludeReserved=TRUE, ...)[-1L].
+o Now it is possible to specify default arguments in commandArgs().
+  In addition, if asValues=TRUE, then the values of the parsed 
+  command-line arguments will be coerced to the data type of the
+  default ones if they share names.  If adhoc=TRUE, arguments will
+  be coerced to numerics unless the result is NA.
+o For conveniency, getAbsolutePath() and getRelativePath() returns 
+  the same pathname if it is a URL.
+o Added gstring() and gcat().
+o Now it is possible to escape the sed-like search replace format
+  for GString:s via quoting, e.g. ${'R.rsp/HttpDaemon/RspVersion'} .
+o BUG FIX: getParent() and filePath() as well as System$mapDriveOnWindows()
+  and System$unmapDriveOnWindows() did not handle paths with a lower case
+  Windows drive letter.  Oddly, it is only now that we have received
+  an single report (on a Windows 7 system) that such getwd() may return
+  such drive letters, e.g. 'c:/path/' instead of 'C:/path/'.
+o BUG FIX: evaluate(..., where="parent") for GString would result
+  in an endless loop.
+o BUG FIX: displayCode(code) incorrectly processed 'code' as GString:s.
+
+
 Version: 1.19.5 [2013-01-11]
 o BUG FIX: Specifying argument 'version' to isPackageLoaded() would give
   "Error: 'manglePackageName' is defunct." in recent versions of R.

@@ -9,9 +9,7 @@
 \name{timestampOn.Verbose}
 \alias{timestampOn.Verbose}
 \alias{Verbose.timestampOn}
-\alias{timestampOn.Verbose}
 \alias{timestampOn,Verbose-method}
-
 \alias{Verbose.timestampOff}
 \alias{timestampOff.Verbose}
 \alias{timestampOff,Verbose-method}
@@ -23,7 +21,9 @@
   Turns automatic timestamping on and off.
 }
 
-\usage{\method{timestampOn}{Verbose}(this, ...)}
+\usage{
+\method{timestampOn}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -33,7 +33,7 @@
   Returns (invisibly) the old timestamp status.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:setTimestampFormat.Verbose]{*setTimestampFormat}()}.

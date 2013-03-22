@@ -36,7 +36,9 @@ extends \link[R.utils]{Verbose}\cr
  \emph{This is a trial class}.
 }
 
-\usage{MultiVerbose(verboseList=NULL, ...)}
+\usage{
+MultiVerbose(verboseList=NULL, ...)
+}
 
 \arguments{
   \item{verboseList}{A \code{\link[base]{list}} of \code{\link{Verbose}} objects.}
@@ -46,7 +48,7 @@ extends \link[R.utils]{Verbose}\cr
 \section{Fields and Methods}{
  \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{as.list} \tab  -\cr
+ \tab \code{\link[R.utils:as.list.MultiVerbose]{as.list}} \tab Gets a list of Verbose objects.\cr
  \tab \code{\link[R.utils:writeRaw.MultiVerbose]{writeRaw}} \tab Writes to each of the Verbose objects.\cr
 }
 
@@ -107,7 +109,7 @@ ruler(verbose)
 newline(verbose)
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

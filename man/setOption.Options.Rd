@@ -9,9 +9,7 @@
  \name{setOption.Options}
 \alias{setOption.Options}
 \alias{Options.setOption}
-\alias{setOption.Options}
 \alias{setOption,Options-method}
-
 
  \title{Sets an option}
 
@@ -19,7 +17,9 @@
   Sets an option in the options tree structure.
  }
 
- \usage{\method{setOption}{Options}(this, pathname, value, overwrite=TRUE, ...)}
+ \usage{
+\method{setOption}{Options}(this, pathname, value, overwrite=TRUE, ...)
+}
 
  \arguments{
    \item{pathname}{A single \code{\link[base]{character}} string specifying the path to the
@@ -32,7 +32,7 @@
 
  \value{Returns (invisibly) the old option value.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.

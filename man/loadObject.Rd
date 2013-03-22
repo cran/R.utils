@@ -16,7 +16,9 @@
   Method to load object from a file or a connection, which previously have been saved using \code{\link{saveObject}}().
 }
 
-\usage{\method{loadObject}{default}(file, path=NULL, ...)}
+\usage{
+\method{loadObject}{default}(file, path=NULL, ...)
+}
 
 \arguments{
  \item{file}{A filename or \code{\link[base:connections]{connection}} to read the object from.}
@@ -35,12 +37,13 @@
   This makes it possible to load objects back using any variable name.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{saveObject}}() to save an object to file.
   Internally \code{\link[base]{load}}() is used.
   See also \code{\link{loadToEnv}}().
+  See also \code{\link[base]{saveRDS}}().
 }
 
 

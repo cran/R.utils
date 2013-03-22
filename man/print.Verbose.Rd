@@ -9,9 +9,7 @@
  \name{print.Verbose}
 \alias{print.Verbose}
 \alias{Verbose.print}
-\alias{print.Verbose}
 \alias{print,Verbose-method}
-
 
  \title{Prints objects if above threshold}
 
@@ -20,7 +18,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{print}{Verbose}(x, ..., level=this$defaultLevel)}
+ \usage{
+\method{print}{Verbose}(x, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{print}}().}
@@ -31,7 +31,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

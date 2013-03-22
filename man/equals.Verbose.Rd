@@ -9,9 +9,7 @@
  \name{equals.Verbose}
 \alias{equals.Verbose}
 \alias{Verbose.equals}
-\alias{equals.Verbose}
 \alias{equals,Verbose-method}
-
 
  \title{Checks if this object is equal to another}
 
@@ -19,7 +17,9 @@
   Checks if this object is equal to another.
  }
 
- \usage{\method{equals}{Verbose}(this, other, ...)}
+ \usage{
+\method{equals}{Verbose}(this, other, ...)
+}
 
  \arguments{
    \item{other}{Another Object.}
@@ -28,7 +28,7 @@
 
  \value{Returns \code{\link[base:logical]{TRUE}} if they are equal, otherwise \code{\link[base:logical]{FALSE}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

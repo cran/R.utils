@@ -9,9 +9,7 @@
  \name{validate.SmartComments}
 \alias{validate.SmartComments}
 \alias{SmartComments.validate}
-\alias{validate.SmartComments}
 \alias{validate,SmartComments-method}
-
 
  \title{Validates the compiled lines}
 
@@ -19,7 +17,9 @@
    Validates the compiled lines
  }
 
- \usage{\method{validate}{SmartComments}(this, lines, ...)}
+ \usage{
+\method{validate}{SmartComments}(this, lines, ...)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code to validated.}
@@ -30,7 +30,7 @@
    Returns a \code{\link[base]{character}} \code{\link[base]{vector}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

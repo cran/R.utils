@@ -9,9 +9,7 @@
  \name{convertComment.VComments}
 \alias{convertComment.VComments}
 \alias{VComments.convertComment}
-\alias{convertComment.VComments}
 \alias{convertComment,VComments-method}
-
 
  \title{Converts a verbose comment to R code}
 
@@ -19,7 +17,9 @@
    Converts a verbose comment to R code.
  }
 
- \usage{\method{convertComment}{VComments}(this, vcomment, .currLine=NA, .line=NA, ...)}
+ \usage{
+\method{convertComment}{VComments}(this, vcomment, .currLine=NA, .line=NA, ...)
+}
 
  \arguments{
   \item{vcomment}{A vcomment \code{\link[base]{list}} structure.}
@@ -32,7 +32,7 @@
    Returns one \code{\link[base]{character}} string of \R code.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{VComments}}.

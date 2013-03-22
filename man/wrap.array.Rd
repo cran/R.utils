@@ -9,8 +9,6 @@
 
  \name{wrap.array}
 \alias{wrap.array}
-\alias{wrap.array}
-
  \alias{wrap.matrix}
  \alias{wrap.data.frame}
 
@@ -24,7 +22,9 @@
    \code{write.table()}.
  }
 
- \usage{\method{wrap}{array}(x, map=list(NA), sep=".", ...)}
+ \usage{
+\method{wrap}{array}(x, map=list(NA), sep=".", ...)
+}
 
  \arguments{
   \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}
@@ -150,7 +150,7 @@ print(z2)
 stopifnot(identical(z2,x2))
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:unwrap.array]{*unwrap}()}.

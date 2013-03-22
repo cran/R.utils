@@ -12,7 +12,9 @@
 
  \title{Reads a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{\method{readWindowsShellLink}{default}(con, clean=TRUE, verbose=FALSE, ...)}
+ \usage{
+\method{readWindowsShellLink}{default}(con, clean=TRUE, verbose=FALSE, ...)
+}
 
  \description{
    Reads a Microsoft Windows Shortcut (.lnk file).
@@ -48,7 +50,7 @@ str(lnk0$pathname)
   written based on reverse engineering (before [1] was made available).
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{readWindowsShortcut}}()

@@ -9,9 +9,7 @@
  \name{getLeaves.Options}
 \alias{getLeaves.Options}
 \alias{Options.getLeaves}
-\alias{getLeaves.Options}
 \alias{getLeaves,Options-method}
-
 
  \title{Gets all (non-list) options in a flat list}
 
@@ -19,7 +17,9 @@
   Gets all (non-list) options in a flat list.
  }
 
- \usage{\method{getLeaves}{Options}(this, ...)}
+ \usage{
+\method{getLeaves}{Options}(this, ...)
+}
 
  \arguments{
    \item{...}{Not used.}
@@ -27,7 +27,7 @@
 
  \value{Returns a flat \code{\link[base]{list}} structure.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Options}}.

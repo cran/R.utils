@@ -9,9 +9,7 @@
  \name{convertComment.SmartComments}
 \alias{convertComment.SmartComments}
 \alias{SmartComments.convertComment}
-\alias{convertComment.SmartComments}
 \alias{convertComment,SmartComments-method}
-
 
  \title{Converts a single smart comment to R code}
 
@@ -19,7 +17,9 @@
    Converts a single smart comment to R code.
  }
 
- \usage{\method{convertComment}{SmartComments}(...)}
+ \usage{
+\method{convertComment}{SmartComments}(...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Should return single \code{\link[base]{character}} of valid \R code.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

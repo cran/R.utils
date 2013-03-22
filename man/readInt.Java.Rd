@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readInt.Java}
+\name{Java$readInt}
+\alias{Java$readInt}
 \alias{readInt.Java}
 \alias{Java.readInt}
-\alias{readInt.Java}
 \alias{readInt,Java-method}
-
 
 \title{Reads a Java formatted int (32 bits) from a connection}
 
@@ -21,8 +20,13 @@
   the range [-2147483648,2147483647].
 }
 
-\synopsis{readInt.Java(static, con, n=1, ...)}
-\usage{Java$readInt(con, n=1, ...)}
+\usage{
+## Static method (use this):
+## Java$readInt(con, n=1, ...)
+
+## Don't use the below:
+\method{readInt}{Java}(static, con, n=1, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}
@@ -36,7 +40,7 @@
   available.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{readBin}}().

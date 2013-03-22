@@ -34,7 +34,9 @@ extends \link[R.utils]{Verbose}\cr
  A Verbose class ignoring everything.
 }
 
-\usage{NullVerbose(...)}
+\usage{
+NullVerbose(...)
+}
 
 \arguments{
   \item{...}{Ignored.}
@@ -77,7 +79,7 @@ verbose <- NullVerbose()
 cat(verbose, "A verbose messages")   # Ignored
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 
 

@@ -16,7 +16,9 @@
    Checks if this pathname is absolute.
  }
 
- \usage{\method{isAbsolutePath}{default}(pathname, ...)}
+ \usage{
+\method{isAbsolutePath}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}
@@ -29,7 +31,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
 
 

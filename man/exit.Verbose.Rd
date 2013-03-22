@@ -9,9 +9,7 @@
  \name{exit.Verbose}
 \alias{exit.Verbose}
 \alias{Verbose.exit}
-\alias{exit.Verbose}
 \alias{exit,Verbose-method}
-
 
  \title{Writes a message and unindents the following output}
 
@@ -21,7 +19,9 @@
    calls.
  }
 
- \usage{\method{exit}{Verbose}(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL)}
+ \usage{
+\method{exit}{Verbose}(this, ..., indent=-this$indentStep, sep="", suffix="...done", level=NULL)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[R.utils:cat.Verbose]{*cat}()}. If not specified
@@ -36,7 +36,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

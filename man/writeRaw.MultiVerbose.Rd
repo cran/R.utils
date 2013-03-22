@@ -9,9 +9,7 @@
  \name{writeRaw.MultiVerbose}
 \alias{writeRaw.MultiVerbose}
 \alias{MultiVerbose.writeRaw}
-\alias{writeRaw.MultiVerbose}
 \alias{writeRaw,MultiVerbose-method}
-
 
  \title{Writes to each of the Verbose objects}
 
@@ -19,7 +17,9 @@
    Writes to each of the Verbose objects.
  }
 
- \usage{\method{writeRaw}{MultiVerbose}(this, ...)}
+ \usage{
+\method{writeRaw}{MultiVerbose}(this, ...)
+}
 
  \arguments{
   \item{...}{Additiona objects to be passed to \code{writeRaw()} for
@@ -30,7 +30,7 @@
    Returns (invisibly) \code{\link[base:logical]{TRUE}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{MultiVerbose}}.

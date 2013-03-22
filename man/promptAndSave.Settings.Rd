@@ -9,9 +9,7 @@
  \name{promptAndSave.Settings}
 \alias{promptAndSave.Settings}
 \alias{Settings.promptAndSave}
-\alias{promptAndSave.Settings}
 \alias{promptAndSave,Settings-method}
-
 
  \title{Prompt user to save modified settings}
 
@@ -19,7 +17,9 @@
   Prompt user to save modified settings.
  }
 
- \usage{\method{promptAndSave}{Settings}(this, saveOption="saveSettings", settingsName=NULL, ...)}
+ \usage{
+\method{promptAndSave}{Settings}(this, saveOption="saveSettings", settingsName=NULL, ...)
+}
 
  \arguments{
    \item{saveOption}{A \code{\link[base]{character}} string of the option used to set
@@ -40,7 +40,7 @@
    For prompting the user, use "prompt".
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:isModified.Settings]{*isModified}()}.

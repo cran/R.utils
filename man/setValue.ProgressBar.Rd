@@ -9,9 +9,7 @@
  \name{setValue.ProgressBar}
 \alias{setValue.ProgressBar}
 \alias{ProgressBar.setValue}
-\alias{setValue.ProgressBar}
 \alias{setValue,ProgressBar-method}
-
 
  \title{Sets current value}
 
@@ -20,7 +18,9 @@
    Note that this method does \emph{not} update the bar visually.
  }
 
- \usage{\method{setValue}{ProgressBar}(this, value, ...)}
+ \usage{
+\method{setValue}{ProgressBar}(this, value, ...)
+}
 
  \arguments{
   \item{value}{A \code{\link[base]{numeric}} in [0,maxValue].}
@@ -31,7 +31,7 @@
    Returns old value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:setProgress.ProgressBar]{*setProgress}()}.

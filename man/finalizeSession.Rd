@@ -20,7 +20,9 @@
   This method should not be used by the user.
 }
 
-\usage{\method{finalizeSession}{default}(...)}
+\usage{
+\method{finalizeSession}{default}(...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +32,7 @@
   Returns (invisibly) the hooks successfully called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{onSessionExit}}().

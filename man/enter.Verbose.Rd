@@ -9,9 +9,7 @@
  \name{enter.Verbose}
 \alias{enter.Verbose}
 \alias{Verbose.enter}
-\alias{enter.Verbose}
 \alias{enter,Verbose-method}
-
 
  \title{Writes a message and indents the following output}
 
@@ -21,7 +19,9 @@
    calls.
  }
 
- \usage{\method{enter}{Verbose}(this, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel)}
+ \usage{
+\method{enter}{Verbose}(this, ..., indent=this$indentStep, sep="", suffix="...", level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[R.utils:cat.Verbose]{*cat}()}.}
@@ -35,7 +35,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

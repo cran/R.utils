@@ -20,7 +20,9 @@
  as of R v2.12.0.
 }
 
-\usage{\method{resample}{default}(x, ...)}
+\usage{
+\method{resample}{default}(x, ...)
+}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}} of any length and data type.}
@@ -31,7 +33,7 @@
  Returns a sampled \code{\link[base]{vector}} of the same data types as argument \code{x}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[base]{sample}}() is used.

@@ -9,9 +9,7 @@
  \name{setTicks.ProgressBar}
 \alias{setTicks.ProgressBar}
 \alias{ProgressBar.setTicks}
-\alias{setTicks.ProgressBar}
 \alias{setTicks,ProgressBar-method}
-
 
  \title{Sets values for which ticks should be visible}
 
@@ -19,7 +17,9 @@
    Sets values for which ticks should be visible.
  }
 
- \usage{\method{setTicks}{ProgressBar}(this, ticks=10, ...)}
+ \usage{
+\method{setTicks}{ProgressBar}(this, ticks=10, ...)
+}
 
  \arguments{
   \item{ticks}{Tick positions (values).}
@@ -30,7 +30,7 @@
    Returns old tick positions.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{ProgressBar}}.

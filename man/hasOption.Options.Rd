@@ -9,9 +9,7 @@
  \name{hasOption.Options}
 \alias{hasOption.Options}
 \alias{Options.hasOption}
-\alias{hasOption.Options}
 \alias{hasOption,Options-method}
-
 
  \title{Checks if an option exists}
 
@@ -19,7 +17,9 @@
   Checks if an option exists.
  }
 
- \usage{\method{hasOption}{Options}(this, pathname, ...)}
+ \usage{
+\method{hasOption}{Options}(this, pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A single or a \code{\link[base]{vector}} of \code{\link[base]{character}} strings specifying
@@ -29,7 +29,7 @@
 
  \value{Returns a \code{\link[base]{logical}} (\code{\link[base]{vector}}).}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:getOption.Options]{*getOption}()}.

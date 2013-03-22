@@ -18,7 +18,9 @@
   is (detected to be) running.
 }
 
-\usage{\method{onGarbageCollect}{default}(fcn, action=c("prepend", "append", "replace"), ...)}
+\usage{
+\method{onGarbageCollect}{default}(fcn, action=c("prepend", "append", "replace"), ...)
+}
 
 \arguments{
  \item{fcn}{A \code{\link[base]{function}} to be called without argument.}
@@ -31,7 +33,7 @@
   Returns (invisibly) the hooks successfully called.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{\dontrun{
   onGarbageCollect(function(...) {

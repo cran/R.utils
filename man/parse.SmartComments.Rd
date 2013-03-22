@@ -9,9 +9,7 @@
  \name{parse.SmartComments}
 \alias{parse.SmartComments}
 \alias{SmartComments.parse}
-\alias{parse.SmartComments}
 \alias{parse,SmartComments-method}
-
 
  \title{Parses one single smart comment}
 
@@ -19,7 +17,9 @@
    Parses one single smart comment.
  }
 
- \usage{\method{parse}{SmartComments}(this, lines, currLine, ..., letter=this$letter, pattern=NULL)}
+ \usage{
+\method{parse}{SmartComments}(this, lines, currLine, ..., letter=this$letter, pattern=NULL)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code containing smart
@@ -37,7 +37,7 @@
    Returns a \code{\link[base]{list}} structure.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

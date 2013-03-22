@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,9 +9,7 @@
 \name{getRaw.GString}
 \alias{getRaw.GString}
 \alias{GString.getRaw}
-\alias{getRaw.GString}
 \alias{getRaw,GString-method}
-
 
 \title{Gets the unprocessed GString}
 
@@ -19,7 +17,9 @@
   Gets the unprocessed GString.
 }
 
-\usage{\method{getRaw}{GString}(object, ...)}
+\usage{
+\method{getRaw}{GString}(object, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:as.character.GString]{*as.character}()}

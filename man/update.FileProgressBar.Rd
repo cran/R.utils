@@ -9,13 +9,13 @@
  \name{update.FileProgressBar}
 \alias{update.FileProgressBar}
 \alias{FileProgressBar.update}
-\alias{update.FileProgressBar}
 \alias{update,FileProgressBar-method}
-
 
  \title{Updates file progress bar}
 
- \usage{\method{update}{FileProgressBar}(object, visual=TRUE, ...)}
+ \usage{
+\method{update}{FileProgressBar}(object, visual=TRUE, ...)
+}
 
  \description{
    Updates file progress bar.
@@ -31,7 +31,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{FileProgressBar}}.

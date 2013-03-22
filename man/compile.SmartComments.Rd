@@ -9,9 +9,7 @@
  \name{compile.SmartComments}
 \alias{compile.SmartComments}
 \alias{SmartComments.compile}
-\alias{compile.SmartComments}
 \alias{compile,SmartComments-method}
-
 
  \title{Preprocess a vector of code lines}
 
@@ -19,7 +17,9 @@
    Preprocess a vector of code lines.
  }
 
- \usage{\method{compile}{SmartComments}(this, lines, trim=TRUE, excludeComments=FALSE, ...)}
+ \usage{
+\method{compile}{SmartComments}(this, lines, trim=TRUE, excludeComments=FALSE, ...)
+}
 
  \arguments{
   \item{lines}{A \code{\link[base]{character}} \code{\link[base]{vector}} of lines of code to be preprocessed.}
@@ -42,7 +42,7 @@
   current class, this does nothing, but can be overridden in subclasses.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{SmartComments}}.

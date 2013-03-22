@@ -12,7 +12,9 @@
 
  \title{Reads a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{\method{readWindowsShortcut}{default}(con, verbose=FALSE, ...)}
+ \usage{
+\method{readWindowsShortcut}{default}(con, verbose=FALSE, ...)
+}
 
  \description{
    Reads a Microsoft Windows Shortcut (.lnk file).
@@ -48,7 +50,7 @@ history <- filePath(pathname, expandLinks="relative")
   \code{application/x-ms-shortcut}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{createWindowsShortcut}}()

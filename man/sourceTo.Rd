@@ -12,7 +12,9 @@
 
  \title{Parses and evaluates code from a file or a connection}
 
- \usage{\method{sourceTo}{default}(file, path=NULL, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE)}
+ \usage{
+\method{sourceTo}{default}(file, path=NULL, chdir=FALSE, ..., local=TRUE, envir=parent.frame(), modifiedOnly=FALSE)
+}
 
  \description{
    Parses and evaluates code from a file or a connection.
@@ -114,7 +116,7 @@ sourceTo(fh)
 setHook("sourceTo/onPreprocess", oldHooks, action="replace")
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{sourceDirectory}}().

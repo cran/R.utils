@@ -9,9 +9,7 @@
 \name{getTimestampFormat.Verbose}
 \alias{getTimestampFormat.Verbose}
 \alias{Verbose.getTimestampFormat}
-\alias{getTimestampFormat.Verbose}
 \alias{getTimestampFormat,Verbose-method}
-
 
 \title{Gets the default timestamp format}
 
@@ -19,7 +17,9 @@
   Gets the default timestamp format.
 }
 
-\usage{\method{getTimestampFormat}{Verbose}(this, ...)}
+\usage{
+\method{getTimestampFormat}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{character}} string or a \code{\link[base]{function}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:setTimestampFormat.Verbose]{*setTimestampFormat}()}.

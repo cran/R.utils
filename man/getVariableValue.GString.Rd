@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getVariableValue.GString}
+\name{GString$getVariableValue}
+\alias{GString$getVariableValue}
 \alias{getVariableValue.GString}
 \alias{GString.getVariableValue}
-\alias{getVariableValue.GString}
 \alias{getVariableValue,GString-method}
-
 
 \title{Gets a variable value given a name and attributes}
 
@@ -19,8 +18,13 @@
   Gets a variable value given a name and attributes.
 }
 
-\synopsis{getVariableValue.GString(static, name, attributes=NULL, where=c("builtin", "parent", "Sys.getenv", "getOption"), missingValue=NA, ...)}
-\usage{GString$getVariableValue(name, attributes=NULL, where=c("builtin", "parent", "Sys.getenv", "getOption"), missingValue=NA, ...)}
+\usage{
+## Static method (use this):
+## GString$getVariableValue(name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+
+## Don't use the below:
+\method{getVariableValue}{GString}(static, name, attributes="", where=c("builtin", "envir", "parent", "Sys.getenv", "getOption"), envir=parent.frame(), missingValue=NA, ...)
+}
 
 \arguments{
  \item{name}{The name of the variable or function to be queried.}
@@ -35,7 +39,7 @@
   Returns a (\code{\link[base]{vector}} of) objects.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

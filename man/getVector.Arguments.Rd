@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getVector.Arguments}
+\name{Arguments$getVector}
+\alias{Arguments$getVector}
 \alias{getVector.Arguments}
 \alias{Arguments.getVector}
-\alias{getVector.Arguments}
 \alias{getVector,Arguments-method}
-
 
 \title{Validates a vector}
 
@@ -19,8 +18,13 @@
  Validates a vector by checking its length (number of elements).
 }
 
-\synopsis{getVector.Arguments(static, x, length=NULL, .name=NULL, ...)}
-\usage{Arguments$getVector(x, length=NULL, .name=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getVector(x, length=NULL, .name=NULL, ...)
+
+## Don't use the below:
+\method{getVector}{Arguments}(static, x, length=NULL, .name=NULL, ...)
+}
 
 \arguments{
   \item{x}{A single \code{\link[base]{vector}}.}
@@ -36,7 +40,7 @@
  thrown.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

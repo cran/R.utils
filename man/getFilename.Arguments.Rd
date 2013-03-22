@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getFilename.Arguments}
+\name{Arguments$getFilename}
+\alias{Arguments$getFilename}
 \alias{getFilename.Arguments}
 \alias{Arguments.getFilename}
-\alias{getFilename.Arguments}
 \alias{getFilename,Arguments-method}
-
 
 \title{Gets and validates a filename}
 
@@ -19,8 +18,13 @@
  Gets and validates a filename.
 }
 
-\synopsis{getFilename.Arguments(static, filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)}
-\usage{Arguments$getFilename(filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)}
+\usage{
+## Static method (use this):
+## Arguments$getFilename(filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)
+
+## Don't use the below:
+\method{getFilename}{Arguments}(static, filename, nchar=c(1, 128), class=c("safe"), .name=NULL, .type="filename", ...)
+}
 
 \arguments{
   \item{filename}{A \code{\link[base]{character}} string.}
@@ -54,7 +58,7 @@
   [1] Microsoft, \emph{Naming Files, Paths, and Namespaces} (Section 'Windows Naming Conventions'), 2012. \url{http://msdn.microsoft.com/en-us/library/aa365247.aspx#naming_conventions}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

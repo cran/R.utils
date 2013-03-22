@@ -9,9 +9,7 @@
  \name{isVisible.Verbose}
 \alias{isVisible.Verbose}
 \alias{Verbose.isVisible}
-\alias{isVisible.Verbose}
 \alias{isVisible,Verbose-method}
-
 
  \title{Checks if a certain verbose level will be shown or not}
 
@@ -19,7 +17,9 @@
    Checks if a certain verbose level will be shown or not.
  }
 
- \usage{\method{isVisible}{Verbose}(this, level=this$defaultLevel, ...)}
+ \usage{
+\method{isVisible}{Verbose}(this, level=this$defaultLevel, ...)
+}
 
  \arguments{
   \item{level}{A \code{\link[base]{numeric}} value to be compared to the threshold.}
@@ -31,7 +31,7 @@
    threshold, otherwise \code{\link[base:logical]{FALSE}} is returned.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} and \code{\link[R.utils:setThreshold.Verbose]{*setThreshold}()}.

@@ -9,9 +9,7 @@
 \name{pushState.Verbose}
 \alias{pushState.Verbose}
 \alias{Verbose.pushState}
-\alias{pushState.Verbose}
 \alias{pushState,Verbose-method}
-
 \alias{Verbose.popState}
 \alias{popState.Verbose}
 \alias{popState,Verbose-method}
@@ -26,7 +24,9 @@
   set regardless of if the functions returned naturally or via an error.
 }
 
-\usage{\method{pushState}{Verbose}(this, ...)}
+\usage{
+\method{pushState}{Verbose}(this, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -36,7 +36,7 @@
   Returns (invisibly) \code{\link[base:logical]{TRUE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

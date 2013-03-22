@@ -9,9 +9,7 @@
  \name{setMaxValue.ProgressBar}
 \alias{setMaxValue.ProgressBar}
 \alias{ProgressBar.setMaxValue}
-\alias{setMaxValue.ProgressBar}
 \alias{setMaxValue,ProgressBar-method}
-
 
  \title{Sets maximum value}
 
@@ -19,7 +17,9 @@
    Sets maximum value.
  }
 
- \usage{\method{setMaxValue}{ProgressBar}(this, maxValue, ...)}
+ \usage{
+\method{setMaxValue}{ProgressBar}(this, maxValue, ...)
+}
 
  \arguments{
   \item{maxValue}{New maximum value.}
@@ -30,7 +30,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{ProgressBar}}.

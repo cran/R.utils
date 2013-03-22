@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getWritablePathname.Arguments}
+\name{Arguments$getWritablePathname}
+\alias{Arguments$getWritablePathname}
 \alias{getWritablePathname.Arguments}
 \alias{Arguments.getWritablePathname}
-\alias{getWritablePathname.Arguments}
 \alias{getWritablePathname,Arguments-method}
-
 
 \title{Gets a writable pathname}
 
@@ -19,8 +18,13 @@
  Gets a writable pathname.
 }
 
-\synopsis{getWritablePathname.Arguments(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)}
-\usage{Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)}
+\usage{
+## Static method (use this):
+## Arguments$getWritablePathname(..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)
+
+## Don't use the below:
+\method{getWritablePathname}{Arguments}(static, ..., mustExist=FALSE, mustNotExist=FALSE, mkdirs=TRUE, maxTries=5)
+}
 
 \arguments{
   \item{...}{Arguments passed to \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}.}
@@ -57,7 +61,7 @@
   waiting a short period of time between each round) before giving up.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}.

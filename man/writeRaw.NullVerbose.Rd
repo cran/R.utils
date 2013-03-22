@@ -9,9 +9,7 @@
  \name{writeRaw.NullVerbose}
 \alias{writeRaw.NullVerbose}
 \alias{NullVerbose.writeRaw}
-\alias{writeRaw.NullVerbose}
 \alias{writeRaw,NullVerbose-method}
-
  \alias{NullVerbose.cat}
 \alias{cat.NullVerbose}
 \alias{cat,NullVerbose-method}
@@ -64,7 +62,9 @@
    nothing.
  }
 
- \usage{\method{writeRaw}{NullVerbose}(...)}
+ \usage{
+\method{writeRaw}{NullVerbose}(...)
+}
 
  \arguments{
   \item{...}{Ignored.}
@@ -74,7 +74,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{NullVerbose}}.

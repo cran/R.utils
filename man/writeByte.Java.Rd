@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeByte.Java}
+\name{Java$writeByte}
+\alias{Java$writeByte}
 \alias{writeByte.Java}
 \alias{Java.writeByte}
-\alias{writeByte.Java}
 \alias{writeByte,Java-method}
-
 
 \title{Writes a byte (8 bits) to a connection in Java format}
 
@@ -23,8 +22,13 @@
   will automatically be truncated without a warning.
 }
 
-\synopsis{writeByte.Java(static, con, b, ...)}
-\usage{Java$writeByte(con, b, ...)}
+\usage{
+## Static method (use this):
+## Java$writeByte(con, b, ...)
+
+## Don't use the below:
+\method{writeByte}{Java}(static, con, b, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}
@@ -35,7 +39,7 @@
   This method is included for consistency reasons only.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{inherits.Assert}
+ \name{Assert$inherits}
+\alias{Assert$inherits}
 \alias{inherits.Assert}
 \alias{Assert.inherits}
-\alias{inherits.Assert}
 \alias{inherits,Assert-method}
-
 
  \title{Static method asserting that an object inherits from of a certain class}
 
@@ -19,8 +18,13 @@
    Static method asserting that an object inherits from of a certain class.
  }
 
- \synopsis{inherits.Assert(static, object, class, ...)}
-\usage{Assert$inherits(object, class, ...)}
+ \usage{
+## Static method (use this):
+## Assert$inherits(object, class, ...)
+
+## Don't use the below:
+\method{inherits}{Assert}(static, object, class, ...)
+}
 
  \arguments{
   \item{object}{Object to be checked.}
@@ -32,7 +36,7 @@
    Returns (invisibly) \code{\link[base:logical]{TRUE}}, or throws an exception.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Assert}}.

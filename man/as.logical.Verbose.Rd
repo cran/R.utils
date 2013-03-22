@@ -9,9 +9,7 @@
  \name{as.logical.Verbose}
 \alias{as.logical.Verbose}
 \alias{Verbose.as.logical}
-\alias{as.logical.Verbose}
 \alias{as.logical,Verbose-method}
-
 
  \title{Gets a logical value of this object}
 
@@ -19,7 +17,9 @@
    Gets a logical value of this object.  Returns \code{isVisible(this, level=this$defaultLevel)}.
  }
 
- \usage{\method{as.logical}{Verbose}(x, ...)}
+ \usage{
+\method{as.logical}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns a \code{\link[base]{logical}} value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getReadablePathnames.Arguments}
+\name{Arguments$getReadablePathnames}
+\alias{Arguments$getReadablePathnames}
 \alias{getReadablePathnames.Arguments}
 \alias{Arguments.getReadablePathnames}
-\alias{getReadablePathnames.Arguments}
 \alias{getReadablePathnames,Arguments-method}
-
 
 \title{Gets a readable pathname}
 
@@ -19,8 +18,13 @@
  Gets a readable pathname.
 }
 
-\synopsis{getReadablePathnames.Arguments(static, files=NULL, paths=NULL, ...)}
-\usage{Arguments$getReadablePathnames(files=NULL, paths=NULL, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getReadablePathnames(files=NULL, paths=NULL, ...)
+
+## Don't use the below:
+\method{getReadablePathnames}{Arguments}(static, files=NULL, paths=NULL, ...)
+}
 
 \arguments{
   \item{files}{A \code{\link[base]{character}} \code{\link[base]{vector}} of filenames.}
@@ -32,7 +36,7 @@
  Returns a \code{\link[base]{character}} \code{\link[base]{vector}} of the pathnames for the files.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getReadablePathname.Arguments]{*getReadablePathname}()}

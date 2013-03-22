@@ -30,7 +30,9 @@ extends \link[R.oo]{Object}\cr
 
  }
 
- \usage{Assert(...)}
+ \usage{
+Assert(...)
+}
 
  \arguments{
    \item{...}{Not used.}
@@ -52,5 +54,5 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
 
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 \keyword{classes}

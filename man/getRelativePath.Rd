@@ -12,7 +12,9 @@
 
 \title{Gets the relative pathname relative to a directory}
 
-\usage{\method{getRelativePath}{default}(pathname, relativeTo=getwd(), caseSensitive=NULL, ...)}
+\usage{
+\method{getRelativePath}{default}(pathname, relativeTo=getwd(), caseSensitive=NULL, ...)
+}
 
 \description{
   Gets the relative pathname relative to a directory.
@@ -56,7 +58,7 @@
   getRelativePath("C:/foo/bar/", "D:/bar/")           # "C:/foo/bar"
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{getAbsolutePath}}().

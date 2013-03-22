@@ -22,7 +22,9 @@
   Note that this function is called when the R.utils package is loaded.
 }
 
-\usage{\method{addFinalizerToLast}{default}(...)}
+\usage{
+\method{addFinalizerToLast}{default}(...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -33,7 +35,7 @@
   otherwise \code{\link[base:logical]{FALSE}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{onSessionExit}}().

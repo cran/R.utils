@@ -9,9 +9,7 @@
  \name{newline.TextStatusBar}
 \alias{newline.TextStatusBar}
 \alias{TextStatusBar.newline}
-\alias{newline.TextStatusBar}
 \alias{newline,TextStatusBar-method}
-
 
  \title{Writes a newline}
 
@@ -19,7 +17,9 @@
    Writes a newline.
  }
 
- \usage{\method{newline}{TextStatusBar}(this, ...)}
+ \usage{
+\method{newline}{TextStatusBar}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{TextStatusBar}}.

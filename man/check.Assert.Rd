@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{check.Assert}
+ \name{Assert$check}
+\alias{Assert$check}
 \alias{check.Assert}
 \alias{Assert.check}
-\alias{check.Assert}
 \alias{check,Assert-method}
-
 
  \title{Static method asserting that a generic condition is true}
 
@@ -19,8 +18,13 @@
    Static method asserting that a generic condition is true.
  }
 
- \synopsis{check.Assert(static, condition, message=NULL, ...)}
-\usage{Assert$check(condition, message=NULL, ...)}
+ \usage{
+## Static method (use this):
+## Assert$check(condition, message=NULL, ...)
+
+## Don't use the below:
+\method{check}{Assert}(static, condition, message=NULL, ...)
+}
 
  \arguments{
   \item{condition}{A condition that should return \code{\link[base:logical]{TRUE}} if ok, or something
@@ -34,7 +38,7 @@
    Returns (invisibly) \code{\link[base:logical]{TRUE}}, or throws an exception.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Assert}}.

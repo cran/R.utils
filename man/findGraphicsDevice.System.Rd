@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{findGraphicsDevice.System}
+ \name{System$findGraphicsDevice}
+\alias{System$findGraphicsDevice}
 \alias{findGraphicsDevice.System}
 \alias{System.findGraphicsDevice}
-\alias{findGraphicsDevice.System}
 \alias{findGraphicsDevice,System-method}
-
 
  \title{Searches for a working PNG device}
 
@@ -33,8 +32,13 @@
   \code{png()} device.
  }
 
- \synopsis{findGraphicsDevice.System(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
-\usage{System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)}
+ \usage{
+## Static method (use this):
+## System$findGraphicsDevice(devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+
+## Don't use the below:
+\method{findGraphicsDevice}{System}(static, devices=list(png), maxCount=100, sleepInterval=0.1, findGhostscript=TRUE, ...)
+}
 
  \arguments{
    \item{devices}{A \code{\link[base]{list}} of graphics device driver \code{\link[base]{function}}s to be
@@ -53,7 +57,7 @@
   Returns a \code{\link[base]{function}} that generates images, or \code{\link[base]{NULL}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \examples{
    fcn <- System$findGraphicsDevice();

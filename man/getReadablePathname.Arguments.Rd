@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getReadablePathname.Arguments}
+\name{Arguments$getReadablePathname}
+\alias{Arguments$getReadablePathname}
 \alias{getReadablePathname.Arguments}
 \alias{Arguments.getReadablePathname}
-\alias{getReadablePathname.Arguments}
 \alias{getReadablePathname,Arguments-method}
-
 
 \title{Gets a readable pathname}
 
@@ -19,8 +18,13 @@
  Gets a readable pathname.
 }
 
-\synopsis{getReadablePathname.Arguments(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
-\usage{Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)}
+\usage{
+## Static method (use this):
+## Arguments$getReadablePathname(file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+
+## Don't use the below:
+\method{getReadablePathname}{Arguments}(static, file=NULL, path=NULL, mustExist=TRUE, absolutePath=FALSE, ...)
+}
 
 \arguments{
   \item{file}{A \code{\link[base]{character}} string specifying the file.}
@@ -41,7 +45,7 @@
   then (character) \code{\link[base]{NA}} is returned, otherwise an exception is thrown.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getWritablePathname.Arguments]{*getWritablePathname}()}

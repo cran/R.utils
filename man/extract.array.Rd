@@ -9,8 +9,6 @@
 
 \name{extract.array}
 \alias{extract.array}
-\alias{extract.array}
-
 \alias{extract.matrix}
 \alias{extract.default}
 
@@ -23,7 +21,9 @@
   of the object your wish to extract values from, cf. example.
 }
 
-\usage{\method{extract}{array}(x, ..., indices=list(...), dims=names(indices), drop=FALSE)}
+\usage{
+\method{extract}{array}(x, ..., indices=list(...), dims=names(indices), drop=FALSE)
+}
 
 \arguments{
  \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}
@@ -82,7 +82,7 @@ yB <- extract(y, indices=list(2:3,2), dims=c(2,3), drop=TRUE)
 stopifnot(identical(yB, yA))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{slice.index}}()

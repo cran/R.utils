@@ -9,9 +9,7 @@
 \name{setThreshold.Verbose}
 \alias{setThreshold.Verbose}
 \alias{Verbose.setThreshold}
-\alias{setThreshold.Verbose}
 \alias{setThreshold,Verbose-method}
-
 
 \title{Sets verbose threshold}
 
@@ -19,7 +17,9 @@
   Sets verbose threshold. Output requests below this threshold will be ignored.
 }
 
-\usage{\method{setThreshold}{Verbose}(this, threshold, ...)}
+\usage{
+\method{setThreshold}{Verbose}(this, threshold, ...)
+}
 
 \arguments{
  \item{threshold}{A \code{\link[base]{numeric}} threshold.}
@@ -30,7 +30,7 @@
   Returns old threshold.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} and \code{\link[R.utils:isVisible.Verbose]{*isVisible}()}.

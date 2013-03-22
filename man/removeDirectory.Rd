@@ -16,7 +16,9 @@
   Removes a directory, and if requested, also its contents.
  }
 
- \usage{\method{removeDirectory}{default}(path, recursive=FALSE, mustExist=TRUE, ...)}
+ \usage{
+\method{removeDirectory}{default}(path, recursive=FALSE, mustExist=TRUE, ...)
+}
 
  \arguments{
    \item{path}{A \code{\link[base]{character}} string specifying the directory to be removed.}
@@ -34,7 +36,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Internally \code{\link[base]{unlink}}() is used.

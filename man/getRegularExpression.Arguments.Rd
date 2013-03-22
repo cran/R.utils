@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getRegularExpression.Arguments}
+\name{Arguments$getRegularExpression}
+\alias{Arguments$getRegularExpression}
 \alias{getRegularExpression.Arguments}
 \alias{Arguments.getRegularExpression}
-\alias{getRegularExpression.Arguments}
 \alias{getRegularExpression,Arguments-method}
-
 
 \title{Gets a valid regular expression pattern}
 
@@ -19,8 +18,13 @@
  Gets a valid regular expression pattern.
 }
 
-\synopsis{getRegularExpression.Arguments(static, pattern=NULL, ..., .name=NULL)}
-\usage{Arguments$getRegularExpression(pattern=NULL, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getRegularExpression(pattern=NULL, ..., .name=NULL)
+
+## Don't use the below:
+\method{getRegularExpression}{Arguments}(static, pattern=NULL, ..., .name=NULL)
+}
 
 \arguments{
   \item{pattern}{A \code{\link[base]{character}} string to be validated.}
@@ -32,7 +36,7 @@
  Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{grep}}().

@@ -9,12 +9,12 @@
 
  \name{mapToIntervals.numeric}
 \alias{mapToIntervals.numeric}
-\alias{mapToIntervals.numeric}
-
 
  \title{Maps values to intervals}
 
- \usage{\method{mapToIntervals}{numeric}(x, intervals, includeLower=TRUE, includeUpper=TRUE, ...)}
+ \usage{
+\method{mapToIntervals}{numeric}(x, intervals, includeLower=TRUE, includeUpper=TRUE, ...)
+}
 
  \description{
   Maps values to intervals by returning an index \code{\link[base]{vector}} specifying the (first)
@@ -39,7 +39,7 @@
    Values that do not map to any interval have return value \code{\link[base]{NA}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{inAnyInterval}}().

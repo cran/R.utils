@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeInt.Java}
+\name{Java$writeInt}
+\alias{Java$writeInt}
 \alias{writeInt.Java}
 \alias{Java.writeInt}
-\alias{writeInt.Java}
 \alias{writeInt,Java-method}
-
 
 \title{Writes a integer (32 bits) to a connection in Java format}
 
@@ -23,15 +22,20 @@
   this range will automatically be truncated without a warning.
 }
 
-\synopsis{writeInt.Java(static, con, i, ...)}
-\usage{Java$writeInt(con, i, ...)}
+\usage{
+## Static method (use this):
+## Java$writeInt(con, i, ...)
+
+## Don't use the below:
+\method{writeInt}{Java}(static, con, i, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}
   \item{i}{Vector of integers to be written.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

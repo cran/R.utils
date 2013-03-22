@@ -16,7 +16,9 @@
  Evaluate an R expression and interrupts it if it takes too long.
 }
 
-\usage{evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"))}
+\usage{
+evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout, onTimeout=c("error", "warning", "silent"))
+}
 
 \arguments{
   \item{...}{The R expression to be evaluated as passed
@@ -54,7 +56,7 @@
  the user completes the prompt (i.e. after pressing ENTER).
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
 # - - - - - - - - - - - - - - - - - - - - - - - - -

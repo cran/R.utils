@@ -16,7 +16,9 @@
   Moves a environment in the search path to another position.
  }
 
- \usage{\method{moveInSearchPath}{default}(from, to, where=c("before", "after"), ...)}
+ \usage{
+\method{moveInSearchPath}{default}(from, to, where=c("before", "after"), ...)
+}
 
  \arguments{
    \item{from}{An \code{\link[base]{integer}} specifying the position of the environment
@@ -43,7 +45,7 @@
    moveInSearchPath("package:utils", "package:datasets", where="after")
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{search}}().

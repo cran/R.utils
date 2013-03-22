@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -9,9 +9,7 @@
 \name{as.character.GString}
 \alias{as.character.GString}
 \alias{GString.as.character}
-\alias{as.character.GString}
 \alias{as.character,GString-method}
-
 
 \title{Gets the processed character string}
 
@@ -19,7 +17,9 @@
   Gets the processed character string.
 }
 
-\usage{\method{as.character}{GString}(x, ...)}
+\usage{
+\method{as.character}{GString}(x, envir=parent.frame(), ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -29,7 +29,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

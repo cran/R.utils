@@ -24,7 +24,9 @@
   should be rowwise (\code{byrow=TRUE}) or columnwise.
 }
 
-\usage{\method{subplots}{default}(n=1, nrow=NULL, ncol=NULL, byrow=TRUE, ...)}
+\usage{
+\method{subplots}{default}(n=1, nrow=NULL, ncol=NULL, byrow=TRUE, ...)
+}
 
 \arguments{
   \item{n}{If given, the minimum number of subplots.}
@@ -39,7 +41,7 @@
 
 \value{Returns the \code{\link[base]{matrix}} containing the order of plots.}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
    subplots(nrow=2, ncol=3)  # 2-by-3 grid of subplots

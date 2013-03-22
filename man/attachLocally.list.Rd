@@ -9,14 +9,15 @@
 
  \name{attachLocally.list}
 \alias{attachLocally.list}
-\alias{attachLocally.list}
-
  \alias{attachLocally.data.frame}
  \alias{attachLocally.environment}
+ \alias{attachLocally}
 
  \title{Assigns an objects elements locally}
 
- \usage{\method{attachLocally}{list}(object, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...)}
+ \usage{
+\method{attachLocally}{list}(object, fields=NULL, excludeFields=NULL, overwrite=TRUE, envir=parent.frame(), ...)
+}
 
  \description{
   Assigns an objects elements locally.
@@ -61,7 +62,7 @@ foo(l)
 print(a)
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link[R.oo:attachLocally.Object]{attachLocally}()} of class Object.

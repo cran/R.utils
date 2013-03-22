@@ -9,8 +9,6 @@
 
 \name{unwrap.array}
 \alias{unwrap.array}
-\alias{unwrap.array}
-
 \alias{unwrap.matrix}
 \alias{unwrap.data.frame}
 \alias{unwrap.default}
@@ -22,7 +20,9 @@
   dimension based on the names of that dimension.
 }
 
-\usage{\method{unwrap}{array}(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...)}
+\usage{
+\method{unwrap}{array}(x, split=rep("[.]", length(dim(x))), drop=FALSE, ...)
+}
 
 \arguments{
  \item{x}{An \code{\link[base]{array}} or a \code{\link[base]{matrix}}.}
@@ -50,7 +50,7 @@
 
 \examples{\dontrun{See ?wrap.array for an example}}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:wrap.array]{*wrap}()}.

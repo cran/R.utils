@@ -9,8 +9,6 @@
 
 \name{callHooks.function}
 \alias{callHooks.function}
-\alias{callHooks.function}
-
 \alias{callHooks.list}
 
 \title{Call hook functions}
@@ -19,7 +17,9 @@
   Call hook functions.
 }
 
-\usage{\method{callHooks}{function}(hooks, ...)}
+\usage{
+\method{callHooks}{function}(hooks, ...)
+}
 
 \arguments{
  \item{hooks}{A \code{\link[base]{function}} or a \code{\link[base]{list}} of hook \code{\link[base]{function}}s or names of such.}
@@ -33,7 +33,7 @@
   value, and \code{exception} is the exception caught or \code{\link[base]{NULL}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   See \code{\link{callHooks}}() to call hook function by name.

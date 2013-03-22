@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinOs.GString}
+\name{GString$getBuiltinOs}
+\alias{GString$getBuiltinOs}
 \alias{getBuiltinOs.GString}
 \alias{GString.getBuiltinOs}
-\alias{getBuiltinOs.GString}
 \alias{getBuiltinOs,GString-method}
-
 
 \title{Gets the operating system of the running machine}
 
@@ -19,8 +18,13 @@
   Gets the operating system of the running machine.
 }
 
-\synopsis{getBuiltinOs.GString(static, ...)}
-\usage{GString$getBuiltinOs(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinOs(...)
+
+## Don't use the below:
+\method{getBuiltinOs}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +34,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

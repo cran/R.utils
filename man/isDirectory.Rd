@@ -16,7 +16,9 @@
   Checks if the file specification is a directory.
  }
 
- \usage{\method{isDirectory}{default}(pathname, ...)}
+ \usage{
+\method{isDirectory}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}
@@ -30,11 +32,12 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    To check if it is a file see \code{\link{isFile}}().
    Internally \code{\link[base]{file.info}}() is used.
+   See also \code{\link[utils]{file_test}}.
  }
 
 

@@ -9,9 +9,7 @@
  \name{cat.Verbose}
 \alias{cat.Verbose}
 \alias{Verbose.cat}
-\alias{cat.Verbose}
 \alias{cat,Verbose-method}
-
 
  \title{Concatenates and prints objects if above threshold}
 
@@ -21,7 +19,9 @@
    calls.
  }
 
- \usage{\method{cat}{Verbose}(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp)}
+ \usage{
+\method{cat}{Verbose}(this, ..., sep="", newline=TRUE, level=this$defaultLevel, timestamp=this$.timestamp)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{cat}}().}
@@ -36,7 +36,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:timestampOn.Verbose]{*timestampOn}()} and \code{timestampOff}().

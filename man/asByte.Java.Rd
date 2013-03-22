@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asByte.Java}
+\name{Java$asByte}
+\alias{Java$asByte}
 \alias{asByte.Java}
 \alias{Java.asByte}
-\alias{asByte.Java}
 \alias{asByte,Java-method}
-
 
 \title{Converts a numeric to a Java byte}
 
@@ -19,8 +18,13 @@
   Converts a numeric to a Java byte.
 }
 
-\synopsis{asByte.Java(static, x, ...)}
-\usage{Java$asByte(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asByte(x, ...)
+
+## Don't use the below:
+\method{asByte}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}
@@ -31,7 +35,7 @@
   Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

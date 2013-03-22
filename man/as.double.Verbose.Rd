@@ -9,9 +9,7 @@
  \name{as.double.Verbose}
 \alias{as.double.Verbose}
 \alias{Verbose.as.double}
-\alias{as.double.Verbose}
 \alias{as.double,Verbose-method}
-
 
  \title{Gets a numeric value of this object}
 
@@ -19,7 +17,9 @@
    Gets a numeric value of this object.  Returns what \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} returns.
  }
 
- \usage{\method{as.double}{Verbose}(x, ...)}
+ \usage{
+\method{as.double}{Verbose}(x, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns a \code{\link[base]{numeric}} value.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()} and \code{\link[R.utils:getThreshold.Verbose]{*getThreshold}()}.

@@ -9,9 +9,7 @@
  \name{loadAnywhere.Settings}
 \alias{loadAnywhere.Settings}
 \alias{Settings.loadAnywhere}
-\alias{loadAnywhere.Settings}
 \alias{loadAnywhere,Settings-method}
-
 
  \title{Loads settings from file}
 
@@ -21,7 +19,9 @@
   to the settings file in the home directory of the current user.
  }
 
- \usage{\method{loadAnywhere}{Settings}(static, file=NULL, ..., verbose=FALSE)}
+ \usage{
+\method{loadAnywhere}{Settings}(static, file=NULL, ..., verbose=FALSE)
+}
 
  \arguments{
    \item{file}{A \code{\link[base]{character}} string or a \code{\link[base:connections]{connection}} from which settings
@@ -35,7 +35,7 @@
  \value{Returns a \link{Settings} object if file was successfully read,
    otherwise \code{\link[base]{NULL}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:saveAnywhere.Settings]{*saveAnywhere}()}.

@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinRversion.GString}
+\name{GString$getBuiltinRversion}
+\alias{GString$getBuiltinRversion}
 \alias{getBuiltinRversion.GString}
 \alias{GString.getBuiltinRversion}
-\alias{getBuiltinRversion.GString}
 \alias{getBuiltinRversion,GString-method}
-
 
 \title{Gets the current R version}
 
@@ -19,8 +18,13 @@
   Gets the current R version.
 }
 
-\synopsis{getBuiltinRversion.GString(static, ...)}
-\usage{GString$getBuiltinRversion(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinRversion(...)
+
+## Don't use the below:
+\method{getBuiltinRversion}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +34,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

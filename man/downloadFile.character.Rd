@@ -9,8 +9,6 @@
 
 \name{downloadFile.character}
 \alias{downloadFile.character}
-\alias{downloadFile.character}
-
 \alias{downloadFile}
 
 \title{Downloads a file}
@@ -19,7 +17,9 @@
   Downloads a file.
 }
 
-\usage{\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)}
+\usage{
+\method{downloadFile}{character}(url, filename=basename(url), path=NULL, skip=TRUE, overwrite=!skip, ..., username=NULL, password=NULL, binary=TRUE, dropEmpty=TRUE, verbose=FALSE)
+}
 
 \arguments{
  \item{url}{A \code{\link[base]{character}} string specifying the URL to be downloaded.}
@@ -56,7 +56,7 @@
  print(pathname)
 }}
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   Internally \code{\link[utils]{download.file}} is used.

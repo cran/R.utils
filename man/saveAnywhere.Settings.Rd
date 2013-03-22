@@ -9,9 +9,7 @@
  \name{saveAnywhere.Settings}
 \alias{saveAnywhere.Settings}
 \alias{Settings.saveAnywhere}
-\alias{saveAnywhere.Settings}
 \alias{saveAnywhere,Settings-method}
-
 
  \title{Saves settings to file}
 
@@ -21,7 +19,9 @@
   to the settings file in the home directory of the current user.
  }
 
- \usage{\method{saveAnywhere}{Settings}(this, file=NULL, path="~", ...)}
+ \usage{
+\method{saveAnywhere}{Settings}(this, file=NULL, path="~", ...)
+}
 
  \arguments{
    \item{file}{A \code{\link[base]{character}} string or a \code{\link[base:connections]{connection}} where to write too.
@@ -37,7 +37,7 @@
    Returns (invisibly) the pathname to the save settings file.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:loadAnywhere.Settings]{*loadAnywhere}()}.

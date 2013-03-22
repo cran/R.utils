@@ -16,7 +16,9 @@
   Gets the time when the file was last modified. The time is returned as a \code{POSIXct} object.
  }
 
- \usage{\method{lastModified}{default}(pathname, ...)}
+ \usage{
+\method{lastModified}{default}(pathname, ...)
+}
 
  \arguments{
    \item{pathname}{A \code{\link[base]{character}} string of the pathname to be checked.}
@@ -30,7 +32,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    Internally \code{\link[base]{file.info}}() is used.

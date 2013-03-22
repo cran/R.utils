@@ -9,9 +9,7 @@
  \name{update.ProgressBar}
 \alias{update.ProgressBar}
 \alias{ProgressBar.update}
-\alias{update.ProgressBar}
 \alias{update,ProgressBar-method}
-
 
  \title{Updates progress bar}
 
@@ -19,7 +17,9 @@
    Updates progress bar.
  }
 
- \usage{\method{update}{ProgressBar}(object, visual=TRUE, ...)}
+ \usage{
+\method{update}{ProgressBar}(object, visual=TRUE, ...)
+}
 
  \arguments{
   \item{visual}{If \code{\link[base:logical]{TRUE}}, the progress bar is redrawn, otherwise not.}
@@ -30,7 +30,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{ProgressBar}}.

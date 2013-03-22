@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getDoubles.Arguments}
+\name{Arguments$getDoubles}
+\alias{Arguments$getDoubles}
 \alias{getDoubles.Arguments}
 \alias{Arguments.getDoubles}
-\alias{getDoubles.Arguments}
 \alias{getDoubles,Arguments-method}
-
 \alias{Arguments.getDouble}
 \alias{getDouble.Arguments}
 \alias{getDouble,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a double vector and validates.
 }
 
-\synopsis{getDoubles.Arguments(static, ..., disallow=c("NA", "NaN"))}
-\usage{Arguments$getDoubles(..., disallow=c("NA", "NaN"))}
+\usage{
+## Static method (use this):
+## Arguments$getDoubles(..., disallow=c("NA", "NaN"))
+
+## Don't use the below:
+\method{getDoubles}{Arguments}(static, ..., disallow=c("NA", "NaN"))
+}
 
 \arguments{
   \item{...}{Arguments passed to @method "getNumeric".}
@@ -35,7 +39,7 @@
  Returns a \code{\link[base]{double}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

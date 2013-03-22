@@ -9,9 +9,7 @@
  \name{equals.Options}
 \alias{equals.Options}
 \alias{Options.equals}
-\alias{equals.Options}
 \alias{equals,Options-method}
-
 
  \title{Checks if this object is equal to another Options object}
 
@@ -19,7 +17,9 @@
   Checks if this object is equal to another Options object.
  }
 
- \usage{\method{equals}{Options}(this, other, ...)}
+ \usage{
+\method{equals}{Options}(this, other, ...)
+}
 
  \arguments{
    \item{other}{Another Options object.}
@@ -28,7 +28,7 @@
 
  \value{Returns \code{\link[base:logical]{TRUE}} if they are equal, otherwise \code{\link[base:logical]{FALSE}}.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Options}}.

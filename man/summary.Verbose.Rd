@@ -9,9 +9,7 @@
  \name{summary.Verbose}
 \alias{summary.Verbose}
 \alias{Verbose.summary}
-\alias{summary.Verbose}
 \alias{summary,Verbose-method}
-
 
  \title{Generates a summary of an object if above threshold}
 
@@ -20,7 +18,9 @@
    The output is \emph{not} indented.
  }
 
- \usage{\method{summary}{Verbose}(object, ...)}
+ \usage{
+\method{summary}{Verbose}(object, ...)
+}
 
  \arguments{
   \item{...}{Objects to be passed to \code{\link[base]{summary}}().}
@@ -31,7 +31,7 @@
    Returns nothing.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

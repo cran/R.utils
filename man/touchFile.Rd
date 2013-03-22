@@ -18,7 +18,9 @@
   the file was last modified, and time can only be set to the current time.
 }
 
-\usage{\method{touchFile}{default}(pathname, ...)}
+\usage{
+\method{touchFile}{default}(pathname, ...)
+}
 
 \arguments{
  \item{pathname}{A \code{\link[base]{character}} specifying the file to be updated.}
@@ -53,7 +55,7 @@ md5b <- digest::digest(pathname, file=TRUE)
 stopifnot(identical(md5a, md5b))
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{file.info}}().

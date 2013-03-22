@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinUsername.GString}
+\name{GString$getBuiltinUsername}
+\alias{GString$getBuiltinUsername}
 \alias{getBuiltinUsername.GString}
 \alias{GString.getBuiltinUsername}
-\alias{getBuiltinUsername.GString}
 \alias{getBuiltinUsername,GString-method}
-
 
 \title{Gets the username of the user running R}
 
@@ -19,8 +18,13 @@
   Gets the username of the user running R.
 }
 
-\synopsis{getBuiltinUsername.GString(static, ...)}
-\usage{GString$getBuiltinUsername(...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinUsername(...)
+
+## Don't use the below:
+\method{getBuiltinUsername}{GString}(static, ...)
+}
 
 \arguments{
  \item{...}{Not used.}
@@ -30,7 +34,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

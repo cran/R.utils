@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{asLong.Java}
+\name{Java$asLong}
+\alias{Java$asLong}
 \alias{asLong.Java}
 \alias{Java.asLong}
-\alias{asLong.Java}
 \alias{asLong,Java-method}
-
 
 \title{Converts a numeric to a Java long}
 
@@ -19,8 +18,13 @@
   Converts a numeric to a Java long.
 }
 
-\synopsis{asLong.Java(static, x, ...)}
-\usage{Java$asLong(x, ...)}
+\usage{
+## Static method (use this):
+## Java$asLong(x, ...)
+
+## Don't use the below:
+\method{asLong}{Java}(static, x, ...)
+}
 
 \arguments{
  \item{x}{A \code{\link[base]{numeric}} \code{\link[base]{vector}}.}
@@ -31,7 +35,7 @@
   Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

@@ -9,9 +9,7 @@
 \name{warnings.Verbose}
 \alias{warnings.Verbose}
 \alias{Verbose.warnings}
-\alias{warnings.Verbose}
 \alias{warnings,Verbose-method}
-
 
 \title{Outputs any warnings recorded}
 
@@ -21,7 +19,9 @@
   calls.
 }
 
-\usage{\method{warnings}{Verbose}(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel)}
+\usage{
+\method{warnings}{Verbose}(this, title="Warnings detected:", reset=TRUE, ..., level=this$defaultLevel)
+}
 
 \arguments{
  \item{title}{A \code{\link[base]{character}} string to be outputted before the warnings, if
@@ -35,7 +35,7 @@
   Returns nothing.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

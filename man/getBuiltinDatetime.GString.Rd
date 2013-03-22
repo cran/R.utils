@@ -1,17 +1,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  GString.R
+%  GString-class.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getBuiltinDatetime.GString}
+\name{GString$getBuiltinDatetime}
+\alias{GString$getBuiltinDatetime}
 \alias{getBuiltinDatetime.GString}
 \alias{GString.getBuiltinDatetime}
-\alias{getBuiltinDatetime.GString}
 \alias{getBuiltinDatetime,GString-method}
-
 
 \title{Gets the current date and time}
 
@@ -19,8 +18,13 @@
   Gets the current date and time.
 }
 
-\synopsis{getBuiltinDatetime.GString(static, format=NULL, ...)}
-\usage{GString$getBuiltinDatetime(format=NULL, ...)}
+\usage{
+## Static method (use this):
+## GString$getBuiltinDatetime(format=NULL, ...)
+
+## Don't use the below:
+\method{getBuiltinDatetime}{GString}(static, format=NULL, ...)
+}
 
 \arguments{
  \item{format}{A \code{\link[base]{character}} format string.}
@@ -31,7 +35,7 @@
   Returns a \code{\link[base]{character}} string.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{GString}}.

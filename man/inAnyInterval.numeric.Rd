@@ -9,12 +9,12 @@
 
  \name{inAnyInterval.numeric}
 \alias{inAnyInterval.numeric}
-\alias{inAnyInterval.numeric}
-
 
  \title{Checks if a set of values are inside one or more intervals}
 
- \usage{\method{inAnyInterval}{numeric}(...)}
+ \usage{
+\method{inAnyInterval}{numeric}(...)
+}
 
  \description{
   Checks if a set of values are inside one or more intervals.
@@ -28,7 +28,7 @@
    Returns a \code{\link[base]{logical}} \code{\link[base]{vector}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{mapToIntervals}}().

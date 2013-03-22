@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{writeShort.Java}
+\name{Java$writeShort}
+\alias{Java$writeShort}
 \alias{writeShort.Java}
 \alias{Java.writeShort}
-\alias{writeShort.Java}
 \alias{writeShort,Java-method}
-
 
 \title{Writes a short (16 bits) to a connection in Java format}
 
@@ -23,15 +22,20 @@
   will automatically be truncated without a warning.
 }
 
-\synopsis{writeShort.Java(static, con, s, ...)}
-\usage{Java$writeShort(con, s, ...)}
+\usage{
+## Static method (use this):
+## Java$writeShort(con, s, ...)
+
+## Don't use the below:
+\method{writeShort}{Java}(static, con, s, ...)
+}
 
 \arguments{
   \item{con}{Binary connection to be written to.}
   \item{s}{Vector of shorts to be written.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Java}}.

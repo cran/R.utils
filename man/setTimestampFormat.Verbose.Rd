@@ -9,9 +9,7 @@
 \name{setTimestampFormat.Verbose}
 \alias{setTimestampFormat.Verbose}
 \alias{Verbose.setTimestampFormat}
-\alias{setTimestampFormat.Verbose}
 \alias{setTimestampFormat,Verbose-method}
-
 
 \title{Sets the default timestamp format}
 
@@ -19,7 +17,9 @@
   Sets the default timestamp format.
 }
 
-\usage{\method{setTimestampFormat}{Verbose}(this, format="\%Y\%m\%d \%H:\%M:\%S|", ...)}
+\usage{
+\method{setTimestampFormat}{Verbose}(this, format="\%Y\%m\%d \%H:\%M:\%S|", ...)
+}
 
 \arguments{
  \item{format}{If a \code{\link[base]{function}}, this function is called (without arguments)
@@ -32,7 +32,7 @@
   Returns (invisibly) the old timestamp format.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[R.utils:getTimestampFormat.Verbose]{*getTimestampFormat}()}.

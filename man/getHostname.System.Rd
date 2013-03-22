@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \name{getHostname.System}
+ \name{System$getHostname}
+\alias{System$getHostname}
 \alias{getHostname.System}
 \alias{System.getHostname}
-\alias{getHostname.System}
 \alias{getHostname,System-method}
-
 
  \title{Retrieves the computer name of the current host}
 
@@ -19,8 +18,13 @@
   Retrieves the computer name of the current host.
  }
 
- \synopsis{getHostname.System(static, ...)}
-\usage{System$getHostname(...)}
+ \usage{
+## Static method (use this):
+## System$getHostname(...)
+
+## Don't use the below:
+\method{getHostname}{System}(static, ...)
+}
 
  \value{
   Returns a \code{\link[base]{character}} string.

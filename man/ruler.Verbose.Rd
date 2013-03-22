@@ -9,9 +9,7 @@
 \name{ruler.Verbose}
 \alias{ruler.Verbose}
 \alias{Verbose.ruler}
-\alias{ruler.Verbose}
 \alias{ruler,Verbose-method}
-
 
 \title{Writes a ruler}
 
@@ -19,7 +17,9 @@
   Writes a ruler.
 }
 
-\usage{\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos, level=this$defaultLevel, ...)}
+\usage{
+\method{ruler}{Verbose}(this, char="-", toColumn=this$rightMargin, length=toColumn - this$indentPos, level=this$defaultLevel, ...)
+}
 
 \arguments{
  \item{char}{A \code{\link[base]{character}} string to make up the ruler.}
@@ -33,7 +33,7 @@
   Returns nothing.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

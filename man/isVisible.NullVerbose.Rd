@@ -9,9 +9,7 @@
  \name{isVisible.NullVerbose}
 \alias{isVisible.NullVerbose}
 \alias{NullVerbose.isVisible}
-\alias{isVisible.NullVerbose}
 \alias{isVisible,NullVerbose-method}
-
 
  \title{Checks if a certain verbose level will be shown or not}
 
@@ -19,7 +17,9 @@
    Checks if a certain verbose level will be shown or not.
  }
 
- \usage{\method{isVisible}{NullVerbose}(this, ...)}
+ \usage{
+\method{isVisible}{NullVerbose}(this, ...)
+}
 
  \arguments{
   \item{...}{Not used.}
@@ -29,7 +29,7 @@
    Returns always \code{\link[base:logical]{FALSE}}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{NullVerbose}}.

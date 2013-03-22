@@ -9,13 +9,13 @@
  \name{cleanup.FileProgressBar}
 \alias{cleanup.FileProgressBar}
 \alias{FileProgressBar.cleanup}
-\alias{cleanup.FileProgressBar}
 \alias{cleanup,FileProgressBar-method}
-
 
  \title{Removes the progress file for a file progress bar}
 
- \usage{\method{cleanup}{FileProgressBar}(object, ...)}
+ \usage{
+\method{cleanup}{FileProgressBar}(object, ...)
+}
 
  \description{
    Removes the progress file for a file progress bar.
@@ -30,7 +30,7 @@
    Otherwise, \code{\link[base:logical]{FALSE}} is returned.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{FileProgressBar}}.

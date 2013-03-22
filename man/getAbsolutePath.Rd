@@ -12,7 +12,9 @@
 
 \title{Gets the absolute pathname string}
 
-\usage{\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), expandTilde=FALSE, ...)}
+\usage{
+\method{getAbsolutePath}{default}(pathname, workDirectory=getwd(), expandTilde=FALSE, ...)
+}
 
 \description{
   Gets the absolute pathname string.
@@ -37,7 +39,7 @@
  (Universal Naming Convention) pathname.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{isAbsolutePath}}().

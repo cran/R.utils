@@ -12,7 +12,9 @@
 
  \title{Writes binary data to disjoint sections of a connection or a file}
 
- \usage{\method{writeBinFragments}{default}(con, object, idxs, size=NA, ...)}
+ \usage{
+\method{writeBinFragments}{default}(con, object, idxs, size=NA, ...)
+}
 
  \description{
   Writes binary data to disjoint sections of a connection or a file.
@@ -36,7 +38,7 @@
 
  \examples{\dontrun{# See example(readBinFragments.connection)}}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{readBinFragments}}().

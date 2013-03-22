@@ -16,7 +16,9 @@
   Checks if a package is installed or not.
 }
 
-\usage{\method{isPackageInstalled}{default}(package, ...)}
+\usage{
+\method{isPackageInstalled}{default}(package, ...)
+}
 
 \arguments{
  \item{package}{The name of the package.}
@@ -27,7 +29,7 @@
   Returns a \code{\link[base]{logical}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link{isPackageLoaded}}().

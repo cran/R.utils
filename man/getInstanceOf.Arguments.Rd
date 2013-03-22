@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getInstanceOf.Arguments}
+\name{Arguments$getInstanceOf}
+\alias{Arguments$getInstanceOf}
 \alias{getInstanceOf.Arguments}
 \alias{Arguments.getInstanceOf}
-\alias{getInstanceOf.Arguments}
 \alias{getInstanceOf,Arguments-method}
-
 
 \title{Gets an instance of the object that is of a particular class}
 
@@ -19,8 +18,13 @@
  Gets an instance of the object that is of a particular class.
 }
 
-\synopsis{getInstanceOf.Arguments(static, object, class, coerce=FALSE, ..., .name=NULL)}
-\usage{Arguments$getInstanceOf(object, class, coerce=FALSE, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getInstanceOf(object, class, coerce=FALSE, ..., .name=NULL)
+
+## Don't use the below:
+\method{getInstanceOf}{Arguments}(static, object, class, coerce=FALSE, ..., .name=NULL)
+}
 
 \arguments{
   \item{object}{The object that should be returned as an instance of
@@ -38,7 +42,7 @@
   Returns an object inheriting from class \code{class}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

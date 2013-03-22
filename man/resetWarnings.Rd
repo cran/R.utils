@@ -16,7 +16,9 @@
   Resets recorded warnings.
  }
 
- \usage{\method{resetWarnings}{default}(...)}
+ \usage{
+\method{resetWarnings}{default}(...)
+}
 
  \arguments{
    \item{...}{Not used.}
@@ -28,7 +30,7 @@
 
 
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[base]{warnings}}()

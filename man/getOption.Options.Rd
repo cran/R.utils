@@ -9,9 +9,7 @@
  \name{getOption.Options}
 \alias{getOption.Options}
 \alias{Options.getOption}
-\alias{getOption.Options}
 \alias{getOption,Options-method}
-
 
  \title{Gets an option}
 
@@ -19,7 +17,9 @@
   Gets an option in the options tree structure or return a default value.
  }
 
- \usage{\method{getOption}{Options}(this, pathname=NULL, defaultValue=NULL, ...)}
+ \usage{
+\method{getOption}{Options}(this, pathname=NULL, defaultValue=NULL, ...)
+}
 
  \arguments{
    \item{pathname}{A single or a \code{\link[base]{vector}} of \code{\link[base]{character}} strings specifying
@@ -35,7 +35,7 @@
    If a \code{\link[base]{vector}} of options are queried, a \code{\link[base]{list}} of values are returned.
    For non-existing options, the default value is returned.}
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link[R.utils:hasOption.Options]{*hasOption}()}.

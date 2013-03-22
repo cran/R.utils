@@ -9,9 +9,7 @@
 \name{newline.Verbose}
 \alias{newline.Verbose}
 \alias{Verbose.newline}
-\alias{newline.Verbose}
 \alias{newline,Verbose-method}
-
 
 \title{Writes one or several empty lines}
 
@@ -19,7 +17,9 @@
   Writes one or several empty lines.
 }
 
-\usage{\method{newline}{Verbose}(this, n=1, ..., level=this$defaultLevel)}
+\usage{
+\method{newline}{Verbose}(this, n=1, ..., level=this$defaultLevel)
+}
 
 \arguments{
  \item{n}{The number of empty lines to write.}
@@ -31,7 +31,7 @@
   Returns nothing.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Verbose}}.

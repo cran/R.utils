@@ -12,7 +12,9 @@
 
  \title{Creates a Microsoft Windows Shortcut (.lnk file)}
 
- \usage{\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)}
+ \usage{
+\method{createWindowsShortcut}{default}(pathname, target, overwrite=FALSE, ...)
+}
 
  \description{
    Creates a Microsoft Windows Shortcut (.lnk file).
@@ -76,7 +78,7 @@ for (kk in seq(along=targets)) {
 }
 }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    \code{\link{readWindowsShortcut}}()

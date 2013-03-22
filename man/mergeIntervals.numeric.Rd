@@ -9,12 +9,12 @@
 
  \name{mergeIntervals.numeric}
 \alias{mergeIntervals.numeric}
-\alias{mergeIntervals.numeric}
-
 
  \title{Merges intervals}
 
- \usage{\method{mergeIntervals}{numeric}(intervals, ...)}
+ \usage{
+\method{mergeIntervals}{numeric}(intervals, ...)
+}
 
  \description{
   Merges intervals by returning an index \code{\link[base]{vector}} specifying the (first)
@@ -50,7 +50,7 @@
    these intervals to integer interval [0,3] == \{0,1,2,3\}.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
   \code{\link{inAnyInterval}}().

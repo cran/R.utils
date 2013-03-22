@@ -9,9 +9,7 @@
  \name{capture.Verbose}
 \alias{capture.Verbose}
 \alias{Verbose.capture}
-\alias{capture.Verbose}
 \alias{capture,Verbose-method}
-
 
  \title{Captures output of a function}
 
@@ -20,7 +18,9 @@
    Evaluates its arguments with the output being verbosed.
  }
 
- \usage{\method{capture}{Verbose}(this, ..., level=this$defaultLevel)}
+ \usage{
+\method{capture}{Verbose}(this, ..., level=this$defaultLevel)
+}
 
  \arguments{
   \item{...}{Arguments to be captured.}
@@ -31,7 +31,7 @@
    Returns a \code{\link[base]{vector}} of \code{\link[base]{character}} string.
  }
 
- \author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+ \author{Henrik Bengtsson}
 
  \seealso{
    For more information see \code{\link{Verbose}}.

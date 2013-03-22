@@ -16,7 +16,9 @@
  Gets a short human readable string representation of an vector of indices.
 }
 
-\usage{\method{seqToHumanReadable}{default}(idx, delimiter="-", collapse=", ", ...)}
+\usage{
+\method{seqToHumanReadable}{default}(idx, delimiter="-", collapse=", ", ...)
+}
 
 \arguments{
   \item{idx}{A \code{\link[base]{vector}} of \code{\link[base]{integer}} indices.}
@@ -25,7 +27,7 @@
   \item{...}{Not used.}
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \examples{
   print(seqToHumanReadable(1:10))  # "1-10"

@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getLogicals.Arguments}
+\name{Arguments$getLogicals}
+\alias{Arguments$getLogicals}
 \alias{getLogicals.Arguments}
 \alias{Arguments.getLogicals}
-\alias{getLogicals.Arguments}
 \alias{getLogicals,Arguments-method}
-
 \alias{Arguments.getLogical}
 \alias{getLogical.Arguments}
 \alias{getLogical,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a logical vector and validates.
 }
 
-\synopsis{getLogicals.Arguments(static, x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)}
-\usage{Arguments$getLogicals(x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getLogicals(x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)
+
+## Don't use the below:
+\method{getLogicals}{Arguments}(static, x, ..., disallow=c("NA", "NaN"), coerce=FALSE, .name=NULL)
+}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}}.}
@@ -38,7 +42,7 @@
  Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

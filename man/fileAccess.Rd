@@ -16,7 +16,9 @@
  Checks the permission of a file or a directory.
 }
 
-\usage{\method{fileAccess}{default}(pathname, mode=0, safe=TRUE, ...)}
+\usage{
+\method{fileAccess}{default}(pathname, mode=0, safe=TRUE, ...)
+}
 
 \arguments{
   \item{pathname}{A \code{\link[base]{character}} string of the file or the directory
@@ -31,7 +33,7 @@
  Returns an \code{\link[base]{integer}}; 0 if the permission exists, -1 if not.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \details{
   In \R there is \code{\link[base]{file.access}}() for checking whether the

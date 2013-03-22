@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{getNumerics.Arguments}
+\name{Arguments$getNumerics}
+\alias{Arguments$getNumerics}
 \alias{getNumerics.Arguments}
 \alias{Arguments.getNumerics}
-\alias{getNumerics.Arguments}
 \alias{getNumerics,Arguments-method}
-
 \alias{Arguments.getNumeric}
 \alias{getNumeric.Arguments}
 \alias{getNumeric,Arguments-method}
@@ -23,8 +22,13 @@
  Coerces to a numeric vector and validates.
 }
 
-\synopsis{getNumerics.Arguments(static, x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)}
-\usage{Arguments$getNumerics(x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)}
+\usage{
+## Static method (use this):
+## Arguments$getNumerics(x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)
+
+## Don't use the below:
+\method{getNumerics}{Arguments}(static, x, range=NULL, asMode=NULL, disallow=NULL, ..., .name=NULL)
+}
 
 \arguments{
   \item{x}{A \code{\link[base]{vector}}.}
@@ -41,7 +45,7 @@
  Returns a \code{\link[base]{numeric}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   For more information see \code{\link{Arguments}}.

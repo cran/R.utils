@@ -6,12 +6,11 @@
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{readShort.Java}
+\name{Java$readShort}
+\alias{Java$readShort}
 \alias{readShort.Java}
 \alias{Java.readShort}
-\alias{readShort.Java}
 \alias{readShort,Java-method}
-
 
 \title{Reads a Java formatted short (16 bits) from a connection}
 
@@ -21,8 +20,13 @@
   the range [-32768,32767].
 }
 
-\synopsis{readShort.Java(static, con, n=1, ...)}
-\usage{Java$readShort(con, n=1, ...)}
+\usage{
+## Static method (use this):
+## Java$readShort(con, n=1, ...)
+
+## Don't use the below:
+\method{readShort}{Java}(static, con, n=1, ...)
+}
 
 \arguments{
  \item{con}{Binary connection to be read from.}
@@ -34,7 +38,7 @@
   Returns an \code{\link[base]{integer}} \code{\link[base]{vector}}.
 }
 
-\author{Henrik Bengtsson (\url{http://www.braju.com/R/})}
+\author{Henrik Bengtsson}
 
 \seealso{
   \code{\link[base]{readBin}}().
