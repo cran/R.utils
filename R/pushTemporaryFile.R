@@ -38,19 +38,19 @@
 #   Then, if the file does not exists or it was not successfully
 #   renamed, an exception is thrown.
 # }
-# 
+#
 # @examples "../incl/pushTemporaryFile.Rex"
 #
 # @author
-# 
+#
 # \seealso{
 #  @see "popTemporaryFile".
 # }
 #
-# @keyword "utilities" 
+# @keyword "utilities"
 # @keyword "programming"
 # @keyword "IO"
-#*/#########################################################################  
+#*/#########################################################################
 setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix=".tmp", isFile=FALSE, ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -59,7 +59,7 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
   isFile <- Arguments$getLogical(isFile);
 
   # Argument 'filename' & 'path':
-  pathname <- Arguments$getWritablePathname(filename, path=path, 
+  pathname <- Arguments$getWritablePathname(filename, path=path,
                     mustExist=isFile, mustNotExist=!isFile);
 
   # Argument 'suffix':
@@ -77,7 +77,7 @@ setMethodS3("pushTemporaryFile", "default", function(filename, path=NULL, suffix
   verbose && cat(verbose, "Pathname: ", pathname);
   verbose && cat(verbose, "Suffix: ", suffix);
   verbose && cat(verbose, "Rename existing file?: ", isFile);
-  
+
   pathnameT <- sprintf("%s%s", pathname, suffix);
   verbose && cat(verbose, "Temporary pathname: ", pathnameT);
 

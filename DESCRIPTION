@@ -1,9 +1,9 @@
 Package: R.utils
-Version: 1.23.2
-Depends: R (>= 2.5.0), R.oo (>= 1.13.0)
-Imports: utils, methods, R.methodsS3 (>= 1.4.2), R.oo (>= 1.13.0)
+Version: 1.25.2
+Depends: R (>= 2.5.0), R.oo (>= 1.13.9)
+Imports: utils, methods, R.methodsS3 (>= 1.4.4), R.oo (>= 1.13.9)
 Suggests: digest (>= 0.6.3)
-Date: 2013-03-22
+Date: 2013-07-03
 Title: Various programming utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
         email = "henrikb@braju.com"))
@@ -13,7 +13,7 @@ Description: This package provides utility methods useful when
         programming and developing R packages.
 License: LGPL (>= 2.1)
 LazyLoad: TRUE
-Packaged: 2013-03-24 18:30:38 UTC; hb
+Packaged: 2013-07-03 11:30:02 UTC; hb
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-03-27 09:07:23
+Date/Publication: 2013-07-04 17:02:30

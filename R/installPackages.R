@@ -31,21 +31,14 @@
 #
 # \examples{\dontrun{
 #  installPackages("R.rsp")
-#  installPackages("http://cran.r-project.org/src/contrib/R.rsp_0.6.2.tar.gz")
-#  installPackages("http://cran.r-project.org/bin/windows/contrib/r-release/R.rsp_0.6.2.zip")
+#  installPackages("http://cran.r-project.org/src/contrib/Archive/R.rsp/R.rsp_0.7.5.tar.gz")
+#  installPackages("http://cran.r-project.org/bin/windows/contrib/r-release/R.rsp_0.8.2.zip")
 # }}
 #
 # @author
 ###############################################################################
 setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"), types="auto", ..., destPath=".", cleanup=TRUE) {
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  # Local functions
-  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-  isUrl <- function(url, ...) {
-    url <- tolower(url);
-    (regexpr("^(http|ftp)://", url) != -1);
-  } # isUrl()
-
+  require("R.utils") || throw("Package  not loaded: R.utils");
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
@@ -111,7 +104,7 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
       }
 
       install.packages(pathname, repos=NULL, type=types[kk], ...);
- 
+
       if (cleanup) {
         file.remove(pathname);
         if (isFile(pathname)) {
@@ -124,14 +117,17 @@ setMethodS3("installPackages", "default", function(pkgs, repos=getOption("repos"
   } # for (kk ...)
 
   invisible();
-}) # installPackages() 
+}) # installPackages()
 
 
 
 ###############################################################################
 # HISTORY:
+# 2013-07-03
+# o Now installPackages() may also install from https URLs.  This was
+#   achieved but using the package isUrl() rather than a local one.
 # 2011-09-30
-# o Added installPackages(url, ..., types="auto") for auto-setting of 
+# o Added installPackages(url, ..., types="auto") for auto-setting of
 #   the file type given the file extension of the URL.
 # o Created from hbLite.R script.  Moved to R.utils.  The idea is that
 #   hbLite() will install/update R.utils and then utilize this method.

@@ -10,11 +10,16 @@
 \alias{gzip.default}
 \alias{gzip}
 \alias{gunzip}
+\alias{gunzip.default}
+\alias{isGzipped}
 
 \title{Gzip/Gunzip a file}
 
 \usage{
-\method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
+ \method{gzip}{default}(filename, destname=sprintf("\%s.gz", filename), temporary=FALSE, overwrite=FALSE,
+  remove=TRUE, BFR.SIZE=1e+07, ...)
+ \method{gunzip}{default}(filename, destname=gsub("[.]gz$", "", filename, ignore.case = TRUE),
+  temporary=FALSE, overwrite=FALSE, remove=TRUE, BFR.SIZE=1e+07, ...)
 }
 
 \description{
@@ -24,6 +29,8 @@
 \arguments{
  \item{filename}{Pathname of input file.}
  \item{destname}{Pathname of output file.}
+ \item{temporary}{If \code{\link[base:logical]{TRUE}}, the output file is created in a
+   temporary directory.}
  \item{overwrite}{If the output file already exists, then if
    \code{overwrite} is \code{\link[base:logical]{TRUE}} the file is silently overwritting,
    otherwise an exception is thrown.}
@@ -34,7 +41,9 @@
 }
 
 \value{
-  Returns the number of (input) bytes read.
+  Returns the pathname of the output file.
+  The number of bytes processed is returned as an attribute.
+  \code{isGzipped()} returns a \code{\link[base]{logical}}.
 }
 
 \details{
@@ -46,10 +55,17 @@
 
 \examples{
   cat(file="foo.txt", "Hello world!")
+  print(isGzipped("foo.txt"))
+  print(isGzipped("foo.txt.gz"))
+
   gzip("foo.txt")
   print(file.info("foo.txt.gz"))
+  print(isGzipped("foo.txt"))
+  print(isGzipped("foo.txt.gz"))
+
   gunzip("foo.txt.gz")
   print(file.info("foo.txt"))
+
   file.remove("foo.txt")
 }
 

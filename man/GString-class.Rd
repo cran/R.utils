@@ -64,7 +64,7 @@ GString(..., sep="")
 
 
  \bold{Methods inherited from character}:\cr
-all.equal, as.data.frame, as.Date, as.POSIXlt, as.raster, downloadFile, formula, getDLLRegisteredRoutines, isOpen, toAsciiRegExprPattern, toFileListTree, uses
+all.equal, as.Date, as.POSIXlt, as.data.frame, as.raster, downloadFile, formula, getDLLRegisteredRoutines, isOpen, toAsciiRegExprPattern, toFileListTree, uses
 
 
 }
@@ -100,7 +100,8 @@ cat("\n")
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Predefined ("builtin") variables
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cat(as.character(GString("Hello ${username} on host ${hostname} running R v${rversion} in process #${pid} on ${os}. R is installed in ${rhome}.")))
+cat(as.character(GString("Hello ${username} on host ${hostname} running ",
+"R v${rversion} in process #${pid} on ${os}. R is installed in ${rhome}.")))
 
 
 # Other built-in variables/functions...
