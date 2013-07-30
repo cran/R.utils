@@ -1,4 +1,4 @@
-4b585cc6cb751813f85e87156389fe68 *DESCRIPTION
+cd7285909f8b5e69934e35beaf837fc2 *DESCRIPTION
 00012681a5035bdc1786e2ab49a97e6f *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 795f24938a78fefa87416d23c2fc6a20 *R/006.fixVarArgs.R
@@ -18,7 +18,7 @@ b0d3e3b1d01ad3f3566f51087951568c *R/Options.R
 3b8b2ed5c87766c1c4ff4c2b5db716fd *R/ProgressBar.R
 01c9db827fa65a024066e36f1e447ed5 *R/Settings.R
 445d4a063e3608ecb09afed6aed449de *R/SmartComments.R
-c09ecbbdde1844c8a95670f5241bdd47 *R/System.R
+0875bf41c87ca0638d5121b6b1362bac *R/System.R
 d3b608c94f3e1bd88a6ba0f9aab79d87 *R/TextStatusBar.R
 d144ef94fd89c68150979d66ea8cf7d1 *R/TimeoutException.R
 2fe4bf047423a3ce3a75d71c40f602e3 *R/VComments.R
@@ -30,7 +30,7 @@ c00da965d00b8a60925a8947a1d0eefd *R/arrayIndex.R
 35d3d8c87a0fd1f892dad747ecf4b856 *R/beta/singularPlural.Rtrial
 464f1215402a305df3c5959b0d60c40a *R/bunzip2.R
 ce32f57149faabc342d163af02ee8a9b *R/callHooks.R
-34b37f4577eb5fbd0fa1d7a0f8899336 *R/capitalize.R
+549bf449274b5ef36391085b624abcb9 *R/capitalize.R
 972d75e9e3b7019c518b5fb7b9a09d3e *R/cmdArgs.R
 c3d3114a3bbcefe5444fdfe5fc4707c1 *R/colClasses.R
 fa33c3c7885ee42954f2ffc20752b76f *R/commandArgs.R
@@ -74,14 +74,14 @@ a142967a119790492407dc65198cab78 *R/hasUrlProtocol.R
 d435ed49272712bb9af5a886adddc2d5 *R/inAnyInterval.R
 83372ccb1f1d92c02d73e5323cca8033 *R/insert.R
 f81b1c6ac6b216c2d3bf29c38e070c86 *R/installPackages.R
-357cace4fe1099d2b48a5e4448fddbfa *R/intToBin.R
+8c38a0cfb75be7a9b4bbe557988b4682 *R/intToBin.R
 bea184cfe85ef716d2dabfebf6435b7f *R/intToHex.R
 85577887b460a7573293b7b99f5a8cf5 *R/intToOct.R
 ea7220be52cf8974841a92aafb3c74a7 *R/intervalsToSeq.R
 f81c1a9222f88365aa27a149e3c33b29 *R/isAbsolutePath.R
-95a9bc82e8df081b0a16f0ba94e3c441 *R/isDirectory.R
+d31e1d491d83dc874a8f62737d47cff3 *R/isDirectory.R
 3d4f4d4103d11c3913d534fcdd624d43 *R/isEof.connection.R
-c6ea4fc223b9d3158e2033e42df5d55b *R/isFile.R
+6b44c74a85f418d899399adbe87df401 *R/isFile.R
 65091dfc136c5d6b4a3518bfb292b878 *R/isOpen.character.R
 df6ad070d8da6e8c78044be25a9c8aca *R/isPackageInstalled.R
 776f17ca0c32be022825a5ea1ebb1ccc *R/isPackageLoaded.R
@@ -141,7 +141,7 @@ cc957386e356fde41d58d9b5fe40e92d *R/whichVector.R
 3e3e6e1c0e91be301f55db8fbe6b2774 *R/writeBinFragments.R
 b765585c6de435901125acc6ba035606 *R/writeDataFrame.R
 9d4784eb5788d768e673ab6830dfc146 *R/zzz.R
-2753798e2fb924f8340f06af8913d93f *inst/NEWS
+7dac57451b3754e68c5559793d1423bb *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 637b485d438f840b23761205cd3963ac *inst/data-ex/NEWS.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
@@ -224,7 +224,7 @@ f3491b2c1bae9f4a7c748d0f71ae2383 *man/fileAccess.Rd
 04f668d8e4b24b8b57ce7c721d11cc10 *man/filePath.Rd
 c296c9f5490cc0d0b1bcf0656e24dd71 *man/finalizeSession.Rd
 3bc22be8ad51cc45a0b6e57efdb34b2c *man/findFiles.Rd
-be1a249737119e82050112099d4c5b03 *man/findGhostscript.System.Rd
+d9fdcda02532eb85dfcd2f6ef4c9366d *man/findGhostscript.System.Rd
 2c8d1a9179c99b38e4bee8986601eb63 *man/findGraphicsDevice.System.Rd
 d53cb36d56dc8042605e707be691ddf4 *man/findSettings.Settings.Rd
 e3360522cedf16319063f909cb167359 *man/findSourceTraceback.Rd
@@ -285,7 +285,7 @@ f8b69a0a4afa099b1ff0d7890c1c6745 *man/intervalsToSeq.matrix.Rd
 e42d39db85cb1285ffb9bdc56457564b *man/isDirectory.Rd
 a49652f73443f0ba9ef8b6529a70239b *man/isDone.ProgressBar.Rd
 401143dc6e96281cb47091c22a668706 *man/isEof.connection.Rd
-483520b9dd9100ed9268dd7eea8d3782 *man/isFile.Rd
+b11d06fdcae8da14da27c19698c406ac *man/isFile.Rd
 2cafbcb295eb367e1c41c1a54e8bc1a7 *man/isMatrix.Assert.Rd
 aa9b98c472e10dbd372121cafecf281a *man/isModified.Settings.Rd
 c9fe74525a06b1fe42701402756ea2cb *man/isOn.NullVerbose.Rd
