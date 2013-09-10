@@ -1,10 +1,10 @@
-cd7285909f8b5e69934e35beaf837fc2 *DESCRIPTION
-00012681a5035bdc1786e2ab49a97e6f *NAMESPACE
+e1f925da87d8cf4398b95857945d9d6e *DESCRIPTION
+b2e958a86e99456c15995386ffb23393 *NAMESPACE
 30f932a3738f2b641da0f163dfb90294 *R/000.R
 795f24938a78fefa87416d23c2fc6a20 *R/006.fixVarArgs.R
-3a01b6f5797734963fbc29210fc38264 *R/999.NonDocumentedObjects.R
+df3a8c3e04261148d401d54ffe701e4e *R/999.NonDocumentedObjects.R
 cac01492780d7dacf188414aec7b99c7 *R/999.package.R
-ca21dc3b2c7685c6f95f1edc884159d8 *R/Arguments.R
+6fab256e31c66b7baeb7ace029cd4c51 *R/Arguments.R
 0877d40bc4096f1baf3f7290deadcd2a *R/Assert.R
 10009865593a51dd3ce4392ae44291b8 *R/FileListTree.R
 2d507f118b4979ea1d41e30186dd95b3 *R/FileProgressBar.R
@@ -33,7 +33,7 @@ ce32f57149faabc342d163af02ee8a9b *R/callHooks.R
 549bf449274b5ef36391085b624abcb9 *R/capitalize.R
 972d75e9e3b7019c518b5fb7b9a09d3e *R/cmdArgs.R
 c3d3114a3bbcefe5444fdfe5fc4707c1 *R/colClasses.R
-fa33c3c7885ee42954f2ffc20752b76f *R/commandArgs.R
+67fb1f8c6b17623d15df8b7ec37371ea *R/commandArgs.R
 9e6690fb37764191812a80aa0a6c9083 *R/copyDirectory.R
 6ab3a64ee382c72d245df62533bc32c1 *R/copyFile.R
 4c890593ea939c0ef7edf6235fb78af0 *R/countLines.R
@@ -47,7 +47,6 @@ ccf27cf4a4f547f0b903245b6b8f7d39 *R/detachPlain.R
 c7566b3f1b72b9cc57ceae8a3db15a88 *R/devel/doCall.R
 51c2f3f9d27280388f82d49ff21277d8 *R/devel/fileSizeToHumanReadable.R
 5ebed4a1a8a146b85e0f9d7d9d5f3410 *R/devel/splitUrl.R
-8028cbe26b63fb2332b696d7e626d359 *R/devel/zzz.R
 5cd287a2029ed98e7964c51e853b83d2 *R/dimNA.R
 0b22b76e363b0086e5885424890b73eb *R/displayCode.R
 6f0f35a62c55f8b06d00c7b9a99bf6d6 *R/doCall.R
@@ -73,7 +72,7 @@ a142967a119790492407dc65198cab78 *R/hasUrlProtocol.R
 67059b94e526d2bc534237fb1230e547 *R/hpaste.R
 d435ed49272712bb9af5a886adddc2d5 *R/inAnyInterval.R
 83372ccb1f1d92c02d73e5323cca8033 *R/insert.R
-f81b1c6ac6b216c2d3bf29c38e070c86 *R/installPackages.R
+9a46cd9f38792dbf62ed995892c43f7c *R/installPackages.R
 8c38a0cfb75be7a9b4bbe557988b4682 *R/intToBin.R
 bea184cfe85ef716d2dabfebf6435b7f *R/intToHex.R
 85577887b460a7573293b7b99f5a8cf5 *R/intToOct.R
@@ -83,7 +82,7 @@ d31e1d491d83dc874a8f62737d47cff3 *R/isDirectory.R
 3d4f4d4103d11c3913d534fcdd624d43 *R/isEof.connection.R
 6b44c74a85f418d899399adbe87df401 *R/isFile.R
 65091dfc136c5d6b4a3518bfb292b878 *R/isOpen.character.R
-df6ad070d8da6e8c78044be25a9c8aca *R/isPackageInstalled.R
+5a2ac5414cff3cef7f0c3ef543d2497b *R/isPackageInstalled.R
 776f17ca0c32be022825a5ea1ebb1ccc *R/isPackageLoaded.R
 344969d029dab41654298a3198b1cbd8 *R/isReplicated.R
 d2b281b988abe8e1ec65eed052d4b637 *R/isSingle.R
@@ -109,8 +108,8 @@ d9a713c4ec7ed5bed9b975996db37729 *R/popTemporaryFile.R
 3969e97064c89ca0784b978323ee817f *R/pushTemporaryFile.R
 feab19c3b7ec3cc9f982914db80f0b42 *R/queryRCmdCheck.R
 22361d55841adddb0008cc1b66ccf89a *R/readBinFragments.R
-60c17716c9bd494737d63e3f496e5aa4 *R/readRdHelp.R
-7ded09c239132eed191e677993e3eccb *R/readTable.R
+85abea0a687e63e484b6acb0619da74c *R/readRdHelp.R
+9e04d81b2ef231319859de5a00860e4e *R/readTable.R
 688274ff5dc6b2dbf99a562a0d568f42 *R/readTableIndex.R
 692dacdce0acc8f3636f6643bd86ad72 *R/readWindowsShellLink.R
 1ce4df31e7b4c61e1c0e24a062ccc576 *R/readWindowsShortcut.R
@@ -136,12 +135,13 @@ b1724600d4bfa53b77edd337c922e71b *R/toCamelCase.R
 2bb6cd656e949bb5d19b031717acf8a3 *R/toUrl.R
 911bad74146d54694e5fa29725609b1b *R/touchFile.R
 37b02d388ae3beb12643d5f7942b28be *R/unwrap.array.R
+317b6d5274d529c3c9578efff250bce7 *R/use.R
 cc957386e356fde41d58d9b5fe40e92d *R/whichVector.R
 7d76ba24b1578834dc5e27a71e21a767 *R/wrap.array.R
 3e3e6e1c0e91be301f55db8fbe6b2774 *R/writeBinFragments.R
-b765585c6de435901125acc6ba035606 *R/writeDataFrame.R
+f62041329e746551ffcb9e0f31dc894f *R/writeDataFrame.R
 9d4784eb5788d768e673ab6830dfc146 *R/zzz.R
-7dac57451b3754e68c5559793d1423bb *inst/NEWS
+5775dc7739b20102d315ae21b82c4ce7 *inst/NEWS
 97b23af5ae2ec44f41b1340c85efccf6 *inst/data-ex/HISTORY.LNK
 637b485d438f840b23761205cd3963ac *inst/data-ex/NEWS.LNK
 7f850ac9c29ed473c440080f9ab26f44 *inst/data-ex/exampleVComments.R
@@ -153,11 +153,11 @@ eb7d575ebb16390f94f3da4a9a95975e *man/GString-class.Rd
 9da78b9881e5d560e54ce1201dc9db44 *man/Java.Rd
 59915756e1934343bfb53149a525d97e *man/LComments.Rd
 51091e1c6417c8509464977528530fc2 *man/MultiVerbose.Rd
-2027f43f564b5c78544b7a44a6180aa2 *man/Non-documented_objects.Rd
+c5a54f36001388725b790af7ad72ac8e *man/Non-documented_objects.Rd
 ca1d4308e079953f9c864202a9b074f8 *man/NullVerbose.Rd
 a6ec6c41b86481fa321098f2562dbae6 *man/Options.Rd
 a0e8f5a953d029974574972d6a207580 *man/ProgressBar.Rd
-ea1d09eed27d0c677fdf3330d8e61b22 *man/R.utils-package.Rd
+1340e47ddbbdf360702bd2d25598c02e *man/R.utils-package.Rd
 d490f51fcfd92e0520817815bc5e25fa *man/Settings.Rd
 ed9cd5f618042f145af7c3327cb72abc *man/SmartComments.Rd
 21dd18c6e743e146f3c1b925ab4bfd81 *man/System.Rd
@@ -279,6 +279,7 @@ c9ddbebd3fa8dae73f18267a83a01c5f *man/gzip.Rd
 74e037dc6f4864bd8af954c0ffe2efec *man/increase.ProgressBar.Rd
 81a242d2e3fb0c04d4d5c7ad9b02c639 *man/inherits.Assert.Rd
 81880300ef1076f7655761a74d259d41 *man/insert.Rd
+bb78772298e99f8c313e7fa9f1c80cb7 *man/installPackages.Rd
 16fa488c53b0e3529d9c4919211b22c5 *man/intToBin.Rd
 f8b69a0a4afa099b1ff0d7890c1c6745 *man/intervalsToSeq.matrix.Rd
 33134d0eaef273c872c1ec43ace15431 *man/isAbsolutePath.Rd
@@ -393,6 +394,7 @@ cc5ad26ef6b0b32084311f71327808ca *man/touchFile.Rd
 91f80353fa7fdcad4a96cedebbe80738 *man/update.ProgressBar.Rd
 79b64c037cb9bdfe754d1269b3ef6b67 *man/update.TextStatusBar.Rd
 46700eb3770d15562359a7b01f788ccc *man/updateLabels.TextStatusBar.Rd
+ac1b96f484aa07a16e3e2b9062089e72 *man/use.Rd
 ff26588b099baf948ca5ca87dd7518ab *man/validate.SmartComments.Rd
 6af991e15355e4853892834bfcf8e192 *man/validate.VComments.Rd
 f80ea68d202917014d6da548d18dc679 *man/warnings.Verbose.Rd
@@ -400,7 +402,7 @@ f80ea68d202917014d6da548d18dc679 *man/warnings.Verbose.Rd
 327a8fe4c7082fd9f2f088e9a906cd26 *man/wrap.array.Rd
 e748a256e5c8fd1154b5547d3f4672d0 *man/writeBinFragments.Rd
 937af8b9679438990e355f6d2e18c8cf *man/writeByte.Java.Rd
-8ff4a0e78a402525d800435ae16c0e94 *man/writeDataFrame.data.frame.Rd
+f564311f0f6c0707f391654db56eea88 *man/writeDataFrame.data.frame.Rd
 4d98cbdf19edc3965fa285a17e706080 *man/writeInt.Java.Rd
 02b6444515c7dfea850972701b157e78 *man/writeRaw.MultiVerbose.Rd
 717671ab5520db4d75063b4d1756558f *man/writeRaw.NullVerbose.Rd
@@ -412,3 +414,4 @@ bfa88b9488b31ffa53aaad33858f725e *man/writeUTF.Java.Rd
 d9178a4b77392bbf8e3e614d596e755d *tests/evalWithTimeout.R
 a8c124fe35640dca9f96d0aae2e1d5ef *tests/queryRCmdCheck.R
 30089bf8657cfe213c4dc4c158a66e2e *tests/toCamelCase.R
+28d850d5bce731aec9201d9853e52bf6 *tests/use.R

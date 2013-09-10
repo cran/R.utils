@@ -2,6 +2,32 @@
 Package: R.utils
 ================
 
+Version: 1.27.1 [2013-09-10]
+o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
+  the very last argument to TRUE if it was a flag, e.g.
+  'R --args --bar'.  Thanks to Stijn van Dongen at EMBL-EBI in
+  Cambridge/Hinxton, UK for reporting on this.
+
+
+Version: 1.27.0 [2013-08-30]
+o Added use() for easy attaching/loading and automatic installation
+  of packages.
+o Now isPackageInstalled() suppresses warnings.
+
+
+Version: 1.26.4 [2013-08-27]
+o CLEANUP: Arguments$getReadablePathnames(files, paths=NULL) no longer
+  warns about "rep(paths, length.out = nbrOfFiles) : 'x' is NULL so
+  the result will be NULL" if length(files) > 0.
+o CLEANUP: Package no longer utilizes ':::'.
+o DOCUMENTATION: Help for installPackages() was missing.  Thanks
+  Gabor Grothendieck for reporting on this.
+
+
+Version: 1.26.3 [2013-08-20]
+o Forgot to declare default inherits() as an S3 method.
+
+
 Version: 1.26.2 [2013-07-30]
 o ROBUSTNESS/BUG FIX: System$findGhostscript() could still
   give errors.  Completely rewrote how Ghostscripts is searched.
