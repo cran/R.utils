@@ -2,6 +2,63 @@
 Package: R.utils
 ================
 
+Version: 1.28.4 [2013-11-20]
+o Minor updates to NAMESPACE file.
+
+
+Version: 1.28.3 [2013-11-15]
+o Added method c() for GenericSummary.
+
+
+Version: 1.28.2 [2013-11-15]
+o CLEANUP: Arguments$getNumerics(NA, range=c(0,1)) no longer gives
+  warnings on "no non-missing arguments to min()" etc.
+
+
+Version: 1.28.1 [2013-10-30]
+o BUG FIX: System$getMappedDrivesOnWindows() failed to return the
+  proper path for 'net use' mounted drives, iff the path contained
+  spaces.
+
+
+Version: 1.28.0 [2013-10-20]
+o CLEANUP: Removed a few non-used internal objects.
+o Forgot to declare enterf() for Verbose as an S3 method.
+
+
+Version: 1.27.6 [2013-10-13]
+o CLEANUP: Some methods had to attach 'R.utils' in the past in order
+  to work properly.  These are no longer attaching 'R.utils':
+  copyDirectory(), createLink(), createWindowsShortcut(),  downloadFile(),
+  installPackages(), removeDirectory(), and sourceDirectory().
+o Bumped up package dependencies.
+
+
+Version: 1.27.5 [2013-10-07]
+o CLEANUP: Now explicitly importing only what is needed in NAMESPACE.
+o CLEANUP: Dropped obsolete autoload():s.
+o ROBUSTNESS: The overriding of getOption() to become a generic
+  function does now call base::getOption() in the default, instead
+  of copy the latter.
+o Bumped up package dependencies.
+
+
+Version: 1.27.4 [2013-09-28]
+o Now argument 'recursive' of listDirectory() can also specify the
+  maximum recursive depth, e.g listDirectory(..., recursive=5L).
+o Now the 'R.utils' Package object is also available when the
+  package is only loaded (but not attached).
+
+
+Version: 1.27.3 [2013-09-20]
+o ROBUSTNESS: Forgot to import R.methodsS3::appendVarArgs().
+
+
+Version: 1.27.2 [2013-09-15]
+o TYPO: An error message of dimNA<-() was referring to 'files'
+  rather than to 'elements'.
+
+
 Version: 1.27.1 [2013-09-10]
 o BUG FIX: commandArgs(asValues=TRUE) failed to set the value of
   the very last argument to TRUE if it was a flag, e.g.
