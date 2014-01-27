@@ -37,11 +37,16 @@
 # @alias isScalar
 # @alias isVector
 #
+# % The CmdArgsFunction class
+# @alias CmdArgsFunction
+# @alias print.CmdArgsFunction
+#
 # % The connection class
 # @alias isEof
 #
 # % The GenericSummary class
 # @alias GenericSummary
+# @alias [.GenericSummary
 # @alias c.GenericSummary
 # @alias print.GenericSummary
 #
@@ -180,6 +185,7 @@
 # @alias remove.default
 # @alias unwrap
 # @alias verbose
+# @alias withoutGString
 # @alias wrap
 # @alias whichVector
 # @alias draw

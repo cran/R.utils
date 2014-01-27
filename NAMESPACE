@@ -52,7 +52,6 @@ importFrom("utils", "write.table")
 # Manual fixes
 importFrom("R.oo", "load") ## Multi-sources: R.oo, base
 
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # EXPORTS
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -123,6 +122,9 @@ S3method("downloadFile", "character")
 S3method("isOpen", "character")
 S3method("toAsciiRegExprPattern", "character")
 S3method("toFileListTree", "character")
+
+# CmdArgsFunction
+S3method("print", "CmdArgsFunction")
 
 # connection
 S3method("isEof", "connection")

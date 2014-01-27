@@ -24,12 +24,13 @@
 
 \usage{
 ## Static method (use this):
-## Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE,
-##   asGString=TRUE, .name=NULL, ...)
+## Arguments$getCharacters(s, length=NULL, trim=FALSE, nchar=NULL, useNames=TRUE,
+##   asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL,
+##   ...)
 
 ## Don't use the below:
-\method{getCharacters}{Arguments}(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=FALSE,
-  asGString=TRUE, .name=NULL, ...)
+\method{getCharacters}{Arguments}(static, s, length=NULL, trim=FALSE, nchar=NULL, useNames=TRUE,
+  asGString=getOption("Arguments$getCharacters/args/asGString", TRUE), .name=NULL, ...)
 }
 
 \arguments{

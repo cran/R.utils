@@ -13,19 +13,20 @@
 
 \title{Simple access to parsed command-line arguments}
 
-\usage{
-  cmdArgs(args=NULL, names=NULL, ..., .args=NULL)
-  cmdArg(...)
+\description{
+  Simple access to parsed command-line arguments.
 }
 
-\description{
- Retrives
+\usage{
+  cmdArgs(args=NULL, names=NULL, unique=TRUE, ..., .args=NULL)
+  cmdArg(...)
 }
 
 \arguments{
   \item{args}{A named \code{\link[base]{list}} of arguments.}
   \item{names}{A \code{\link[base]{character}} \code{\link[base]{vector}} specifying the arguments to be
     returned.  If \code{\link[base]{NULL}}, all arguments are returned.}
+  \item{unique}{If \code{\link[base:logical]{TRUE}}, only unique arguments are returned.}
   \item{...}{
     For \code{cmdArgs()}, additional arguments passed to
     \code{\link{commandArgs}}(), e.g. \code{defaults} and \code{always}.

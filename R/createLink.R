@@ -31,7 +31,7 @@
 # }
 #
 # \value{
-#   Returns (invisibly) the path or pathname to the destination.
+#   Returns (invisibly) the path or pathname to the link.
 # }
 #
 # @author
@@ -78,6 +78,13 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     if (skip) {
       warning("Link was not create. Link file already exists: ", link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+
+      # If a Windows Shortcut, avoid returning the target.
+      if (file.exists(links[2L]) && !file.exists(link)) {
+        res <- link;
+        attr(res, "linkType") <- "windows-shortcut";
+      }
+
       return(res);
     }
     if (!overwrite) {
@@ -87,6 +94,12 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
   # Argument 'methods':
   methods <- match.arg(methods, several.ok=TRUE);
+
+
+  # Keep only 'methods' that are supported on the current platform
+  if (.Platform$OS != "windows") {
+    methods <- grep("windows-", methods, value=TRUE, invert=TRUE);
+  }
 
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -125,6 +138,7 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     tryCatch({
       file.symlink(from=targetF, to=link);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      attr(res, "linkType") <- "unix-symlink";
     }, warning = function(ex) {
     });
     if (!is.null(res)) {
@@ -153,8 +167,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
     }
     res <- NULL;
     tryCatch({
-      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE);
+      shell(cmd, intern=TRUE, mustWork=TRUE, ignore.stderr=TRUE, shell=Sys.getenv("COMSPEC"));
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      attr(res, "linkType") <- "windows-ntfs-symlink";
     }, error = function(ex) {
     });
     if (!is.null(res)) {
@@ -172,6 +187,9 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
       pathname <- sprintf("%s.LNK", link);
       createWindowsShortcut(pathname, target=target, overwrite=overwrite);
       res <- Arguments$getReadablePathname(link, mustExist=TRUE);
+      # Make sure to return the link and not the target
+      res <- link;
+      attr(res, "linkType") <- "windows-shortcut";
     }, error = function(ex) {
     });
     if (!is.null(res)) {
@@ -190,6 +208,21 @@ setMethodS3("createLink", "default", function(link=".", target, skip=!overwrite,
 
 ############################################################################
 # HISTORY:
+# 2014-01-22
+# o CONSISTENCY: Now createLink(..., skip=TRUE) returns the Windows
+#   Shortcut link if it already exists (instead of the target as before).
+#   In this case, we can also set attribute 'linkType'.
+# o Now the pathname returned by createLink() has attribute 'linkType'
+#   set specifying what type of link was created.  For now, this attribute
+#   will not be set if returning an already existing link (skip=TRUE).
+# 2014-01-19
+# o CONSISTENCY: Now createLink(..., method="windows-shortcut") returns
+#   the path/pathname to the link (and not the target) just like it does
+#   for the other types of file links.  By link we here mean the
+#   path/pathname without the *.lnk extension.
+# 2014-01-06
+# o ROBUSTNESS: createLink() will no longer try to create Windows file
+#   links on non-Windows platforms.
 # 2013-10-13
 # o CLEANUP: createLink() no longer attaches 'R.utils'.
 # 2012-11-01

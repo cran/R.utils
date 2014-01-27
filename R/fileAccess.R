@@ -22,13 +22,16 @@
 #  Returns an @integer; 0 if the permission exists, -1 if not.
 # }
 #
-# @author
-#
 # \details{
 #   In \R there is @see "base::file.access" for checking whether the
 #   permission of a file.
 #   Unfortunately, that function cannot be 100\% trusted depending on
 #   platform used and file system queried, cf. [1].
+# }
+#
+# \section{Symbolic links}{
+#  This function follows symbolic links (also on Windows) and returns a
+#  value based on the link target (rather than the link itself).
 # }
 #
 # @examples "../incl/fileAccess.Rex"
@@ -38,12 +41,14 @@
 # }
 #
 # \references{
-#  [1] R-devel thread 
+#  [1] R-devel thread
 #      \emph{file.access() on network (mounted) drive on Windows Vista?}
 #      on Nov 26, 2008.\cr
 #  [2] Filesystem permissions, Wikipedia, 2010.
 #      \url{http://en.wikipedia.org/wiki/Filesystem_permissions}\cr
 # }
+#
+# @author
 #
 # @keyword IO
 # @keyword programming
@@ -61,7 +66,14 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   }
 
 
-  # file.access()  
+  # Follow symbol file links
+  pathname0 <- pathname;
+  pathnameT <- Sys.readlink2(pathname, what="corrected");
+  if (!is.na(pathnameT) && nchar(pathnameT) > 0L) {
+    pathname <- pathnameT;
+  }
+
+  # file.access()
   fa <- base::file.access(pathname, mode=mode);
   names(fa) <- NULL;
 
@@ -72,7 +84,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # If file doesn't exists, then we have none of the permission either.
   fe <- file.exists(pathname);
   if (!fe)
-    return(as.integer(-1));
+    return(-1L);
 
 
   # This is a workaround to make sure any connection opened inside a
@@ -90,7 +102,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   if (mode == 0) {
     faSafe <- -as.integer(!fe);
     if (fa != faSafe) {
-      warning("file.access(..., mode=0) and file.exists() gives different results (", fa, " != ", faSafe, "). Will use the file.exists() results: ", pathname);
+      warning("file.access(..., mode=0) and file.exists() gives different results (", fa, " != ", faSafe, "). Will use the file.exists() results: ", pathname0);
     }
     return(faSafe);
   }
@@ -111,7 +123,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
         isExecutable <- (fi$exe != "no");
         faSafe <- -as.integer(!isExecutable);
         if (fa != faSafe) {
-          warning("file.access(..., mode=1) and file.info()$exe gives different results (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname);
+          warning("file.access(..., mode=1) and file.info()$exe gives different results (", fa, " != ", faSafe, "). Will use the file.info() results: ", pathname0);
         }
       }
     }
@@ -124,9 +136,12 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # mode = 2: Test for write permission of file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (mode == 2) {
+    # In case a symbolic link was followed
+    pathname <- pathname0;
+
     if (isDirectory(pathname)) {
-      # "The write permission, [...] for a directory, this permission 
-      #  grants the ability to modify entries in the directory. This 
+      # "The write permission, [...] for a directory, this permission
+      #  grants the ability to modify entries in the directory. This
       #  includes creating files, deleting files, and renaming files." [2]
 
       # (a) Generate a random filename that does not already exist
@@ -146,14 +161,14 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       } # for (n ...)
 
       # (b) Try to open the random filename for writing
-      faSafe <- as.integer(-1);
+      faSafe <- -1L;
       tryCatch({
         suppressWarnings({
           con <- file(pathname, open="ab");
         });
 
         # If we get here, we have permission
-        faSafe <- as.integer(0);
+        faSafe <- 0L;
       }, error = function(ex) {
         # If we end up here, we do not have permissions
       })
@@ -179,7 +194,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       return(fa);
     }
 
-    faSafe <- as.integer(-1);
+    faSafe <- -1L;
     tryCatch({
       # (a) Try to open the file for writing
       suppressWarnings({
@@ -187,7 +202,7 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
       });
 
       # If we get here, we have permission
-      faSafe <- as.integer(0);
+      faSafe <- 0L;
     }, error = function(ex) {
       # If we end up here, we do not have permissions
     })
@@ -204,21 +219,24 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
   # mode = 4: Test for read permission of file
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   if (mode == 4) {
-    faSafe <- as.integer(-1);
+    # In case a symbolic link was followed
+    pathname <- pathname0;
+
+    faSafe <- -1L;
     tryCatch({
       if (isFile(pathname)) {
         # (a) Try to open the file for reading
         con <- file(pathname, open="rb");
 
         # (b) Try even to read one byte
-        bfr <- readBin(con, what=raw(), n=1);
+        bfr <- readBin(con, what=raw(), n=1L);
       } else {
         # (a) Try to list directory [Will this take a lot of time?!?]
         dummy <- list.files(path=pathname);
       }
 
       # If we get here, we have permission
-      faSafe <- as.integer(0);
+      faSafe <- 0L;
     }, error = function(ex) {
       # If we end up here, we do not have permissions
     })
@@ -230,24 +248,27 @@ setMethodS3("fileAccess", "default", function(pathname, mode=0, safe=TRUE, ...) 
     return(faSafe);
   }
 
-  return(as.integer(-1));
+  return(-1L);
 })
 
 ###########################################################################
-# HISTORY: 
+# HISTORY:
+# 2014-01-06
+# o Now fileAccess() queries access privileges on the target file or
+#   directory if a symbolic link is specified.
 # 2010-09-13
 # o fileAccess() no longer return a named value if file.access() is used.
 # 2010-09-11
-# o BUG FIX: Updated fileAccess(..., mode=1) to only look at 
+# o BUG FIX: Updated fileAccess(..., mode=1) to only look at
 #   file.info()$exe if it is a file and on Windows, otherwise rely on
 #   file.access().
 # 2010-09-06
-# o BUG FIX: Updated fileAccess(..., mode=1) to only look at 
+# o BUG FIX: Updated fileAccess(..., mode=1) to only look at
 #   file.info()$exe if it is a file, otherwise rely on file.access().
 # o Forgot to remove any temporary created files.
 # 2010-09-05
 # o DOCUMENTATION: Added an example to help(fileAccess).
-# o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2) 
+# o ROBUSTNESS: Added a more robust test for fileAccess(path, mode=2)
 #   when 'path' is a directory.
 # o Now the warning():s generated by fileAccess() also contains the
 #   path/pathname tested.
