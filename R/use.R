@@ -5,8 +5,8 @@
 #
 # \description{
 #  @get "title".
-#  If a package is not installed, it will be installed from one of the
-#  repositories.
+#  If a package is not installed, it (and its dependencies) will be
+#  installed from one of the (known) repositories.
 # }
 #
 # @synopsis
@@ -18,7 +18,8 @@
 #  \item{quietly}{If @TRUE, minimial or no messages are reported.}
 #  \item{warn.conflicts}{If @TRUE, warnings on namespace conflicts are reported, otherwise not.}
 #  \item{install}{If @TRUE and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
-#  \item{repos}{(optional) A @character @vector specifying where to install the package from if not already installed.}
+#  \item{repos}{(optional) A @character @vector specifying from which repositories
+#    to install the package from, iff a requested package is not already installed.}
 #  \item{...}{Additional \emph{named} arguments passed to
 #    @see "base::require" or @see "base::requireNamespace".}
 #  \item{verbose}{If @TRUE, verbose output is generated (regardless
@@ -34,6 +35,9 @@
 #
 # \seealso{
 #   @see "base::library" and "base::install.packages".
+#   To modify the set of known repositories, set option \code{repos}
+#   (see @see "base::options"),
+#   which can also be done via @see "utils::setRepositories".
 # }
 #
 # \examples{\dontrun{
@@ -41,6 +45,7 @@
 #   use("digest (>= 0.6.3)")
 #   use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
 #   use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+#   use("BioCsoft::ShortRead")
 #   use("digest, R.rsp (>= 0.9.17)")
 # }}
 #
@@ -48,7 +53,7 @@
 # @keyword utilities
 # @keyword internal
 #*/###########################################################################
-setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=NULL, ..., verbose=FALSE) {
+setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly, install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ..., verbose=FALSE) {
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Local functions
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -99,64 +104,54 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   installPkg <- function(pkg, version=NULL, repos=NULL, type=getOption("pkgType"), ..., quietly=FALSE, verbose=FALSE) {
     verbose && enter(verbose, "Trying to install package");
 
-    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
-
-    if (!is.null(repos)) {
-      isUrl <- sapply(repos, FUN=isUrl);
-      if (!all(isUrl)) {
-        reposT <- repos[!isUrl];
-        reposT <- getOption("repos")[reposT];
-        repos[!isUrl] <- reposT;
-        cat(verbose, "Updated repositories: ", paste(sQuote(repos), collapse=", "));
-      }
-    }
-
-    contriburl <- NULL;
-    avail <- NULL;
-    for (kk in seq_along(repos)) {
-      verbose && enterf(verbose, "Repository #%d ('%s') of %d", kk, repos[kk], length(repos));
-      contriburl <- contrib.url(repos[kk], type);
-      verbose && cat(verbose, "Contrib URL: ", contriburl);
-
-      captureAll({
-        avail <- available.packages(contriburl=contriburl, type=type);
-      }, echo=!quietly);
-      keep <- na.omit(match(pkg, rownames(avail)));
-      avail <- avail[keep,, drop=FALSE];
-      if (length(avail) > 0L) {
-        verbose && print(verbose, avail[,c("Package", "Version")]);
-        if (!is.null(version)) {
-          vers <- avail[,"Version", drop=TRUE];
-          keep <- sapply(vers, FUN=function(ver) version$test(ver));
-          avail <- avail[keep,,drop=FALSE];
-        }
-        if (length(avail) > 0L) {
-          verbose && cat(verbose, "Found required package version:");
-          verbose && print(verbose, avail[,c("Package", "Version")]);
-          break;
-        }
-      }
-      contriburl <- NULL;
-      verbose && exit(verbose);
-    } # for (kk ...)
-
-    if (is.null(contriburl)) {
-      msg <- "";
-      if (isPackageInstalled(pkg)) {
-        ver <- packageVersion(pkg);
-        msg <- sprintf("Package %s v%s is already installed. ", sQuote(pkg), ver);
-      }
-      if (is.list(version)) {
-        msg <- sprintf("%sFailed to install requested version %s (%s)", msg, sQuote(pkg), version$label);
-      } else {
-        msg <- sprintf("%sFailed to install package %s", msg, sQuote(pkg));
-      }
+    # Already installed? (=should not have been called)
+    if (isPackageInstalled(pkg)) {
+      ver <- packageVersion(pkg);
+      msg <- sprintf("INTERNAL ERROR: Package %s v%s is already installed. ", sQuote(pkg), ver);
       throw(msg);
     }
 
+    # Parse/expand argument 'repos':
+    if (is.null(repos)) repos <- "[[current]]";
+    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
+
+    # Temporary set of repositories
+    orepos <- useRepos(repos);
+    on.exit(useRepos(orepos));
+
+    # Repositories being used
+    repos <- getOption("repos");
+    if (!identical(repos, orepos)) {
+      cat(verbose, "Repositories (expanded): ", paste(sQuote(repos), collapse=", "));
+    }
+
+    # Identify all available packages of this repository
+    captureAll({
+      avail <- available.packages(type=type);
+    }, echo=!quietly);
+
+    # Does the package of interest exists?
+    keep <- na.omit(match(pkg, rownames(avail)));
+    availT <- avail[keep,, drop=FALSE];
+    if (length(availT) == 0L) {
+      throw(sprintf("Package '%s' is not available from any of the repositories: %s", pkg, paste(sQuote(repos), collapse=", ")));
+    }
+    verbose && print(verbose, availT[,c("Package", "Version")]);
+
+    # Find a particular version?
+    if (!is.null(version)) {
+      vers <- availT[,"Version", drop=TRUE];
+      keep <- sapply(vers, FUN=function(ver) version$test(ver));
+      availT <- availT[keep,,drop=FALSE];
+      if (length(availT) == 0L) {
+        throw(sprintf("Package '%s' (%s) is not available from any of the repositories: %s", pkg, version$label, paste(sQuote(repos), collapse=", ")));
+      }
+      verbose && print(verbose, availT[,c("Package", "Version")]);
+    }
+
     verbose && enter(verbose, "Installing package");
-    verbose && cat(verbose, "Contrib URL: ", contriburl);
     verbose && cat(verbose, "Type: ", type);
+    verbose && cat(verbose, "Number of possible installation files available: ", nrow(availT));
 
     # Detach/unload namespace first?
     if (is.element(pkg, loadedNamespaces())) {
@@ -170,17 +165,33 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
       verbose && exit(verbose);
     }
 
-    captureAll({
-      install.packages(pkg, contriburl=contriburl, available=avail, type=type, quiet=quietly, ...);
+    verbose && enter(verbose, "install.packages()");
+    verbose && cat(verbose, "Arguments:");
+    verbose && str(verbose, list(available=avail, type=type, quiet=quietly, ...));
+
+    output <- captureAll({
+#      install.packages(pkg, available=avail, type=type, quiet=quietly, ...);
+      install.packages(pkg, type=type, quiet=quietly, ...);
     }, echo=!quietly);
+
+    verbose && print(verbose, output);
+    verbose && exit(verbose);
+
     installed <- isPackageInstalled(pkg);
     if (!installed) {
       throw("Failed to install package: ", pkg);
     }
     verbose && exit(verbose);
 
-    # Assert installed package version (TO DO)
     ver <- packageVersion(pkg);
+    verbose && printf(verbose, "Installed version: %s v%s\n", pkg, ver);
+
+    # Assert installed package version
+    if (!is.null(version)) {
+      if (!version$test(ver)) {
+        throw(sprintf("[SANITY CHECK]: The package version ('%s') available after installation does not meet the request version specification ('%s'): %s", ver, version$label, pkg));
+      }
+    }
 
     verbose && exit(verbose);
 
@@ -188,25 +199,18 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   } # installPkg()
 
 
-  trim <- function(s, ...) {
-    s <- gsub("^[ \t\n\r]*", "", s);
-    s <- gsub("[ \t\n\r]*$", "", s);
-    s;
-  } # trim()
-
-
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Argument 'pkg':
   pkg <- Arguments$getCharacters(pkg);
-  pkg <- trim(unlist(strsplit(trim(pkg), split=",", fixed=TRUE)));
+  pkg <- .splitBy(pkg, split=",");
   npkgs <- length(pkg);
 
   # Argument 'version':
   if (!is.null(version)) {
     version <- Arguments$getCharacters(version);
-    version <- trim(unlist(strsplit(trim(version), split=",", fixed=TRUE)));
+    version <- .splitBy(version, split=",");
     if (length(version) != npkgs) {
       throw("Arguments 'version' and 'pkg' are of different lengths: ", length(version), " != ", npkgs);
     }
@@ -214,7 +218,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
   # Argument 'repos':
   if (is.null(repos)) {
-    repos <- Arguments$getCharacter(repos);
+    repos <- Arguments$getCharacters(repos);
   }
 
   # Argument 'how':
@@ -234,10 +238,21 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
 
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Adjust repositories temporarily
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  if (length(repos) > 0L) {
+    verbose && printf(verbose, "Using specific repositories (%s):\n", paste(sQuote(repos), collapse=", "));
+    orepos <- useRepos(repos);
+    on.exit(options(orepos), add=TRUE)
+    verbose && str(verbose, as.list(getOption("repos")))
+  }
+
   if (npkgs > 1L) {
     res <- NULL;
     for (ii in seq(length=npkgs)) {
-      resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=repos, ..., verbose=verbose);
+      resII <- use(pkg[ii], version=version[ii], how=how, quietly=quietly, install=install, repos=NULL, ..., verbose=verbose);
       if (ii == 1L) {
         res <- resII
       } else {
@@ -247,7 +262,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     return(invisible(res));
   }
 
-  verbose && enter(verbose, "Attaching/loading package");
+  verbose && enterf(verbose, "%sing package", capitalize(how));
   if (!is.null(version)) {
     version <- .parseVersion(version);
   }
@@ -257,16 +272,18 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   verbose && enter(verbose, "Parsing package, version and repositories");
   pkgOrg <- pkg;
-  parts <- unlist(strsplit(pkg, split="::"), use.names=FALSE);
+  parts <- .splitBy(pkg, split="::");
   nparts <- length(parts);
   # Sanity check
   if (nparts == 0L || nparts > 2L) {
     throw("Syntax error (in usage of '::'): ", pkgOrg);
-  } else if (nparts == 1L) {
+  }
+
+  # Infer (repos,pkg) parameters
+  if (nparts == 1L) {
+    repos <- NULL;
+    pkg <- parts[1L];
   } else if (nparts == 2L) {
-    if (!is.null(repos)) {
-      throw(sprintf("Argument 'repos' (%s) must not be given if argument 'pkg' specifies a repository as well: %s", repos, pkg));
-    }
     repos <- parts[1L];
     pkg <- parts[2L];
   }
@@ -298,9 +315,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     repos <- .parseRepos(repos);
     repos <- unique(repos);
   }
-  if (is.null(repos)) {
-    repos <- getOption("repos");
-  }
+  if (is.null(repos)) repos <- "[[current]]";
 
   if (verbose) {
     cat(verbose, "Package: ", sQuote(pkg));
@@ -309,11 +324,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     } else {
       cat(verbose, "Version constraint: ", version$label);
     }
-    if (length(repos) == 0L) {
-      cat(verbose, "Repositories: <all registered>");
-    } else {
-      cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
-    }
+    cat(verbose, "Repositories: ", paste(sQuote(repos), collapse=", "));
   }
 
   verbose && exit(verbose);
@@ -331,7 +342,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
     cat(verbose, "Package version: <not installed>");
     verbose && exit(verbose);
     verbose && exit(verbose);
-    throw("Failed to attach/load package: ", pkg);
+    throw(sprintf("Failed to %s package:%s", how, pkg));
   }
 
   ver <- packageVersion(pkg);
@@ -361,7 +372,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
   verbose && exit(verbose);
 
-  verbose && enter(verbose, "Attaching/loading package");
+  verbose && enterf(verbose, "%sing package", capitalize(how));
   ver <- packageVersion(pkg);
   cat(verbose, "Package: ", sQuote(pkg));
   cat(verbose, "Package version: ", ver);
@@ -386,6 +397,19 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   names(ver) <- pkg;
   invisible(ver);
 }) # use()
+
+
+.splitBy <- function(s, split=",", fixed=TRUE, ...) {
+  trim <- function(s, ...) {
+    s <- gsub("^[ \t\n\r]*", "", s);
+    s <- gsub("[ \t\n\r]*$", "", s);
+    s;
+  } # trim()
+
+  s <- strsplit(s, split=split, fixed=fixed);
+  s <- unlist(s, use.names=FALSE);
+  trim(s);
+} # .splitBy()
 
 
 .parseVersion <- function(version, defaultOp="==", ...) {
@@ -444,7 +468,7 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
   }
 
   # Split
-  repos <- trim(unlist(strsplit(repos, split="|", fixed=TRUE), use.names=FALSE));
+  repos <- .splitBy(repos, split="|");
 
   repos;
 } # .parseRepos()
@@ -452,6 +476,16 @@ setMethodS3("use", "default", function(pkg, version=NULL, how=c("attach", "load"
 
 ############################################################################
 # HISTORY:
+# 2014-05-01
+# o Now use() utilizes useRepos() and withRepos().  It's default is
+#   now to install on all set repositories as well as the mainstream ones.
+# o Now use("CRAN::digest", repos=c("BioCsoft", "R-Forge")) works.
+# 2014-04-29
+# o ROBUSTNESS: Now use("UnknownRepos::pkg") will detect that repository
+#   is unknown and give an informative error message on how to update
+#   option 'repos'.
+# 2014-04-15
+# o BUG FIX: use() would not install package dependencies.
 # 2013-08-31
 # o ROBUSTNESS: Now use() rethrows exceptions "visibly", iff they occur.
 # o Now use() handles newlines and TABs in package strings.

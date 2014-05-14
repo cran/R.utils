@@ -1,14 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Do not modify this file since it was automatically generated from:
 % 
-%  evalWithTimeout.R
+%  withTimeout.R
 % 
 % by the Rdoc compiler part of the R.oo package.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\name{evalWithTimeout}
-\alias{evalWithTimeout}
+\name{withTimeout}
+\alias{withTimeout}
 
+\alias{evalWithTimeout}
 
 \title{Evaluate an R expression and interrupts it if it takes too long}
 
@@ -17,13 +18,12 @@
 }
 
 \usage{
-evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
+withTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout,
   onTimeout=c("error", "warning", "silent"))
 }
 
 \arguments{
-  \item{...}{The R expression to be evaluated as passed
-    to \code{\link[base]{eval}}().}
+  \item{...}{The R expression to be evaluated.}
   \item{envir}{The \code{\link[base]{environment}} in which the expression should
     be evaluated.}
   \item{timeout, cpu, elapsed}{A \code{\link[base]{numeric}} specifying the maximum number
@@ -51,10 +51,25 @@ evalWithTimeout(..., envir=parent.frame(), timeout, cpu=timeout, elapsed=timeout
 }
 
 \section{Non-supported cases}{
- It is not possible to interrupt/break out of a "readline" prompt
- (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using
- timeouts; the timeout exception will not be thrown until after
- the user completes the prompt (i.e. after pressing ENTER).
+ In order to understand when this function works and when it does not,
+ it is useful to know that it utilizes R's built-in time-out mechanism,
+ which sets the limits on what is possible and not.
+ From \code{\link[base]{setTimeLimit}}(), we learn that:
+ \emph{"Time limits are checked whenever a user interrupt could occur.
+  This will happen frequently in R code and during Sys.sleep, but
+  only at points in compiled C and Fortran code identified by the
+  code author."}
+ More precisely, if a function is implemented in native code (e.g. C)
+ and the developer of that function does not check for user interrupts,
+ then you cannot interrupt that function neither via a user interrupt
+ (e.g. Ctrl-C) \emph{nor via the built-in time out mechanism}.
+ To change this, you need to contact the developer of that piece of
+ code and ask them to check for R user interrupts in their native code.
+
+ Furthermore, it is not possible to interrupt/break out of a "readline"
+ prompt (e.g. \code{\link[base]{readline}}() and \code{\link[base]{readLines}}()) using
+ timeouts; the timeout exception will not be thrown until after the user
+ completes the prompt (i.e. after pressing ENTER).
 }
 
 \author{Henrik Bengtsson}
@@ -79,7 +94,7 @@ foo <- function() {
 # - - - - - - - - - - - - - - - - - - - - - - - - -
 res <- NULL;
 tryCatch({
-  res <- evalWithTimeout({
+  res <- withTimeout({
     foo();
   }, timeout=1.08);
 }, TimeoutException=function(ex) {
@@ -91,7 +106,7 @@ tryCatch({
 # Evaluate code, if it takes too long, generate
 # a timeout returning NULL and generate a warning.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   foo();
 }, timeout=1.08, onTimeout="warning");
 
@@ -100,12 +115,13 @@ res <- evalWithTimeout({
 # Evaluate code, if it takes too long, generate
 # a timeout, and return silently NULL.
 # - - - - - - - - - - - - - - - - - - - - - - - - -
-res <- evalWithTimeout({
+res <- withTimeout({
   foo();
 }, timeout=1.08, onTimeout="silent");
 }
 
 \seealso{
+  Internally, \code{\link[base]{eval}}() is used to evaluate the expression.
   \code{\link[base]{setTimeLimit}}()
 }
 

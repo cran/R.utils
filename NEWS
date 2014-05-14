@@ -2,6 +2,141 @@
 Package: R.utils
 ================
 
+Version: 1.32.4 [2014-05-14]
+o Now egsub() also works with functions, in case it substitutes on
+  the body of the function.
+o DOCUMENTATION: Added clarification to help("withTimeout") on the
+  limitations of the function and when it is/is not possible to
+  interrupt a function via timeouts.
+o Made the package test on absolute and relative paths less conservative,
+  because it gave an error on Windows systems that have set R_USER to a
+  Cygwin-flavored directory, which causes normalizePath("~") to return a
+  non-existing directory.  Thanks Uwe Ligges (CRAN) for reporting on this.
+
+
+Version: 1.32.3 [2014-05-08]
+o filePath("./././././") now returns "." (was "").  Added package
+  system tests for filePath().
+
+
+Version: 1.32.2 [2014-05-07]
+o Added support for substitution of expressions in withCapture()
+  based on regular expressions utilizing new egsub().
+o Added egsub(), which is gsub() for expressions with some bells
+  and whistles.
+
+
+Version: 1.32.1 [2014-05-04]
+o Now downloadFile() "adjusts" the output filename by decoding URL
+  encoded characters, e.g. 'Hello%20world.txt' becomes 'Hello world.txt'.
+  Also, unsafe filename characters (':', '*', '\') are encoded, e.g.
+  'How_to:_RSP.txt' becomes 'How_to%3A_RSP.txt'.
+o Added argument 'adjust' to Arguments$getReadablePathname().  When
+  adjust="url" it decodes and encodes the filename the same way as
+  downloadFile() now adjusts it (see above).
+
+
+Version: 1.32.0 [2014-05-01]
+o Added captureOutput() which is much faster than capture.output()
+  for large outputs.  withCapture() utilizes this now.  Added package
+  system tests for both functions.
+o use() now installs missing packages from all set repositories (as before)
+  and uses the mainstream (CRAN and BioC) ones as fall backs.
+o Added withRepos() for installing/updating packages using a set of
+  temporarily set repositories.  It is possible to specify repositories
+  by names, which are then selected from a set of known repositories,
+  e.g. withRepos(install.packages("edgeR"), repos="[[BioC]]").
+o Added withOptions() for evaluating an expression with a set of
+  options temporarily set.
+o Renamed evalCapture() to withCapture() and evalWithTimeout() and
+  withTimeout().  The old name is kept for backward compatibility,
+  but will eventually be deprecated.
+
+
+Version: 1.31.1 [2014-04-29]
+o ROBUSTNESS: Now use("<repos>::<pkg>") will detect when a repository
+  is unknown and give an informative error message on how to update
+  option 'repos'.
+
+
+Version: 1.31.0 [2014-04-26]
+o Added assignment operator %<-% for delayed assignments.
+o Added option "evalCapture/newline".
+
+
+Version: 1.30.7 [2014-04-26]
+o Added argument 'xtrim' to draw() for density object.
+o CLEANUP: createLink(..., skip=TRUE) no longer warns if the link file
+  was skipped.  Now it only warns if the skipped link file links to a
+  different file than the intended target file.
+o CLEANUP: Dropping '::' in calls where possible.
+
+
+Version: 1.30.6 [2014-04-24]
+o Added argument 'newline' to evalCapture().
+
+
+Version: 1.30.5 [2014-04-22]
+o Added argument 'substitute' to evalCapture() for substituting
+  symbols "on the fly" in the expression before it is evaluated.
+
+
+Version: 1.30.4 [2014-04-18]
+o Added argument 'modifiedOnly' to sourceDirectory(), which was
+  previously passed via '...' to sourceTo(), and it now defaults
+  to TRUE.
+
+
+Version: 1.30.3 [2014-04-15]
+o BUG FIX: use() would not install package dependencies.
+
+
+Version: 1.30.2 [2014-04-08]
+o Added argument 'max.deparse.length' to evalCapture().
+
+
+Version: 1.30.1 [2014-04-06]
+o Now evalCapture() utilizes deparse() to get the source code and
+  acknowledges options 'deparse.cutoff' to control the code wrapping.
+  Previously capture.output(print()) was used.
+o WORKAROUND: moveInSearchPath() redirects any messages to stderr that
+  base::attach() sent to stdout.  UPDATE: This attach() issue has been
+  fixed in R 3.1.0 patched.
+
+
+Version: 1.30.0 [2014-04-06]
+o Vectorized detachPackage(), getAbsolutePath(), getRelativePath(),
+  isAbsolutePath(), isDirectory(), isFile(), isOpen(),
+  isPackageInstalled(), touchFile() and toUrl(). Added package system
+  tests for several of them.  For backward compatibility,
+  getAbsolutePath(), getRelativePath(), isAbsolutePath(), isFile() and
+  isDirectory() treats an empty vector of path/pathnames equal to ".".
+  However, in a future version, empty results will returned by these too.
+o BUG FIX: toCamelCase(character(0L)) gave an error.
+
+
+Version: 1.29.11 [2014-04-02]
+o BUG FIX: str() and summary() for Verbose did not acknowledge
+  argument 'level'.
+
+
+Version: 1.29.10 [2014-02-28]
+o DOCUMENTATION: Added a help section on privileges required on Windows
+  in order for createLink() to work.
+
+
+Version: 1.29.9 [2014-02-24]
+o ROBUSTNESS: Added a package redundancy test for a bug occurring in
+  R.oo (< 1.18.0) causing R to core dump (with "Error: SET_VECTOR_ELT()
+  can only be applied to a 'list', not a 'integer'") or gives an error
+  (with "Error: not a weak reference") under certain conditions when a
+  registered finalizer tried to reload R.oo if it was unloaded.  This
+  occurred only on R prior to R 3.0.2 patched (2014-02-21 r65057).  Also,
+  the 'methods' package needs to be attached, so it is still not clear
+  what is the true cause of the bug.  In R.oo (>= 1.18.0) this bug is
+  avoided.
+
+
 Version: 1.29.8 [2014-01-27]
 o BUG FIX: Although eget(K=2, cmdArgs=TRUE) would use command-line
   argument 'K=1' as the default (instead of K=2), calling
@@ -254,7 +389,7 @@ o The workaround needed by isDirectory() due to a bug in
 
 
 Version: 1.24.0 [2013-04-18]
-o Several methods are now output messages and verbose output
+o Several methods now output messages and verbose output
   to standard error (instead of standard output), including
   addFinalizerToLast(), filePath(), patchCode(), readWindowsShellLink(),
   readWindowsShortcut(), and loadAnywhere() for Settings.

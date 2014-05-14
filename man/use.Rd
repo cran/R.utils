@@ -14,13 +14,14 @@
 
 \description{
  Attaches or loads packages.
- If a package is not installed, it will be installed from one of the
- repositories.
+ If a package is not installed, it (and its dependencies) will be
+ installed from one of the (known) repositories.
 }
 
 \usage{
 \method{use}{default}(pkg, version=NULL, how=c("attach", "load"), quietly=TRUE, warn.conflicts=!quietly,
-  install=TRUE, repos=NULL, ..., verbose=FALSE)
+  install=TRUE, repos=getOption("use/repos", c("[[current]]", "[[mainstream]]")), ...,
+  verbose=FALSE)
 }
 
 \arguments{
@@ -30,7 +31,8 @@
  \item{quietly}{If \code{\link[base:logical]{TRUE}}, minimial or no messages are reported.}
  \item{warn.conflicts}{If \code{\link[base:logical]{TRUE}}, warnings on namespace conflicts are reported, otherwise not.}
  \item{install}{If \code{\link[base:logical]{TRUE}} and the package is not installed or an too old version is installed, then tries to install a newer version, otherwise not.}
- \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying where to install the package from if not already installed.}
+ \item{repos}{(optional) A \code{\link[base]{character}} \code{\link[base]{vector}} specifying from which repositories
+   to install the package from, iff a requested package is not already installed.}
  \item{...}{Additional \emph{named} arguments passed to
    \code{\link[base]{require}}() or \code{\link[base]{requireNamespace}}().}
  \item{verbose}{If \code{\link[base:logical]{TRUE}}, verbose output is generated (regardless
@@ -46,6 +48,9 @@
 
 \seealso{
   \code{\link[base]{library}}() and "base::install.packages".
+  To modify the set of known repositories, set option \code{repos}
+  (see \code{\link[base]{options}}()),
+  which can also be done via \code{\link[utils]{setRepositories}}.
 }
 
 \examples{\dontrun{
@@ -53,6 +58,7 @@
   use("digest (>= 0.6.3)")
   use("digest (>= 0.6.3)", repos=c("CRAN", "R-Forge"))
   use("(CRAN|R-Forge)::digest (>= 0.6.3)")
+  use("BioCsoft::ShortRead")
   use("digest, R.rsp (>= 0.9.17)")
 }}
 

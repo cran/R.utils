@@ -6,7 +6,7 @@
 # \description{
 #  @get "title".
 # }
-# 
+#
 # @synopsis
 #
 # \arguments{
@@ -14,7 +14,7 @@
 #     to be moved, or a @character specifying the name of the environment
 #     to be moved.}
 #   \item{to}{The destination position like the \code{from} argument.}
-#   \item{where}{A @character string specify where in relation to the 
+#   \item{where}{A @character string specify where in relation to the
 #     destination position the enviroment should be moved.}
 #   \item{...}{Not used.}
 # }
@@ -44,13 +44,33 @@
 # @keyword internal
 #*/###########################################################################
 setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", "after"), ...) {
-  # Get the current search path
-  searchPath <- search();
-  nPath <- length(searchPath);
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Local functions
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Please R CMD check
+  attachX <- base::attach;
+
+  # WORKAROUND for R (<= 3.1.0)
+  if (getRversion() <= "3.1.0") {
+    # base::attach() sends messages about masked objects
+    # to stdout and not to stderr.  This redirects such messages.
+    # See R-devel thread 'attach() outputs messages to stdout - should
+    # it be stderr?' on 2014-04-06.
+    # This was patched in R v3.1.0 r65385 (2014-04-08)
+    attachX <- function(...) {
+      msg <- capture.output({ res <- base::attach(...) });
+      if (length(msg) > 0L) cat(msg, sep="\n", file=stderr());
+      invisible(res);
+    }
+  }
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   # Validate arguments
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # Get the current search path
+  searchPath <- search();
+  nPath <- length(searchPath);
+
   # Argument 'from':
   if (is.character(from)) {
     name <- from;
@@ -92,9 +112,7 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
   if (to > from)
     to <- to - 1;
 
-
   # Attach at new position
-  attachX <- base::attach;
   attachX(env, pos=to, name=attr(env, "name"));
 
   # Restore attributes (patch for bug in attach()? /HB 2007-09-17)
@@ -109,6 +127,9 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 
 ############################################################################
 # HISTORY:
+# 2014-04-06
+# o WORKAROUND: moveInSearchPath() redirects any messages that
+#   base::attach() sends to stdout to stderr.
 # 2012-12-18
 # o R CMD check for R devel no longer gives a NOTE about attach().
 # 2012-09-12
@@ -117,8 +138,8 @@ setMethodS3("moveInSearchPath", "default", function(from, to, where=c("before", 
 #   calls base::detach() in such a way that neither detach hook nor
 #   .Last.lib() are called.
 # 2007-09-17
-# o BUG FIX: moveInSearchPath() would make the package environment loose 
-#   the 'path' attribute, which is for instance needed by 
+# o BUG FIX: moveInSearchPath() would make the package environment loose
+#   the 'path' attribute, which is for instance needed by
 #   packageDescription().  Now moveInSearchPath() makes sure to set all
 #   attributes on a moved package environment to what it used to be.
 #   BTW, is this a bug in base::attach()?  Reported to r-devel 2007-09-17.
