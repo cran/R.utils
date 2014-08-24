@@ -32,6 +32,7 @@ importFrom("R.oo", "trim")
 
 ## More functions
 importFrom("methods", "as")
+importFrom("methods", "show")
 importFrom("utils", "str")
 importFrom("utils", "available.packages")
 importFrom("utils", "capture.output")
