@@ -1,5 +1,7 @@
 library("R.utils")
 
+oopts <- options()
+
 digits <- getOption("digits")
 print(pi)
 
@@ -25,6 +27,23 @@ withOptions({
   stopifnot(getOption("digits")+3 == 5)
 }, digits=2)
 
+
 # Still printing with the default
 print(pi)
 stopifnot(getOption("digits") == digits)
+
+# Reset also options set inside call
+options(dummy=NULL)
+withOptions({
+  print(pi)
+  options(digits=1L)
+  print(pi)
+  stopifnot(getOption("digits") == 1L)
+  options(dummy="Hello")
+  print(getOption("dummy"))
+})
+stopifnot(is.null(getOption("dummy")))
+
+# Any modified or added option is undone
+stopifnot(all.equal(options(), oopts))
+

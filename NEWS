@@ -2,6 +2,87 @@
 Package: R.utils
 ================
 
+Version: 1.34.0 [2014-10-07]
+o Added URL and BugReports fields to DESCRIPTION.
+o Submitted to CRAN.
+
+
+Version: 1.33.10 [2014-10-03]
+o Added shell.exec2(), which does a better job than shell.exec() in
+  opening pathnames with forward slashes and files on mapped drives,
+  which may or may not open depending software, e.g. Google Chrome
+  fails to open the latter.  Add options(browser=function(...)
+  R.utils::shell.exec2(...)) to your ~/.Rprofile file to make
+  browseURL() use this function instead of shell.exec().  This
+  function is only useful on Windows.
+o BUG FIX: Now Arguments$getReadablePathname(file, path) ignores
+  'path' if 'file' specifies an absolute pathname.
+
+
+Version: 1.33.9 [2014-10-03]
+o Now countLines() automatically supports gzipped files as well.
+  Thanks to Sarah Nelson at Dept of Biostatistics at University
+  of Washington for the suggestion.
+o Now downloadFile("https://...") will use 'curl', and if not available
+  'wget', to download the file over the HTTPS protocol.  Previously
+  only 'wget' was used.  The 'curl' software is available on more
+  operating systems, include OS X, whereas 'wget' sometimes needs
+  a separate installation.
+
+
+Version: 1.33.8 [2014-10-02]
+o Added argument 'unmap' to filePath() for "following" paths that are
+  on mapped Windows drives.
+o CLEANUP: use() would try temporarily set package repository options
+  even when not needed.  This could trigger unnecessary warnings for
+  users who haven't set a default CRAN mirror and using use() to
+  load/attach an already installed package.
+
+
+Version: 1.33.7 [2014-09-18]
+o New default for writeDataFrame() - argument 'col.names=!append'.
+  Also, if append=TRUE, header comments are only written if specified.
+  Added package system test for writeDataFrame().
+
+
+Version: 1.33.6 [2014-09-16]
+o BUG FIX: getAbsolutePath("/tmp", expandTilde=TRUE) returned "//tmp".
+  This would in turn have implications on getRelativePath(), e.g.
+  getRelativePath("/tmp/a", relativeTo="/tmp") returned "../../tmp/a".
+
+
+Version: 1.33.5 [2014-09-15]
+o Added withSeed() and withSink().
+o ROBUSTNESS: Now withOptions() also resets all the options available
+  upon entry even if no explicit options were specified.  This covers
+  the case when 'expr' changes the options and/or adds new options, e.g.
+  withOptions({ options(width=10, foo="new"); str(letter) }).
+
+
+Version: 1.33.4 [2014-09-05]
+o ROBUSTNESS: Arguments$getWritablePathname() could sometimes generate
+  warning "file.remove(pathnameT) : cannot remove file 'file...',
+  reason 'Permission denied'.  Now it tries to remove that files
+  several times before giving up.
+
+
+Version: 1.33.3 [2014-09-04]
+o ROBUSTNESS: Now copyDirectory(), just as copyFile() already did,
+  silently drops arguments 'copy.mode' and 'copy.date' for older
+  R versions where base::file.copy() does not support them.
+
+
+Version: 1.33.2 [2014-09-01]
+o BUG FIX: mkdirs() could return "object 'res' not found" error.
+
+
+Version: 1.33.1 [2014-08-25]
+o BUG FIX: countLines() would not count the last line if it did
+  not contain a newline.  It would also give an error if the newline
+  characters were only CR.  This despite it was documented that both
+  cases were supported.  Added package system tests for them.
+
+
 Version: 1.33.0 [2014-08-24]
 o Added mprint(), mcat(), mstr(), mshow() and mprintf() that work like
   the corresponding print(), cat(), etc., but output using message(),
@@ -12,7 +93,7 @@ o Now the test for target discrepancies by createLink(..., skip=TRUE)
   is more forgiving on Windows (by assuming a case-insensitive file
   system) before generating a warning.
 o Now useRepos(..., fallback=TRUE), and hence use(), will fallback to
-  known/predefined CRAN repositories in case '@CRAN@' is not set.  
+  known/predefined CRAN repositories in case '@CRAN@' is not set.
   If done, it will give an informative warning message.
 o BUG FIX: commandArgs() would drop command-line arguments with periods,
   hyphens, or underscores in their names, e.g. --src_file=x.
