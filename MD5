@@ -1,6 +1,6 @@
-5a65502db9b21c1b7fa040f7db24d981 *DESCRIPTION
+b68dc7592f8a92f1e6edb016ec0bb18a *DESCRIPTION
 e901fc8a8acba16b980e666433e5c44f *NAMESPACE
-0bda79ce5de1f4d44aafb83b708e5e16 *NEWS
+9dbea08518035ac9251ac422690e5cef *NEWS
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 58ba1d04831f66b31ab3f48026b64a80 *R/006.fixVarArgs.R
 78609173e9b93e07864506d108bb8adb *R/999.NonDocumentedObjects.R
@@ -27,7 +27,7 @@ d3b608c94f3e1bd88a6ba0f9aab79d87 *R/TextStatusBar.R
 d144ef94fd89c68150979d66ea8cf7d1 *R/TimeoutException.R
 2fe4bf047423a3ce3a75d71c40f602e3 *R/VComments.R
 aa2ae34352b6c531d651900e342eee30 *R/Verbose.R
-4ca8da0ee2b7e6883cb369e7e7051fb3 *R/addFinalizerToLast.R
+7e9a1f3bf626b02484621a9a7ea1cfc1 *R/addFinalizerToLast.R
 c00da965d00b8a60925a8947a1d0eefd *R/arrayIndex.R
 7ca0342a50bfc24291d6a7f16a9c237b *R/attachLocally.R
 1b79f5145c889043e84b8a06286fd1e4 *R/beta/Options.ui.Rtodo
@@ -38,7 +38,7 @@ ef18bd6b2d992e14ec8839a2de49770a *R/captureOutput.R
 14ade0c1e02f89384988accd7a396673 *R/cmdArgs.R
 c3d3114a3bbcefe5444fdfe5fc4707c1 *R/colClasses.R
 b5aa0e5637a89b5e6ac571b04a75d5f1 *R/commandArgs.R
-2c83c003391d9e1e633e217e14dc6deb *R/compressFile.R
+823da2f7ea5689db1fac27f7cf7f781d *R/compressFile.R
 656c77173e720689cd97b5f494a1b749 *R/copyDirectory.R
 694cb100ecca2cb3b8fbff7489d45991 *R/copyFile.R
 39ca125700399aecef174b752fe8cf90 *R/countLines.R
@@ -138,7 +138,7 @@ f5acb4f44c5f04c8e21f094689854ed0 *R/stext.R
 ff1e6859f08b28cfebda760729e098b6 *R/systemR.R
 367d6d0e1b036035c82d6a4000640599 *R/tempvar.R
 aa80c8d708db45d566e12d25c551f210 *R/toAsciiRegExprPattern.R
-1260c3c5500bc893109e2987a8f6f962 *R/toCamelCase.R
+6a4d3622b1a072cad4025db80a8e1c21 *R/toCamelCase.R
 aeff40afbb17e6e9008a3fd29e3ecf19 *R/toUrl.R
 2002fcc6cb2211f086fa4605fc7ac06b *R/touchFile.R
 49b0a7fa37c17b22811e80be7966e522 *R/unwrap.array.R
@@ -149,8 +149,8 @@ f7f25686024a842b417e9cb61077f9ed *R/withCapture.R
 876ebe542f28c9264508eef55837d637 *R/withLocale.R
 b2e7fe514a3157c42f8cf2d66b500869 *R/withOptions.R
 2612813bfb40d293436446d14e438088 *R/withRepos.R
-cf374bc92eb86d32cf1fc00eec9b60ef *R/withSeed.R
-b6347e7dc1a39b2b15894564fef718c3 *R/withSink.R
+668140561964b6d58aad555a7a273e7e *R/withSeed.R
+1f192c5d894b529bb9b24f791cfe5dfe *R/withSink.R
 e112f4f0798991b27d22501f2db66fa5 *R/withTimeout.R
 7d76ba24b1578834dc5e27a71e21a767 *R/wrap.array.R
 16e279823e03f2c0568fc28ed77632d6 *R/writeBinFragments.R
@@ -509,13 +509,13 @@ bdd86d58ecf5017c477ba4047008c32e *tests/symlinks,dirs.R
 94de910cb949dfb0d252275689a9c1f6 *tests/symlinks,files.R
 5c4c46209faf5bc2e98a0b49a77b4a81 *tests/systemR.R
 fef92152fdeadf9f1546696b2e6152ae *tests/tempvar.R
-16195c4f2f252683b6fe64a2d7d969ab *tests/toCamelCase.R
+0656bcca9027f5bc2bf7c1b9df764f10 *tests/toCamelCase.R
 600a095475e6d4ca326fd0c2b4fa858f *tests/touchFile.R
 93d83736c757cc2bc70f51fae175a35e *tests/use.R
 3b31277725c97bc3d57491a7ea990f0e *tests/useRepos.R
 2958c72c21b285b370aabc0258a008c4 *tests/whichVector.R
 f84c962029616ee42bfaf0b129889d87 *tests/withCapture.R
-ef7e568e8503485e710dc094b762bb89 *tests/withLocale.R
+ed0c9f673fbd73d7c17a2bc0fb578b7b *tests/withLocale.R
 43e6f6324ed9ccb7ecbe1f318f165e9f *tests/withOptions.R
 56057cbbed2a851c3bab969e991bc7ec *tests/withRepos.R
 a259831ae25761c17fc1f55684cc67e7 *tests/withSeed.R
