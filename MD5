@@ -1,6 +1,6 @@
-e561d6cd02ed5b4decb542d4e5dbabe1 *DESCRIPTION
+c004b0eeef4311f24774eb61e8764c95 *DESCRIPTION
 4e7ad060c1f2fcbc990f594f1945d95d *NAMESPACE
-30d66020d0dbd1649edddc2d9412bfd5 *NEWS
+1a355ee8784dc181292ff8bbf396c61e *NEWS
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 58ba1d04831f66b31ab3f48026b64a80 *R/006.fixVarArgs.R
 78609173e9b93e07864506d108bb8adb *R/999.NonDocumentedObjects.R
@@ -8,7 +8,6 @@ cac01492780d7dacf188414aec7b99c7 *R/999.package.R
 16e0e16e527251713046b05cd81c2176 *R/Arguments.R
 0877d40bc4096f1baf3f7290deadcd2a *R/Assert.R
 076f1cfe37877479833d688ab63e0b67 *R/CmdArgsFunction.R
-4c1ebc72e9c9efb9cc0cd442e0afffcb *R/DEPRECATED.OperatorDelayedAssign.R
 7e6d4cc4a95e16bf7c03737c22f07675 *R/FileListTree.R
 2d507f118b4979ea1d41e30186dd95b3 *R/FileProgressBar.R
 eea1a360546df47c7741731b1f6edb3b *R/GString-class.R
@@ -26,7 +25,7 @@ f924dc1a652922ac7df33687df69cb88 *R/System.R
 7c0463dd9d79c99831f793301d79a39b *R/TextStatusBar.R
 d144ef94fd89c68150979d66ea8cf7d1 *R/TimeoutException.R
 2fe4bf047423a3ce3a75d71c40f602e3 *R/VComments.R
-f7c5e15fbc8cde9e4b89443d6bae03be *R/Verbose.R
+ddbb0631940c3661a6b82e31f2858761 *R/Verbose.R
 7e9a1f3bf626b02484621a9a7ea1cfc1 *R/addFinalizerToLast.R
 83dfe9303bfe6bef2315b4ad9816c7c4 *R/arrayIndex.R
 7ca0342a50bfc24291d6a7f16a9c237b *R/attachLocally.R
@@ -127,7 +126,7 @@ c79953f34203fc3688fed95d1238e12e *R/reassignInPackage.R
 a338e1b90fc1a60fb3d0671dfff0f7d8 *R/removeDirectory.R
 2638cef880d4aba655b6fdb46bbc0ea2 *R/renameFile.R
 7c802705c094b4439fcc0d3ab73008d4 *R/resample.R
-7afbb72d3f30791ba21934f7ec202bbd *R/resetWarnings.R
+6a69046b7901b9e2427e31c2eba0f751 *R/resetWarnings.R
 2ce5489a7f65920f7edb20163883cf73 *R/saveObject.R
 3d3be841aab4a54e4cf1df5b49ddc3c6 *R/seqToHumanReadable.R
 3b1c9d01dc366df2a3d829dff4b3a3b9 *R/seqToIntervals.R
@@ -150,7 +149,7 @@ aa80c8d708db45d566e12d25c551f210 *R/toAsciiRegExprPattern.R
 b65318b81f38e9c381c21893b15e7ce8 *R/use.R
 e6715bde6eeb47c0912cad8a2a481104 *R/useRepos.R
 cc957386e356fde41d58d9b5fe40e92d *R/whichVector.R
-0c137469d723080f5e802f7bcbfa5fc7 *R/withCapture.R
+f66c89a164d19e407305d1eace413843 *R/withCapture.R
 3501e1cb5cbba1091d8a9606b923b3ad *R/withLocale.R
 b2e7fe514a3157c42f8cf2d66b500869 *R/withOptions.R
 5e54a8056d1118e3871db6d39a309331 *R/withRepos.R
@@ -175,7 +174,6 @@ eb7d575ebb16390f94f3da4a9a95975e *man/GString-class.Rd
 84cded550b10ee5fa38b0e9464527862 *man/Non-documented_objects.Rd
 db8acd9a3b7cd60f1b30892ca9385a00 *man/NullVerbose.Rd
 3c6013406922e7f933122e6c7b986ab6 *man/Options.Rd
-49e8bb04a0ab06037a06c9a073da1c91 *man/PERCENTLT_-PERCENT.Rd
 214962e942e370c0e34193c31cd3e834 *man/ProgressBar.Rd
 38c176a09c73b897823b8230e6f0d5e0 *man/R.utils-package.Rd
 e1db34a1365b620b7ab250734cfddde1 *man/Settings.Rd
@@ -383,7 +381,7 @@ e6075be3d758b89d1bc50f2385dc695d *man/renameFile.Rd
 3c8d4e1214fd5dddef8c342eaa58a60f *man/reset.ProgressBar.Rd
 d80126be1bc6e376c5543791820a2fa1 *man/reset.SmartComments.Rd
 16b9964094c3f54d597a5d9b6822cf76 *man/reset.VComments.Rd
-803626c74a695eb047ad77a1ba08c008 *man/resetWarnings.Rd
+6a0b6cb672d5099106687a38df1f3f0c *man/resetWarnings.Rd
 0fa36a3c310a30c270662fd800e8d686 *man/ruler.Verbose.Rd
 32b67ffec940167e9a009ac5b5b1910d *man/saveAnywhere.Settings.Rd
 967d6334450f49dd665202315a98d505 *man/saveObject.Rd
@@ -428,7 +426,7 @@ b34133453e037b9460d2a82c265e9c89 *man/use.Rd
 d2cc11a3f15df972e4efedc16692cc92 *man/useRepos.Rd
 ff26588b099baf948ca5ca87dd7518ab *man/validate.SmartComments.Rd
 6af991e15355e4853892834bfcf8e192 *man/validate.VComments.Rd
-f80ea68d202917014d6da548d18dc679 *man/warnings.Verbose.Rd
+affbf2850e9d0b97998f16310e427a33 *man/warnings.Verbose.Rd
 8f4153c14340aae30b3485ef32eaf8a7 *man/whichVector.logical.Rd
 96b57ca6c28ed406c197c2aef651cec0 *man/withCapture.Rd
 28604774e49827358065cae6752f6f52 *man/withLocale.Rd
@@ -455,11 +453,11 @@ e99b92e5479f5157600ac40975c5d09c *tests/GString.R
 aee20372d95dd57cc4270ac176aaaad5 *tests/NullVerbose.R
 ac29f48b9551d2ee896558aebf782694 *tests/Options.R
 3726553f767ea5868fbe7d89bcd5988c *tests/ProgressBar.R
-d7621a445fad25f0860f8d42364d2d21 *tests/Settings.R
+9f2c0635644adc91d584c4c05944b86f *tests/Settings.R
 4ae7ac9fcf19676f15d0e990a4a6bef5 *tests/System.R
 73b0565d0ce616408491ff79f754a685 *tests/TextStatusBar.R
 5cb624febf4f541cf4fb8ae9e662dcda *tests/VComments.R
-1ded71cd91acd0b1a0d443e00ad307f4 *tests/Verbose.R
+f2482c9e93f394b5ca46d5d5a34c1a46 *tests/Verbose.R
 69b29cadf01e17a32c29f6af5d536ca9 *tests/absolute-relative-paths.R
 2ed87bf8e25674fd0c7968758adead69 *tests/arrayIndex.R
 e21e0ca8ad1927fb1201ebac4bb980ec *tests/attachLocally.R
@@ -514,7 +512,6 @@ a88402b1a2e088b254a5725c80b33574 *tests/readBinFragments.R
 b042e5513403949714028e00e777d027 *tests/readWindowsShellLink.R
 e81abde49e1ce611d5ab5a8f3a74694a *tests/readWindowsShortcut.R
 ea11b5ab54c78497ee33aa298a9db0e7 *tests/resample.R
-dae2e3bfab0001d6ab98c754e626d523 *tests/resetWarnings.R
 05c19c6183fc703542262fd6fdde5304 *tests/seqToHumanReadable.R
 dd556e486d0616df82b70d60c151c0d9 *tests/seqToIntervals.R
 49fcec14b8a6aeae1e5aedbeccc52da7 *tests/sourceTo.R
@@ -535,7 +532,7 @@ ed0c9f673fbd73d7c17a2bc0fb578b7b *tests/withLocale.R
 43e6f6324ed9ccb7ecbe1f318f165e9f *tests/withOptions.R
 56057cbbed2a851c3bab969e991bc7ec *tests/withRepos.R
 a259831ae25761c17fc1f55684cc67e7 *tests/withSeed.R
-711360f19d8fa6a5c449161c6db922dc *tests/withSink.R
+777ac19bf7bcb0029d73aa110e14aaaa *tests/withSink.R
 9dc3b9552d17762f6b3d9829bd2d4874 *tests/withTimeout.R
 0a21c267f7140a0def8f3976d53e0a98 *tests/wrap.array.R
 661f34b3ba0beea1b45e9dff64aea177 *tests/writeDataFrame.R
