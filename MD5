@@ -1,6 +1,6 @@
-bea790eaf5752cffb79ad2667177f27d *DESCRIPTION
-4ec983d680383f0526c50d02ba1bee44 *NAMESPACE
-230af0afa59607a29f546672d9e160e0 *NEWS
+4287ad8fde496ed40bbdfe4eeb306cd3 *DESCRIPTION
+d204ee5f5db0cc13e7f1a28d95d31b4f *NAMESPACE
+536b70314c6dcbbc9cd96ff6e18a554a *NEWS
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 48589100c4626718adebb2c86db0ec33 *R/006.fixVarArgs.R
 5585de3d4cdec70b96ac199b16e0e8a2 *R/999.NonDocumentedObjects.R
@@ -59,7 +59,7 @@ f1e73c2bf2b2620753cfaf6803426e79 *R/eget.R
 a4157e3916f30d816c331e49a2abe435 *R/egsub.R
 8eafadf361fd10de2ef53657d3487784 *R/env.R
 8a246a716edcb5287ace821c15cce01f *R/extract.array.R
-a25cb889a049f6c5d5980729bb9657b8 *R/fileAccess.R
+0dc48dc1b08c62c6cb729ed08d824af9 *R/fileAccess.R
 d757504f9376952fa58b6f455c04e124 *R/filePath.R
 99f5f7106c07077c6c2fe2004a6e6bf1 *R/finalizeSession.R
 6bf476f8487dcfcaa82d02094cb715e9 *R/findFiles.R
@@ -150,10 +150,10 @@ c3295a0c40977f80fc2904a0bb088763 *R/withCapture.R
 ac8781d6ee38980b43755d130c639021 *R/withLocale.R
 3a227e70c3e434cc5f9189f60265590e *R/withOptions.R
 b913201b2b5b89724590bdba6a33524b *R/withRepos.R
-a432aa65cb857548250dc331e5c4d124 *R/withSeed.R
+100e0f5d3645fe821147010ef3f96fe6 *R/withSeed.R
 58cfddd6a7d3dfe2bd93c52af152a94d *R/withSink.R
 97ca3349c97e540a9bfb3b724ed4c4a3 *R/withTimeout.R
-49b9fde56ce1a8517c2c2d5c9691104c *R/wrap.array.R
+0caa0b615bd896ef3288a35b5cc1dbac *R/wrap.array.R
 6d12cc8e1df282f9cd92ac874ede60b6 *R/writeBinFragments.R
 59252ec83a39398928add900e7a06d6d *R/writeDataFrame.R
 0e0767064b33fdaef8764927b9010eb1 *R/zzz.R
@@ -477,7 +477,7 @@ a1462f35933ba951f205d497614ed4cf *tests/displayCode.R
 99523adcaea700e56b3e274b9eb4ba34 *tests/egsub.R
 7d667e96e14b81282aed8bd7547ec01b *tests/env.R
 b963293a22eb9eb98c0e024310403e19 *tests/extract.array.R
-7382daa125d0c8b485c33f4ed7dbfa9d *tests/fileAccess.R
+d7afe1d65d5836c66c44d598ff912ea0 *tests/fileAccess.R
 08bf19e5757b9653b2c58229481c2a2c *tests/filePath.R
 f2cf49873a6138acc58e57119730042f *tests/findFiles.R
 0314b27a216d7fa49a609987550f6e89 *tests/findSourceTraceback.R
@@ -527,7 +527,7 @@ e069d9d0afbf1988d8f99d092ba5fbe9 *tests/tmpfile.R
 ed0c9f673fbd73d7c17a2bc0fb578b7b *tests/withLocale.R
 43e6f6324ed9ccb7ecbe1f318f165e9f *tests/withOptions.R
 56057cbbed2a851c3bab969e991bc7ec *tests/withRepos.R
-a259831ae25761c17fc1f55684cc67e7 *tests/withSeed.R
+7bf388f9e7d268b5aec36e90cb182225 *tests/withSeed.R
 777ac19bf7bcb0029d73aa110e14aaaa *tests/withSink.R
 3d2b94928eb7d8ea834740642960fd55 *tests/withTimeout.R
 9efcb601cce8d7db6dbd3224586618cb *tests/wrap.array.R
