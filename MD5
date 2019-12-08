@@ -1,6 +1,6 @@
-4287ad8fde496ed40bbdfe4eeb306cd3 *DESCRIPTION
+5c4868067191e8ba00d4e0e2a0decf86 *DESCRIPTION
 d204ee5f5db0cc13e7f1a28d95d31b4f *NAMESPACE
-536b70314c6dcbbc9cd96ff6e18a554a *NEWS
+50738adb738bc28433ad8e5456de4375 *NEWS
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 48589100c4626718adebb2c86db0ec33 *R/006.fixVarArgs.R
 5585de3d4cdec70b96ac199b16e0e8a2 *R/999.NonDocumentedObjects.R
@@ -67,7 +67,7 @@ c8c48d9785f528128d45306641ca8ce9 *R/findSourceTraceback.R
 f1f02f1456b65880e73fe81c899a5bc4 *R/gcDLLs.R
 7c2f62416d3b42c482e34909552ff937 *R/gcat.R
 7e73b850474396a5964c2fc449c24632 *R/getAbsolutePath.R
-eef6cc0cd12d0c9ad27a5fb6174f1bfe *R/getCommonPrefix.R
+9bff8b7d01c4ad50c348842dbefbc253 *R/getCommonPrefix.R
 6ea0293453413f406d3083ff2998e9e0 *R/getParent.R
 6a2d31b83f993aba9c76a12d7d5b7c8f *R/getPathIfEmpty.R
 6448507b7e95d88ef6ad241ca8e21780 *R/getRelativePath.R
@@ -164,7 +164,7 @@ b913201b2b5b89724590bdba6a33524b *R/withRepos.R
 7d30d107dbcee8a415ba69362f2eae9b *inst/data-ex/lnkFileWith10BitsInFlag.lnk
 d748551ca15e86e6e3661c0783d0fa65 *man/Arguments.Rd
 40d2327330be9f181fc3b7322101e384 *man/Assert.Rd
-138a3d9f77f0b9af2ca6178ffdec9053 *man/FileProgressBar.Rd
+bba8ad7d25e012e6059344e54c42de2d *man/FileProgressBar.Rd
 5fcf1038a5720cab8d6b9e9241516a62 *man/GString-class.Rd
 619ad6ff5c2aca152b958b0391584b1f *man/Java.Rd
 39061a29de8384d08f0c7033dd8e61bd *man/LComments.Rd
@@ -442,7 +442,7 @@ e748a256e5c8fd1154b5547d3f4672d0 *man/writeBinFragments.Rd
 8bea6a3c00fa7b8905580a8fcc45f44b *man/writeShort.Java.Rd
 bfa88b9488b31ffa53aaad33858f725e *man/writeUTF.Java.Rd
 e0c0c3409dd64aa0cdbda485386f8c0c *tests/Arguments-FILES.R
-f984549b88c1fea0fda339bf8e6e4a46 *tests/FileProgressBar.R
+3abe6f9d16044d4ac93ee989c1942743 *tests/FileProgressBar.R
 e99b92e5479f5157600ac40975c5d09c *tests/GString.R
 727adaa0df33a2bd528fe401d4ee81e1 *tests/Java.R
 2ee06e2e4bba653b5746fd85ae79c3a8 *tests/MultiVerbose.R
