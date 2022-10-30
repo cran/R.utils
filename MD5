@@ -1,11 +1,11 @@
-47ad1d80046771b9698f0774bb6a2e30 *DESCRIPTION
+6d4525b71f05be96627e66c9f22a78d0 *DESCRIPTION
 769a69f613851a6f89c38323d296dfb2 *NAMESPACE
-ac834b96928546dfeb9828da64c1aaad *NEWS.md
+71c070419594562fdfcd50df64badad0 *NEWS.md
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 084f5fef1ad9ded4c99ca3a087ef0d20 *R/006.fixVarArgs.R
 73362ebcfc5b9092dc96948d43c43087 *R/999.NonDocumentedObjects.R
 c51f8c5d9682fe9f1b68a0fc83f8da28 *R/999.package.R
-604d698b18641974a1ad7751bd6c8162 *R/Arguments.R
+6a3c5f61dba1e0e6d331201544ae92a9 *R/Arguments.R
 214814967bc916701323f8eb043de5a8 *R/Assert.R
 48f811cd91497f439600d813f8301bbc *R/CmdArgsFunction.R
 f15a2b2aaeec5e207014fd737b949821 *R/FileListTree.R
@@ -21,7 +21,7 @@ a3c755ed5242ea85d968a0fb8c805bb4 *R/ProgressBar.R
 7464eb0b64098816fb1b2eb0a401a222 *R/Settings.R
 31e28eeb22408804804ac62fa31975eb *R/SmartComments.R
 0f9a1511f08523c56b29604b126a573a *R/Sys.readlink2.R
-3c8c398bb73a0c95cc5eff2f8dea35bd *R/System.R
+decd4efb67958c472d114632aa50b408 *R/System.R
 fb9b7c1ded05d714f77e29361cb99c46 *R/TextStatusBar.R
 981f44919568d657e6daea1861351c37 *R/TimeoutException.R
 28abb9566bcbdb8907a28783564bb964 *R/VComments.R
@@ -60,7 +60,7 @@ a4157e3916f30d816c331e49a2abe435 *R/egsub.R
 8eafadf361fd10de2ef53657d3487784 *R/env.R
 8a246a716edcb5287ace821c15cce01f *R/extract.array.R
 3abdfe77e668f081f2eb978553fc31f3 *R/fileAccess.R
-d757504f9376952fa58b6f455c04e124 *R/filePath.R
+3ea0666687b115840899b04cc6bf6643 *R/filePath.R
 99f5f7106c07077c6c2fe2004a6e6bf1 *R/finalizeSession.R
 6bf476f8487dcfcaa82d02094cb715e9 *R/findFiles.R
 c8c48d9785f528128d45306641ca8ce9 *R/findSourceTraceback.R
@@ -118,7 +118,7 @@ a7187a3089cbf1f9ab7e0e1029e2bbe0 *R/queryRCmdCheck.R
 a7563d34c4be027ac6d2fe6a6c25b2fa *R/readTable.R
 770edf2c95aba989dc3152d83213cf12 *R/readTableIndex.R
 7eada7626f87a1f0caecdc79c8e29640 *R/readWindowsShellLink.R
-bb7a4c00feaf417e44a77de69c13dd2c *R/readWindowsShortcut.R
+ebc583dc1ab5f9b59c182db3b7a575f7 *R/readWindowsShortcut.R
 cd0037d2e4976b53d01f3754257cbc4d *R/reassignInPackage.R
 43dd2e37b935388354748625dfa0abaa *R/removeDirectory.R
 47580f4d5bccf89ba428f61e7d2ca7c9 *R/renameFile.R
@@ -143,7 +143,7 @@ d5f1644530528a8306945639798d1c0a *R/subplots.R
 b650347bcbc9b83bb56152cfbfa09afa *R/touchFile.R
 3f6051c1b61db0d840e6c637904bc7d0 *R/unwrap.array.R
 ee45ea620989e3b5220d61ea851b0843 *R/use.R
-f1a9b468c1cbf71354f3dc5179f51682 *R/useRepos.R
+dc910054ec0e3f6bba4e36a114b625d0 *R/useRepos.R
 5d70959a9e051a5666c0524ad97022d9 *R/utils.R
 5fc530e624bb558f7df5ceeb27bb6c2e *R/whichVector.R
 b2649ce1f6324b1fa48be66928379e55 *R/withCapture.R
@@ -152,7 +152,7 @@ ac8781d6ee38980b43755d130c639021 *R/withLocale.R
 b913201b2b5b89724590bdba6a33524b *R/withRepos.R
 100e0f5d3645fe821147010ef3f96fe6 *R/withSeed.R
 58cfddd6a7d3dfe2bd93c52af152a94d *R/withSink.R
-8ce7703585186e56953bfeebf1a80768 *R/withTimeout.R
+ce482d996f6656b655060a401f01a36c *R/withTimeout.R
 0caa0b615bd896ef3288a35b5cc1dbac *R/wrap.array.R
 6d12cc8e1df282f9cd92ac874ede60b6 *R/writeBinFragments.R
 59252ec83a39398928add900e7a06d6d *R/writeDataFrame.R
@@ -242,7 +242,7 @@ ab73bbf146cf6162f26542c99ceef785 *man/file.info2.Rd
 e419c7b2cd6376d54c6e4a42eff2b1d6 *man/filePath.Rd
 c296c9f5490cc0d0b1bcf0656e24dd71 *man/finalizeSession.Rd
 ff97dd68d72e9cb6374be778cac155d9 *man/findFiles.Rd
-ddea7df5e1d91553e42b339167a10ada *man/findGhostscript.System.Rd
+5c44b2969d5f9ccabc57ea559308c46c *man/findGhostscript.System.Rd
 610620750f480d6c1496e0720c02a87b *man/findGraphicsDevice.System.Rd
 d53cb36d56dc8042605e707be691ddf4 *man/findSettings.Settings.Rd
 00493d5ee4250772e9711661720afcf1 *man/findSourceTraceback.Rd
@@ -264,7 +264,7 @@ da9190b9ab19f830e9154c45413f4e2c *man/getBuiltinRhome.GString.Rd
 4ef52cebc6d483f40784744e3620abe6 *man/getCharacters.Arguments.Rd
 7be1a62b4b7ab039d49c6b343cd11259 *man/getDoubles.Arguments.Rd
 5510c638a9e9f0d07f317e126176b279 *man/getEnvironment.Arguments.Rd
-a79b1eddf4a08e0fe180b794357bb5f0 *man/getFilename.Arguments.Rd
+43ae5a6a534888f522106984abcbea06 *man/getFilename.Arguments.Rd
 f6b8fcd1a30c80d2fccfc0b9f2b36054 *man/getHostname.System.Rd
 5a3eb7a493787441c55f10e8d5fa1aa1 *man/getIndices.Arguments.Rd
 4eb6cf1d7b0893117c594a9618bc4a43 *man/getInstanceOf.Arguments.Rd
@@ -370,7 +370,7 @@ a238fcea6b6984892277ccfd267fdae1 *man/readRdHelp.Rd
 616b3b4e800a2383822903a6aa54ecc0 *man/readTableIndex.Rd
 287e4c3c098dbf34d81b98437e0ac414 *man/readUTF.Java.Rd
 c1697fab420f61ab76ebb0b0ea6498e9 *man/readWindowsShellLink.Rd
-d400f7b0353e81e77267eaa740e52d82 *man/readWindowsShortcut.Rd
+23a5089bda7e40b2a4ed4761b6f285c4 *man/readWindowsShortcut.Rd
 ebd21fc2fb6116d71ab01caf5940a058 *man/reassignInPackage.Rd
 71a202f543a77dd1aa0e84ecd1a0f59d *man/removeDirectory.Rd
 e2c2ce24eb2acbcd971bc3647d11516b *man/renameFile.Rd
@@ -430,7 +430,7 @@ cfac4c6bb8b67b623ce487e1b5e7b5fc *man/withOptions.Rd
 044754db05680d00f554eaf04ddb6105 *man/withRepos.Rd
 71c7d5dfa0e6afc0a7f24695511feb37 *man/withSeed.Rd
 2f1c064fbdb63579f8923b01047f56a7 *man/withSink.Rd
-940c05623d88134645f781fc23ad0e2a *man/withTimeout.Rd
+e9c952880eb1f983746674c618162984 *man/withTimeout.Rd
 10da0eab23112b2cd3506aae370c0c2c *man/wrap.array.Rd
 e748a256e5c8fd1154b5547d3f4672d0 *man/writeBinFragments.Rd
 937af8b9679438990e355f6d2e18c8cf *man/writeByte.Java.Rd
@@ -478,7 +478,7 @@ f1426919ae7e4a45d8288a65b0b4a07d *tests/displayCode.R
 7d667e96e14b81282aed8bd7547ec01b *tests/env.R
 b963293a22eb9eb98c0e024310403e19 *tests/extract.array.R
 d7afe1d65d5836c66c44d598ff912ea0 *tests/fileAccess.R
-08bf19e5757b9653b2c58229481c2a2c *tests/filePath.R
+66ee03a7703081dfaf9ff688313a377a *tests/filePath.R
 f2cf49873a6138acc58e57119730042f *tests/findFiles.R
 0314b27a216d7fa49a609987550f6e89 *tests/findSourceTraceback.R
 ae291e4a8ccaca5bbfe9ae9151cee1cb *tests/gcDLLs.R
@@ -529,7 +529,7 @@ e010e122955a78dde55795f875b7a5e3 *tests/withOptions.R
 0b5aadcaa780f666429520045fcf2602 *tests/withRepos.R
 7bf388f9e7d268b5aec36e90cb182225 *tests/withSeed.R
 777ac19bf7bcb0029d73aa110e14aaaa *tests/withSink.R
-1505c46a31285a5a1559a7baa6ed49e5 *tests/withTimeout.R
+8a8b154f0735635b20593cd8c6f8b44b *tests/withTimeout.R
 e8f3a0700bf2a7ab6d52e70559032312 *tests/wrap.array.R
 21b9f51280af498f487603743dd28899 *tests/writeDataFrame.R
 84ed613188920118b43ffce5cf1432e6 *tests/zzz_finalizer_crash.R
