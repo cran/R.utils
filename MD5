@@ -1,6 +1,6 @@
-6d4525b71f05be96627e66c9f22a78d0 *DESCRIPTION
-769a69f613851a6f89c38323d296dfb2 *NAMESPACE
-71c070419594562fdfcd50df64badad0 *NEWS.md
+545e202c275eb64ce1e303169205c559 *DESCRIPTION
+d6383dc737c9cc14e1c502477e9c91de *NAMESPACE
+9c11053c0b2ec1f1c75281dbae010aec *NEWS.md
 5b3e0291bcc049d9ada9005162c5259a *R/000.R
 084f5fef1ad9ded4c99ca3a087ef0d20 *R/006.fixVarArgs.R
 73362ebcfc5b9092dc96948d43c43087 *R/999.NonDocumentedObjects.R
@@ -19,13 +19,13 @@ f15a2b2aaeec5e207014fd737b949821 *R/FileListTree.R
 cae3d2e0c747316e467521185f63bd02 *R/Options.R
 a3c755ed5242ea85d968a0fb8c805bb4 *R/ProgressBar.R
 7464eb0b64098816fb1b2eb0a401a222 *R/Settings.R
-31e28eeb22408804804ac62fa31975eb *R/SmartComments.R
+5a93d5ff881ed9d966423a56b729293c *R/SmartComments.R
 0f9a1511f08523c56b29604b126a573a *R/Sys.readlink2.R
 decd4efb67958c472d114632aa50b408 *R/System.R
 fb9b7c1ded05d714f77e29361cb99c46 *R/TextStatusBar.R
 981f44919568d657e6daea1861351c37 *R/TimeoutException.R
 28abb9566bcbdb8907a28783564bb964 *R/VComments.R
-f9c811974c84399944e64f60897eedd2 *R/Verbose.R
+eca741fc1d02bd68c6fdcc55419f53dc *R/Verbose.R
 125af8581fd3e27cc93bcb50888f5286 *R/addFinalizerToLast.R
 78b974018e05d94361d47c5aa62c94ef *R/attachLocally.R
 09644c2c8db98b4d0f874e3544598be7 *R/beta/Options.ui.Rtodo
@@ -168,9 +168,9 @@ bba8ad7d25e012e6059344e54c42de2d *man/FileProgressBar.Rd
 5fcf1038a5720cab8d6b9e9241516a62 *man/GString-class.Rd
 619ad6ff5c2aca152b958b0391584b1f *man/Java.Rd
 39061a29de8384d08f0c7033dd8e61bd *man/LComments.Rd
-a5bddbf067d019968567abf822df93df *man/MultiVerbose.Rd
+eeead605fe5528827a3cb5ae21c4ca16 *man/MultiVerbose.Rd
 5981e8ae741933d2e5c7f9e8a9c2e2fc *man/Non-documented_objects.Rd
-db8acd9a3b7cd60f1b30892ca9385a00 *man/NullVerbose.Rd
+06fb8fbb2911a8caee50420a572f602a *man/NullVerbose.Rd
 1795e2df8b0589b1a8530e840916f555 *man/Options.Rd
 214962e942e370c0e34193c31cd3e834 *man/ProgressBar.Rd
 521d29f19b1bccead99defcf999638fb *man/R.utils-package.Rd
@@ -181,7 +181,7 @@ f43df6bd9c30d3768f2601a961cd5f8a *man/SmartComments.Rd
 e94f6de5e1c90826f5a18e897891e086 *man/TextStatusBar.Rd
 0b63802cc679dd4f86c7edb5e8f0793e *man/TimeoutException.Rd
 596d27aeb8e1e700da6b1e0ca0c7e0d3 *man/VComments.Rd
-ed4cd1826f54bbbb45187f90a7df1c60 *man/Verbose.Rd
+d474cf3703282a5bfdf310366c7563b4 *man/Verbose.Rd
 c366c029b7c251644fcf76d5821a535b *man/addFinalizerToLast.Rd
 781576574d1a10e529cce2d3fac68ec7 *man/as.character.GString.Rd
 dfa29f5299da734576c2b9ef81322646 *man/as.character.Options.Rd
@@ -346,7 +346,7 @@ b703af8ae44946e21c3ce4f225ecaa31 *man/onGarbageCollect.Rd
 c0daadba672edd075b1b6e196c20785e *man/onSessionExit.Rd
 3e71219a6db65ed42c7f460122a3826a *man/openBrowser.System.Rd
 fc882b8b7ae43186dec07f5134ecf298 *man/parse.GString.Rd
-52e4eab9ca73450d74dd1b3db5ecbbdc *man/parse.SmartComments.Rd
+535acd818049fd29c49695e06466e55a *man/parse.SmartComments.Rd
 e83a5b82bb71efd55a4ff3daa54d7cba *man/parseDebian.System.Rd
 4e2513c3f2da9604731357907ed7c414 *man/patchCode.Rd
 b27ef8f1604680ad4600acad99062b11 *man/popBackupFile.Rd
@@ -354,6 +354,7 @@ b27ef8f1604680ad4600acad99062b11 *man/popBackupFile.Rd
 c326c2cb8b456e2dc1f3d78fa9273c49 *man/popTemporaryFile.Rd
 3bc70e67b86d9ab7706bb782865e8b89 *man/print.GString.Rd
 1f988953661ddff98cdf8182de60a0d2 *man/print.Verbose.Rd
+f6584c22217f8136f6a3642ece07aca8 *man/printWarnings.Verbose.Rd
 4f36d70952c274155e04a52f43333bbb *man/printf.Rd
 0c009dc50256193bc9933e41f07a357b *man/printf.Verbose.Rd
 00380954458e78a9e45245e19befcb0e *man/promptAndSave.Settings.Rd
@@ -422,7 +423,6 @@ a360b8982948dd1f60310210ac604414 *man/use.Rd
 d2cc11a3f15df972e4efedc16692cc92 *man/useRepos.Rd
 ff26588b099baf948ca5ca87dd7518ab *man/validate.SmartComments.Rd
 6af991e15355e4853892834bfcf8e192 *man/validate.VComments.Rd
-7f0aab1f4eb1a5c369de1de5e0088ba0 *man/warnings.Verbose.Rd
 84c5b1157dd561a87500672f3eb8507c *man/whichVector.logical.Rd
 dfa0eaf257073c077e8d69127bf33b77 *man/withCapture.Rd
 5cfc890f51bf3fe3bbdf6aca06578ee8 *man/withLocale.Rd

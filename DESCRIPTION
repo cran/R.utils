@@ -1,7 +1,7 @@
 Package: R.utils
-Version: 2.12.1
-Depends: R (>= 2.14.0), R.oo (>= 1.24.0)
-Imports: methods, utils, tools, R.methodsS3 (>= 1.8.1)
+Version: 2.12.2
+Depends: R (>= 2.14.0), R.oo
+Imports: methods, utils, tools, R.methodsS3
 Suggests: datasets, digest (>= 0.6.10)
 Title: Various Programming Utilities
 Authors@R: c(person("Henrik", "Bengtsson", role=c("aut", "cre", "cph"),
@@ -15,6 +15,6 @@ URL: https://henrikbengtsson.github.io/R.utils/,
         https://github.com/HenrikBengtsson/R.utils
 BugReports: https://github.com/HenrikBengtsson/R.utils/issues
 NeedsCompilation: no
-Packaged: 2022-10-30 20:34:24 UTC; hb
+Packaged: 2022-11-11 18:51:45 UTC; hb
 Repository: CRAN
-Date/Publication: 2022-10-30 22:12:37 UTC
+Date/Publication: 2022-11-11 22:00:03 UTC
