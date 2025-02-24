@@ -48,7 +48,7 @@ TimeoutException(..., cpu=NA, elapsed=NA)
 }
 
  \arguments{
-   \item{...}{Any arguments accepted by \code{\link{Exception}}}.
+   \item{...}{Any arguments accepted by \code{\link[R.oo]{Exception}}}.
    \item{cpu, elapsed}{The maximum time the R expressions were allowed
      to be running before the timeout occurred as measured in CPU time
      and (physically) elapsed time.}
@@ -57,7 +57,7 @@ TimeoutException(..., cpu=NA, elapsed=NA)
  \section{Fields and Methods}{
   \bold{Methods:}\cr
 \tabular{rll}{
- \tab \code{getMessage} \tab  -\cr
+ \tab \code{\link[R.utils:getMessage.TimeoutException]{getMessage}} \tab Gets the message of the exception.\cr
 }
 
 
@@ -79,7 +79,7 @@ $, $<-, [[, [[<-, as.character, attach, attachLocally, clearCache, clearLookupCa
  \author{Henrik Bengtsson}
 
  \seealso{
-   For detailed information about exceptions see \code{\link{Exception}}.
+   For detailed information about exceptions see \code{\link[R.oo]{Exception}}.
  }
 
  \keyword{programming}
